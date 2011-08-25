@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Mule FWS Cloud Connector
+
+    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+
+    The software in this package is published under the terms of the CPAL v1.0
+    license, a copy of which has been included with this distribution in the
+    LICENSE.txt file.
+
+-->
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:quickbooks="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books"
+      xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0-SNAPSHOT/mule-quickbooks.xsd">
+
+    <quickbooks:config consumerKey="${qb.consumer.key}"
+        consumerSecret="${qb.consumer.secret}"
+        accessKey="${qb.access.key}"
+        accessSecret="${qb.access.secret}"
+        realmId="1267489"/>
+
+    <flow name="Create">
+    
+        <quickbooks:create-account accountParentId="IdType Optional"
+                                   name="String Unique"
+                                   desc="String Optional"
+                                   subtype="Enum"
+                                   acctNum="String Optional"
+                                   openingBalance="Decimal Optional"
+                                   openingBalanceDate="Date Optional"/>
+                                   
+        <quickbooks:create-bill header="Map"
+                                line="List<Map<>>"/>
+                                
+        <quickbooks:create-bill-payment header="Map"
+                                        line="List<Map<>>"/>
+                                        
+        <quickbooks:create-cash-purchase header="Map"
+                                         line="List<Map<>>"/>
+                                         
+        <quickbooks:create-check header="Map"
+                                 line="List<Map<>>"/>
+                                 
+        <quickbooks:create-credit-card-charge header="Map"
+                                              line="List<Map<>>"/>
+                                              
+        <quickbooks:create-customer name="String Optional"
+                                    givenName="String Optional"
+                                    middleName="String Optional"
+                                    familyName="String Optional"
+                                    suffix="String Optional"
+                                    dBAName="String Optional"
+                                    showAs="String Optional"
+                                    webSite="List<Uri>"
+                                    salesTermId="idType Optional"
+                                    salesTaxCodeId="String Optional"
+                                    email="List<String>"
+                                    phone="List<Map<>>"
+                                    address="Map<>"/>
+                                    
+        <quickbooks:create-estimate header="Map<>"
+                                    line="List<Map<>>"/>
+                                    
+        <quickbooks:create-invoice header="Map<>"
+                                   line="List<Map<>>"/>
+                                   
+        <quickbooks:create-item name="String EmptyDefault"
+                                unitPrice="Map<>"
+                                desc="String Optional"
+                                tasable="boolean defaultFalse"
+                                incomeAccountRef="Map<>"
+                                itemParentId="IdType N/A"
+                                itemParentName="String N/A"
+                                purchaseDesc="String Optional"
+                                purchaseCost="Map<>"
+                                expenseAccountRef="Map<>"/>
+                                
+        <quickbooks:create-payment header="Map<>"
+                                   line="List<Map<>>"/>
+                                   
+        <quickbooks:create-payment-method name="String"
+                                          type="String Optional NON_CREDIT_CARDdefault"/>
+                                          
+        <quickbooks:create-sales-receipt header="Map<>"
+                                         line="List<Map<>>"/>
+                                         
+        <quickbooks:create-sales-term name="String"
+                                      dueDays="Integer Positive"
+                                      discountDays="Integer Positive Optional"
+                                      discountPercent="Decimal Optional"
+                                      dayOfMonthDue="Integer Positive"
+                                      dueNextMonthDays="Integer Positive Optional"
+                                      discountDayOfMonth="Integer Positive Optional"
+                                      dateDiscountPercent="Decimal Optional"/>
+                                      
+        <quickbooks:create-vendor name="String"
+                                  givenName="String"
+                                  middleName="String Optional"
+                                  familyName="String Optional"
+                                  dBAName="String Optional"
+                                  showAs="String Optional"
+                                  webSite="List<Uri>"
+                                  taxIdentifier="Integer Positive Optional"
+                                  acctNum="String Optional"
+                                  vendor1099="Boolean Optional"
+                                  email="List<String>"
+                                  phone="List<Map<>>"
+                                  address="Map<>"/>
+                                  
+    </flow>
+    
+    <flow name="GetObject">
+        <quickbooks:get-object type="INVOICE" id="#[variable:id]"/>
+    </flow>
+    
+    <flow name="Update">
+        <quickbooks:update-account username="Gaston"/>
+        <quickbooks:update-bill a=""/>
+        <quickbooks:update-bill-payment a=""/>
+        <quickbooks:update-cash-purchase a=""/>
+        <quickbooks:update-check a=""/>
+        <quickbooks:update-credit-card-charge a=""/>
+        <quickbooks:update-customer a=""/>
+        <quickbooks:update-estimate a=""/>
+        <quickbooks:update-invoice a=""/>
+        <quickbooks:update-item a=""/>
+        <quickbooks:update-payment a=""/>
+        <quickbooks:update-payment-method a=""/>
+        <quickbooks:update-sales-receipt a=""/>
+        <quickbooks:update-sales-term a=""/>
+        <quickbooks:update-vendor a=""/>
+    </flow>
+
+    <flow name="<DeleteObject">
+        <quickbooks:delete-object type="INVOICE" id="#[variable:id]"/>
+    </flow>
+</mule>
