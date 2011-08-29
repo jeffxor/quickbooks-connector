@@ -6,7 +6,7 @@
 	<artifactId>mule-module-quick-books</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>mule-module</packaging>
-	<name>Mule Cloud Connector</name>
+	<name>QuickBooks Cloud Connector</name>
 
 	<properties>
 		<mule.version>3.1.0</mule.version>
