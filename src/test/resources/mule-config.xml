@@ -28,77 +28,126 @@
 
     <flow name="Create">
     
-        <quickbooks:create-account accountParentId="IdType Optional"
-                                   name="String Unique"
+        <quickbooks:create-account name="String Unique"
                                    desc="String Optional"
                                    subtype="Enum"
                                    acctNum="String Optional"
-                                   openingBalance="Decimal Optional"
-                                   openingBalanceDate="Date Optional"/>
+                                   openingBalance="99"
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
+                                   <!--openningBalance Decimal Optional
+                                   openingBalanceDate Date Optional-->
+            <quickbooks:accountParentId ref=" "></quickbooks:accountParentId>
+        </quickbooks:create-account>
                                    
-        <quickbooks:create-bill header="Map"
-                                line="List<Map<>>"/>
+        <quickbooks:create-bill >
+            <quickbooks:header >
+                <quickbooks:docNumber>31233123</quickbooks:docNumber>
+                <quickbooks:msg>dfsd</quickbooks:msg>
+                <quickbooks:salesTermId>asdasd</quickbooks:salesTermId>
+                <quickbooks:txnDate>dfasda</quickbooks:txnDate>
+                <quickbooks:dueDate>dasd</quickbooks:dueDate> 
+                <quickbooks:totalAmt>aasd</quickbooks:totalAmt>   
+                <quickbooks:vendorId>ddasd</quickbooks:vendorId>
+            </quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-bill>
                                 
-        <quickbooks:create-bill-payment header="Map"
-                                        line="List<Map<>>"/>
+        <quickbooks:create-bill-payment>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-bill-payment>
                                         
-        <quickbooks:create-cash-purchase header="Map"
-                                         line="List<Map<>>"/>
+        <quickbooks:create-cash-purchase>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-cash-purchase>
                                          
-        <quickbooks:create-check header="Map"
-                                 line="List<Map<>>"/>
-                                 
-        <quickbooks:create-credit-card-charge header="Map"
-                                              line="List<Map<>>"/>
+        <quickbooks:create-check>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-check>                     
+        
+        <quickbooks:create-credit-card-charge>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-credit-card-charge>
                                               
         <quickbooks:create-customer name="String Optional"
                                     givenName="String Optional"
-                                    middleName="String Optional"
-                                    familyName="String Optional"
-                                    suffix="String Optional"
-                                    dBAName="String Optional"
-                                    showAs="String Optional"
-                                    webSite="List<Uri>"
-                                    salesTermId="idType Optional"
-                                    salesTaxCodeId="String Optional"
-                                    email="List<String>"
-                                    phone="List<Map<>>"
-                                    address="Map<>"/>
+						            middleName="String Optional"
+						            familyName="String Optional"
+						            suffix="String Optional"
+						            dBAName="String Optional"
+						            showAs="String Optional"
+						            salesTaxCodeId="String Optional">
+            <quickbooks:webSite ref=" "></quickbooks:webSite>
+            <quickbooks:email ref=" "></quickbooks:email>
+            <quickbooks:phone ref=" "></quickbooks:phone>
+            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:salesTermId ref=" "></quickbooks:salesTermId>
+            <!--webSite="List<Uri>"
+            email="List<String>"
+            phone="{List, Map}"
+            address="Map"
+            salesTermId="idType Optional"-->
+        </quickbooks:create-customer>
+        
+        <quickbooks:create-estimate>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-estimate>
                                     
-        <quickbooks:create-estimate header="Map<>"
-                                    line="List<Map<>>"/>
-                                    
-        <quickbooks:create-invoice header="Map<>"
-                                   line="List<Map<>>"/>
+        <quickbooks:create-invoice>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-invoice>
                                    
         <quickbooks:create-item name="String EmptyDefault"
-                                unitPrice="Map<>"
                                 desc="String Optional"
-                                tasable="boolean defaultFalse"
-                                incomeAccountRef="Map<>"
-                                itemParentId="IdType N/A"
+                                tasable="true"
                                 itemParentName="String N/A"
-                                purchaseDesc="String Optional"
-                                purchaseCost="Map<>"
-                                expenseAccountRef="Map<>"/>
-                                
-        <quickbooks:create-payment header="Map<>"
-                                   line="List<Map<>>"/>
+                                purchaseDesc="String Optional">
+                                <!--tasable boolean defaultFalse-->
+            <quickbooks:itemParentId ref=" "></quickbooks:itemParentId>
+            <quickbooks:unitPrice ref=" "></quickbooks:unitPrice>
+            <quickbooks:incomeAccountRef ref=" "></quickbooks:incomeAccountRef>
+            <quickbooks:purchaseCost ref=" "></quickbooks:purchaseCost>
+            <quickbooks:expenseAccountRef ref=" "></quickbooks:expenseAccountRef>
+            <!--itemParentId="IdType N/A"
+            unitPrice="Map"
+            incomeAccountRef="Map"
+            purchaseCost="Map"
+            expenseAccountRef="Map"> -->        
+        </quickbooks:create-item>
+                        
+        <quickbooks:create-payment>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-payment>
                                    
         <quickbooks:create-payment-method name="String"
                                           type="String Optional NON_CREDIT_CARDdefault"/>
                                           
-        <quickbooks:create-sales-receipt header="Map<>"
-                                         line="List<Map<>>"/>
+        <quickbooks:create-sales-receipt>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:create-sales-receipt>
                                          
         <quickbooks:create-sales-term name="String"
-                                      dueDays="Integer Positive"
-                                      discountDays="Integer Positive Optional"
-                                      discountPercent="Decimal Optional"
-                                      dayOfMonthDue="Integer Positive"
-                                      dueNextMonthDays="Integer Positive Optional"
-                                      discountDayOfMonth="Integer Positive Optional"
-                                      dateDiscountPercent="Decimal Optional"/>
+                                      dueDays="2"
+                                      discountDays="2"
+                                      discountPercent="9"
+                                      dayOfMonthDue="2"
+                                      dueNextMonthDays="2"
+                                      discountDayOfMonth="2"
+                                      dateDiscountPercent="9"/>
+                                      <!--dueDays Integer Positive
+                                      discountDays Integer Positive Optional
+                                      discountPercent Decimal Optional
+                                      dayOfMonthDue Integer Positive
+                                      dueNextMonthDays Integer Positive Optional
+                                      discountDayOfMonth Integer Positive Optional
+                                      dateDiscountPercent Decimal Optional-->
                                       
         <quickbooks:create-vendor name="String"
                                   givenName="String"
@@ -106,13 +155,20 @@
                                   familyName="String Optional"
                                   dBAName="String Optional"
                                   showAs="String Optional"
-                                  webSite="List<Uri>"
-                                  taxIdentifier="Integer Positive Optional"
+                                  taxIdentifier="2"
                                   acctNum="String Optional"
-                                  vendor1099="Boolean Optional"
-                                  email="List<String>"
-                                  phone="List<Map<>>"
-                                  address="Map<>"/>
+                                  vendor1099="true">
+                                  <!--taxIdentifier Integer Positive Optional
+                                  vendor1099 Boolean Optional  -->
+            <quickbooks:webSite ref=" "></quickbooks:webSite>
+            <quickbooks:email ref=" "></quickbooks:email>
+            <quickbooks:phone ref=" "></quickbooks:phone>
+            <quickbooks:address ref=" "></quickbooks:address>
+            <!--webSite="List<Uri>"
+            email="List<String>"
+            phone="{List, Map}"
+            address="Map"-->
+        </quickbooks:create-vendor>
                                   
     </flow>
     
@@ -121,21 +177,123 @@
     </flow>
     
     <flow name="Update">
-        <quickbooks:update-account username="Gaston"/>
-        <quickbooks:update-bill a=""/>
-        <quickbooks:update-bill-payment a=""/>
-        <quickbooks:update-cash-purchase a=""/>
-        <quickbooks:update-check a=""/>
-        <quickbooks:update-credit-card-charge a=""/>
-        <quickbooks:update-customer a=""/>
-        <quickbooks:update-estimate a=""/>
-        <quickbooks:update-invoice a=""/>
-        <quickbooks:update-item a=""/>
-        <quickbooks:update-payment a=""/>
-        <quickbooks:update-payment-method a=""/>
-        <quickbooks:update-sales-receipt a=""/>
-        <quickbooks:update-sales-term a=""/>
-        <quickbooks:update-vendor a=""/>
+        <!-- El update pisa el objeto, osea, si falta un campo en el update ese
+        objeto va a dejar de tenerlo -->
+        <quickbooks:update-account name="String Unique"
+                                   desc="String Optional"
+                                   subtype="Enum"
+                                   acctNum="String Optional"
+                                   openingBalance="99"
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
+            <quickbooks:accountParentId ref=" "></quickbooks:accountParentId>
+        </quickbooks:update-account>
+                                   
+        <quickbooks:update-bill >
+            <quickbooks:header >
+                <quickbooks:docNumber>31233123</quickbooks:docNumber>
+                <quickbooks:msg>dfsd</quickbooks:msg>
+                <quickbooks:salesTermId>asdasd</quickbooks:salesTermId>
+                <quickbooks:txnDate>dfasda</quickbooks:txnDate>
+                <quickbooks:dueDate>dasd</quickbooks:dueDate> 
+                <quickbooks:totalAmt>aasd</quickbooks:totalAmt>   
+                <quickbooks:vendorId>ddasd</quickbooks:vendorId>
+            </quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-bill>
+                                
+        <quickbooks:update-bill-payment>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-bill-payment>
+                                        
+        <quickbooks:update-cash-purchase>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-cash-purchase>
+                                         
+        <quickbooks:update-check>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-check>                     
+        
+        <quickbooks:update-credit-card-charge>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-credit-card-charge>
+                                              
+        <quickbooks:update-customer name="String Optional"
+                                    givenName="String Optional"
+                                    middleName="String Optional"
+                                    familyName="String Optional"
+                                    suffix="String Optional"
+                                    dBAName="String Optional"
+                                    showAs="String Optional"
+                                    salesTaxCodeId="String Optional">
+            <quickbooks:webSite ref=" "></quickbooks:webSite>
+            <quickbooks:email ref=" "></quickbooks:email>
+            <quickbooks:phone ref=" "></quickbooks:phone>
+            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:salesTermId ref=" "></quickbooks:salesTermId>
+        </quickbooks:update-customer>
+        
+        <quickbooks:update-estimate>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-estimate>
+                                    
+        <quickbooks:update-invoice>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-invoice>
+                                   
+        <quickbooks:update-item name="String EmptyDefault"
+                                desc="String Optional"
+                                tasable="true"
+                                itemParentName="String N/A"
+                                purchaseDesc="String Optional">
+            <quickbooks:itemParentId ref=" "></quickbooks:itemParentId>
+            <quickbooks:unitPrice ref=" "></quickbooks:unitPrice>
+            <quickbooks:incomeAccountRef ref=" "></quickbooks:incomeAccountRef>
+            <quickbooks:purchaseCost ref=" "></quickbooks:purchaseCost>
+            <quickbooks:expenseAccountRef ref=" "></quickbooks:expenseAccountRef>     
+        </quickbooks:update-item>
+                        
+        <quickbooks:update-payment>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-payment>
+                                   
+        <quickbooks:update-payment-method name="String"
+                                          type="String Optional NON_CREDIT_CARDdefault"/>
+                                          
+        <quickbooks:update-sales-receipt>
+            <quickbooks:header ref=" "></quickbooks:header>
+            <quickbooks:line ref=" "></quickbooks:line>
+        </quickbooks:update-sales-receipt>
+                                         
+        <quickbooks:update-sales-term name="String"
+                                      dueDays="2"
+                                      discountDays="2"
+                                      discountPercent="9"
+                                      dayOfMonthDue="2"
+                                      dueNextMonthDays="2"
+                                      discountDayOfMonth="2"
+                                      dateDiscountPercent="9"/>
+                                      
+        <quickbooks:update-vendor name="String"
+                                  givenName="String"
+                                  middleName="String Optional"
+                                  familyName="String Optional"
+                                  dBAName="String Optional"
+                                  showAs="String Optional"
+                                  taxIdentifier="2"
+                                  acctNum="String Optional"
+                                  vendor1099="true">
+            <quickbooks:webSite ref=" "></quickbooks:webSite>
+            <quickbooks:email ref=" "></quickbooks:email>
+            <quickbooks:phone ref=" "></quickbooks:phone>
+            <quickbooks:address ref=" "></quickbooks:address>
+        </quickbooks:update-vendor>
     </flow>
 
     <flow name="<DeleteObject">

@@ -17,14 +17,14 @@ import java.util.List;
 
 public interface QuickBooksClient
 {
-    void create(Object obj);
+    <T> T create(T obj);
     
-    Object getObject(String type, String objectId);
+    <T> T getObject(String type, String objectId);
     
-    void update(String username);
+    <T> T update(T obj);
     
     void deleteObject(String type, String objectId);
 
-    List<Object> findObjects();
+    <T> List<T> findObjects();
 }
 

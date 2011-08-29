@@ -191,10 +191,30 @@
             <artifactId>jersey-client</artifactId>
             <version>1.3</version>
         </dependency>
-		<dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs.jersey-oauth</groupId>
+            <artifactId>oauth-client</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs.jersey-oauth</groupId>
+            <artifactId>oauth-signature</artifactId>
+            <version>1.2</version>
+        </dependency>
+		<!--<dependency>
             <groupId>oauth.signpost</groupId>
             <artifactId>signpost-core</artifactId>
             <version>1.2.1.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>ar.com.zauber</groupId>
+            <artifactId>map-convert</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 	</dependencies>
 
