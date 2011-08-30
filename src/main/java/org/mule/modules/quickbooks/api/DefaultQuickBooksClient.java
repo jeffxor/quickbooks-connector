@@ -8,11 +8,16 @@ import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
-import org.apache.commons.lang.StringUtils;
 import org.mule.modules.quickbooks.EntityType;
+import org.mule.modules.quickbooks.api.Exception.QuickBooksException;
+import org.mule.modules.quickbooks.schema.CdmBase;
+import org.mule.modules.quickbooks.schema.FaultInfo;
+import org.mule.modules.quickbooks.schema.IdType;
+import org.mule.modules.quickbooks.schema.QboUser;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.GenericType;
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.oauth.client.OAuthClientFilter;
 import com.sun.jersey.oauth.signature.OAuthParameters;
@@ -50,57 +55,96 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         //    .get(String.class); 
     }
     
-    /** @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
+    /** @throws QuickBooksException 
+     * @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
     @Override
-    public <T> T create(T obj)
+    public <T> T create(T obj) throws QuickBooksException
     {
-        T response = this.gateway.path("/resource/" + obj.getClass().getSimpleName().toLowerCase() + "/v2/" + realmId)
-        .type(MediaType.APPLICATION_XML)
-        .header("Content-Type", "application/xml")
-        .post(new GenericType<T>(obj.getClass()), obj);
-
-        return response;
-    }
-
-    /** @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
-    @Override
-    public <T> T getObject(EntityType type, String objectId)
-    {   
-        T response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + objectId)
+        try
+        {
+            T response = this.gateway.path("/resource/" + obj.getClass().getSimpleName().toLowerCase() + "/v2/" + realmId)
             .type(MediaType.APPLICATION_XML)
             .header("Content-Type", "application/xml")
-            .get(type.<T>getType());
-        
-        return response;
+            .post(new GenericType<T>(obj.getClass()), obj);
+            
+            return response;
+            
+        }
+        catch (final UniformInterfaceException e)
+        {
+            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+            throw new QuickBooksException(fault);
+        }
 
     }
 
-    /** @see org.mule.modules.quickbooks.api.QuickBooksClient#update(java.lang.String) */
+    /** @throws QuickBooksException 
+     * @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
     @Override
-    public <T> T update(T obj)
+    public <T extends CdmBase> T getObject(EntityType type, IdType id) throws QuickBooksException
+    {   
+        try
+        {
+            T response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + id.getValue())
+                .type(MediaType.APPLICATION_XML)
+                .header("Content-Type", "application/xml")
+                .get(type.<T>getType());
+            
+            return response;
+        }
+        catch (final UniformInterfaceException e)
+        {
+            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+            throw new QuickBooksException(fault);
+        }
+    }
+
+    /** @throws QuickBooksException 
+     * @see org.mule.modules.quickbooks.api.QuickBooksClient#update(java.lang.String) */
+    @Override
+    public <T> T update(T obj) throws QuickBooksException
     {
-
-        T response = this.gateway.path("/resource/" + " " + "/v2/" + realmId)
-        .type(MediaType.APPLICATION_XML)
-        .header("Content-Type", "application/xml")
-        .post(new GenericType<T>(obj.getClass()), obj);
-
-        return response;
+        try
+        {
+            T response = this.gateway.path("/resource/" + " " + "/v2/" + realmId)
+                .type(MediaType.APPLICATION_XML)
+                .header("Content-Type", "application/xml")
+                .post(new GenericType<T>(obj.getClass()), obj);
+            
+            return response;
+        }
+        catch (final UniformInterfaceException e)
+        {
+            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+            throw new QuickBooksException(fault);
+        }
 
     }
 
-    /** @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
+    /** @throws QuickBooksException 
+     * @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
     @Override
-    public void deleteObject(EntityType type, String objectId, String syncToken)
+    public <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken) throws QuickBooksException
     {   
         if (syncToken == null)
         {
-            getObject(type, objectId);
+            syncToken = ((CdmBase) getObject(type, id)).getSyncToken();
         }
-        String response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + objectId  + "?methodx=delete")
-            .type(MediaType.APPLICATION_XML)
-            .header("Content-Type", "application/xml")
-            .post(String.class);
+        try
+        {
+            T obj = type.newInstance();
+            obj.setSyncToken(syncToken);
+            obj.setId(id);
+            T response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + id.getValue() + "?methodx=delete")
+                .type(MediaType.APPLICATION_XML)
+                .header("Content-Type", "application/xml")
+                .post(type.<T>getType(), obj);
+        }
+        catch (final UniformInterfaceException e)
+        {
+            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+            throw new QuickBooksException(fault);
+        }
 
     }
 
@@ -114,38 +158,23 @@ public class DefaultQuickBooksClient implements QuickBooksClient
 
     }
     
-    private String getBaseURI()
+    private String getBaseURI() throws QuickBooksException
     {
         WebResource aux = Client.create().resource("https://qbo.intuit.com/qbo30/rest/user/v2/" + this.realmId);
         aux.addFilter(oauthFilter);
-        String response = aux.type(MediaType.APPLICATION_XML)
-            .header("Content-Type", "application/xml")
-            .get(String.class);
-        
-        return StringUtils.substringBetween(response, "<BaseUri>", "</BaseUri>");
-
+        try
+        {
+            QboUser response = aux.type(MediaType.APPLICATION_XML)
+                .header("Content-Type", "application/xml")
+                .get(QboUser.class);
+            
+            return response.getCurrentCompany().getBaseURI();
+        }
+        catch (final UniformInterfaceException e)
+        {
+            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+            throw new QuickBooksException(fault);
+        }
     }
 
 }
-//this.consumer = new DefaultOAuthConsumer(consumerKey, consumerSecret);
-
-/*OAuthProvider p; new DefaultOAuthProvider(requestTokenEndpointUrl, accessTokenEndpointUrl, authorizationWebsiteUrl);
-OAuthProvider provider = new DefaultOAuthProvider(
-    "https://oauth.intuit.com/oauth/v1/get_request_token",
-    "https://oauth.intuit.com/oauth/v1/get_access_token",
-    "https://workplace.intuit.com/app/Account/DataSharing/Authorize");*/
-//try
-//{
-//    URL context = new URL("x-www-form-urlencoded");
-//    URL url = new URL(getBaseURI() + "/resource/" + type + "/v2/" + realmId + "/" + objectId);
-//    HttpsURLConnection request = (HttpsURLConnection) url.openConnection();
-//    
-//    consumer.sign(request);
-//    
-//    request.connect();
-//    //TODO seguir es GET
-//}
-//catch (Exception e)
-//{
-//    return null;
-//}

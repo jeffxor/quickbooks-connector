@@ -14,6 +14,7 @@
 package org.mule.modules.quickbooks;
 
 import java.math.BigDecimal;
+import java.net.URI;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -41,6 +42,7 @@ import org.mule.modules.quickbooks.schema.Check;
 import org.mule.modules.quickbooks.schema.CreditCardCharge;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.Estimate;
+import org.mule.modules.quickbooks.schema.IdType;
 import org.mule.modules.quickbooks.schema.Invoice;
 import org.mule.modules.quickbooks.schema.Item;
 import org.mule.modules.quickbooks.schema.Payment;
@@ -52,12 +54,12 @@ import org.mule.modules.quickbooks.schema.Vendor;
 import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
 
-import com.sun.jndi.toolkit.url.Uri;
+
 
 
 @Module(name = "quickbooks",
         namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books",
-        schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0-SNAPSHOT/mule-quickbooks.xsd")
+        schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd")
 public class QuickBooksModule
 {
     @Configurable
@@ -76,7 +78,7 @@ public class QuickBooksModule
     private String accessSecret;
     
     private DefaultQuickBooksClient client;
-    private MapObjectMapper mom;
+    private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");;
 
     @Processor
     public void createAccount(String name, @Optional String desc, AccountDetail subtype, @Optional String acctNum,
@@ -165,7 +167,7 @@ public class QuickBooksModule
     @Processor
     public void createCustomer(@Optional String name, @Optional String givenName, @Optional String middleName,
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
-                               @Optional String showAs, List<Uri> webSite, @Optional Map<String, Object> salesTermId,
+                               @Optional String showAs, List<URI> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
                                Map<String, Object> address)
     {
@@ -280,7 +282,7 @@ public class QuickBooksModule
     }
     
     @Processor
-    public void createSalesTerm(String name, Integer dueDays, @Optional Integer discountDay,
+    public void createSalesTerm(String name, Integer dueDays, @Optional Integer discountDays,
                                 @Optional String discountPercent, Integer dayOfMonthDue,
                                 @Optional Integer dueNextMonthDays, @Optional Integer discountDayOfMonth,
                                 @Optional String dateDiscountPercent)
@@ -290,7 +292,7 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("name", name)
                 .with("dueDays", dueDays)
-                .with("discountDay", discountDay)
+                .with("discountDays", discountDays)
                 .with("discountPercent", new BigDecimal(discountPercent))
                 .with("dayOfMonthDue", dayOfMonthDue)
                 .with("dueNextMonthDays", dueNextMonthDays)
@@ -303,10 +305,10 @@ public class QuickBooksModule
     
     @Processor
     public void createVendor(String name, String givenName, @Optional String middleName, @Optional String familyName,
-                             @Optional String dBAName, @Optional String showAs, List<Uri> webSite,
+                             @Optional String dBAName, @Optional String showAs, List<URI> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
                              List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
-    {
+    { 
         client.create(
             mom.fromMap(Vendor.class,
                 new MapBuilder()
@@ -329,9 +331,9 @@ public class QuickBooksModule
     }
     
     @Processor
-    public Object getObject(EntityType type, String objectId)
+    public Object getObject(EntityType type, Map<String, Object> id)
     {
-        return client.getObject(type, objectId);
+        return client.getObject(type, mom.fromMap(IdType.class, id));
     }
 
     @Processor
@@ -421,7 +423,7 @@ public class QuickBooksModule
     @Processor
     public void updateCustomer(@Optional String name, @Optional String givenName, @Optional String middleName,
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
-                               @Optional String showAs, List<Uri> webSite, @Optional Map<String, Object> salesTermId,
+                               @Optional String showAs, List<URI> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
                                Map<String, Object> address)
     {
@@ -536,7 +538,7 @@ public class QuickBooksModule
     }
     
     @Processor
-    public void updateSalesTerm(String name, Integer dueDays, @Optional Integer discountDay,
+    public void updateSalesTerm(String name, Integer dueDays, @Optional Integer discountDays,
                                 @Optional String discountPercent, Integer dayOfMonthDue,
                                 @Optional Integer dueNextMonthDays, @Optional Integer discountDayOfMonth,
                                 @Optional String dateDiscountPercent)
@@ -546,7 +548,7 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("name", name)
                 .with("dueDays", dueDays)
-                .with("discountDay", discountDay)
+                .with("discountDays", discountDays)
                 .with("discountPercent", new BigDecimal(discountPercent))
                 .with("dayOfMonthDue", dayOfMonthDue)
                 .with("dueNextMonthDays", dueNextMonthDays)
@@ -559,7 +561,7 @@ public class QuickBooksModule
     
     @Processor
     public void updateVendor(String name, String givenName, @Optional String middleName, @Optional String familyName,
-                             @Optional String dBAName, @Optional String showAs, List<Uri> webSite,
+                             @Optional String dBAName, @Optional String showAs, List<URI> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
                              List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
     {
@@ -585,9 +587,9 @@ public class QuickBooksModule
     }
     
     @Processor
-    public void deleteObject(EntityType type, String objectId, @Optional String syncToken)
+    public void deleteObject(EntityType type, Map<String, Object> id, @Optional String syncToken)
     {
-        client.deleteObject(type, objectId, syncToken);
+        client.deleteObject(type, mom.fromMap(IdType.class, id), syncToken);
     }
 
     public List<Object> findObjects()
@@ -747,38 +749,3 @@ public class QuickBooksModule
         return datatypeFactory.newXMLGregorianCalendar(cal);
     }
 }
-
-/*
- *             OAuthConsumer consumer = new DefaultOAuthConsumer(
-                consumerKey,
-                consumerSecret);
-
-            OAuthProvider p; new DefaultOAuthProvider(requestTokenEndpointUrl, accessTokenEndpointUrl, authorizationWebsiteUrl);
-            OAuthProvider provider = new DefaultOAuthProvider(
-                "https://oauth.intuit.com/oauth/v1/get_request_token",
-                "https://oauth.intuit.com/oauth/v1/get_access_token",
-                "https://workplace.intuit.com/app/Account/DataSharing/Authorize");
-            try
-            {
-                // we do not support callbacks, thus pass OOB
-                String authUrl = provider.retrieveRequestToken(consumer, OAuth.OUT_OF_BAND);
-    
-                System.out.println("Now visit:\n" + authUrl
-                    + "\n... and grant this app authorization");
-                System.out.println("Enter the PIN code and hit ENTER when you're done:");
-    
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                String pin = br.readLine();
-                provider.retrieveAccessToken(consumer, pin);
-    
-                URL url = new URL("https://workplace.intuit.com/db/main?a=API_GetUserInfo");
-                HttpsURLConnection request = (HttpsURLConnection) url.openConnection();
-                
-                consumer.sign(request);
-                
-                request.connect();
-            }
-            catch (Exception e)
-            {
-                return;
-            }*/

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
  */
-	
-	package org.mule.modules.quickbooks;
+
+package org.mule.modules.quickbooks;
 
 import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Bill;
@@ -20,7 +20,7 @@ import org.mule.modules.quickbooks.schema.SalesReceipt;
 import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.quickbooks.schema.Vendor;
 
-	public enum EntityType
+public enum EntityType
 {
     
     ACCOUNT(Account.class),
@@ -59,16 +59,16 @@ import org.mule.modules.quickbooks.schema.Vendor;
     }
 
     /**
-    	 * @return
-    	 */
+     * @return
+     */
     public String getResouceName()
     {
         return type.getSimpleName().toLowerCase();
     }
 
     /**
-    	 * @return
-    	 */
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public <A> Class<A> getType()
     {
