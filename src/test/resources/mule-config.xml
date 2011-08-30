@@ -30,7 +30,7 @@
     
         <quickbooks:create-account name="String Unique"
                                    desc="String Optional"
-                                   subtype="Enum"
+                                   subtype="VEHICLES"
                                    acctNum="String Optional"
                                    openingBalance="99"
                                    openingBalanceDate="2010-09-13T01:18:14-07:00">

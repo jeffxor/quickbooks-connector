@@ -79,7 +79,7 @@ public class QuickBooksModule
     private MapObjectMapper mom;
 
     @Processor
-    public void createAccount(String name, @Optional String desc, String subtype, @Optional String acctNum,
+    public void createAccount(String name, @Optional String desc, AccountDetail subtype, @Optional String acctNum,
                               @Optional String openingBalance, @Optional Date openingBalanceDate,
                               @Optional Map<String, Object> accountParentId)
     {   
@@ -88,7 +88,7 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("accountParentId", accountParentId)
                 .with("desc", desc)
-                .with("subType", subtype)
+                .with("subType", subtype.toWorkdayAccountDetail())
                 .with("acctNum", acctNum)
                 .with("openingBalance", new BigDecimal(openingBalance))
                 .with("openingBalanceDate", openingBalanceDate)
@@ -329,13 +329,13 @@ public class QuickBooksModule
     }
     
     @Processor
-    public Object getObject(String type, String objectId)
+    public Object getObject(EntityType type, String objectId)
     {
         return client.getObject(type, objectId);
     }
 
     @Processor
-    public void updateAccount(String name, @Optional String desc, String subtype, @Optional String acctNum,
+    public void updateAccount(String name, @Optional String desc, AccountDetail subtype, @Optional String acctNum,
                               @Optional String openingBalance, @Optional Date openingBalanceDate,
                               @Optional Map<String, Object> accountParentId) //Map<String,Address> address)
     {   
@@ -344,7 +344,7 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("accountParentId", accountParentId)
                 .with("desc", desc)
-                .with("subType", subtype)
+                .with("subType", subtype.toWorkdayAccountDetail())
                 .with("acctNum", acctNum)
                 .with("openingBalance", new BigDecimal(openingBalance))
                 .with("openingBalanceDate", openingBalanceDate)
@@ -585,9 +585,9 @@ public class QuickBooksModule
     }
     
     @Processor
-    public void deleteObject(String type, String objectId)
+    public void deleteObject(EntityType type, String objectId, @Optional String syncToken)
     {
-        client.deleteObject(type, objectId);
+        client.deleteObject(type, objectId, syncToken);
     }
 
     public List<Object> findObjects()
@@ -745,45 +745,6 @@ public class QuickBooksModule
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(openingBalanceDate);
         return datatypeFactory.newXMLGregorianCalendar(cal);
-    }
-    
-    enum EntityType
-    {
-        
-        ACCOUNT(Account.class),
-        BILL(Bill.class),
-        BILLPAYMENT(BillPayment.class),
-        CASHPURCHASE(CashPurchase.class),
-        CHECK(Check.class),
-        CREDITCARDCHARGE(CreditCardCharge.class),
-        CUSTOMER(Customer.class),
-        ESTIMATE(Estimate.class),
-        INVOICE(Invoice.class),
-        ITEM(Item.class),
-        PAYMENT(Payment.class),
-        PAYMENTMETHOD(PaymentMethod.class),
-        SALESRECEIPT(SalesReceipt.class),
-        SALESTERM(SalesTerm.class),
-        VENDOR(Vendor.class);
-        
-        private final Class<?> type;
-        
-        private EntityType(Class<?> type)
-        {
-            this.type = type;
-        }
-        
-        public <A> A newInstance()
-        {
-            try
-            {
-                return (A) type.newInstance();
-            }
-            catch (Exception e)
-            {
-                throw new AssertionError(e);
-            }
-        }
     }
 }
 

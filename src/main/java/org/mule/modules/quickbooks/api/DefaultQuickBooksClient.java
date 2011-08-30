@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
+import org.mule.modules.quickbooks.EntityType;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.GenericType;
@@ -53,26 +54,24 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     @Override
     public <T> T create(T obj)
     {
-        T response = this.gateway.path("/resource/" + " " + "/v2/" + realmId)
+        T response = this.gateway.path("/resource/" + obj.getClass().getSimpleName().toLowerCase() + "/v2/" + realmId)
         .type(MediaType.APPLICATION_XML)
         .header("Content-Type", "application/xml")
-        .post(new GenericType<T>(obj.getClass()));
+        .post(new GenericType<T>(obj.getClass()), obj);
 
         return response;
     }
 
     /** @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
     @Override
-    public <T> T getObject(String type, String objectId)
+    public <T> T getObject(EntityType type, String objectId)
     {   
-        //TODO ver la parte de injections
-        T response = this.gateway.path("/resource/" + type.toLowerCase() + "/v2/" + realmId + "/" + objectId)
+        T response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + objectId)
             .type(MediaType.APPLICATION_XML)
             .header("Content-Type", "application/xml")
-            .get(new GenericType<T>(obj.getClass()));
+            .get(type.<T>getType());
         
-        
-        return null;
+        return response;
 
     }
 
@@ -81,17 +80,24 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     public <T> T update(T obj)
     {
 
-        // TODO: Auto-generated method stub
-        return null;
+        T response = this.gateway.path("/resource/" + " " + "/v2/" + realmId)
+        .type(MediaType.APPLICATION_XML)
+        .header("Content-Type", "application/xml")
+        .post(new GenericType<T>(obj.getClass()), obj);
+
+        return response;
 
     }
 
     /** @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
     @Override
-    public void deleteObject(String type, String objectId)
+    public void deleteObject(EntityType type, String objectId, String syncToken)
     {   
-        //TODO ver la parte de injections
-        String response = this.gateway.path("/resource/" + type + "/v2/" + realmId + "/" + objectId  + "?methodx=delete")
+        if (syncToken == null)
+        {
+            getObject(type, objectId);
+        }
+        String response = this.gateway.path("/resource/" + type.getResouceName() + "/v2/" + realmId + "/" + objectId  + "?methodx=delete")
             .type(MediaType.APPLICATION_XML)
             .header("Content-Type", "application/xml")
             .post(String.class);
