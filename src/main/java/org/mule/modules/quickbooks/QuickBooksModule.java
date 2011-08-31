@@ -14,7 +14,6 @@
 package org.mule.modules.quickbooks;
 
 import java.math.BigDecimal;
-import java.net.URI;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -77,7 +76,10 @@ public class QuickBooksModule
     @Configurable
     private String accessSecret;
     
+    @Configurable
+    @Optional
     private DefaultQuickBooksClient client;
+    
     private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");;
 
     @Processor
@@ -167,7 +169,7 @@ public class QuickBooksModule
     @Processor
     public void createCustomer(@Optional String name, @Optional String givenName, @Optional String middleName,
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
-                               @Optional String showAs, List<URI> webSite, @Optional Map<String, Object> salesTermId,
+                               @Optional String showAs, List<Map<String, Object>> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
                                Map<String, Object> address)
     {
@@ -305,7 +307,7 @@ public class QuickBooksModule
     
     @Processor
     public void createVendor(String name, String givenName, @Optional String middleName, @Optional String familyName,
-                             @Optional String dBAName, @Optional String showAs, List<URI> webSite,
+                             @Optional String dBAName, @Optional String showAs, List<Map<String, Object>> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
                              List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
     { 
@@ -423,7 +425,7 @@ public class QuickBooksModule
     @Processor
     public void updateCustomer(@Optional String name, @Optional String givenName, @Optional String middleName,
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
-                               @Optional String showAs, List<URI> webSite, @Optional Map<String, Object> salesTermId,
+                               @Optional String showAs, List<Map<String, Object>> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
                                Map<String, Object> address)
     {
@@ -561,7 +563,7 @@ public class QuickBooksModule
     
     @Processor
     public void updateVendor(String name, String givenName, @Optional String middleName, @Optional String familyName,
-                             @Optional String dBAName, @Optional String showAs, List<URI> webSite,
+                             @Optional String dBAName, @Optional String showAs, List<Map<String, Object>> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
                              List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
     {
@@ -592,9 +594,12 @@ public class QuickBooksModule
         client.deleteObject(type, mom.fromMap(IdType.class, id), syncToken);
     }
 
-    public List<Object> findObjects()
+    @SuppressWarnings("rawtypes")
+    @Processor
+    public Iterable findObjects(EntityType type, @Optional String queryFilter,
+                                @Optional String querySort)
     {
-        return client.findObjects();
+        return client.findObjects(type, queryFilter, querySort);
     }
     
     /**

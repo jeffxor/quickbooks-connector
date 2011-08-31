@@ -4,6 +4,7 @@
 
 package org.mule.modules.quickbooks;
 
+import org.apache.commons.lang.StringUtils;
 import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Bill;
 import org.mule.modules.quickbooks.schema.BillPayment;
@@ -59,11 +60,13 @@ public enum EntityType
     }
 
     /**
+     * Answers the resource name of this entity type as present in the entity uri
+     * 
      * @return
      */
     public String getResouceName()
     {
-        return type.getSimpleName().toLowerCase();
+        return StringUtils.uncapitalize(type.getSimpleName());
     }
 
     /**
@@ -73,5 +76,13 @@ public enum EntityType
     public <A> Class<A> getType()
     {
         return (Class<A>) type;
+    }
+
+    /**
+     * @return the simple name of the associated class for this entity type
+     */
+    public String getSimpleName()
+    {
+        return getResouceName();
     }
 }

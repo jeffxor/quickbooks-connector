@@ -304,4 +304,10 @@
             <quickbooks:id ref="#[variable:id]"></quickbooks:id>
         </quickbooks:delete-object>
     </flow>
+    
+    <flow name="FindObjects">
+        <quickbooks:find-objects type="ACCOUNT"
+                                 queryFilter="#[header:queryFilterString]"
+                                 querySort="#[header:querySortString]"/>
+    </flow>
 </mule>
