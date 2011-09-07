@@ -13,6 +13,7 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang.Validate;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.api.Exception.QuickBooksException;
 import org.mule.modules.quickbooks.schema.CdmBase;
@@ -41,38 +42,42 @@ import com.sun.jersey.oauth.signature.OAuthSecrets;
 public class DefaultQuickBooksClient implements QuickBooksClient
 {
     private final String realmId;
-    private final OAuthClientFilter oauthFilter;
-    private final WebResource gateway;
+    private final Client client;
+    private final OAuthParameters params;
+    private final OAuthSecrets secrets;
     private Integer resultsPerPage = 100;
     
-    public DefaultQuickBooksClient(String realmId, String consumerKey, String consumerSecret, String accessKey, String accessSecret)
+    public DefaultQuickBooksClient(final String realmId, final String consumerKey,
+                                   final String consumerSecret)
     {
+        Validate.notNull(realmId);
+        Validate.notNull(consumerKey);
+        Validate.notNull(consumerSecret);
+        
         this.realmId = realmId;
-        Client client = Client.create();
+        this.client = Client.create();
         
-        OAuthParameters params = new OAuthParameters().signatureMethod("HMAC-SHA1").consumerKey(consumerKey).token(accessKey).version();
-        OAuthSecrets secrets = new OAuthSecrets().consumerSecret(consumerSecret).tokenSecret(accessSecret);
-        
-        this.oauthFilter = new OAuthClientFilter(client.getProviders(), params, secrets);
-        
-        this.gateway = Client.create().resource(getBaseURI());
-        this.gateway.addFilter(this.oauthFilter);
-        
-        //String networkResult = res.header("X-Tradeshift-TenantId", "634a8633-6368-433a-bf33-7904f5080db0")
-        //    .header("User-Agent", "TradeshiftJerseyTest/0.1")
-        //    .get(String.class); 
+        this.params = new OAuthParameters().signatureMethod("HMAC-SHA1").consumerKey(consumerKey);
+        this.secrets = new OAuthSecrets().consumerSecret(consumerSecret);
     }
     
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
     @Override
-    public <T extends CdmBase> T create(T obj)
+    public <T extends CdmBase> T create(T obj, String accessKey, String accessSecret)
     {
+        Validate.notNull(obj);
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
+        System.out.println("ACCESS_KEY = " + accessKey);
+        System.out.println("ACCESS_SECRET = " + accessSecret);
+        
         try
         {
             String str = String.format("/resource/%s/v2/%s",
                 obj.getClass().getSimpleName().toLowerCase(), realmId);
-            T response = this.gateway.path(str)
+            T response = getGateWay(accessKey, accessSecret).path(str)
             .type(MediaType.APPLICATION_XML)
             .header("Content-Type", "application/xml")
             .post(new GenericType<T>(obj.getClass()), obj);
@@ -91,13 +96,18 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
     @Override
-    public <T extends CdmBase> T getObject(EntityType type, IdType id)
+    public <T extends CdmBase> T getObject(EntityType type, IdType id, String accessKey, String accessSecret)
     {   
+        Validate.notNull(type);
+        Validate.notNull(id);
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
         try
         {
             String str = String.format("/resource/%s/v2/%s/%s",
                 type.getResouceName(), realmId, id.getValue());
-            T response = this.gateway.path(str)
+            T response = getGateWay(accessKey, accessSecret).path(str)
                 .get(type.<T>getType());
             
             return response;
@@ -112,13 +122,17 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#update(java.lang.String) */
     @Override
-    public <T extends CdmBase> T update(T obj)
+    public <T extends CdmBase> T update(T obj, String accessKey, String accessSecret)
     {
+        Validate.notNull(obj);
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
         try
         {
             String str = String.format("/resource/%s/v2/%s",
                 obj.getClass().getSimpleName().toLowerCase(), realmId);
-            T response = this.gateway.path(str)
+            T response = getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
                 .header("Content-Type", "application/xml")
                 .post(new GenericType<T>(obj.getClass()), obj);
@@ -131,28 +145,21 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         }
 
     }
-    
-    
-//    /**
-//     * 
-//     */
-//    private void foo()
-//    {
-//        SearchResults results;
-//        Iterator<Collection<X>> result = f.get(xxxx);
-//        
-//        Iterable<X> 
-//
-//    }
 
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
     @Override
-    public <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken)
+    public <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken,
+                                                 String accessKey, String accessSecret)
     {   
+        Validate.notNull(type);
+        Validate.notNull(id);
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
         if (syncToken == null)
         {
-            syncToken = ((CdmBase) getObject(type, id)).getSyncToken();
+            syncToken = ((CdmBase) getObject(type, id, accessKey, accessSecret)).getSyncToken();
         }
         try
         {
@@ -162,7 +169,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             
             String str = String.format("/resource/%s/v2/%s/%s?methodx=delete",
                 type.getResouceName(), realmId, id.getValue());
-            T response = this.gateway.path(str)
+            T response = getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
                 .header("Content-Type", "application/xml")
                 .post(type.<T>getType(), obj);
@@ -179,8 +186,13 @@ public class DefaultQuickBooksClient implements QuickBooksClient
      * @param type 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#findObjects() */
     @Override
-    public <T extends CdmBase> Iterable<T> findObjects(final EntityType type, final String queryFilter, final String querySort)
+    public <T extends CdmBase> Iterable<T> findObjects(final EntityType type, final String queryFilter, final String querySort,
+                                                       final String accessKey, final String accessSecret)
     {
+        Validate.notNull(type);
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
         return new PaginatedIterable<T, SearchResults>()
             {
                 @Override
@@ -196,7 +208,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                         formData.add("PageNum", "1");
                         
                         String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
-                        SearchResults response = gateway.path(str)
+                        SearchResults response = getGateWay(accessKey, accessSecret).path(str)
                             .type(MediaType.APPLICATION_FORM_URLENCODED)
                             .header("Content-Type", "application/x-www-form-urlencoded")
                             .post(SearchResults.class, formData);
@@ -223,7 +235,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                         formData.add("PageNum", pageNum.toString());
                         
                         String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
-                        SearchResults response = gateway.path(str)
+                        SearchResults response = getGateWay(accessKey, accessSecret).path(str)
                             .type(MediaType.APPLICATION_FORM_URLENCODED)
                             .header("Content-Type", "application/x-www-form-urlencoded")
                             .post(SearchResults.class, formData);
@@ -267,14 +279,36 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             };
     }
     
-    private String getBaseURI()
+    private WebResource getGateWay(String accessKey, String accessSecret)
     {
+            String str = getBaseURI(accessKey, accessSecret);
+            
+            OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
+                params.token(accessKey), secrets.tokenSecret(accessSecret));
+            
+            WebResource webResource = this.client.resource(str);
+            webResource.addFilter(oauthFilter);
+            
+            return webResource;
+    }
+
+    private String getBaseURI(String accessKey, String accessSecret)
+    {
+        Validate.notNull(accessKey);
+        Validate.notNull(accessSecret);
+        
+        OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
+            params.token(accessKey), secrets.tokenSecret(accessSecret));
+        
         String str = String.format("https://qbo.intuit.com/qbo30/rest/user/v2/%s", realmId);
-        WebResource aux = Client.create().resource(str);
-        aux.addFilter(oauthFilter);
+        WebResource webResource = this.client.resource(str);
+        webResource.addFilter(oauthFilter);
+        
         try
         {
-            QboUser response = aux.header("Content-Type", "application/xml")
+            QboUser response = webResource.header("Content-Type", "application/xml")
+                .accept(MediaType.APPLICATION_XML)
+                .type(MediaType.APPLICATION_XML)
                 .get(QboUser.class);
             
             return response.getCurrentCompany().getBaseURI();
@@ -290,5 +324,4 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     {
         this.resultsPerPage = resultsPerPage;
     }
-
 }

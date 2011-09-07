@@ -4,6 +4,7 @@
 
 package org.mule.modules.quickbooks.api;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -17,8 +18,8 @@ import java.util.Map;
 
 public class MapBuilder
 {
-    private Map<String, Object> map;
-        
+    private Map<String, Object> map = new HashMap<String, Object>();
+    
     /**
      * Creates the QuickBooksModule.EntityBuilder.
      *

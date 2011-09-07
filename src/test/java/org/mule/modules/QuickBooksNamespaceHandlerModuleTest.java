@@ -14,12 +14,21 @@
 package org.mule.modules;
 
 import org.junit.Test;
+import org.mule.api.MuleContext;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.AbstractMuleTestCase;
 import org.mule.tck.FunctionalTestCase;
 
 public class QuickBooksNamespaceHandlerModuleTest extends FunctionalTestCase
 {
+    @Override
+    protected MuleContext createMuleContext() throws Exception
+    {
+//        MuleContext muleContext = super.createMuleContext();
+//        muleContext.getRegistry().registerObject("connector.http.mule.default", new HttpConnector(muleContext));
+        return muleContext;
+    }
+    
     @Override
     protected String getConfigResources()
     {

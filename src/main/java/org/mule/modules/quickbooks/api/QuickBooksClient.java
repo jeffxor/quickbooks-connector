@@ -19,15 +19,15 @@ import org.mule.modules.quickbooks.schema.IdType;
 
 public interface QuickBooksClient
 {
-    <T extends CdmBase> T create(T obj);
+    <T extends CdmBase> T create(T obj, String accesskey, String accessSecret);
     
-    <T extends CdmBase> T getObject(EntityType type, IdType id);
+    <T extends CdmBase> T getObject(EntityType type, IdType id, String accesskey, String accessSecret);
     
-    <T extends CdmBase> T update(T obj);
+    <T extends CdmBase> T update(T obj, String accesskey, String accessSecret);
     
-    <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken);
+    <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken, String accesskey, String accessSecret);
 
-    <T extends CdmBase> Iterable<T> findObjects(final EntityType type, final String queryFilter, final String querySort);
+    <T extends CdmBase> Iterable<T> findObjects(final EntityType type, final String queryFilter, final String querySort, String accesskey, String accessSecret);
     
 }
 

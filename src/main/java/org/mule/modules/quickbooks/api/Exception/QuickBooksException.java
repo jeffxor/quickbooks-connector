@@ -30,5 +30,9 @@ public class QuickBooksException extends RuntimeException
         this.fault = fault;
     }
 
+    public FaultInfo getFaultInfo()
+    {
+        return fault;
+    }
 }
 
