@@ -1,3 +1,13 @@
+/**
+ * Mule FWS Cloud Connector
+ *
+ * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+ *
+ * The software in this package is published under the terms of the CPAL v1.0
+ * license, a copy of which has been included with this distribution in the
+ * LICENSE.txt file.
+ */
+
 
 	/*
 	 * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
@@ -39,18 +49,9 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
 //        LinkedInClientFactory.setDefaultClient(mockClient);
 
         QuickBooksModuleOAuthAdapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuthAdapter.class);
-//        moduleObject.fetchAccessToken();
-        System.out.println(moduleObject.getAuthorizationUrl());
-        System.out.println(moduleObject.getRedirectUrl());
-        System.out.println(moduleObject.getOauthVerifier());
-        System.out.println(moduleObject.getRealmId());
-        System.out.println(moduleObject.getConsumerKey());
-        System.out.println(moduleObject.getConsumerSecret());
-        System.out.println(moduleObject.getAccessToken());
-        System.out.println(moduleObject.getAccessTokenSecret());
-//        moduleObject.setAccessToken(null);
-//        moduleObject.setAccessTokenSecret(null);
-//        moduleObject.setOauthVerifier(null);
+        moduleObject.setAccessToken("lvprdUOzPD8jlLdCSgKGYubbNAwFh03PUHM34gWvXPYoPdgJ");
+        moduleObject.setAccessTokenSecret("B5zGyujNpe3dTwL4hHY5Cr0x1CRXqgukiAex9Aab");
+        moduleObject.setOauthVerifier("");
 
 //        profileFields = new HashSet<ProfileField>(2);
 //        profileFields.add(ProfileField.LAST_NAME);
@@ -84,15 +85,6 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
     {
         lookupFlowConstruct("TestForTheAccessPower").process(getTestEvent(""));
         QuickBooksModuleOAuthAdapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuthAdapter.class);
-System.out.println("-----------");
-System.out.println(moduleObject.getAuthorizationUrl());
-      System.out.println(moduleObject.getRedirectUrl());
-      System.out.println(moduleObject.getOauthVerifier());
-      System.out.println(moduleObject.getRealmId());
-      System.out.println(moduleObject.getConsumerKey());
-      System.out.println(moduleObject.getConsumerSecret());
-      System.out.println(moduleObject.getAccessToken());
-      System.out.println(moduleObject.getAccessTokenSecret());
     }
 
     /**

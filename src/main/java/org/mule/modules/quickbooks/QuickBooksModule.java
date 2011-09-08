@@ -54,6 +54,8 @@ import org.mule.modules.quickbooks.schema.PaymentMethod;
 import org.mule.modules.quickbooks.schema.SalesReceipt;
 import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.quickbooks.schema.Vendor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
@@ -69,6 +71,8 @@ import ar.com.zauber.commons.mom.MapObjectMapper;
        authorizationUrl = "https://workplace.intuit.com/Connect/Begin")
 public class QuickBooksModule
 {
+    Logger logger = LoggerFactory.getLogger(QuickBooksModule.class);
+    
     @Configurable
     private String realmId;
     
@@ -360,6 +364,9 @@ public class QuickBooksModule
     public Object getObject(@OAuthAccessToken String accessToken, @OAuthAccessTokenSecret String accessTokenSecret,
                             EntityType type, Map<String, Object> id)
     {
+//        logger.error(accessToken);
+//        logger.error(accessTokenSecret);
+//        throw new RuntimeException(accessToken + " :::: " + accessTokenSecret);
         return client.getObject(type, mom.fromMap(IdType.class, id), accessToken, accessTokenSecret);
     }
 

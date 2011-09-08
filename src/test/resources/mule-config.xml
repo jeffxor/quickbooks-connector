@@ -11,19 +11,33 @@
 
 -->
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:spring="http://www.springframework.org/schema/beans"
-      xmlns:quickbooks="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books"
-      xsi:schemaLocation="
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:http="http://www.mulesoft.org/schema/mule/http"
+  xmlns:quickbooks="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books"
+  xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+  xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd">
-
+    
+    <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
+    
     <quickbooks:config consumerKey="${consumerKey}"
         consumerSecret="${consumerSecret}"
         realmId="${realmId}"/>
 
+     <!--<flow name="GetProfileByUrl">
+        <http:inbound-endpoint host="localhost" port="9091" path="pointsOfInterest"/>
+        <quickbooks:get-object type="INVOICE">
+            <quickbooks:id>
+                <value>10</value>
+            </quickbooks:id>
+        </quickbooks:get-object>
+    </flow>-->
+    
     <flow name="TestForTheAccessPower">
         <quickbooks:create-account name="String Unique"
                                    subtype="VEHICLES">
