@@ -10,6 +10,7 @@
 
 package org.mule.modules.quickbooks.api.Exception;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.mule.modules.quickbooks.schema.FaultInfo;
 
 
@@ -23,8 +24,6 @@ import org.mule.modules.quickbooks.schema.FaultInfo;
 
 public class QuickBooksException extends RuntimeException
 {
-    private final FaultInfo fault;
-    
     /**
      * Creates the QuickBooksException.
      *
@@ -33,12 +32,8 @@ public class QuickBooksException extends RuntimeException
     
     public QuickBooksException(final FaultInfo fault)
     {
-        this.fault = fault;
+        super(ToStringBuilder.reflectionToString(fault));
     }
 
-    public FaultInfo getFaultInfo()
-    {
-        return fault;
-    }
 }
 

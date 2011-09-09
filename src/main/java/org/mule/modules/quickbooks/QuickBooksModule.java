@@ -98,7 +98,7 @@ public class QuickBooksModule
     {
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
-        client.create(
+        Account account = client.create(
             mom.fromMap(Account.class,            
                 new MapBuilder()
                 .with("accountParentId", accountParentId)
@@ -110,6 +110,7 @@ public class QuickBooksModule
                 .build()
             )
         , accessToken, accessTokenSecret);
+        return;
     }
     
     @Processor

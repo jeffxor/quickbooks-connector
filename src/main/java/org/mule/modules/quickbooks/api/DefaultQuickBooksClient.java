@@ -83,12 +83,9 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         {
             String str = String.format("/resource/%s/v2/%s",
                 obj.getClass().getSimpleName().toLowerCase(), realmId);
-            GenericType<T> c = new GenericType<T>(obj.getClass());
-            T response = getGateWay(accessKey, accessSecret).path(str)
-            .header("Content-Type", "application/xml")
-            .accept(MediaType.APPLICATION_XML)
+            T response = (T) getGateWay(accessKey, accessSecret).path(str)
             .type(MediaType.APPLICATION_XML)
-            .post(new GenericType<T>(obj.getClass()), obj);
+            .post(obj.getClass(), obj);
             
             return response;
             
