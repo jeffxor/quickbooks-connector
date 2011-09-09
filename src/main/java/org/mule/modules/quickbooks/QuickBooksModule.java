@@ -98,7 +98,7 @@ public class QuickBooksModule
     {
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
-        Account account = client.create(
+        client.create(
             mom.fromMap(Account.class,            
                 new MapBuilder()
                 .with("accountParentId", accountParentId)
@@ -110,7 +110,6 @@ public class QuickBooksModule
                 .build()
             )
         , accessToken, accessTokenSecret);
-        return;
     }
     
     @Processor
@@ -189,7 +188,7 @@ public class QuickBooksModule
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
                                @Optional String showAs, List<Map<String, Object>> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
-                               Map<String, Object> address)
+                               List<Map<String, Object>> address)
     {
         client.create(
             mom.fromMap(Customer.class,
@@ -199,7 +198,7 @@ public class QuickBooksModule
                 .with("middleName", middleName)
                 .with("familyName", familyName)
                 .with("suffix", suffix)
-                .with("dBAName", dBAName)
+                .with("DBAName", dBAName)
                 .with("showAs", showAs)
                 .with("webSite", webSite)
                 .with("salesTermId", salesTermId)
@@ -338,7 +337,7 @@ public class QuickBooksModule
                              String name, String givenName, @Optional String middleName, @Optional String familyName,
                              @Optional String dBAName, @Optional String showAs, List<Map<String, Object>> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
-                             List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
+                             List<String> email, List<Map<String, Object>> phone, List<Map<String, Object>> address)
     { 
         client.create(
             mom.fromMap(Vendor.class,
@@ -347,7 +346,7 @@ public class QuickBooksModule
                 .with("givenName", givenName)
                 .with("middleName", middleName)
                 .with("familyName", familyName)
-                .with("dBAName", dBAName)
+                .with("DBAName", dBAName)
                 .with("showAs", showAs)
                 .with("webSite", webSite)
                 .with("taxIdentifier", taxIdentifier)
@@ -469,7 +468,7 @@ public class QuickBooksModule
                                @Optional String familyName, @Optional String suffix, @Optional String dBAName,
                                @Optional String showAs, List<Map<String, Object>> webSite, @Optional Map<String, Object> salesTermId,
                                @Optional String salesTaxCodeId, List<String> email, List<Map<String, Object>> phone,
-                               Map<String, Object> address)
+                               List<Map<String, Object>> address)
     {
         client.update(
             mom.fromMap(Customer.class,
@@ -479,7 +478,7 @@ public class QuickBooksModule
                 .with("middleName", middleName)
                 .with("familyName", familyName)
                 .with("suffix", suffix)
-                .with("dBAName", dBAName)
+                .with("DBAName", dBAName)
                 .with("showAs", showAs)
                 .with("webSite", webSite)
                 .with("salesTermId", salesTermId)
@@ -618,7 +617,7 @@ public class QuickBooksModule
                              String name, String givenName, @Optional String middleName, @Optional String familyName,
                              @Optional String dBAName, @Optional String showAs, List<Map<String, Object>> webSite,
                              @Optional Integer taxIdentifier, @Optional String acctNum, @Optional Boolean vendor1099,
-                             List<String> email, List<Map<String, Object>> phone, Map<String, Object> address)
+                             List<String> email, List<Map<String, Object>> phone, List<Map<String, Object>> address)
     {
         client.update(
             mom.fromMap(Vendor.class,
@@ -627,7 +626,7 @@ public class QuickBooksModule
                 .with("givenName", givenName)
                 .with("middleName", middleName)
                 .with("familyName", familyName)
-                .with("dBAName", dBAName)
+                .with("DBAName", dBAName)
                 .with("showAs", showAs)
                 .with("webSite", webSite)
                 .with("taxIdentifier", taxIdentifier)

@@ -15,10 +15,16 @@
 
 package org.mule.modules;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mule.modules.quickbooks.AccountDetail;
 import org.mule.modules.quickbooks.QuickBooksModule;
+
 
 /**
  * TODO: Description of the class, Comments in english by default
@@ -56,4 +62,34 @@ public class QuickBooksModuleTestDriver
         module.createAccount(accessToken, accessTokenSecret, "TestAccount", null, AccountDetail.ACCOUNTS_PAYABLE, null, null,
             null, null);
     }
+    
+    @SuppressWarnings("serial")
+    @Test
+    public void createCustomerAnswersNonNullCustomerWithId() throws Exception
+    {
+        module.createCustomer(accessToken, 
+            accessTokenSecret, 
+            "Ricardo", 
+            "Enrique", 
+            "Gerardo", 
+            "Perez",
+            null, null, null, 
+            new ArrayList<Map<String, Object>>(), 
+            null, null, new ArrayList<String>(),
+            new ArrayList<Map<String, Object>>(),
+            Arrays.<Map<String,Object>>asList(new HashMap<String, Object>()
+                {
+                    {
+                        put("Line1", null);
+                        put("Line2", null);
+                        put("City", null);
+                        put("CountrySubDivisionCode", null);
+                        put("PostalCode", null);
+                        put("Tag", "Billing");
+                    } 
+               }
+            )
+        );
+    }
+    
 }
