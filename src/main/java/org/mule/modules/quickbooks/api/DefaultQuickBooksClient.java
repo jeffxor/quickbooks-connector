@@ -25,11 +25,12 @@ import org.mule.modules.quickbooks.api.Exception.QuickBooksException;
 import org.mule.modules.quickbooks.schema.CdmBase;
 import org.mule.modules.quickbooks.schema.FaultInfo;
 import org.mule.modules.quickbooks.schema.IdType;
+import org.mule.modules.quickbooks.schema.ObjectFactory;
 import org.mule.modules.quickbooks.schema.QboUser;
 import org.mule.modules.quickbooks.schema.SearchResults;
+import org.mule.modules.quickbooks.utils.ObjectFactories;
 
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -76,19 +77,16 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
-        System.out.println("ACCESS_KEY = " + accessKey);
-        System.out.println("ACCESS_SECRET = " + accessSecret);
-        
         try
         {
             String str = String.format("/resource/%s/v2/%s",
                 obj.getClass().getSimpleName().toLowerCase(), realmId);
+            ObjectFactory objectFactory = new ObjectFactory();
             T response = (T) getGateWay(accessKey, accessSecret).path(str)
             .type(MediaType.APPLICATION_XML)
-            .post(obj.getClass(), obj);
+            .post(obj.getClass(), ObjectFactories.createJaxbElement(obj, objectFactory));
             
             return response;
-            
         }
         catch (final UniformInterfaceException e)
         {
@@ -113,6 +111,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             String str = String.format("/resource/%s/v2/%s/%s",
                 type.getResouceName(), realmId, id.getValue());
             T response = getGateWay(accessKey, accessSecret).path(str)
+                .type(MediaType.APPLICATION_FORM_URLENCODED)
                 .get(type.<T>getType());
             
             return response;
@@ -137,10 +136,9 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         {
             String str = String.format("/resource/%s/v2/%s",
                 obj.getClass().getSimpleName().toLowerCase(), realmId);
-            T response = getGateWay(accessKey, accessSecret).path(str)
+            T response = (T) getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
-                .header("Content-Type", "application/xml")
-                .post(new GenericType<T>(obj.getClass()), obj);
+                .post(obj.getClass(), obj);
             return response;
         }
         catch (final UniformInterfaceException e)
@@ -312,7 +310,6 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         try
         {
             QboUser response = webResource.header("Content-Type", "application/xml")
-                .accept(MediaType.APPLICATION_XML)
                 .type(MediaType.APPLICATION_XML)
                 .get(QboUser.class);
             
