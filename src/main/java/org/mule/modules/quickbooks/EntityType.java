@@ -10,7 +10,7 @@
 
 package org.mule.modules.quickbooks;
 
-import org.apache.commons.lang.StringUtils;
+import org.mule.modules.quickbooks.api.QuickBooksConventions;
 import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Bill;
 import org.mule.modules.quickbooks.schema.BillPayment;
@@ -72,7 +72,7 @@ public enum EntityType
      */
     public String getResouceName()
     {
-        return StringUtils.uncapitalize(type.getSimpleName());
+        return  QuickBooksConventions.toQuickBooksPathVariable(getSimpleName());
     }
 
     /**

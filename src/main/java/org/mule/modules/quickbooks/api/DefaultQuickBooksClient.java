@@ -52,6 +52,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     private final Client client;
     private final OAuthParameters params;
     private final OAuthSecrets secrets;
+    private final ObjectFactory objectFactory;
     private Integer resultsPerPage = 100;
     
     public DefaultQuickBooksClient(final String realmId, final String consumerKey,
@@ -61,6 +62,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         Validate.notNull(consumerKey);
         Validate.notNull(consumerSecret);
         
+        this.objectFactory = new ObjectFactory();
         this.realmId = realmId;
         this.client = Client.create();
         
@@ -80,8 +82,8 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         try
         {
             String str = String.format("/resource/%s/v2/%s",
-                obj.getClass().getSimpleName().toLowerCase(), realmId);
-            ObjectFactory objectFactory = new ObjectFactory();
+                QuickBooksConventions.toQuickBooksPathVariable(obj.getClass().getSimpleName()),
+                realmId);
             T response = (T) getGateWay(accessKey, accessSecret).path(str)
             .type(MediaType.APPLICATION_XML)
             .post(obj.getClass(), ObjectFactories.createJaxbElement(obj, objectFactory));
@@ -105,6 +107,8 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         Validate.notNull(id);
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
+        
+        
         
         try
         {
@@ -135,10 +139,11 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         try
         {
             String str = String.format("/resource/%s/v2/%s",
-                obj.getClass().getSimpleName().toLowerCase(), realmId);
+                QuickBooksConventions.toQuickBooksPathVariable(obj.getClass().getSimpleName()),
+                realmId);
             T response = (T) getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
-                .post(obj.getClass(), obj);
+                .post(obj.getClass(), ObjectFactories.createJaxbElement(obj, objectFactory));
             return response;
         }
         catch (final UniformInterfaceException e)
@@ -174,8 +179,8 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                 type.getResouceName(), realmId, id.getValue());
             T response = getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
-                .header("Content-Type", "application/xml")
-                .post(type.<T>getType(), obj);
+                .post(type.<T>getType(), ObjectFactories.createJaxbElement(obj, objectFactory));
+            response.getId();
         }
         catch (final UniformInterfaceException e)
         {
@@ -213,7 +218,6 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                         String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
                         SearchResults response = getGateWay(accessKey, accessSecret).path(str)
                             .type(MediaType.APPLICATION_FORM_URLENCODED)
-                            .header("Content-Type", "application/x-www-form-urlencoded")
                             .post(SearchResults.class, formData);
                         
                         return response;

@@ -15,15 +15,19 @@
 
 package org.mule.modules;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mule.modules.quickbooks.AccountDetail;
+import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.QuickBooksModule;
+import org.mule.modules.quickbooks.schema.Customer;
 
 
 /**
@@ -57,27 +61,29 @@ public class QuickBooksModuleTestDriver
     }
 
     @Test
+    @Ignore
     public void createAccountAnswersNonNullAccountWithId() throws Exception
     {
-        module.createAccount(accessToken, accessTokenSecret, "TestAccount", null, AccountDetail.ACCOUNTS_PAYABLE, null, null,
+        module.createAccount(accessToken, accessTokenSecret, "TestAccount9876", null, AccountDetail.SAVINGS, null, null,
             null, null);
     }
     
     @SuppressWarnings("serial")
     @Test
+    @Ignore
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
-        module.createCustomer(accessToken, 
+        Customer c = module.createCustomer(accessToken, 
             accessTokenSecret, 
-            "Ricardo", 
-            "Enrique", 
-            "Gerardo", 
+            "Maria5", 
+            "Susana", 
+            "Melina", 
             "Perez",
             null, null, null, 
             new ArrayList<Map<String, Object>>(), 
             null, null, new ArrayList<String>(),
             new ArrayList<Map<String, Object>>(),
-            Arrays.<Map<String,Object>>asList(new HashMap<String, Object>()
+            /*Arrays.<Map<String, Object>>asList(new HashMap<String, Object>()
                 {
                     {
                         put("Line1", null);
@@ -88,8 +94,41 @@ public class QuickBooksModuleTestDriver
                         put("Tag", "Billing");
                     } 
                }
-            )
+            )*/new ArrayList<Map<String, Object>>()
         );
+        
+        assertEquals("Maria5", c.getName());
+        assertNotNull(c.getId());
+
+        Map<String, Object> idType = new HashMap<String, Object>();
+        idType.put("value", c.getId().getValue());
+        //idType.put("idDomain", c.getId().getIdDomain());
+        module.deleteObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType, c.getSyncToken());
     }
+    
+    @Test
+    @Ignore
+    public void getCustomerAnswersNonNullCustomerWithId() throws Exception
+    {
+        Map<String, Object> idType = new HashMap<String, Object>();
+        idType.put("value", "1");
+        //idType.put("idDomain", c.getId().getIdDomain());
+        Customer c = (Customer) module.getObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType);
+        
+        assertEquals("Ricardo", c.getName());
+        assertNotNull(c.getId());
+    }
+    
+    @Test
+    public void getAllCustomersAnswersNonNullListWithCustomers() throws Exception
+    {
+        Iterable it = module.findObjects(accessToken, accessTokenSecret, EntityType.CUSTOMER, null, null);
+        
+        for (Object c : it)
+        {
+            System.out.println(((Customer) c).getName());
+        }
+    }
+    
     
 }
