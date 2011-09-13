@@ -29,7 +29,7 @@ import org.mule.modules.quickbooks.schema.ObjectFactory;
  * @since Sep 9, 2011
  */
 
-public class ObjectFactories
+public final class ObjectFactories
 {
     /**
      * Creates the ObjectFactories.

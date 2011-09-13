@@ -29,7 +29,6 @@ import org.mule.modules.quickbooks.schema.Vendor;
 
 public enum EntityType
 {
-    
     ACCOUNT(Account.class),
     BILL(Bill.class),
     BILLPAYMENT(BillPayment.class),

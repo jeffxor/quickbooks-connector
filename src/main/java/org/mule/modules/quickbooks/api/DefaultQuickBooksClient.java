@@ -72,7 +72,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
     @Override
-    public <T extends CdmBase> T create(T obj, String accessKey, String accessSecret)
+    public <T extends CdmBase> T create(final EntityType type, T obj, final String accessKey, final String accessSecret)
     {
         Validate.notNull(obj);
         Validate.notNull(accessKey);
@@ -83,9 +83,9 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             String str = String.format("/resource/%s/v2/%s",
                 QuickBooksConventions.toQuickBooksPathVariable(obj.getClass().getSimpleName()),
                 realmId);
-            T response = (T) getGateWay(accessKey, accessSecret).path(str)
+            T response = getGateWay(accessKey, accessSecret).path(str)
             .type(MediaType.APPLICATION_XML)
-            .post(obj.getClass(), ObjectFactories.createJaxbElement(obj, objectFactory));
+            .post(type.<T>getType(), ObjectFactories.createJaxbElement(obj, objectFactory));
             
             return response;
         }
@@ -100,19 +100,17 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
     @Override
-    public <T extends CdmBase> T getObject(EntityType type, IdType id, String accessKey, String accessSecret)
+    public <T extends CdmBase> T getObject(final EntityType type, final IdType id, final String accessKey, final String accessSecret)
     {   
         Validate.notNull(type);
         Validate.notNull(id);
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
-        
-        
+        String str = String.format("/resource/%s/v2/%s/%s",
+            type.getResouceName(), realmId, id.getValue());
         try
         {
-            String str = String.format("/resource/%s/v2/%s/%s",
-                type.getResouceName(), realmId, id.getValue());
             T response = getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_FORM_URLENCODED)
                 .get(type.<T>getType());
@@ -129,20 +127,25 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#update(java.lang.String) */
     @Override
-    public <T extends CdmBase> T update(T obj, String accessKey, String accessSecret)
+    public <T extends CdmBase> T update(final EntityType type, T obj, final String accessKey, final String accessSecret)
     {
         Validate.notNull(obj);
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
+        if (obj.getSyncToken() == null)
+        {
+            obj.setSyncToken(((CdmBase) getObject(type, obj.getId(), accessKey, accessSecret)).getSyncToken());
+        }
+        String str = String.format("/resource/%s/v2/%s/%s",
+            QuickBooksConventions.toQuickBooksPathVariable(obj.getClass().getSimpleName()),
+            realmId,
+            obj.getId().getValue());
         try
         {
-            String str = String.format("/resource/%s/v2/%s",
-                QuickBooksConventions.toQuickBooksPathVariable(obj.getClass().getSimpleName()),
-                realmId);
             T response = (T) getGateWay(accessKey, accessSecret).path(str)
                 .type(MediaType.APPLICATION_XML)
-                .post(obj.getClass(), ObjectFactories.createJaxbElement(obj, objectFactory));
+                .post(type.<T>getType(), ObjectFactories.createJaxbElement(obj, objectFactory));
             return response;
         }
         catch (final UniformInterfaceException e)
@@ -156,8 +159,8 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     /** @throws QuickBooksException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
     @Override
-    public <T extends CdmBase> void deleteObject(EntityType type, IdType id, String syncToken,
-                                                 String accessKey, String accessSecret)
+    public <T extends CdmBase> void deleteObject(final EntityType type, final IdType id, String syncToken,
+                                                 final String accessKey, final String accessSecret)
     {   
         Validate.notNull(type);
         Validate.notNull(id);
@@ -168,15 +171,15 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         {
             syncToken = ((CdmBase) getObject(type, id, accessKey, accessSecret)).getSyncToken();
         }
+        T obj = type.newInstance();
+        obj.setSyncToken(syncToken);
+        obj.setId(id);
+        
+        String str = String.format("/resource/%s/v2/%s/%s",
+            type.getResouceName(), realmId, id.getValue());
+        
         try
         {
-            T obj = type.newInstance();
-            obj.setSyncToken(syncToken);
-            obj.setId(id);
-            
-            String str = String.format("/resource/%s/v2/%s/%s",
-                type.getResouceName(), realmId, id.getValue());
-
             T response = getGateWay(accessKey, accessSecret).path(str)
                 .queryParam("methodx", "delete")
                 .type(MediaType.APPLICATION_XML)
@@ -247,20 +250,19 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                 
                 private SearchResults askAnEspecificPage(Integer pageNumber)
                 {
-                    try
+                    MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
+                    if (queryFilter != null)
                     {
-                        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
-                        if (queryFilter != null)
-                        {
-                            formData.add("Filter", queryFilter);
-                        }
-                        if (querySort != null)
-                        {
-                            formData.add("Sort", querySort);
-                        }
-                        formData.add("ResultsPerPage", resultsPerPage.toString());
-                        formData.add("PageNum", pageNumber.toString());
-                        
+                        formData.add("Filter", queryFilter);
+                    }
+                    if (querySort != null)
+                    {
+                        formData.add("Sort", querySort);
+                    }
+                    formData.add("ResultsPerPage", resultsPerPage.toString());
+                    formData.add("PageNum", pageNumber.toString());
+                    try
+                    {    
                         String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
                         SearchResults response = getGateWay(accessKey, accessSecret).path(str)
                             .type(MediaType.APPLICATION_FORM_URLENCODED)

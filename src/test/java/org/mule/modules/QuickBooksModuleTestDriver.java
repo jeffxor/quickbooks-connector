@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -27,7 +28,12 @@ import org.junit.Test;
 import org.mule.modules.quickbooks.AccountDetail;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.QuickBooksModule;
+import org.mule.modules.quickbooks.api.MapBuilder;
 import org.mule.modules.quickbooks.schema.Customer;
+import org.mule.modules.quickbooks.schema.PhysicalAddress;
+
+import ar.com.zauber.commons.mom.CXFStyle;
+import ar.com.zauber.commons.mom.MapObjectMapper;
 
 
 /**
@@ -68,9 +74,24 @@ public class QuickBooksModuleTestDriver
             null, null);
     }
     
+    @SuppressWarnings("unchecked")
     @Test
+    @Ignore
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
+        List<Map<String, Object>> auxList = new ArrayList<Map<String, Object>>();
+        
+        Map<String, Object> auxMap = new HashMap<String, Object>();
+        
+        auxMap.put("Line1", null);
+        auxMap.put("Line2", null);
+        auxMap.put("City", null);
+        auxMap.put("CountrySubDivisionCode", null);
+        auxMap.put("PostalCode", null);
+        auxMap.put("Tag", "Billing");
+        
+        auxList.add(auxMap);
+
         Customer c = module.createCustomer(accessToken, 
             accessTokenSecret, 
             "Susana", 
@@ -81,18 +102,20 @@ public class QuickBooksModuleTestDriver
             new ArrayList<Map<String, Object>>(), 
             null, null, new ArrayList<String>(),
             new ArrayList<Map<String, Object>>(),
-            /*Arrays.<Map<String, Object>>asList(new HashMap<String, Object>()
-                {
-                    {
-                        put("Line1", null);
-                        put("Line2", null);
-                        put("City", null);
-                        put("CountrySubDivisionCode", null);
-                        put("PostalCode", null);
-                        put("Tag", "Billing");
-                    } 
-               }
-            )*/new ArrayList<Map<String, Object>>()
+            new ArrayList<Map<String, Object>>()
+//            auxList
+//            Arrays.<Map<String, Object>>asList(new HashMap<String, Object>()
+//                {
+//                    {
+//                        put("Line1", null);
+//                        put("Line2", null);
+//                        put("City", null);
+//                        put("CountrySubDivisionCode", null);
+//                        put("PostalCode", null);
+//                        put("Tag", "Billing");
+//                    } 
+//               }
+//            )
         );
         
         assertEquals("Susana", c.getName());
@@ -102,6 +125,49 @@ public class QuickBooksModuleTestDriver
         idType.put("value", c.getId().getValue());
         //idType.put("idDomain", c.getId().getIdDomain());
         module.deleteObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType, c.getSyncToken());
+    }
+    
+    @Test
+    @Ignore
+    public void testname() throws Exception
+    {
+        
+     List<Map<String, Object>> auxList = new ArrayList<Map<String, Object>>();
+        
+        Map<String, Object> auxMap = new HashMap<String, Object>();
+        
+        auxMap.put("Line1", null);
+        auxMap.put("Line2", null);
+        auxMap.put("City", null);
+        auxMap.put("CountrySubDivisionCode", null);
+        auxMap.put("PostalCode", null);
+        auxMap.put("Tag", "Billing");
+        
+        auxList.add(auxMap);
+
+        MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
+        mom.setPropertyStyle(CXFStyle.STYLE);
+        Customer c = mom.fromMap(Customer.class,
+                new MapBuilder()
+                .with("name", "Susana")
+                .with("givenName", "Susana")
+                .with("middleName", "Melina")
+                .with("familyName", "Perez")
+                .with("suffix", null)
+                .with("DBAName", null)
+                .with("showAs", null)
+                .with("webSite", new ArrayList<Map<String, Object>>())
+                .with("salesTermId", null)
+                .with("salesTaxCodeId", null)
+                .with("email", new ArrayList<String>())
+                .with("phone", new ArrayList<Map<String, Object>>())
+                .with("address", auxList)
+                .build()
+                );
+        
+        PhysicalAddress ph = c.getAddress().get(0);
+        
+        assertEquals(ph.getTag(), "Billing");
     }
     
     @Test
@@ -118,6 +184,50 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
+    public void modifyCustomer()
+    {
+        Customer c1 = module.createCustomer(accessToken, 
+            accessTokenSecret,
+            "Paul", 
+            "Paul", 
+            null, 
+            "Jhonson",
+            null, null, null, 
+            new ArrayList<Map<String, Object>>(), 
+            null, null, new ArrayList<String>(),
+            new ArrayList<Map<String, Object>>(),
+            new ArrayList<Map<String, Object>>()
+        );
+        
+        assertEquals("Jhonson", c1.getFamilyName());
+        
+        Map<String, Object> idType = new HashMap<String, Object>();
+        idType.put("value", c1.getId().getValue());
+        
+        Customer c2 = module.updateCustomer(accessToken, 
+            accessTokenSecret, 
+            idType, 
+            c1.getSyncToken(), 
+            c1.getName(), 
+            c1.getGivenName(), 
+            c1.getMiddleName(), 
+            "Smith", 
+            null, null, null, 
+            new ArrayList<Map<String, Object>>(), 
+            null, null, new ArrayList<String>(),
+            new ArrayList<Map<String, Object>>(),
+            new ArrayList<Map<String, Object>>()
+        );
+        
+        Customer c3 = (Customer) module.getObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType);
+        
+        assertEquals("Smith", c3.getFamilyName());
+        
+        module.deleteObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType, null);
+    }
+    
+    @Test
+    @Ignore
     public void getAllCustomersAnswersNonNullListWithCustomers() throws Exception
     {
         Iterable it = module.findObjects(accessToken, accessTokenSecret, EntityType.CUSTOMER, null, null);

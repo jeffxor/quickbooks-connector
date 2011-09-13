@@ -88,7 +88,7 @@ public class QuickBooksModule
     @Optional
     private DefaultQuickBooksClient client;
     
-    private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");;
+    private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
 
     @Processor
     public Account createAccount(@OAuthAccessToken String accessToken,
@@ -103,7 +103,7 @@ public class QuickBooksModule
     {
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
-        return (Account) client.create(
+        return (Account) client.create(EntityType.ACCOUNT,
             mom.fromMap(Account.class,            
                 new MapBuilder()
                 .with("name", name)
@@ -124,7 +124,7 @@ public class QuickBooksModule
                            Map<String, Object> header,
                            List<Map<String, Object>> line)
     {
-        return (Bill) client.create(
+        return (Bill) client.create(EntityType.BILL,
             mom.fromMap(Bill.class,
                 new MapBuilder()
                 .with("billHeader", header)
@@ -140,7 +140,7 @@ public class QuickBooksModule
                                          Map<String, Object> header,
                                          List<Map<String, Object>> line)
     {    
-        return (BillPayment) client.create(
+        return (BillPayment) client.create(EntityType.BILLPAYMENT,
             mom.fromMap(BillPayment.class,
                 new MapBuilder()
                 .with("billPaymentHeader", header)
@@ -156,7 +156,7 @@ public class QuickBooksModule
                                            Map<String, Object> header,
                                            List<Map<String, Object>> line)
     {
-        return (CashPurchase) client.create(
+        return (CashPurchase) client.create(EntityType.CASHPURCHASE,
             mom.fromMap(CashPurchase.class,
                 new MapBuilder()
                 .with("cashPurchaseHeader", header)
@@ -172,7 +172,7 @@ public class QuickBooksModule
                              Map<String, Object> header,
                              List<Map<String, Object>> line)
     {
-        return (Check) client.create(
+        return (Check) client.create(EntityType.CHECK,
             mom.fromMap(Check.class,
                 new MapBuilder()
                 .with("checkHeader", header)
@@ -188,7 +188,7 @@ public class QuickBooksModule
                                                    Map<String, Object> header,
                                                    List<Map<String, Object>> line)
     {
-        return (CreditCardCharge) client.create(
+        return (CreditCardCharge) client.create(EntityType.CREDITCARDCHARGE,
             mom.fromMap(CreditCardCharge.class,
                 new MapBuilder()
                 .with("creditCardChargeHeader", header)
@@ -215,7 +215,7 @@ public class QuickBooksModule
                                    List<Map<String, Object>> phone,
                                    List<Map<String, Object>> address)
     {
-        return (Customer) client.create(
+        return (Customer) client.create(EntityType.CUSTOMER,
             mom.fromMap(Customer.class,
                 new MapBuilder()
                 .with("name", name)
@@ -242,7 +242,7 @@ public class QuickBooksModule
                                    Map<String, Object> header,
                                    List<Map<String, Object>> line)
     {
-        return (Estimate) client.create(
+        return (Estimate) client.create(EntityType.ESTIMATE,
             mom.fromMap(Estimate.class,
                 new MapBuilder()
                 .with("estimateHeader", header)
@@ -258,7 +258,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> line)
     {
-        return (Invoice) client.create(
+        return (Invoice) client.create(EntityType.INVOICE,
             mom.fromMap(Invoice.class,
                 new MapBuilder()
                 .with("invoiceHeader", header)
@@ -282,7 +282,7 @@ public class QuickBooksModule
                            Map<String, Object> purchaseCost,
                            Map<String, Object> expenseAccountRef)
     {
-        return (Item) client.create(
+        return (Item) client.create(EntityType.ITEM,
             mom.fromMap(Item.class,
                 new MapBuilder()
                 .with("name", name)
@@ -306,7 +306,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> line)
     {
-        return (Payment) client.create(
+        return (Payment) client.create(EntityType.PAYMENT,
             mom.fromMap(Payment.class,
                 new MapBuilder()
                 .with("paymentHeader", header)
@@ -322,7 +322,7 @@ public class QuickBooksModule
                                              String name,
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
-        return (PaymentMethod) client.create(
+        return (PaymentMethod) client.create(EntityType.PAYMENTMETHOD,
             mom.fromMap(PaymentMethod.class,
                 new MapBuilder()
                 .with("name", name)
@@ -338,7 +338,7 @@ public class QuickBooksModule
                                            Map<String, Object> header,
                                            List<Map<String, Object>> line)
     {
-        return (SalesReceipt) client.create(
+        return (SalesReceipt) client.create(EntityType.SALESRECEIPT,
             mom.fromMap(SalesReceipt.class,
                 new MapBuilder()
                 .with("salesReceiptHeader", header)
@@ -363,7 +363,7 @@ public class QuickBooksModule
         BigDecimal bigD1 = discountPercent == null ? null :  new BigDecimal(discountPercent);
         BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
-        return (SalesTerm) client.create(
+        return (SalesTerm) client.create(EntityType.SALESTERM,
             mom.fromMap(SalesTerm.class,
                 new MapBuilder()
                 .with("name", name)
@@ -396,7 +396,7 @@ public class QuickBooksModule
                                List<Map<String, Object>> phone,
                                List<Map<String, Object>> address)
     { 
-        return (Vendor) client.create(
+        return (Vendor) client.create(EntityType.VENDOR,
             mom.fromMap(Vendor.class,
                 new MapBuilder()
                 .with("name", name)
@@ -431,7 +431,9 @@ public class QuickBooksModule
 
     @Processor
     public Account updateAccount(@OAuthAccessToken String accessToken,
-                                 @OAuthAccessTokenSecret String accessTokenSecret,
+                                 @OAuthAccessTokenSecret String accessTokenSecret, 
+                                 Map<String, Object> id, 
+                                 @Optional String syncToken,
                                  String name,
                                  @Optional String desc,
                                  AccountDetail subtype,
@@ -442,9 +444,11 @@ public class QuickBooksModule
     {   
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
 
-        return (Account) client.update(
-            mom.fromMap(Account.class,            
+        return (Account) client.update(EntityType.ACCOUNT,
+            mom.fromMap(Account.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("accountParentId", accountParentId)
                 .with("desc", desc)
@@ -459,13 +463,17 @@ public class QuickBooksModule
     
     @Processor
     public Bill updateBill(@OAuthAccessToken String accessToken,
-                           @OAuthAccessTokenSecret String accessTokenSecret,
+                           @OAuthAccessTokenSecret String accessTokenSecret, 
+                           Map<String, Object> id, 
+                           @Optional String syncToken,
                            Map<String, Object> header,
                            List<Map<String, Object>> line)
     {
-        return (Bill) client.update(
+        return (Bill) client.update(EntityType.BILL,
             mom.fromMap(Bill.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("billHeader", header)
                 .with("billLine", line)
                 .build()
@@ -475,13 +483,17 @@ public class QuickBooksModule
     
     @Processor
     public BillPayment updateBillPayment(@OAuthAccessToken String accessToken,
-                                         @OAuthAccessTokenSecret String accessTokenSecret,
+                                         @OAuthAccessTokenSecret String accessTokenSecret, 
+                                         Map<String, Object> id, 
+                                         @Optional String syncToken,
                                          Map<String, Object> header,
                                          List<Map<String, Object>> line)
     {    
-        return (BillPayment) client.update(
+        return (BillPayment) client.update(EntityType.BILLPAYMENT,
             mom.fromMap(BillPayment.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("billPaymentHeader", header)
                 .with("billPaymentLine", line)
                 .build()
@@ -491,13 +503,17 @@ public class QuickBooksModule
     
     @Processor
     public CashPurchase updateCashPurchase(@OAuthAccessToken String accessToken,
-                                           @OAuthAccessTokenSecret String accessTokenSecret,
+                                           @OAuthAccessTokenSecret String accessTokenSecret, 
+                                           Map<String, Object> id, 
+                                           @Optional String syncToken,
                                            Map<String, Object> header,
                                            List<Map<String, Object>> line)
     {
-        return (CashPurchase) client.update(
+        return (CashPurchase) client.update(EntityType.CASHPURCHASE,
             mom.fromMap(CashPurchase.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("cashPurchaseHeader", header)
                 .with("cashPurchaseLine", line)
                 .build()
@@ -507,13 +523,17 @@ public class QuickBooksModule
     
     @Processor
     public Check updateCheck(@OAuthAccessToken String accessToken,
-                             @OAuthAccessTokenSecret String accessTokenSecret,
+                             @OAuthAccessTokenSecret String accessTokenSecret, 
+                             Map<String, Object> id, 
+                             @Optional String syncToken,
                              Map<String, Object> header,
                              List<Map<String, Object>> line)
     {
-        return (Check) client.update(
+        return (Check) client.update(EntityType.CHECK,
             mom.fromMap(Check.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("checkHeader", header)
                 .with("checkLine", line)
                 .build()
@@ -523,13 +543,17 @@ public class QuickBooksModule
     
     @Processor
     public CreditCardCharge updateCreditCardCharge(@OAuthAccessToken String accessToken,
-                                                   @OAuthAccessTokenSecret String accessTokenSecret,
+                                                   @OAuthAccessTokenSecret String accessTokenSecret, 
+                                                   Map<String, Object> id, 
+                                                   @Optional String syncToken,
                                                    Map<String, Object> header,
                                                    List<Map<String, Object>> line)
     {
-        return (CreditCardCharge) client.update(
+        return (CreditCardCharge) client.update(EntityType.CREDITCARDCHARGE,
             mom.fromMap(CreditCardCharge.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("creditCardChargeHeader", header)
                 .with("creditCardChargeLine", line)
                 .build()
@@ -539,7 +563,9 @@ public class QuickBooksModule
 
     @Processor
     public Customer updateCustomer(@OAuthAccessToken String accessToken,
-                                   @OAuthAccessTokenSecret String accessTokenSecret,
+                                   @OAuthAccessTokenSecret String accessTokenSecret, 
+                                   Map<String, Object> id, 
+                                   @Optional String syncToken,
                                    @Optional String name,
                                    @Optional String givenName,
                                    @Optional String middleName,
@@ -553,9 +579,11 @@ public class QuickBooksModule
                                    List<String> email, List<Map<String, Object>> phone,
                                    List<Map<String, Object>> address)
     {
-        return (Customer) client.update(
+        return (Customer) client.update(EntityType.CUSTOMER,
             mom.fromMap(Customer.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("givenName", givenName)
                 .with("middleName", middleName)
@@ -576,13 +604,17 @@ public class QuickBooksModule
     
     @Processor
     public Estimate updateEstimate(@OAuthAccessToken String accessToken,
-                                   @OAuthAccessTokenSecret String accessTokenSecret,
+                                   @OAuthAccessTokenSecret String accessTokenSecret, 
+                                   Map<String, Object> id, 
+                                   @Optional String syncToken,
                                    Map<String, Object> header,
                                    List<Map<String, Object>> line)
     {
-        return (Estimate) client.update(
+        return (Estimate) client.update(EntityType.ESTIMATE,
             mom.fromMap(Estimate.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("estimateHeader", header)
                 .with("estimateLine", line)
                 .build()
@@ -592,13 +624,17 @@ public class QuickBooksModule
     
     @Processor
     public Invoice updateInvoice(@OAuthAccessToken String accessToken,
-                                 @OAuthAccessTokenSecret String accessTokenSecret,
+                                 @OAuthAccessTokenSecret String accessTokenSecret, 
+                                 Map<String, Object> id, 
+                                 @Optional String syncToken,
                                  Map<String, Object> header,
                                  List<Map<String, Object>> line)
     {
-        return (Invoice) client.update(
+        return (Invoice) client.update(EntityType.INVOICE,
             mom.fromMap(Invoice.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("invoiceHeader", header)
                 .with("invoiceLine", line)
                 .build()
@@ -608,7 +644,9 @@ public class QuickBooksModule
     
     @Processor
     public Item updateItem(@OAuthAccessToken String accessToken,
-                           @OAuthAccessTokenSecret String accessTokenSecret,
+                           @OAuthAccessTokenSecret String accessTokenSecret, 
+                           Map<String, Object> id, 
+                           @Optional String syncToken,
                            @Optional @Default("") String name, 
                            Map<String, Object> unitPrice,
                            @Optional String desc,
@@ -620,9 +658,11 @@ public class QuickBooksModule
                            Map<String, Object> purchaseCost, 
                            Map<String, Object> expenseAccountRef)
     {
-        return (Item) client.update(
+        return (Item) client.update(EntityType.ITEM,
             mom.fromMap(Item.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("unitPrice", unitPrice)
                 .with("desc", desc)
@@ -640,13 +680,17 @@ public class QuickBooksModule
     
     @Processor
     public Payment updatePayment(@OAuthAccessToken String accessToken,
-                                 @OAuthAccessTokenSecret String accessTokenSecret,
+                                 @OAuthAccessTokenSecret String accessTokenSecret, 
+                                 Map<String, Object> id, 
+                                 @Optional String syncToken,
                                  Map<String, Object> header,
                                  List<Map<String, Object>> line)
     {
-        return (Payment) client.update(
+        return (Payment) client.update(EntityType.PAYMENT,
             mom.fromMap(Payment.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("paymentHeader", header)
                 .with("paymentLine", line)
                 .build()
@@ -656,13 +700,17 @@ public class QuickBooksModule
     
     @Processor
     public PaymentMethod updatePaymentMethod(@OAuthAccessToken String accessToken,
-                                             @OAuthAccessTokenSecret String accessTokenSecret,
+                                             @OAuthAccessTokenSecret String accessTokenSecret, 
+                                             Map<String, Object> id, 
+                                             @Optional String syncToken,
                                              String name, 
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
-        return (PaymentMethod) client.update(
+        return (PaymentMethod) client.update(EntityType.PAYMENTMETHOD,
             mom.fromMap(PaymentMethod.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("type", type)
                 .build()
@@ -672,13 +720,17 @@ public class QuickBooksModule
     
     @Processor
     public SalesReceipt updateSalesReceipt(@OAuthAccessToken String accessToken, 
-                                           @OAuthAccessTokenSecret String accessTokenSecret,
+                                           @OAuthAccessTokenSecret String accessTokenSecret, 
+                                           Map<String, Object> id, 
+                                           @Optional String syncToken,
                                            Map<String, Object> header, 
                                            List<Map<String, Object>> line)
     {
-        return (SalesReceipt) client.update(
+        return (SalesReceipt) client.update(EntityType.SALESRECEIPT,
             mom.fromMap(SalesReceipt.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("salesReceiptHeader", header)
                 .with("salesReceiptLine", line)
                 .build()
@@ -688,7 +740,9 @@ public class QuickBooksModule
     
     @Processor
     public SalesTerm updateSalesTerm(@OAuthAccessToken String accessToken, 
-                                     @OAuthAccessTokenSecret String accessTokenSecret,
+                                     @OAuthAccessTokenSecret String accessTokenSecret, 
+                                     Map<String, Object> id, 
+                                     @Optional String syncToken,
                                      String name, 
                                      Integer dueDays, 
                                      @Optional Integer discountDays,
@@ -701,9 +755,11 @@ public class QuickBooksModule
         BigDecimal bigD1 = discountPercent == null ? null :  new BigDecimal(discountPercent);
         BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
-        return (SalesTerm) client.update(
+        return (SalesTerm) client.update(EntityType.SALESTERM,
             mom.fromMap(SalesTerm.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("dueDays", dueDays)
                 .with("discountDays", discountDays)
@@ -719,7 +775,9 @@ public class QuickBooksModule
     
     @Processor
     public Vendor updateVendor(@OAuthAccessToken String accessToken, 
-                               @OAuthAccessTokenSecret String accessTokenSecret,
+                               @OAuthAccessTokenSecret String accessTokenSecret, 
+                               Map<String, Object> id, 
+                               @Optional String syncToken,
                                String name, 
                                String givenName, 
                                @Optional String middleName, 
@@ -734,9 +792,11 @@ public class QuickBooksModule
                                List<Map<String, Object>> phone, 
                                List<Map<String, Object>> address)
     {
-        return (Vendor) client.update(
+        return (Vendor) client.update(EntityType.VENDOR,
             mom.fromMap(Vendor.class,
                 new MapBuilder()
+                .with("id", id)
+                .with("syncToken", syncToken)
                 .with("name", name)
                 .with("givenName", givenName)
                 .with("middleName", middleName)
