@@ -89,6 +89,6 @@ public enum EntityType
      */
     public String getSimpleName()
     {
-        return getResouceName();
+        return getType().getSimpleName();
     }
 }

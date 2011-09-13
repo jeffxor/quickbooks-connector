@@ -17,7 +17,6 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.mule.modules.quickbooks.EntityType;
@@ -175,12 +174,13 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             obj.setSyncToken(syncToken);
             obj.setId(id);
             
-            String str = String.format("/resource/%s/v2/%s/%s?methodx=delete",
+            String str = String.format("/resource/%s/v2/%s/%s",
                 type.getResouceName(), realmId, id.getValue());
+
             T response = getGateWay(accessKey, accessSecret).path(str)
+                .queryParam("methodx", "delete")
                 .type(MediaType.APPLICATION_XML)
                 .post(type.<T>getType(), ObjectFactories.createJaxbElement(obj, objectFactory));
-            response.getId();
         }
         catch (final UniformInterfaceException e)
         {
@@ -206,60 +206,19 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                 @Override
                 protected SearchResults firstPage()
                 {
-                    try
-                    {
-                        //TODO verificar si quick acepta filter y sort vacio
-                        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
-                        formData.add("filter", queryFilter);
-                        formData.add("sort", querySort);
-                        formData.add("ResultsPerPage", resultsPerPage.toString());
-                        formData.add("PageNum", "1");
-                        
-                        String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
-                        SearchResults response = getGateWay(accessKey, accessSecret).path(str)
-                            .type(MediaType.APPLICATION_FORM_URLENCODED)
-                            .post(SearchResults.class, formData);
-                        
-                        return response;
-                    }
-                    catch (final UniformInterfaceException e)
-                    {
-                        final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-                        throw new QuickBooksException(fault);
-                    }
+                    return askAnEspecificPage(1);
                 }
 
                 @Override
                 protected SearchResults nextPage(SearchResults currentPage)
                 {
-                    try
-                    {
-                        Integer pageNum = currentPage.getCurrentPage() + 1;
-                        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
-                        formData.add("Filter", queryFilter);
-                        formData.add("Sort", querySort);
-                        formData.add("ResultsPerPage", resultsPerPage.toString());
-                        formData.add("PageNum", pageNum.toString());
-                        
-                        String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
-                        SearchResults response = getGateWay(accessKey, accessSecret).path(str)
-                            .type(MediaType.APPLICATION_FORM_URLENCODED)
-                            .header("Content-Type", "application/x-www-form-urlencoded")
-                            .post(SearchResults.class, formData);
-                        
-                        return response;
-                    }
-                    catch (final UniformInterfaceException e)
-                    {
-                        final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-                        throw new QuickBooksException(fault);
-                    }
+                    return askAnEspecificPage(currentPage.getCurrentPage() + 1);
                 }
                 
                 @Override
                 protected boolean hasNextPage(SearchResults page)
                 {
-                    return page.getCount() > page.getCurrentPage();
+                    return page.getCount() == resultsPerPage;
                 }
 
                 @Override
@@ -268,7 +227,9 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                 {
                     try
                     {
-                        return ((List<T>) PropertyUtils.getProperty(page.getCdmCollections(), type.getSimpleName())).iterator();
+                        return ((List<T>) page.getCdmCollections().getClass()
+                                        .getMethod("get" + type.getSimpleName(), null)
+                                        .invoke(page.getCdmCollections())).iterator();
                     }
                     catch (IllegalAccessException e)
                     {
@@ -281,6 +242,36 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                     catch (NoSuchMethodException e)
                     {
                             throw new NotImplementedException(e);
+                    }
+                }
+                
+                private SearchResults askAnEspecificPage(Integer pageNumber)
+                {
+                    try
+                    {
+                        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
+                        if (queryFilter != null)
+                        {
+                            formData.add("Filter", queryFilter);
+                        }
+                        if (querySort != null)
+                        {
+                            formData.add("Sort", querySort);
+                        }
+                        formData.add("ResultsPerPage", resultsPerPage.toString());
+                        formData.add("PageNum", pageNumber.toString());
+                        
+                        String str = String.format("/resource/%ss/v2/%s", type.getResouceName(), realmId); 
+                        SearchResults response = getGateWay(accessKey, accessSecret).path(str)
+                            .type(MediaType.APPLICATION_FORM_URLENCODED)
+                            .post(SearchResults.class, formData);
+                        
+                        return response;
+                    }
+                    catch (final UniformInterfaceException e)
+                    {
+                        final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+                        throw new QuickBooksException(fault);
                     }
                 }
             };
@@ -327,7 +318,11 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     }
     
     public void setResultsPerPage(Integer resultsPerPage)
-    {
+    {   
+        if ( resultsPerPage > 100 || resultsPerPage < 10 )
+        {
+            throw new IllegalArgumentException("Results Per Page must be a number between 10 and 100");
+        }    
         this.resultsPerPage = resultsPerPage;
     }
 }

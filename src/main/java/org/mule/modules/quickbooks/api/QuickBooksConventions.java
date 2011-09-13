@@ -13,8 +13,11 @@ import static org.apache.commons.lang.StringUtils.*;
  * @since Sep 12, 2011
  */
 
-public class QuickBooksConventions
+public final class QuickBooksConventions
 {
+    private QuickBooksConventions()
+    {    
+    }
     public static String toQuickBooksPathVariable(String entityName)
     {
         return join(splitByCharacterTypeCamelCase(entityName), "-").toLowerCase();

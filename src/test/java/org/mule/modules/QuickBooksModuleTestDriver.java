@@ -68,14 +68,12 @@ public class QuickBooksModuleTestDriver
             null, null);
     }
     
-    @SuppressWarnings("serial")
     @Test
-    @Ignore
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
         Customer c = module.createCustomer(accessToken, 
             accessTokenSecret, 
-            "Maria5", 
+            "Susana", 
             "Susana", 
             "Melina", 
             "Perez",
@@ -97,7 +95,7 @@ public class QuickBooksModuleTestDriver
             )*/new ArrayList<Map<String, Object>>()
         );
         
-        assertEquals("Maria5", c.getName());
+        assertEquals("Susana", c.getName());
         assertNotNull(c.getId());
 
         Map<String, Object> idType = new HashMap<String, Object>();
