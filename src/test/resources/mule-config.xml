@@ -205,11 +205,14 @@
                                    subtype="VEHICLES"
                                    acctNum="String Optional"
                                    openingBalance="99"
-                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00"
+                                   syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:account-parent-id ref=" "></quickbooks:account-parent-id>
         </quickbooks:update-account>
                                    
-        <quickbooks:update-bill >
+        <quickbooks:update-bill syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header >
                 <quickbooks:doc-number>31233123</quickbooks:doc-number>
                 <quickbooks:msg>dfsd</quickbooks:msg>
@@ -222,22 +225,26 @@
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-bill>
                                 
-        <quickbooks:update-bill-payment>
+        <quickbooks:update-bill-payment syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-bill-payment>
                                         
-        <quickbooks:update-cash-purchase>
+        <quickbooks:update-cash-purchase syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-cash-purchase>
                                          
-        <quickbooks:update-check>
+        <quickbooks:update-check syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-check>                     
         
-        <quickbooks:update-credit-card-charge>
+        <quickbooks:update-credit-card-charge syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-credit-card-charge>
@@ -249,7 +256,9 @@
                                     suffix="String Optional"
                                     dBAName="String Optional"
                                     showAs="String Optional"
-                                    salesTaxCodeId="String Optional">
+                                    salesTaxCodeId="String Optional"
+                                    syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:web-site ref=" "></quickbooks:web-site>
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>
@@ -257,12 +266,14 @@
             <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
         </quickbooks:update-customer>
         
-        <quickbooks:update-estimate>
+        <quickbooks:update-estimate syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-estimate>
                                     
-        <quickbooks:update-invoice>
+        <quickbooks:update-invoice syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-invoice>
@@ -271,7 +282,9 @@
                                 desc="String Optional"
                                 tasable="true"
                                 itemParentName="String N/A"
-                                purchaseDesc="String Optional">
+                                purchaseDesc="String Optional"
+                                syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:item-parent-id ref=" "></quickbooks:item-parent-id>
             <quickbooks:unit-price ref=" "></quickbooks:unit-price>
             <quickbooks:income-account-ref ref=" "></quickbooks:income-account-ref>
@@ -279,15 +292,20 @@
             <quickbooks:expense-account-ref ref=" "></quickbooks:expense-account-ref>     
         </quickbooks:update-item>
                         
-        <quickbooks:update-payment>
+        <quickbooks:update-payment syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-payment>
                                    
         <quickbooks:update-payment-method name="String"
-                                          type="String Optional NON_CREDIT_CARDdefault"/>
+                                          type="String Optional NON_CREDIT_CARDdefault"
+                                          syncToken="1">
+            <quickbooks:id ref=" "/>
+        </quickbooks:update-payment-method>
                                           
-        <quickbooks:update-sales-receipt>
+        <quickbooks:update-sales-receipt syncToken="1">
+            <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
             <quickbooks:line ref=" "></quickbooks:line>
         </quickbooks:update-sales-receipt>
@@ -299,7 +317,10 @@
                                       dayOfMonthDue="2"
                                       dueNextMonthDays="2"
                                       discountDayOfMonth="2"
-                                      dateDiscountPercent="9"/>
+                                      dateDiscountPercent="9"
+                                      syncToken="1">
+            <quickbooks:id ref=" "/>
+        </quickbooks:update-sales-term>
                                       
         <quickbooks:update-vendor name="String"
                                   givenName="String"
@@ -310,6 +331,7 @@
                                   taxIdentifier="2"
                                   acctNum="String Optional"
                                   vendor1099="true">
+            <quickbooks:id ref=" "/>
             <quickbooks:web-site ref=" "></quickbooks:web-site>
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>

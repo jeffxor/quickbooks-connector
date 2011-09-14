@@ -31,6 +31,7 @@ import org.mule.modules.quickbooks.QuickBooksModule;
 import org.mule.modules.quickbooks.api.MapBuilder;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.PhysicalAddress;
+import org.mule.modules.quickbooks.schema.SalesTerm;
 
 import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
@@ -76,7 +77,6 @@ public class QuickBooksModuleTestDriver
     
     @SuppressWarnings("unchecked")
     @Test
-    @Ignore
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
         List<Map<String, Object>> auxList = new ArrayList<Map<String, Object>>();
@@ -184,6 +184,7 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
+    @Ignore
     public void modifyCustomer()
     {
         Customer c1 = module.createCustomer(accessToken, 
@@ -238,5 +239,25 @@ public class QuickBooksModuleTestDriver
         }
     }
     
+    @Test
+    public void createSalesTermAnswersNonNullSalesTermWithId()
+    {
+        SalesTerm salesTerm = module.createSalesTerm(accessToken,
+            accessTokenSecret, 
+            "SalesTerm1",
+            3,
+            null,
+            null,
+            2,
+            null,
+            null,
+            null);
+        
+        assertEquals("SalesTerm1", salesTerm.getName());
+        Map<String, Object> idType = new HashMap<String, Object>();
+        idType.put("value", salesTerm.getId().getValue());
+        
+        module.deleteObject(accessToken, accessTokenSecret, EntityType.SALESTERM, idType, null);
+    }
     
 }

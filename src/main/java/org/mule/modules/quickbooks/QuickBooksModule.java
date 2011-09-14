@@ -14,8 +14,10 @@
 package org.mule.modules.quickbooks;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,6 +92,43 @@ public class QuickBooksModule
     
     private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
 
+    /**
+     * Creates an Account.
+     * The Account object represents the accounts that you keep to track your business.
+     * Account is a component of a chart of accounts, and is part of a ledger.
+     * You can use Account to record the total monetary amount that is allocated for a specific use.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Account">Account Especification</a>
+     * 
+     * {@code <quickbooks:create-account name="Loan Account"
+                                   desc="Loan Account"
+                                   subtype="SAVINGS"
+                                   acctNum="5001"
+                                   openingBalance="10000"
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
+            <quickbooks:account-parent-id ref="#[variable:parentId]"/>
+            
+        </quickbooks:create-account>}
+     * 
+     * @param name User-recognizable name for the account. This name must be unique.
+     *             When you create a company, you get some default accounts.
+     *             If you want to create an account, you must provide an account name that does not
+     *             match the name of any default account.
+     * @param desc Optional. User-entered description of the account.
+     *             This description helps the book keepers or accountants to decide which journal
+     *             entries should be posted to this account.
+     * @param subtype Detailed classification of the account that specifies the use of this account.
+     *                The accepted values are defined in QboAccountDetailTypeEnum.
+     * @param acctNum Optional. User-specified account number that help the user to identify the
+     *                account within the chart of accounts and decide what should be posted to the account.
+     * @param openingBalance Optional. Opening balance amount when you create a new balance sheet account.
+     * @param openingBalanceDate Optional. Date of the opening balance amount when creating a new balance
+     *                           sheet account.
+     * @param accountParentId Optional. If the account is a subaccount, AccountParentId is used to 
+     *                        store the ID of the parent account.
+     * @return The created Account.
+     */
     @Processor
     public Account createAccount(@OAuthAccessToken String accessToken,
                                 @OAuthAccessTokenSecret String accessTokenSecret,
@@ -118,6 +157,23 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a Bill.
+     * The Bill object represents an expense to the business.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Bill">Bill Especification</a>
+     * 
+     * {@code <quickbooks:create-bill >
+            <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
+        </quickbooks:create-bill>}
+     *
+     * @param header Information on the financial transaction of the Bill.
+     * @param line Information about a specific good or service purchased for which the payment is demanded
+     *             as a part of the bill. A bill can have multiple lines.
+     * @return The created Bill.
+     */
     @Processor
     public Bill createBill(@OAuthAccessToken String accessToken,
                            @OAuthAccessTokenSecret String accessTokenSecret,
@@ -127,13 +183,31 @@ public class QuickBooksModule
         return (Bill) client.create(EntityType.BILL,
             mom.fromMap(Bill.class,
                 new MapBuilder()
-                .with("billHeader", header)
-                .with("billLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a BillPayment.
+     * BillPayment represents the financial transaction of payment of bills that the business owner receives
+     * from a vendor for goods or services purchased from the vendor.
+     * QBO supports bill payments through a credit card or a bank account.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
+     * 
+     * {@code <quickbooks:create-bill-payment >
+            <quickbooks:header ref="#[variable:headerBillPayment]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesBillPayment]"></quickbooks:line>
+        </quickbooks:create-bill-payment>}
+     *
+     * @param header Header information about the BillPayment.
+     * @param line List of lines. Specifies the line details for the bill payment.
+     * @return The created BillPayment.
+     */
     @Processor
     public BillPayment createBillPayment(@OAuthAccessToken String accessToken,
                                          @OAuthAccessTokenSecret String accessTokenSecret,
@@ -143,13 +217,30 @@ public class QuickBooksModule
         return (BillPayment) client.create(EntityType.BILLPAYMENT,
             mom.fromMap(BillPayment.class,
                 new MapBuilder()
-                .with("billPaymentHeader", header)
-                .with("billPaymentLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a CashPurchase.
+     * CashPurchase represents an expense to the business as a cash transaction.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
+     * 
+     * {@code <quickbooks:create-cash-purchase >
+            <quickbooks:header ref="#[variable:headerCashPurchase]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCashPurchase]"></quickbooks:line>
+        </quickbooks:create-bill-payment>}
+     *
+     * @param header Information about the financial transaction of the entire CashPurchase.
+     * @param line List of lines. Information about a specific good or service purchased for which 
+     *             the payment is demanded as a part of the CashPurchase.
+     * @return The created CashPurchase.
+     */
     @Processor
     public CashPurchase createCashPurchase(@OAuthAccessToken String accessToken,
                                            @OAuthAccessTokenSecret String accessTokenSecret,
@@ -159,13 +250,30 @@ public class QuickBooksModule
         return (CashPurchase) client.create(EntityType.CASHPURCHASE,
             mom.fromMap(CashPurchase.class,
                 new MapBuilder()
-                .with("cashPurchaseHeader", header)
-                .with("cashPurchaseLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a Check.
+     * The Check object represents an expense to the business paid as a check transaction.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Check">Check Especification</a>
+     * 
+     * {@code <quickbooks:create-check >
+            <quickbooks:header ref="#[variable:headerCheck]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCheck]"></quickbooks:line>
+        </quickbooks:create-check>}
+     *
+     * @param header Financial Transaction information that pertains to the entire CheckHeader.
+     * @param line List of lines. Information about a specific good or service purchased for which 
+     *             the payment is demanded as a part of the check.
+     * @return The created Check.
+     */
     @Processor
     public Check createCheck(@OAuthAccessToken String accessToken,
                              @OAuthAccessTokenSecret String accessTokenSecret,
@@ -175,13 +283,33 @@ public class QuickBooksModule
         return (Check) client.create(EntityType.CHECK,
             mom.fromMap(Check.class,
                 new MapBuilder()
-                .with("checkHeader", header)
-                .with("checkLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a CreditCardCharge.
+     * The CreditCardCharge object represents an expense to the business as a credit card charge 
+     * transaction. CreditCardCharge must have the total expense equal to the total expense of 
+     * line items.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
+     * 
+     * {@code <quickbooks:create-credit-card-charge >
+            <quickbooks:header ref="#[variable:headerCreditCardCharge]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCreditCardCharge]"></quickbooks:line>
+        </quickbooks:create-credit-card-charge>}
+     *
+     * @param header Financial Transaction information that pertains to the entire CreditCardChargeHeader.
+     * @param line List of lines. Information about a specific good or service purchased for which the 
+     *             payment is demanded as a part of the CreditCardCharge purchase.
+     * @return The created CreditCardCharge.
+     */
     @Processor
     public CreditCardCharge createCreditCardCharge(@OAuthAccessToken String accessToken,
                                                    @OAuthAccessTokenSecret String accessTokenSecret,
@@ -191,13 +319,58 @@ public class QuickBooksModule
         return (CreditCardCharge) client.create(EntityType.CREDITCARDCHARGE,
             mom.fromMap(CreditCardCharge.class,
                 new MapBuilder()
-                .with("creditCardChargeHeader", header)
-                .with("creditCardChargeLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
 
+    /**
+     * Creates a Customer.
+     * The Customer object represents the consumer of the service or the product that your business offers. 
+     * QBO allows categorizing the customers in a way that is meaningful to the business.
+     *
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Customer">Customer Especification</a>
+     * 
+     * {@code <quickbooks:create-customer name="John Doe"
+                                    givenName="John"
+                                    middleName="Bill"
+                                    familyName="Doe"
+                                    suffix="Sr"
+                                    dBAName="Mint"
+                                    showAs="J Doe"
+                                    salesTaxCodeId="5">
+            <quickbooks:web-site ref="#[variable:webSite]"></quickbooks:web-site>
+            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
+            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
+            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
+        </quickbooks:create-customer>}
+     *
+     * @param name Optional. Specifies the full name of the customer. If the Name is specified, then GivenName,
+     *             MiddleName, and FamilyName values are ignored.
+     * @param givenName Specifies the given name or first name of a person. GivenName is a required field only if 
+     *        Name is not sent in the request. If a Name is sent, then the GivenName field is optional.
+     * @param middleName Optional. Specifies the middle name of the person. A person can have zero or more middle 
+     *                   names.
+     * @param familyName Optional. Specifies the family name or the last name of the customer.
+     * @param suffix Optional. Suffix appended to the name, Jr., Sr., etc.
+     * @param dBAName Optional. Specifies the "Doing Business As" name of the customer.
+     * @param showAs Optional. Specifies the name of the vendor to be displayed.
+     * @param webSite Valid URI strings. Specifies the customers's Web sites.
+     * @param salesTermId Optional. Specifies the default sales term ID that is to be associated with the customer.
+     * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
+     *                       is taxable. If the field value is null, the job is not taxable. All other values are 
+     *                       invalid.
+     * @param email Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param phone Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
+     *              numbers but only one phone number is permitted for one device type.
+     * @param address Optional. Specifies the physical addresses.
+     * @return The created Customer.
+     */
     @Processor
     public Customer createCustomer(@OAuthAccessToken String accessToken,
                                    @OAuthAccessTokenSecret String accessTokenSecret,
@@ -208,13 +381,18 @@ public class QuickBooksModule
                                    @Optional String suffix,
                                    @Optional String dBAName,
                                    @Optional String showAs,
-                                   List<Map<String, Object>> webSite,
+                                   @Optional List<Map<String, Object>> webSite,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   List<String> email,
-                                   List<Map<String, Object>> phone,
-                                   List<Map<String, Object>> address)
+                                   @Optional List<String> email,
+                                   @Optional List<Map<String, Object>> phone,
+                                   @Optional List<Map<String, Object>> address)
     {
+        webSite = coalesceList(webSite);
+        email = coalesceList(email);
+        phone = coalesceList(phone);
+        address = coalesceList(address);
+
         return (Customer) client.create(EntityType.CUSTOMER,
             mom.fromMap(Customer.class,
                 new MapBuilder()
@@ -236,6 +414,23 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates an Estimate.
+     * The Estimate object represents a proposal for a financial transaction from a business to a customer 
+     * for goods or services proposed to be sold, including proposed pricing. It is also known as quote.
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
+     * 
+     * {@code <quickbooks:create-estimate >
+            <quickbooks:header ref="#[variable:headerEstimate]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesEstimate]"></quickbooks:line>
+        </quickbooks:create-estimate>}
+     *
+     * @param header Financial transaction information that pertains to the entire Estimate.
+     * @param line Information about a specific good or service for which the estimate is being issued.
+     * @return The created Estimate.
+     */
     @Processor
     public Estimate createEstimate(@OAuthAccessToken String accessToken,
                                    @OAuthAccessTokenSecret String accessTokenSecret,
@@ -245,13 +440,32 @@ public class QuickBooksModule
         return (Estimate) client.create(EntityType.ESTIMATE,
             mom.fromMap(Estimate.class,
                 new MapBuilder()
-                .with("estimateHeader", header)
-                .with("estimateLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates an Invoice.
+     * The Invoice object represents an invoice to a customer. Invoice could be based on salesterm 
+     * with invoice and due dates for payment. Invoice supports tax, but as of now shipping charges 
+     * are not supported. Invoice can be printed and emailed to a customer.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
+     * 
+     * {@code <quickbooks:create-invoice >
+            <quickbooks:header ref="#[variable:headerInvoice]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesInvoice]"></quickbooks:line>
+        </quickbooks:create-invoice>}
+     *
+     * @param header Provides information that pertains to the entire Invoice.
+     * @param line Information about a specific good or service for which the Invoice is being issued.
+     * @return The created Invoice.
+     */
     @Processor
     public Invoice createInvoice(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret,
@@ -261,45 +475,104 @@ public class QuickBooksModule
         return (Invoice) client.create(EntityType.INVOICE,
             mom.fromMap(Invoice.class,
                 new MapBuilder()
-                .with("invoiceHeader", header)
-                .with("invoiceLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates an Item.
+     * The Item object represents any product or service that is sold or purchased. Inventory items 
+     * are not currently supported.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Item">Item Especification</a>
+     * 
+     * {@code <quickbooks:create-item name="Pencils"
+                                desc="Pencils HB"
+                                taxable="true"
+                                itemParentName="Office"
+                                purchaseDesc="500 pencils purchased">
+            <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
+            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
+            <quickbooks:income-account-ref ref="#[variable:incomeAccountRef]"></quickbooks:income-account-ref>
+            <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
+            <quickbooks:expense-account-ref ref="#[variable:expenseAccountRef]"></quickbooks:expense-account-ref>    
+        </quickbooks:create-item>}
+     * 
+     * @param name Optional. User recognizable name of the Item.
+     * @param unitPrice Optional. Monetary values of the service or product
+     * @param desc Optional. User entered description for the item to further describe the details 
+     *             of service or product.
+     * @param taxable Optional. Indicates whether the item is subject to tax.
+     * @param incomeAccountRef Optional. Income account reference to be associated with the sales item.
+     * @param itemParentId Optional. The parent item id of current item.
+     * @param itemParentName Optional. Name of parent Item. This field is output only.
+     * @param purchaseDesc Optional. User entered purchase description for the item to further describe 
+     *                     the details of the purchase.
+     * @param purchaseCost Optional. The monetary value of the service or product.
+     * @param expenseAccountRef Optional. Income account reference to be associated with the purchase item.
+     * @return The created Item.
+     */
     @Processor
     public Item createItem(@OAuthAccessToken String accessToken,
                            @OAuthAccessTokenSecret String accessTokenSecret,
                            @Optional @Default("") String name,
-                           Map<String,Object> unitPrice,
+                           @Optional Map<String, Object> unitPrice,
                            @Optional String desc,
-                           @Optional @Default("false") Boolean tasable,
-                           Map<String, Object> incomeAccountRef,
-                           Map<String, Object> itemParentId,
-                           String itemParentName,
+                           @Optional @Default("false") Boolean taxable,
+                           @Optional Map<String, Object> incomeAccountRef,
+                           @Optional Map<String, Object> itemParentId,
+                           @Optional String itemParentName,
                            @Optional String purchaseDesc,
-                           Map<String, Object> purchaseCost,
-                           Map<String, Object> expenseAccountRef)
+                           @Optional Map<String, Object> purchaseCost,
+                           @Optional Map<String, Object> expenseAccountRef)
     {
+        unitPrice = coalesceMap(unitPrice);
+        incomeAccountRef = coalesceMap(incomeAccountRef);
+        itemParentId = coalesceMap(itemParentId);
+        purchaseCost = coalesceMap(purchaseCost);
+        expenseAccountRef = coalesceMap(expenseAccountRef);
+
         return (Item) client.create(EntityType.ITEM,
             mom.fromMap(Item.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("unitPrice", unitPrice)
                 .with("desc", desc)
-                .with("tasable", tasable)
+                .with("taxable", taxable)
                 .with("incomeAccountRef", incomeAccountRef)
                 .with("itemParentId", itemParentId)
                 .with("itemParentName", itemParentName)
                 .with("purchaseDesc", purchaseDesc)
-                .with("purchaseCosto", purchaseCost)
+                .with("purchaseCost", purchaseCost)
                 .with("expenseAccountRef", expenseAccountRef)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a Payment.
+     * The Payment object  represents the financial transaction that signifies a payment from a customer 
+     * for one or more sales transactions.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Payment">Payment Especification</a>
+     * 
+     * {@code <quickbooks:create-payment >
+            <quickbooks:header ref="#[variable:headerPayment]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesPayment]"></quickbooks:line>
+        </quickbooks:create-payment>}
+     *
+     * @param header Information that pertains to the entire payment.
+     * @param line Line details of the receive payment. A receive payment can have multiple lines.
+     * @return The created Payment.
+     */
     @Processor
     public Payment createPayment(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret,
@@ -309,13 +582,31 @@ public class QuickBooksModule
         return (Payment) client.create(EntityType.PAYMENT,
             mom.fromMap(Payment.class,
                 new MapBuilder()
-                .with("paymentHeader", header)
-                .with("paymentLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a PaymentMethod.
+     * PaymentMethod represents the method of payment for a transaction. It can be a credit card 
+     * payment type or a non-credit card payment type.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
+     * 
+     * {@code <quickbooks:create-payment-method name="Wire Transfer"
+                                                type="CREDIT_CARD" >
+        </quickbooks:create-payment-method>}
+     *
+     * @param name User recognizable name for the payment method.
+     * @param type Optional. Type of payment. Specifies if it is a credit card payment type or a 
+     *             non-credit card payment type.
+     * @return The created PaymentMethod.
+     */
     @Processor
     public PaymentMethod createPaymentMethod(@OAuthAccessToken String accessToken,
                                              @OAuthAccessTokenSecret String accessTokenSecret,
@@ -332,6 +623,24 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a SalesReceipt.
+     * The Payment object  represents the financial transaction that signifies a payment from a customer 
+     * for one or more sales transactions.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
+     * 
+     * {@code <quickbooks:create-sales-receipt >
+            <quickbooks:header ref="#[variable:headerSalesReceipt]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesSalesReceipt]"></quickbooks:line>
+        </quickbooks:create-sales-receipt>}
+     *
+     * @param header Groups the elements that are common to the SalesReceipt transaction.
+     * @param line Groups the line items for the sales receipt.
+     * @return The created SalesReceipt.
+     */
     @Processor
     public SalesReceipt createSalesReceipt(@OAuthAccessToken String accessToken,
                                            @OAuthAccessTokenSecret String accessTokenSecret,
@@ -341,13 +650,54 @@ public class QuickBooksModule
         return (SalesReceipt) client.create(EntityType.SALESRECEIPT,
             mom.fromMap(SalesReceipt.class,
                 new MapBuilder()
-                .with("salesReceiptHeader", header)
-                .with("salesReceiptLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a SalesTerm.
+     * The SalesTerm object  represents the terms under which a sale is made. SalesTerm is typically 
+     * expressed in the form of days due after the goods are received. There is an optional discount 
+     * part of the sales term, where a discount of total amount can automatically be applied if 
+     * payment is made within a few days of the stipulated time.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
+     * 
+     * {@code <quickbooks:create-sales-term name="Due before receipt"
+                                      dueDays="1"
+                                      discountDays="10"
+                                      discountPercent="3.2"
+                                      dayOfMonthDue="10"
+                                      dueNextMonthDays="10"
+                                      discountDayOfMonth="5"
+                                      dateDiscountPercent="2.1"/>}
+     *
+     * @param name Specifies the user recognizable name for the salesterm.
+     * @param dueDays Number of days from the delivery of goods or services till the payment is due.
+     *                If DueDays is specified, only DiscountDays and DiscountPercent can be 
+     *                additionally specified.
+     * @param discountDays Optional. Number of days for which the discount is applicable, if the 
+     *                     payment is made within these days. This value is used only when DueDays 
+     *                     is specified.
+     * @param discountPercent Optional. Percentage of discount that is available against a price, if 
+     *                                  paid within the days specified by DiscountDays. This value is 
+     *                                  used only when DueDays is specified. 
+     * @param dayOfMonthDue Payment must be received by the day of the month specified by DayOfMonthDue. 
+     *                      This value is used only when DueDays is not specified.
+     * @param dueNextMonthDays Optional. Payment due next month if issued that many days before the 
+     *                         DayOfMonthDue. This value is used only when DueDays is not specified.
+     * @param discountDayOfMonth Optional. Discount applies if paid before that day of month. This value 
+     *                           is used only when DueDays is not specified.
+     * @param dateDiscountPercent Optional. Percentage of discount that is available against a price, if 
+     *                            paid before DiscountDayofMonth. This value is used only when DueDays is 
+     *                            not specified.
+     * @return The created SalesTerm.
+     */
     @Processor
     public SalesTerm createSalesTerm(@OAuthAccessToken String accessToken,
                                      @OAuthAccessTokenSecret String accessTokenSecret,
@@ -373,29 +723,82 @@ public class QuickBooksModule
                 .with("dayOfMonthDue", dayOfMonthDue)
                 .with("dueNextMonthDays", dueNextMonthDays)
                 .with("discountDayOfMonth", discountDayOfMonth)
-                .with("discountPercent", bigD2)
+                .with("dateDiscountPercent", bigD2)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Creates a Vendor.
+     * The Vendor object represents the buyer from whom you purchase any service or product 
+     * for your organization.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
+     * 
+     * {@code <quickbooks:create-vendor name="Digital"
+                                  givenName="John"
+                                  middleName="J"
+                                  familyName="Doe"
+                                  dBAName="Digital"
+                                  showAs="J Doe"
+                                  taxIdentifier="12-1234567"
+                                  acctNum="9001"
+                                  vendor1099="true">
+            <quickbooks:web-site ref="#[variable:webSites]"></quickbooks:web-site>
+            <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
+            <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
+            <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+        </quickbooks:create-vendor>}
+     *
+     * @param name Optional. Specifies the full name of the vendor. If the FullName is specified, 
+     *             then GivenName, MiddleName, and FamilyName values are ignored.
+     * @param givenName Specifies the given name or first name of a person. GivenName is a required 
+     *                  field only if Name is not sent in the request. If a Name is sent, then the 
+     *                  GivenName field is optional.
+     * @param middleName Optional. Specifies the middle name of the vendor. A person can have zero 
+     *                   or more middle names.
+     * @param familyName Optional. Specifies the family name or the last name of the vendor.
+     * @param dBAName Optional. Specifies the "Doing Business As" name of the vendor.
+     * @param showAs Optional. Specifies the name of the vendor to be displayed.
+     * @param webSite Optional. Valid URI strings. Specifies the vendor's Web site.
+     * @param taxIdentifier Optional. Specifies the Tax ID of the person or the organization. This 
+     *                      is a Personally Identifiable Information (PII) attribute.
+     * @param acctNum Optional. Specifies the account name or the account number that is associated 
+     *                with the vendor.
+     * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
+     *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
+     *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
+     * @param email Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param phone Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
+     *              5 phone numbers but only one phone number is permitted for one device type.
+     * @param address Optional. Specifies the physical addresses.
+     * @return The created Vendor.
+     */
     @Processor
     public Vendor createVendor(@OAuthAccessToken String accessToken,
                                @OAuthAccessTokenSecret String accessTokenSecret,
-                               String name,
-                               String givenName,
+                               @Optional String name,
+                               @Optional String givenName,
                                @Optional String middleName,
                                @Optional String familyName,
                                @Optional String dBAName,
                                @Optional String showAs,
-                               List<Map<String, Object>> webSite,
+                               @Optional List<Map<String, Object>> webSite,
                                @Optional Integer taxIdentifier,
                                @Optional String acctNum,
                                @Optional Boolean vendor1099,
-                               List<String> email,
-                               List<Map<String, Object>> phone,
-                               List<Map<String, Object>> address)
-    { 
+                               @Optional List<String> email,
+                               @Optional List<Map<String, Object>> phone,
+                               @Optional List<Map<String, Object>> address)
+    {
+        webSite = coalesceList(webSite);
+        email = coalesceList(email);
+        phone = coalesceList(phone);
+        address = coalesceList(address);
+        
         return (Vendor) client.create(EntityType.VENDOR,
             mom.fromMap(Vendor.class,
                 new MapBuilder()
@@ -417,18 +820,73 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Retrieve objects by ID.
+     * 
+     * {@code <quickbooks:get-object type="INVOICE">
+            <quickbooks:id ref="#[variable:id]"></quickbooks:id>
+        </quickbooks:get-object>}
+     *
+     * @param type EntityType of the object.
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @return The object.
+     */
     @Processor
     public Object getObject(@OAuthAccessToken String accessToken,
                             @OAuthAccessTokenSecret String accessTokenSecret,
                             EntityType type,
                             Map<String, Object> id)
     {
-//        logger.error(accessToken);
-//        logger.error(accessTokenSecret);
-//        throw new RuntimeException(accessToken + " :::: " + accessTokenSecret);
         return client.getObject(type, mom.fromMap(IdType.class, id), accessToken, accessTokenSecret);
     }
 
+    /**
+     * Updates an Account
+     * The Account object represents the accounts that you keep to track your business.
+     * Account is a component of a chart of accounts, and is part of a ledger.
+     * You can use Account to record the total monetary amount that is allocated for a specific use.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Account">Account Especification</a>
+     * 
+     * {@code <quickbooks:update-account syncToken="1"
+                                   name="Loan Account"
+                                   desc="Loan Account"
+                                   subtype="SAVINGS"
+                                   acctNum="5001"
+                                   openingBalance="10000"
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:update-parent-id ref="#[variable:accountParentId]"/>
+            
+        </quickbooks:update-account>}
+     * 
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name User-recognizable name for the account. This name must be unique.
+     *             When you create a company, you get some default accounts.
+     *             If you want to create an account, you must provide an account name that does not
+     *             match the name of any default account.
+     * @param desc Optional. User-entered description of the account.
+     *             This description helps the book keepers or accountants to decide which journal
+     *             entries should be posted to this account.
+     * @param subtype Detailed classification of the account that specifies the use of this account.
+     *                The accepted values are defined in QboAccountDetailTypeEnum.
+     * @param acctNum Optional. User-specified account number that help the user to identify the
+     *                account within the chart of accounts and decide what should be posted to the account.
+     * @param openingBalance Optional. Opening balance amount when you create a new balance sheet account.
+     * @param openingBalanceDate Optional. Date of the opening balance amount when creating a new balance
+     *                           sheet account.
+     * @param accountParentId Optional. If the account is a subaccount, AccountParentId is used to 
+     *                        store the ID of the parent account.
+     * @return The updated Account.
+     */
     @Processor
     public Account updateAccount(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -440,10 +898,10 @@ public class QuickBooksModule
                                  @Optional String acctNum,
                                  @Optional String openingBalance,
                                  @Optional Date openingBalanceDate,
-                                 @Optional Map<String, Object> accountParentId) //Map<String,Address> address)
+                                 @Optional Map<String, Object> accountParentId)
     {   
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
-
+        
         return (Account) client.update(EntityType.ACCOUNT,
             mom.fromMap(Account.class,
                 new MapBuilder()
@@ -461,6 +919,32 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a Bill
+     * The Bill object represents an expense to the business. 
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Bill">Bill Especification</a>
+     * 
+     * {@code <quickbooks:update-bill sycnToken="0">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
+        </quickbooks:update-bill>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Information on the financial transaction of the Bill.
+     * @param line Information about a specific good or service purchased for which the payment is demanded
+     *             as a part of the bill. A bill can have multiple lines.
+     * @return The created Bill.
+     */
     @Processor
     public Bill updateBill(@OAuthAccessToken String accessToken,
                            @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -474,13 +958,40 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("billHeader", header)
-                .with("billLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a BillPayment
+     * BillPayment represents the financial transaction of payment of bills that the business owner receives
+     * from a vendor for goods or services purchased from the vendor.
+     * QBO supports bill payments through a credit card or a bank account.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
+     *
+     * {@code <quickbooks:update-bill-payment syncToken="0">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerBillPayment]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesBillPayment]"></quickbooks:line>
+        </quickbooks:update-bill-payment>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Header information about the BillPayment.
+     * @param line Specifies the line details for the bill payment. A bill payment can have multiple lines.
+     * @return The updated BillPayment.
+     */
     @Processor
     public BillPayment updateBillPayment(@OAuthAccessToken String accessToken,
                                          @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -494,13 +1005,39 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("billPaymentHeader", header)
-                .with("billPaymentLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a CashPurchase.
+     * CashPurchase represents an expense to the business as a cash transaction.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
+     * 
+     * {@code <quickbooks:update-cash-purchase syncToken="1">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerCashPurchase]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCashPurchase]"></quickbooks:line>
+        </quickbooks:update-bill-payment>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Information about the financial transaction of the entire CashPurchase.
+     * @param line List of lines. Information about a specific good or service purchased for which 
+     *             the payment is demanded as a part of the CashPurchase.
+     * @return The updated CashPurchase.
+     */
     @Processor
     public CashPurchase updateCashPurchase(@OAuthAccessToken String accessToken,
                                            @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -514,13 +1051,39 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("cashPurchaseHeader", header)
-                .with("cashPurchaseLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a Check.
+     * The Check object represents an expense to the business paid as a check transaction.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Check">Check Especification</a>
+     * 
+     * {@code <quickbooks:update-check syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+            <quickbooks:header ref="#[variable:headerCheck]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCheck]"></quickbooks:line>
+        </quickbooks:update-check>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Financial Transaction information that pertains to the entire CheckHeader.
+     * @param line List of lines. Information about a specific good or service purchased for which 
+     *             the payment is demanded as a part of the check.
+     * @return The updated Check.
+     */
     @Processor
     public Check updateCheck(@OAuthAccessToken String accessToken,
                              @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -534,13 +1097,41 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("checkHeader", header)
-                .with("checkLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a CreditCardCharge.
+     * The CreditCardCharge object represents an expense to the business as a credit card charge 
+     * transaction. CreditCardCharge must have the total expense equal to the total expense of 
+     * line items.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
+     * 
+     * {@code <quickbooks:update-credit-card-charge syncToken="1">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerCreditCardCharge]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesCreditCardCharge]"></quickbooks:line>
+        </quickbooks:update-credit-card-charge>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Financial Transaction information that pertains to the entire CreditCardChargeHeader.
+     * @param line List of lines. Information about a specific good or service purchased for which the 
+     *             payment is demanded as a part of the CreditCardCharge purchase.
+     * @return The updated CreditCardCharge.
+     */
     @Processor
     public CreditCardCharge updateCreditCardCharge(@OAuthAccessToken String accessToken,
                                                    @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -554,13 +1145,67 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("creditCardChargeHeader", header)
-                .with("creditCardChargeLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
 
+    /**
+     * Updates a Customer.
+     * The Customer object represents the consumer of the service or the product that your business offers. 
+     * QBO allows categorizing the customers in a way that is meaningful to the business.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Customer">Customer Especification</a>
+     * 
+     * {@code <quickbooks:create-customer name="John Doe"
+                                    givenName="John"
+                                    middleName="Bill"
+                                    familyName="Doe"
+                                    suffix="Sr"
+                                    dBAName="Mint"
+                                    showAs="J Doe"
+                                    salesTaxCodeId="5"
+                                    syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+            <quickbooks:web-site ref="#[variable:webSite]"></quickbooks:web-site>
+            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
+            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
+            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
+        </quickbooks:create-customer>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name Optional. Specifies the full name of the customer. If the Name is specified, then GivenName,
+     *             MiddleName, and FamilyName values are ignored.
+     * @param givenName Specifies the given name or first name of a person. GivenName is a required field only if 
+     *        Name is not sent in the request. If a Name is sent, then the GivenName field is optional.
+     * @param middleName Optional. Specifies the middle name of the person. A person can have zero or more middle 
+     *                   names.
+     * @param familyName Optional. Specifies the family name or the last name of the customer.
+     * @param suffix Optional. Suffix appended to the name, Jr., Sr., etc.
+     * @param dBAName Optional. Specifies the "Doing Business As" name of the customer.
+     * @param showAs Optional. Specifies the name of the vendor to be displayed.
+     * @param webSite Valid URI strings. Specifies the customers's Web sites.
+     * @param salesTermId Optional. Specifies the default sales term ID that is to be associated with the customer.
+     * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
+     *                       is taxable. If the field value is null, the job is not taxable. All other values are 
+     *                       invalid.
+     * @param email Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param phone Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
+     *              numbers but only one phone number is permitted for one device type.
+     * @param address Optional. Specifies the physical addresses.
+     * @return The updated Customer.
+     */
     @Processor
     public Customer updateCustomer(@OAuthAccessToken String accessToken,
                                    @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -573,12 +1218,17 @@ public class QuickBooksModule
                                    @Optional String suffix,
                                    @Optional String dBAName,
                                    @Optional String showAs,
-                                   List<Map<String, Object>> webSite,
+                                   @Optional List<Map<String, Object>> webSite,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   List<String> email, List<Map<String, Object>> phone,
-                                   List<Map<String, Object>> address)
+                                   @Optional List<String> email, List<Map<String, Object>> phone,
+                                   @Optional List<Map<String, Object>> address)
     {
+        webSite = coalesceList(webSite);
+        email = coalesceList(email);
+        phone = coalesceList(phone);
+        address = coalesceList(address);
+        
         return (Customer) client.update(EntityType.CUSTOMER,
             mom.fromMap(Customer.class,
                 new MapBuilder()
@@ -602,6 +1252,32 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates an Estimate.
+     * The Estimate object represents a proposal for a financial transaction from a business to a customer 
+     * for goods or services proposed to be sold, including proposed pricing. It is also known as quote.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
+     * 
+     * {@code <quickbooks:update-estimate syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+            <quickbooks:header ref="#[variable:headerEstimate]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesEstimate]"></quickbooks:line>
+        </quickbooks:update-estimate>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Financial transaction information that pertains to the entire Estimate.
+     * @param line Information about a specific good or service for which the estimate is being issued.
+     * @return The updated Estimate.
+     */
     @Processor
     public Estimate updateEstimate(@OAuthAccessToken String accessToken,
                                    @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -615,13 +1291,40 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("estimateHeader", header)
-                .with("estimateLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates an Invoice.
+     * The Invoice object represents an invoice to a customer. Invoice could be based on salesterm 
+     * with invoice and due dates for payment. Invoice supports tax, but as of now shipping charges 
+     * are not supported. Invoice can be printed and emailed to a customer.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
+     * 
+     * {@code <quickbooks:update-invoice syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+            <quickbooks:header ref="#[variable:headerInvoice]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesInvoice]"></quickbooks:line>
+        </quickbooks:update-invoice>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Provides information that pertains to the entire Invoice.
+     * @param line Information about a specific good or service for which the Invoice is being issued.
+     * @return The updated Invoice.
+     */
     @Processor
     public Invoice updateInvoice(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -635,29 +1338,79 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("invoiceHeader", header)
-                .with("invoiceLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates an Item.
+     * The Item object represents any product or service that is sold or purchased. Inventory items 
+     * are not currently supported.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Item">Item Especification</a>
+     * 
+     * {@code <quickbooks:update-item name="Pencils"
+                                desc="Pencils HB"
+                                taxable="true"
+                                itemParentName="Office"
+                                purchaseDesc="500 pencils purchased"
+                                syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+            <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
+            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
+            <quickbooks:income-account-ref ref="#[variable:incomeAccountRef]"></quickbooks:income-account-ref>
+            <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
+            <quickbooks:expense-account-ref ref="#[variable:expenseAccountRef]"></quickbooks:expense-account-ref>    
+        </quickbooks:update-item>}
+     * 
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name Optional. User recognizable name of the Item.
+     * @param unitPrice Optional. Monetary values of the service or product
+     * @param desc Optional. User entered description for the item to further describe the details 
+     *             of service or product.
+     * @param taxable Optional. Indicates whether the item is subject to tax.
+     * @param incomeAccountRef Optional. Income account reference to be associated with the sales item.
+     * @param itemParentId Optional. The parent item id of current item.
+     * @param itemParentName Optional. Name of parent Item. This field is output only.
+     * @param purchaseDesc Optional. User entered purchase description for the item to further describe 
+     *                     the details of the purchase.
+     * @param purchaseCost Optional. The monetary value of the service or product.
+     * @param expenseAccountRef Optional. Income account reference to be associated with the purchase item.
+     * @return The updated Item.
+     */
     @Processor
     public Item updateItem(@OAuthAccessToken String accessToken,
                            @OAuthAccessTokenSecret String accessTokenSecret, 
                            Map<String, Object> id, 
                            @Optional String syncToken,
                            @Optional @Default("") String name, 
-                           Map<String, Object> unitPrice,
+                           @Optional Map<String, Object> unitPrice,
                            @Optional String desc,
-                           @Optional @Default("false") Boolean tasable, 
-                           Map<String, Object> incomeAccountRef,
-                           Map<String, Object> itemParentId, 
-                           String itemParentName, 
+                           @Optional @Default("false") Boolean taxable,
+                           @Optional Map<String, Object> incomeAccountRef,
+                           @Optional Map<String, Object> itemParentId,
+                           @Optional String itemParentName,
                            @Optional String purchaseDesc,
-                           Map<String, Object> purchaseCost, 
-                           Map<String, Object> expenseAccountRef)
+                           @Optional Map<String, Object> purchaseCost,
+                           @Optional Map<String, Object> expenseAccountRef)
     {
+        unitPrice = coalesceMap(unitPrice);
+        incomeAccountRef = coalesceMap(incomeAccountRef);
+        itemParentId = coalesceMap(itemParentId);
+        purchaseCost = coalesceMap(purchaseCost);
+        expenseAccountRef = coalesceMap(expenseAccountRef);
+        
         return (Item) client.update(EntityType.ITEM,
             mom.fromMap(Item.class,
                 new MapBuilder()
@@ -666,18 +1419,44 @@ public class QuickBooksModule
                 .with("name", name)
                 .with("unitPrice", unitPrice)
                 .with("desc", desc)
-                .with("tasable", tasable)
+                .with("taxable", taxable)
                 .with("incomeAccountRef", incomeAccountRef)
                 .with("itemParentId", itemParentId)
                 .with("itemParentName", itemParentName)
                 .with("purchaseDesc", purchaseDesc)
-                .with("purchaseCosto", purchaseCost)
+                .with("purchaseCost", purchaseCost)
                 .with("expenseAccountRef", expenseAccountRef)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a Payment.
+     * The Payment object  represents the financial transaction that signifies a payment from a customer 
+     * for one or more sales transactions.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Payment">Payment Especification</a>
+     * 
+     * {@code <quickbooks:update-payment syncToken="1">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerPayment]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesPayment]"></quickbooks:line>
+        </quickbooks:update-payment>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Information that pertains to the entire payment.
+     * @param line Line details of the receive payment. A receive payment can have multiple lines.
+     * @return The updated Payment.
+     */
     @Processor
     public Payment updatePayment(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -691,13 +1470,40 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("paymentHeader", header)
-                .with("paymentLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a PaymentMethod.
+     * PaymentMethod represents the method of payment for a transaction. It can be a credit card 
+     * payment type or a non-credit card payment type.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
+     * 
+     * {@code <quickbooks:update-payment-method name="Wire Transfer"
+                                                type="CREDIT_CARD"
+                                                syncToken="1">
+            <quickbooks:id ref="#[variable:id]">
+        </quickbooks:update-payment-method>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name User recognizable name for the payment method.
+     * @param type Optional. Type of payment. Specifies if it is a credit card payment type or a 
+     *             non-credit card payment type.
+     * @return The updated PaymentMethod.
+     */
     @Processor
     public PaymentMethod updatePaymentMethod(@OAuthAccessToken String accessToken,
                                              @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -718,6 +1524,32 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a SalesReceipt.
+     * The Payment object  represents the financial transaction that signifies a payment from a customer 
+     * for one or more sales transactions.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
+     * 
+     * {@code <quickbooks:update-sales-receipt syncToken="1">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:header ref="#[variable:headerSalesReceipt]"></quickbooks:header>
+            <quickbooks:line ref="#[variable:linesSalesReceipt]"></quickbooks:line>
+        </quickbooks:update-sales-receipt>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param header Groups the elements that are common to the SalesReceipt transaction.
+     * @param line Groups the line items for the sales receipt.
+     * @return The updated SalesReceipt.
+     */
     @Processor
     public SalesReceipt updateSalesReceipt(@OAuthAccessToken String accessToken, 
                                            @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -731,13 +1563,64 @@ public class QuickBooksModule
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
-                .with("salesReceiptHeader", header)
-                .with("salesReceiptLine", line)
+                .with("header", header)
+                .with("line", line)
                 .build()
             )
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a SalesTerm.
+     * The SalesTerm object  represents the terms under which a sale is made. SalesTerm is typically 
+     * expressed in the form of days due after the goods are received. There is an optional discount 
+     * part of the sales term, where a discount of total amount can automatically be applied if 
+     * payment is made within a few days of the stipulated time.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
+     * 
+     * {@code <quickbooks:update-sales-term name="Due before receipt"
+                                      dueDays="1"
+                                      discountDays="10"
+                                      discountPercent="3.2"
+                                      dayOfMonthDue="10"
+                                      dueNextMonthDays="10"
+                                      discountDayOfMonth="5"
+                                      dateDiscountPercent="2.1"
+                                      syncToken="1">
+              <quickbooks:id ref="#[variable:id]"/>
+        </quickbooks:update-sales-term>}
+     *
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name Specifies the user recognizable name for the salesterm.
+     * @param dueDays Number of days from the delivery of goods or services till the payment is due.
+     *                If DueDays is specified, only DiscountDays and DiscountPercent can be 
+     *                additionally specified.
+     * @param discountDays Optional. Number of days for which the discount is applicable, if the 
+     *                     payment is made within these days. This value is used only when DueDays 
+     *                     is specified.
+     * @param discountPercent Optional. Percentage of discount that is available against a price, if 
+     *                                  paid within the days specified by DiscountDays. This value is 
+     *                                  used only when DueDays is specified. 
+     * @param dayOfMonthDue Payment must be received by the day of the month specified by DayOfMonthDue. 
+     *                      This value is used only when DueDays is not specified.
+     * @param dueNextMonthDays Optional. Payment due next month if issued that many days before the 
+     *                         DayOfMonthDue. This value is used only when DueDays is not specified.
+     * @param discountDayOfMonth Optional. Discount applies if paid before that day of month. This value 
+     *                           is used only when DueDays is not specified.
+     * @param dateDiscountPercent Optional. Percentage of discount that is available against a price, if 
+     *                            paid before DiscountDayofMonth. This value is used only when DueDays is 
+     *                            not specified.
+     * @return The updated SalesTerm.
+     */
     @Processor
     public SalesTerm updateSalesTerm(@OAuthAccessToken String accessToken, 
                                      @OAuthAccessTokenSecret String accessTokenSecret, 
@@ -773,25 +1656,86 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Updates a Vendor.
+     * The Vendor object represents the buyer from whom you purchase any service or product 
+     * for your organization.
+     * 
+     * Specify all the parameters for the object, not just the new or changed elements.
+     * If you omit an element, it is removed from the object by the update operation.
+     * 
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
+     *
+     * {@code <quickbooks:update-vendor name="Digital"
+                                  givenName="John"
+                                  middleName="J"
+                                  familyName="Doe"
+                                  dBAName="Digital"
+                                  showAs="J Doe"
+                                  taxIdentifier="12-1234567"
+                                  acctNum="9001"
+                                  vendor1099="true"
+                                  syncToken="1">
+            <quickbooks:id ref="#[variable:id]"/>
+            <quickbooks:web-site ref="#[variable:webSites]"></quickbooks:web-site>
+            <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
+            <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
+            <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+        </quickbooks:update-vendor>}
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     * @param name Optional. Specifies the full name of the vendor. If the FullName is specified, 
+     *             then GivenName, MiddleName, and FamilyName values are ignored.
+     * @param givenName Specifies the given name or first name of a person. GivenName is a required 
+     *                  field only if Name is not sent in the request. If a Name is sent, then the 
+     *                  GivenName field is optional.
+     * @param middleName Optional. Specifies the middle name of the vendor. A person can have zero 
+     *                   or more middle names.
+     * @param familyName Optional. Specifies the family name or the last name of the vendor.
+     * @param dBAName Optional. Specifies the "Doing Business As" name of the vendor.
+     * @param showAs Optional. Specifies the name of the vendor to be displayed.
+     * @param webSite Optional. Valid URI strings. Specifies the vendor's Web site.
+     * @param taxIdentifier Optional. Specifies the Tax ID of the person or the organization. This 
+     *                      is a Personally Identifiable Information (PII) attribute.
+     * @param acctNum Optional. Specifies the account name or the account number that is associated 
+     *                with the vendor.
+     * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
+     *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
+     *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
+     * @param email Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param phone Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
+     *              5 phone numbers but only one phone number is permitted for one device type.
+     * @param address Optional. Specifies the physical addresses.
+     * @return The updated Vendor.
+     */
     @Processor
     public Vendor updateVendor(@OAuthAccessToken String accessToken, 
                                @OAuthAccessTokenSecret String accessTokenSecret, 
                                Map<String, Object> id, 
                                @Optional String syncToken,
-                               String name, 
-                               String givenName, 
+                               @Optional String name, 
+                               @Optional String givenName, 
                                @Optional String middleName, 
                                @Optional String familyName,
                                @Optional String dBAName, 
                                @Optional String showAs, 
-                               List<Map<String, Object>> webSite,
+                               @Optional List<Map<String, Object>> webSite,
                                @Optional Integer taxIdentifier, 
                                @Optional String acctNum, 
                                @Optional Boolean vendor1099,
-                               List<String> email, 
-                               List<Map<String, Object>> phone, 
-                               List<Map<String, Object>> address)
+                               @Optional List<String> email, 
+                               @Optional List<Map<String, Object>> phone, 
+                               @Optional List<Map<String, Object>> address)
     {
+        webSite = coalesceList(webSite);
+        email = coalesceList(email);
+        phone = coalesceList(phone);
+        address = coalesceList(address);
+        
         return (Vendor) client.update(EntityType.VENDOR,
             mom.fromMap(Vendor.class,
                 new MapBuilder()
@@ -815,6 +1759,19 @@ public class QuickBooksModule
         , accessToken, accessTokenSecret);
     }
     
+    /**
+     * Deletes an object.
+     * 
+     * {@code <quickbooks:delete-object type="INVOICE" syncToken="2">
+            <quickbooks:id ref="#[variable:id]"></quickbooks:id>
+        </quickbooks:delete-object>}
+     *
+     * @param type EntityType of the object.
+     * @param id Id which is assigned by Data Services when the object is created.
+     * @param syncToken Optional. Integer that indicates how many times the object has been updated.
+     *                  Before performing the update, Data Services verifies that the SyncToken in the
+     *                  request has the same value as the SyncToken in the Data Service's repository.
+     */
     @Processor
     public void deleteObject(@OAuthAccessToken String accessToken, 
                              @OAuthAccessTokenSecret String accessTokenSecret,
@@ -825,6 +1782,21 @@ public class QuickBooksModule
         client.deleteObject(type, mom.fromMap(IdType.class, id), syncToken, accessToken, accessTokenSecret);
     }
 
+    /**
+     * Lazily retrieves Objects
+     *
+     * For details see: 
+     * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
+     * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
+     * {@code <quickbooks:find-objects type="ACCOUNT"
+                                 queryFilter="#[variable:queryFilterString]"
+                                 querySort="#[variablequerySortString]"/>}
+     *
+     * @param type EntityType of the object.
+     * @param queryFilter String with a filter format (see details)
+     * @param querySort String with a sort format (see details)
+     * @return Iterable of the objects.
+     */
     @SuppressWarnings("rawtypes")
     @Processor
     public Iterable findObjects(@OAuthAccessToken String accessToken, 
@@ -942,5 +1914,15 @@ public class QuickBooksModule
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(openingBalanceDate);
         return datatypeFactory.newXMLGregorianCalendar(cal);
+    }
+    
+    private <T> List<T> coalesceList(List<T> list )
+    {
+        return (List<T>) ((list == null) ? Collections.emptyList() : list);
+    }
+    
+    private Map<String, Object> coalesceMap(Map<String, Object> map )
+    {
+        return ((map == null) ? new HashMap<String, Object>() : map);
     }
 }

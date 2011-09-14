@@ -52,6 +52,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     private final OAuthParameters params;
     private final OAuthSecrets secrets;
     private final ObjectFactory objectFactory;
+    private String baseUri = null;
     private Integer resultsPerPage = 100;
     
     public DefaultQuickBooksClient(final String realmId, final String consumerKey,
@@ -282,7 +283,6 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     private WebResource getGateWay(String accessKey, String accessSecret)
     {
             String str = getBaseURI(accessKey, accessSecret);
-            
             OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
                 params.token(accessKey), secrets.tokenSecret(accessSecret));
             
@@ -297,26 +297,31 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
-        OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
-            params.token(accessKey), secrets.tokenSecret(accessSecret));
-        
-        String str = String.format("https://qbo.intuit.com/qbo30/rest/user/v2/%s", realmId);
-        WebResource webResource = this.client.resource(str);
-        webResource.addFilter(oauthFilter);
-        
-        try
+        if(baseUri == null)
         {
-            QboUser response = webResource.header("Content-Type", "application/xml")
-                .type(MediaType.APPLICATION_XML)
-                .get(QboUser.class);
+            OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
+                params.token(accessKey), secrets.tokenSecret(accessSecret));
             
-            return response.getCurrentCompany().getBaseURI();
+            String str = String.format("https://qbo.intuit.com/qbo30/rest/user/v2/%s", realmId);
+            WebResource webResource = this.client.resource(str);
+            webResource.addFilter(oauthFilter);
+            
+            try
+            {
+                QboUser response = webResource.header("Content-Type", "application/xml")
+                    .type(MediaType.APPLICATION_XML)
+                    .get(QboUser.class);
+                
+                baseUri = response.getCurrentCompany().getBaseURI();
+            }
+            catch (final UniformInterfaceException e)
+            {
+                final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
+                throw new QuickBooksException(fault);
+            }
         }
-        catch (final UniformInterfaceException e)
-        {
-            final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-            throw new QuickBooksException(fault);
-        }
+
+        return baseUri;
     }
     
     public void setResultsPerPage(Integer resultsPerPage)
