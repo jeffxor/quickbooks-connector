@@ -388,6 +388,7 @@ public class QuickBooksModule
                                    @Optional List<Map<String, Object>> phone,
                                    @Optional List<Map<String, Object>> address)
     {
+        salesTermId = coalesceMap(salesTermId);
         webSite = coalesceList(webSite);
         email = coalesceList(email);
         phone = coalesceList(phone);
@@ -1224,6 +1225,7 @@ public class QuickBooksModule
                                    @Optional List<String> email, List<Map<String, Object>> phone,
                                    @Optional List<Map<String, Object>> address)
     {
+        salesTermId = coalesceMap(salesTermId);
         webSite = coalesceList(webSite);
         email = coalesceList(email);
         phone = coalesceList(phone);

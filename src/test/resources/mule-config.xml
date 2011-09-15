@@ -123,7 +123,7 @@
                                    
         <quickbooks:create-item name="String EmptyDefault"
                                 desc="String Optional"
-                                tasable="true"
+                                taxable="true"
                                 itemParentName="String N/A"
                                 purchaseDesc="String Optional">
                                 <!--tasable boolean defaultFalse-->
@@ -280,7 +280,7 @@
                                    
         <quickbooks:update-item name="String EmptyDefault"
                                 desc="String Optional"
-                                tasable="true"
+                                taxable="true"
                                 itemParentName="String N/A"
                                 purchaseDesc="String Optional"
                                 syncToken="1">

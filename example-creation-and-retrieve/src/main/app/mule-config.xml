@@ -34,13 +34,25 @@
         </quickbooks:config>
         
 
-     <flow name="GetProfileByUrl">
-        <http:inbound-endpoint host="localhost" port="9091" path="pointsOfInterest"/>
-        <quickbooks:get-object type="CUSTOMER">
-            <quickbooks:id>
-                <value>1</value>
-            </quickbooks:id>
-        </quickbooks:get-object>
+     <flow name="CreateCustomer">
+        <description>Creates a new Customer and returns it.</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="quickbooks-demo-create-customer"/>
+        <quickbooks:create-customer name="John Doe"
+                                    givenName="John"
+                                    middleName="Bill"
+                                    familyName="Doe"
+                                    suffix="Sr"
+                                    dBAName="Mint"
+                                    showAs="J Doe"
+                                    salesTaxCodeId="5">
+            <quickbooks:web-site>
+                
+            </quickbooks:web-site>
+            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
+            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
+            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
+        </quickbooks:create-customer>
     </flow>
     
 </mule>
