@@ -230,9 +230,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ar.com.zauber</groupId>
-            <artifactId>map-convert</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.zaubersoftware</groupId>
+            <artifactId>mom</artifactId>
+            <version>1.0</version>
         </dependency>
 	</dependencies>
 
