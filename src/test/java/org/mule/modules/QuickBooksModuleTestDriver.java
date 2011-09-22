@@ -147,7 +147,7 @@ public class QuickBooksModuleTestDriver
 
         MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
         mom.setPropertyStyle(CXFStyle.STYLE);
-        Customer c = mom.fromMap(Customer.class,
+        Customer c = mom.toObject(Customer.class,
                 new MapBuilder()
                 .with("name", "Susana")
                 .with("givenName", "Susana")

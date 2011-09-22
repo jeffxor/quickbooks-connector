@@ -17,8 +17,8 @@ package org.mule.modules;
 
 import org.junit.Test;
 import org.mule.api.MuleContext;
-import org.mule.construct.SimpleFlowConstruct;
-import org.mule.modules.quickbooks.config.QuickBooksModuleOAuthAdapter;
+import org.mule.api.processor.MessageProcessor;
+import org.mule.modules.quickbooks.config.QuickBooksModuleOAuth1Adapter;
 import org.mule.tck.AbstractMuleTestCase;
 import org.mule.tck.FunctionalTestCase;
 import org.mule.transport.http.HttpConnector;
@@ -48,7 +48,7 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
 //        MockitoAnnotations.initMocks(this);
 //        LinkedInClientFactory.setDefaultClient(mockClient);
 
-        QuickBooksModuleOAuthAdapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuthAdapter.class);
+        QuickBooksModuleOAuth1Adapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuth1Adapter.class);
         moduleObject.setAccessToken("lvprdUOzPD8jlLdCSgKGYubbNAwFh03PUHM34gWvXPYoPdgJ");
         moduleObject.setAccessTokenSecret("B5zGyujNpe3dTwL4hHY5Cr0x1CRXqgukiAex9Aab");
         moduleObject.setOauthVerifier("");
@@ -58,7 +58,7 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
 //        profileFields.add(ProfileField.HONORS);
 //
 //        networkUpdateTypes = new HashSet<NetworkUpdateType>(2);
-//        networkUpdateTypes.add(NetworkUpdateType.PROFILE_UPDATE);
+//        networkUpdateTypes.add(NetworkUpdateType.PROFILE_UPDATE);1
 //        networkUpdateTypes.add(NetworkUpdateType.RECOMMENDATION_UPDATE);
 //
 //        searchParameters = new HashMap<SearchParameter, String>(2);
@@ -84,7 +84,7 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
     public void testFlow() throws Exception
     {
         lookupFlowConstruct("TestForTheAccessPower").process(getTestEvent(""));
-        QuickBooksModuleOAuthAdapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuthAdapter.class);
+        QuickBooksModuleOAuth1Adapter moduleObject = muleContext.getRegistry().lookupObject(QuickBooksModuleOAuth1Adapter.class);
     }
 
     /**
@@ -92,8 +92,8 @@ public class QuickBooksAccessGetTest extends FunctionalTestCase
      *
      * @param name Name of the flow to retrieve
      */
-    protected SimpleFlowConstruct lookupFlowConstruct(String name)
+    protected MessageProcessor lookupFlowConstruct(String name)
     {
-        return (SimpleFlowConstruct) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
+        return (MessageProcessor) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }

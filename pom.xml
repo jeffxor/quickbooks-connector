@@ -9,7 +9,7 @@
 	<name>QuickBooks Cloud Connector</name>
 
 	<properties>
-		<mule.version>3.1.0</mule.version>
+		<mule.version>3.2.0</mule.version>
 		<mule.devkit.version>3.0-SNAPSHOT</mule.devkit.version>
 		<junit.version>4.8.2</junit.version>
 		<mockito.version>1.8.2</mockito.version>
@@ -100,7 +100,7 @@
 					<docletArtifact>
 						<groupId>org.mule.tools.devkit</groupId>
 						<artifactId>mule-devkit-doclet</artifactId>
-						<version>3.0-SNAPSHOT</version>
+						<version>${mule.devkit.version}</version>
 					</docletArtifact>
 					<doclet>org.mule.devkit.doclet.Doclava</doclet>
 					<bootclasspath>${sun.boot.class.path}</bootclasspath>

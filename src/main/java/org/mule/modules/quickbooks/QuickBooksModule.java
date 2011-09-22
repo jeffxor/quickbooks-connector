@@ -143,7 +143,7 @@ public class QuickBooksModule
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
         return (Account) client.create(EntityType.ACCOUNT,
-            mom.fromMap(Account.class,            
+            mom.toObject(Account.class,            
                 new MapBuilder()
                 .with("name", name)
                 .with("accountParentId", accountParentId)
@@ -181,7 +181,7 @@ public class QuickBooksModule
                            List<Map<String, Object>> line)
     {
         return (Bill) client.create(EntityType.BILL,
-            mom.fromMap(Bill.class,
+            mom.toObject(Bill.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -215,7 +215,7 @@ public class QuickBooksModule
                                          List<Map<String, Object>> line)
     {    
         return (BillPayment) client.create(EntityType.BILLPAYMENT,
-            mom.fromMap(BillPayment.class,
+            mom.toObject(BillPayment.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -248,7 +248,7 @@ public class QuickBooksModule
                                            List<Map<String, Object>> line)
     {
         return (CashPurchase) client.create(EntityType.CASHPURCHASE,
-            mom.fromMap(CashPurchase.class,
+            mom.toObject(CashPurchase.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -281,7 +281,7 @@ public class QuickBooksModule
                              List<Map<String, Object>> line)
     {
         return (Check) client.create(EntityType.CHECK,
-            mom.fromMap(Check.class,
+            mom.toObject(Check.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -317,7 +317,7 @@ public class QuickBooksModule
                                                    List<Map<String, Object>> line)
     {
         return (CreditCardCharge) client.create(EntityType.CREDITCARDCHARGE,
-            mom.fromMap(CreditCardCharge.class,
+            mom.toObject(CreditCardCharge.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -395,7 +395,7 @@ public class QuickBooksModule
         address = coalesceList(address);
 
         return (Customer) client.create(EntityType.CUSTOMER,
-            mom.fromMap(Customer.class,
+            mom.toObject(Customer.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("givenName", givenName)
@@ -439,7 +439,7 @@ public class QuickBooksModule
                                    List<Map<String, Object>> line)
     {
         return (Estimate) client.create(EntityType.ESTIMATE,
-            mom.fromMap(Estimate.class,
+            mom.toObject(Estimate.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -474,7 +474,7 @@ public class QuickBooksModule
                                  List<Map<String, Object>> line)
     {
         return (Invoice) client.create(EntityType.INVOICE,
-            mom.fromMap(Invoice.class,
+            mom.toObject(Invoice.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -499,9 +499,9 @@ public class QuickBooksModule
                                 purchaseDesc="500 pencils purchased">
             <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
             <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref="#[variable:incomeAccountRef]"></quickbooks:income-account-ref>
+            <quickbooks:income-account-ref ref="#[variable:incomeAccount]"></quickbooks:income-account-ref>
             <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref="#[variable:expenseAccountRef]"></quickbooks:expense-account-ref>    
+            <quickbooks:expense-account-ref ref="#[variable:expenseAccount]"></quickbooks:expense-account-ref>    
         </quickbooks:create-item>}
      * 
      * @param name Optional. User recognizable name of the Item.
@@ -509,13 +509,13 @@ public class QuickBooksModule
      * @param desc Optional. User entered description for the item to further describe the details 
      *             of service or product.
      * @param taxable Optional. Indicates whether the item is subject to tax.
-     * @param incomeAccountRef Optional. Income account reference to be associated with the sales item.
+     * @param incomeAccount Optional. Income account reference to be associated with the sales item.
      * @param itemParentId Optional. The parent item id of current item.
      * @param itemParentName Optional. Name of parent Item. This field is output only.
      * @param purchaseDesc Optional. User entered purchase description for the item to further describe 
      *                     the details of the purchase.
      * @param purchaseCost Optional. The monetary value of the service or product.
-     * @param expenseAccountRef Optional. Income account reference to be associated with the purchase item.
+     * @param expenseAccount Optional. Income account reference to be associated with the purchase item.
      * @return The created Item.
      */
     @Processor
@@ -525,32 +525,32 @@ public class QuickBooksModule
                            @Optional Map<String, Object> unitPrice,
                            @Optional String desc,
                            @Optional @Default("false") Boolean taxable,
-                           @Optional Map<String, Object> incomeAccountRef,
+                           @Optional Map<String, Object> incomeAccount,
                            @Optional Map<String, Object> itemParentId,
                            @Optional String itemParentName,
                            @Optional String purchaseDesc,
                            @Optional Map<String, Object> purchaseCost,
-                           @Optional Map<String, Object> expenseAccountRef)
+                           @Optional Map<String, Object> expenseAccount)
     {
         unitPrice = coalesceMap(unitPrice);
-        incomeAccountRef = coalesceMap(incomeAccountRef);
+        incomeAccount = coalesceMap(incomeAccount);
         itemParentId = coalesceMap(itemParentId);
         purchaseCost = coalesceMap(purchaseCost);
-        expenseAccountRef = coalesceMap(expenseAccountRef);
+        expenseAccount = coalesceMap(expenseAccount);
 
         return (Item) client.create(EntityType.ITEM,
-            mom.fromMap(Item.class,
+            mom.toObject(Item.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("unitPrice", unitPrice)
                 .with("desc", desc)
                 .with("taxable", taxable)
-                .with("incomeAccountRef", incomeAccountRef)
+                .with("incomeAccountRef", incomeAccount)
                 .with("itemParentId", itemParentId)
                 .with("itemParentName", itemParentName)
                 .with("purchaseDesc", purchaseDesc)
                 .with("purchaseCost", purchaseCost)
-                .with("expenseAccountRef", expenseAccountRef)
+                .with("expenseAccountRef", expenseAccount)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -581,7 +581,7 @@ public class QuickBooksModule
                                  List<Map<String, Object>> line)
     {
         return (Payment) client.create(EntityType.PAYMENT,
-            mom.fromMap(Payment.class,
+            mom.toObject(Payment.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -615,7 +615,7 @@ public class QuickBooksModule
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
         return (PaymentMethod) client.create(EntityType.PAYMENTMETHOD,
-            mom.fromMap(PaymentMethod.class,
+            mom.toObject(PaymentMethod.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("type", type)
@@ -649,7 +649,7 @@ public class QuickBooksModule
                                            List<Map<String, Object>> line)
     {
         return (SalesReceipt) client.create(EntityType.SALESRECEIPT,
-            mom.fromMap(SalesReceipt.class,
+            mom.toObject(SalesReceipt.class,
                 new MapBuilder()
                 .with("header", header)
                 .with("line", line)
@@ -715,7 +715,7 @@ public class QuickBooksModule
         BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
         return (SalesTerm) client.create(EntityType.SALESTERM,
-            mom.fromMap(SalesTerm.class,
+            mom.toObject(SalesTerm.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("dueDays", dueDays)
@@ -801,7 +801,7 @@ public class QuickBooksModule
         address = coalesceList(address);
         
         return (Vendor) client.create(EntityType.VENDOR,
-            mom.fromMap(Vendor.class,
+            mom.toObject(Vendor.class,
                 new MapBuilder()
                 .with("name", name)
                 .with("givenName", givenName)
@@ -838,7 +838,7 @@ public class QuickBooksModule
                             EntityType type,
                             Map<String, Object> id)
     {
-        return client.getObject(type, mom.fromMap(IdType.class, id), accessToken, accessTokenSecret);
+        return client.getObject(type, mom.toObject(IdType.class, id), accessToken, accessTokenSecret);
     }
 
     /**
@@ -904,7 +904,7 @@ public class QuickBooksModule
         BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
         return (Account) client.update(EntityType.ACCOUNT,
-            mom.fromMap(Account.class,
+            mom.toObject(Account.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -955,7 +955,7 @@ public class QuickBooksModule
                            List<Map<String, Object>> line)
     {
         return (Bill) client.update(EntityType.BILL,
-            mom.fromMap(Bill.class,
+            mom.toObject(Bill.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1002,7 +1002,7 @@ public class QuickBooksModule
                                          List<Map<String, Object>> line)
     {    
         return (BillPayment) client.update(EntityType.BILLPAYMENT,
-            mom.fromMap(BillPayment.class,
+            mom.toObject(BillPayment.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1048,7 +1048,7 @@ public class QuickBooksModule
                                            List<Map<String, Object>> line)
     {
         return (CashPurchase) client.update(EntityType.CASHPURCHASE,
-            mom.fromMap(CashPurchase.class,
+            mom.toObject(CashPurchase.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1094,7 +1094,7 @@ public class QuickBooksModule
                              List<Map<String, Object>> line)
     {
         return (Check) client.update(EntityType.CHECK,
-            mom.fromMap(Check.class,
+            mom.toObject(Check.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1142,7 +1142,7 @@ public class QuickBooksModule
                                                    List<Map<String, Object>> line)
     {
         return (CreditCardCharge) client.update(EntityType.CREDITCARDCHARGE,
-            mom.fromMap(CreditCardCharge.class,
+            mom.toObject(CreditCardCharge.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1232,7 +1232,7 @@ public class QuickBooksModule
         address = coalesceList(address);
         
         return (Customer) client.update(EntityType.CUSTOMER,
-            mom.fromMap(Customer.class,
+            mom.toObject(Customer.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1289,7 +1289,7 @@ public class QuickBooksModule
                                    List<Map<String, Object>> line)
     {
         return (Estimate) client.update(EntityType.ESTIMATE,
-            mom.fromMap(Estimate.class,
+            mom.toObject(Estimate.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1336,7 +1336,7 @@ public class QuickBooksModule
                                  List<Map<String, Object>> line)
     {
         return (Invoice) client.update(EntityType.INVOICE,
-            mom.fromMap(Invoice.class,
+            mom.toObject(Invoice.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1368,9 +1368,9 @@ public class QuickBooksModule
             <quickbooks:id ref="#[variable:id]">
             <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
             <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref="#[variable:incomeAccountRef]"></quickbooks:income-account-ref>
+            <quickbooks:income-account-ref ref="#[variable:incomeAccount]"></quickbooks:income-account-ref>
             <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref="#[variable:expenseAccountRef]"></quickbooks:expense-account-ref>    
+            <quickbooks:expense-account-ref ref="#[variable:expenseAccount]"></quickbooks:expense-account-ref>    
         </quickbooks:update-item>}
      * 
      * @param id Id which is assigned by Data Services when the object is created.
@@ -1382,13 +1382,13 @@ public class QuickBooksModule
      * @param desc Optional. User entered description for the item to further describe the details 
      *             of service or product.
      * @param taxable Optional. Indicates whether the item is subject to tax.
-     * @param incomeAccountRef Optional. Income account reference to be associated with the sales item.
+     * @param incomeAccount Optional. Income account reference to be associated with the sales item.
      * @param itemParentId Optional. The parent item id of current item.
      * @param itemParentName Optional. Name of parent Item. This field is output only.
      * @param purchaseDesc Optional. User entered purchase description for the item to further describe 
      *                     the details of the purchase.
      * @param purchaseCost Optional. The monetary value of the service or product.
-     * @param expenseAccountRef Optional. Income account reference to be associated with the purchase item.
+     * @param expenseAccount Optional. Income account reference to be associated with the purchase item.
      * @return The updated Item.
      */
     @Processor
@@ -1400,21 +1400,21 @@ public class QuickBooksModule
                            @Optional Map<String, Object> unitPrice,
                            @Optional String desc,
                            @Optional @Default("false") Boolean taxable,
-                           @Optional Map<String, Object> incomeAccountRef,
+                           @Optional Map<String, Object> incomeAccount,
                            @Optional Map<String, Object> itemParentId,
                            @Optional String itemParentName,
                            @Optional String purchaseDesc,
                            @Optional Map<String, Object> purchaseCost,
-                           @Optional Map<String, Object> expenseAccountRef)
+                           @Optional Map<String, Object> expenseAccount)
     {
         unitPrice = coalesceMap(unitPrice);
-        incomeAccountRef = coalesceMap(incomeAccountRef);
+        incomeAccount = coalesceMap(incomeAccount);
         itemParentId = coalesceMap(itemParentId);
         purchaseCost = coalesceMap(purchaseCost);
-        expenseAccountRef = coalesceMap(expenseAccountRef);
+        expenseAccount = coalesceMap(expenseAccount);
         
         return (Item) client.update(EntityType.ITEM,
-            mom.fromMap(Item.class,
+            mom.toObject(Item.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1422,12 +1422,12 @@ public class QuickBooksModule
                 .with("unitPrice", unitPrice)
                 .with("desc", desc)
                 .with("taxable", taxable)
-                .with("incomeAccountRef", incomeAccountRef)
+                .with("incomeAccountRef", incomeAccount)
                 .with("itemParentId", itemParentId)
                 .with("itemParentName", itemParentName)
                 .with("purchaseDesc", purchaseDesc)
                 .with("purchaseCost", purchaseCost)
-                .with("expenseAccountRef", expenseAccountRef)
+                .with("expenseAccountRef", expenseAccount)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1468,7 +1468,7 @@ public class QuickBooksModule
                                  List<Map<String, Object>> line)
     {
         return (Payment) client.update(EntityType.PAYMENT,
-            mom.fromMap(Payment.class,
+            mom.toObject(Payment.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1515,7 +1515,7 @@ public class QuickBooksModule
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
         return (PaymentMethod) client.update(EntityType.PAYMENTMETHOD,
-            mom.fromMap(PaymentMethod.class,
+            mom.toObject(PaymentMethod.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1561,7 +1561,7 @@ public class QuickBooksModule
                                            List<Map<String, Object>> line)
     {
         return (SalesReceipt) client.update(EntityType.SALESRECEIPT,
-            mom.fromMap(SalesReceipt.class,
+            mom.toObject(SalesReceipt.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1641,7 +1641,7 @@ public class QuickBooksModule
         BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
         return (SalesTerm) client.update(EntityType.SALESTERM,
-            mom.fromMap(SalesTerm.class,
+            mom.toObject(SalesTerm.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1739,7 +1739,7 @@ public class QuickBooksModule
         address = coalesceList(address);
         
         return (Vendor) client.update(EntityType.VENDOR,
-            mom.fromMap(Vendor.class,
+            mom.toObject(Vendor.class,
                 new MapBuilder()
                 .with("id", id)
                 .with("syncToken", syncToken)
@@ -1781,7 +1781,7 @@ public class QuickBooksModule
                              Map<String, Object> id, 
                              @Optional String syncToken)
     {
-        client.deleteObject(type, mom.fromMap(IdType.class, id), syncToken, accessToken, accessTokenSecret);
+        client.deleteObject(type, mom.toObject(IdType.class, id), syncToken, accessToken, accessTokenSecret);
     }
 
     /**

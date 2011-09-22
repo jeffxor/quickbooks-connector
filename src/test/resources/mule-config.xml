@@ -45,7 +45,7 @@
     </flow>
 
     <flow name="Create">
-    
+        
         <quickbooks:create-account name="String Unique"
                                    desc="String Optional"
                                    subtype="VEHICLES"
@@ -55,7 +55,6 @@
                                    <!--openningBalance Decimal Optional
                                    openingBalanceDate Date Optional-->
             <quickbooks:account-parent-id ref="#[variable:foo]"/>
-            
         </quickbooks:create-account>
                                    
         <quickbooks:create-bill >
@@ -103,8 +102,8 @@
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>
             <quickbooks:address ref=" "></quickbooks:address>
-            <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
-            <!--webSite="List<Uri>"
+            <!--<quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
+            webSite="List<Uri>"
             email="List<String>"
             phone="{List, Map}"
             address="Map"
@@ -127,11 +126,11 @@
                                 itemParentName="String N/A"
                                 purchaseDesc="String Optional">
                                 <!--tasable boolean defaultFalse-->
-            <quickbooks:item-parent-id ref=" "></quickbooks:item-parent-id>
-            <quickbooks:unit-price ref=" "></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref=" "></quickbooks:income-account-ref>
-            <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref=" "></quickbooks:expense-account-ref>
+            <quickbooks:item-parent-id ref="#[map-paylaod:itemParentId]"/>
+<!--             <quickbooks:unit-price ref="#[map-paylaod:unitPrice]"/> -->
+<!--             <quickbooks:income-account ref=" "></quickbooks:income-account> -->
+<!--             <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost> -->
+<!--             <quickbooks:expense-account ref=" "></quickbooks:expense-account> -->
             <!--itemParentId="IdType N/A"
             unitPrice="Map"
             incomeAccountRef="Map"
@@ -263,8 +262,8 @@
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>
             <quickbooks:address ref=" "></quickbooks:address>
-            <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
-        </quickbooks:update-customer>
+<!--             <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
+ -->        </quickbooks:update-customer>
         
         <quickbooks:update-estimate syncToken="1">
             <quickbooks:id ref=" "/>
@@ -286,10 +285,10 @@
                                 syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:item-parent-id ref=" "></quickbooks:item-parent-id>
-            <quickbooks:unit-price ref=" "></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref=" "></quickbooks:income-account-ref>
-            <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref=" "></quickbooks:expense-account-ref>     
+            <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost> 
+            <quickbooks:expense-account ref=" "></quickbooks:expense-account>     
+            <quickbooks:income-account ref=" "></quickbooks:income-account>
+            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
         </quickbooks:update-item>
                         
         <quickbooks:update-payment syncToken="1">

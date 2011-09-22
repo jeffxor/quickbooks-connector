@@ -14,21 +14,12 @@
 package org.mule.modules;
 
 import org.junit.Test;
-import org.mule.api.MuleContext;
-import org.mule.construct.SimpleFlowConstruct;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.tck.AbstractMuleTestCase;
 import org.mule.tck.FunctionalTestCase;
 
 public class QuickBooksNamespaceHandlerModuleTest extends FunctionalTestCase
 {
-    @Override
-    protected MuleContext createMuleContext() throws Exception
-    {
-//        MuleContext muleContext = super.createMuleContext();
-//        muleContext.getRegistry().registerObject("connector.http.mule.default", new HttpConnector(muleContext));
-        return muleContext;
-    }
-    
     @Override
     protected String getConfigResources()
     {
@@ -45,8 +36,8 @@ public class QuickBooksNamespaceHandlerModuleTest extends FunctionalTestCase
      *
      * @param name Name of the flow to retrieve
      */
-    protected SimpleFlowConstruct lookupFlowConstruct(String name)
+    protected MessageProcessor lookupFlowConstruct(String name)
     {
-        return (SimpleFlowConstruct) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
+        return (MessageProcessor) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }

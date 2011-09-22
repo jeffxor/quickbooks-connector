@@ -80,7 +80,7 @@ public class ObjectFactoriesTest
                }
             );
         
-        Customer customer = mom.fromMap(Customer.class,
+        Customer customer = mom.toObject(Customer.class,
             new MapBuilder()
             .with("name", "Ricardo")
             .with("givenName", "Enrique")

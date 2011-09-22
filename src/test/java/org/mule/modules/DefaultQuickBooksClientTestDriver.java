@@ -10,7 +10,6 @@
 
 package org.mule.modules;
 
-import org.junit.Test;
 import org.mule.modules.quickbooks.api.DefaultQuickBooksClient;
 import org.mule.modules.quickbooks.api.QuickBooksClient;
 import org.mule.tck.FunctionalTestCase;
@@ -24,8 +23,7 @@ import org.mule.tck.FunctionalTestCase;
 
 public class DefaultQuickBooksClientTestDriver extends FunctionalTestCase
 {    
-    @Test
-    public final void newClientWithWrongAccessKey()
+    public final void testNewClientWithWrongAccessKey()
     {
         //this.realmId = "212879793";
         //# App Token "94f212d5b56f0b413bba40fb476b4e76cf96"
