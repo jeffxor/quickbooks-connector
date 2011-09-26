@@ -25,9 +25,9 @@
     
     <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
     
-    <quickbooks:config consumerKey="${consumerKey}"
-        consumerSecret="${consumerSecret}"
-        realmId="${realmId}"/>
+    <quickbooks:config consumerKey="#[variable:consumerKey]"
+        consumerSecret="#[variable:consumerSecret]"
+        realmId="#[variable:realmId"/>
 
      <!--<flow name="GetProfileByUrl">
         <http:inbound-endpoint host="localhost" port="9091" path="pointsOfInterest"/>
@@ -99,11 +99,11 @@
 						            showAs="String Optional"
 						            salesTaxCodeId="String Optional">
             <quickbooks:web-site ref=" "></quickbooks:web-site>
+            <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>
             <quickbooks:address ref=" "></quickbooks:address>
-            <!--<quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
-            webSite="List<Uri>"
+            <!--webSite="List<Uri>"
             email="List<String>"
             phone="{List, Map}"
             address="Map"
@@ -126,11 +126,11 @@
                                 itemParentName="String N/A"
                                 purchaseDesc="String Optional">
                                 <!--tasable boolean defaultFalse-->
+            <quickbooks:unit-price ref="#[map-paylaod:unitPrice]"/>
+            <quickbooks:income-account ref=" "></quickbooks:income-account>
             <quickbooks:item-parent-id ref="#[map-paylaod:itemParentId]"/>
-<!--             <quickbooks:unit-price ref="#[map-paylaod:unitPrice]"/> -->
-<!--             <quickbooks:income-account ref=" "></quickbooks:income-account> -->
-<!--             <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost> -->
-<!--             <quickbooks:expense-account ref=" "></quickbooks:expense-account> -->
+            <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost>
+            <quickbooks:expense-account ref=" "></quickbooks:expense-account>
             <!--itemParentId="IdType N/A"
             unitPrice="Map"
             incomeAccountRef="Map"
@@ -259,11 +259,11 @@
                                     syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:web-site ref=" "></quickbooks:web-site>
+            <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
             <quickbooks:email ref=" "></quickbooks:email>
             <quickbooks:phone ref=" "></quickbooks:phone>
             <quickbooks:address ref=" "></quickbooks:address>
-<!--             <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
- -->        </quickbooks:update-customer>
+            </quickbooks:update-customer>
         
         <quickbooks:update-estimate syncToken="1">
             <quickbooks:id ref=" "/>
@@ -284,11 +284,11 @@
                                 purchaseDesc="String Optional"
                                 syncToken="1">
             <quickbooks:id ref=" "/>
+            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
+            <quickbooks:income-account ref=" "></quickbooks:income-account>
             <quickbooks:item-parent-id ref=" "></quickbooks:item-parent-id>
             <quickbooks:purchase-cost ref=" "></quickbooks:purchase-cost> 
-            <quickbooks:expense-account ref=" "></quickbooks:expense-account>     
-            <quickbooks:income-account ref=" "></quickbooks:income-account>
-            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
+            <quickbooks:expense-account ref=" "></quickbooks:expense-account>
         </quickbooks:update-item>
                         
         <quickbooks:update-payment syncToken="1">

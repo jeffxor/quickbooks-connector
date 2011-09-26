@@ -240,6 +240,17 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
+    public void getSomeCustomersAnswersNonNullListWithCustomers() throws Exception
+    {
+        Iterable it = module.findObjects(accessToken, accessTokenSecret, EntityType.CUSTOMER, "GivenName :EQUALS: Susana", null);
+        
+        for (Object c : it)
+        {
+            System.out.println(((Customer) c).getName());
+        }
+    }
+    
+    @Test
     public void createSalesTermAnswersNonNullSalesTermWithId()
     {
         SalesTerm salesTerm = module.createSalesTerm(accessToken,

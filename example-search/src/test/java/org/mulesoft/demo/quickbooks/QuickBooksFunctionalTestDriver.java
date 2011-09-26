@@ -10,6 +10,9 @@
 
 package org.mulesoft.demo.quickbooks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
 import org.mule.construct.Flow;
@@ -24,17 +27,29 @@ public class QuickBooksFunctionalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
     /**Search: this example will show searching capabilities of QuickBooks. Arbitrary queries will be
-passed by the user, evaluated, and text notification will be sent for returned entities that match
-some condition, using Twilio Connector.
-*/
+     *passed by the user, evaluated, and text notification will be sent for returned entities that match
+     *some condition, using Twilio Connector.
+     */
 
-    public void testCreateAccount() throws Exception
+    public void testSearchCustomer() throws Exception
     {
-        MuleEvent testEvent = getTestEvent("");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("idCustomerValue", "1");
+        MuleEvent testEvent = getTestEvent(map);
         MuleMessage message = testEvent.getMessage();
-        System.out.println(lookupFlowConstruct("CreateAccount").process(testEvent).getMessage().getPayload());
+        lookupFlowConstruct("GetProfileByUrl").process(testEvent).getMessage().getPayload();
     }
 
+    public void testSearchListOfCustomers() throws Exception
+    {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("filter", "GivenName :EQUALS: Susana");
+        map.put("sort", "");
+        MuleEvent testEvent = getTestEvent(map);
+        MuleMessage message = testEvent.getMessage();
+        lookupFlowConstruct("SearchListOfCustomers").process(testEvent).getMessage().getPayload();
+    }
+    
     private Flow lookupFlowConstruct(final String name)
     {
         return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);

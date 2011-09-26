@@ -66,16 +66,15 @@ public class ObjectFactoriesTest
         List<Map<String, Object>> webSite = new ArrayList<Map<String, Object>>();
         List<String> email =  new ArrayList<String>();
         List<Map<String, Object>> phone = new ArrayList<Map<String, Object>>();
-        List<Map<String, Object>> address = Arrays.<Map<String,Object>>asList(
+        List<Map<String, Object>> address = Arrays.<Map<String, Object>>asList(
             new HashMap<String, Object>()
                 {
                     {
-                        put("Line1", null);
-                        put("Line2", null);
-                        put("City", null);
-                        put("CountrySubDivisionCode", null);
-                        put("PostalCode", null);
-                        put("Tag", "Billing");
+                        put("line1", null);
+                        put("line2", null);
+                        put("city", null);
+                        put("countrySubDivisionCode", null);
+                        put("postalCode", null);
                     } 
                }
             );

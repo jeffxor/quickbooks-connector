@@ -27,20 +27,26 @@
     <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
     
     
-   <quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
+    <quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
         consumerSecret="6I5mTDGjthIeIWJm6iKx7Q4jAihKFd1yvFvkMi3B"
         realmId="212879793">
         
-        </quickbooks:config>
+    </quickbooks:config>
         
 
-     <flow name="GetProfileByUrl">
-        <http:inbound-endpoint host="localhost" port="9091" path="pointsOfInterest"/>
+    <flow name="GetProfileByUrl">
+        <http:inbound-endpoint host="localhost" port="9091" path="getProfileByUrl"/>
         <quickbooks:get-object type="CUSTOMER">
-            <quickbooks:id>
-                <value>1</value>
-            </quickbooks:id>
+            <quickbooks:id ref="#[map-payload:idCustomerValue]"/>
         </quickbooks:get-object>
+    </flow>
+    
+    <flow name="SearchListOfCustomers">
+        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfCustomers" />
+        <quickbooks:find-objects type="CUSTOMER">
+            <quickbooks:filter ref="#[map-payload:filter]"></quickbooks:filter>
+            <quickbooks:sort ref="#[map-payload:sort]"></quickbooks:sort>
+        </quickbooks:find-objects>
     </flow>
     
 </mule>
