@@ -32,29 +32,28 @@
         realmId="212879793">
         
     </quickbooks:config>-->
-    <quickbooks:config consumerKey="${quickbooksConsumerKey}"
-        consumerSecret="${quickbooksConsumerSecret}"
-        realmId="${quickbooksRealmId}">
+    <quickbooks:config consumerKey="${consumerKey}"
+        consumerSecret="${consumerSecret}"
+        realmId="${realmId}">
         
     </quickbooks:config>
 
-    <flow name="GetAccountById">
-        <description>Retrieves a single account given its ID</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="getAccountById"/>
-        <quickbooks:get-object type="ACCOUNT">
-            <quickbooks:id ref="#[header:inbound:idAccountValue]"/>
+    <flow name="GetProfileByUrl">
+        <description>Retrieves a single customer given its ID</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="getProfileByUrl"/>
+        <quickbooks:get-object type="CUSTOMER">
+            <quickbooks:id ref="#[header:inbound:idCustomerValue]"/>
         </quickbooks:get-object>
         <scripting:component>
             <scripting:script engine="groovy">
                 <![CDATA[        
                 return    
 """ 
-Account:  ${x.id.value}
-  Name: ${x.name}
-  Description: ${x.desc}
-  Subtype: ${x.subtype}
-  AcctNum: ${x.acctNum}
-  Opening Balance: ${x.openingBalance}
+Customer:  ${payload[0].id.value}
+  Given Name: ${payload[0].givenName}
+  Middle Name: ${payload[0].middleName}
+  Family Name: ${payload[0].familyName}
+  Gender: ${payload[0].gender.value}
 """.toString();       
                 ]]>
             </scripting:script>
@@ -62,9 +61,9 @@ Account:  ${x.id.value}
     </flow>
     
     <flow name="SearchListOfCustomers">
-        <description>Retrieves the list of accounts that pass the filter successfully</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfAccounts" />
-        <quickbooks:find-objects type="ACCOUNT">
+        <description>Retrieves the list of customers that pass the filter successfully</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfCustomers" />
+        <quickbooks:find-objects type="CUSTOMER">
             <quickbooks:filter ref=#[header:inbound:filter]"></quickbooks:filter>
             <quickbooks:sort ref="#[header:inbound:sort]"></quickbooks:sort>
         </quickbooks:find-objects>
@@ -73,12 +72,11 @@ Account:  ${x.id.value}
                 <![CDATA[        
                 return payload.collect({ x ->   
 """ 
-Account:  ${x.id.value}
-  Name: ${x.name}
-  Description: ${x.desc}
-  Subtype: ${x.subtype}
-  AcctNum: ${x.acctNum}
-  Opening Balance: ${x.openingBalance}
+Customer:  ${x.id.value}
+  Given Name: ${x.givenName}
+  Middle Name: ${x.middleName}
+  Family Name: ${x.familyName}
+  Gender: ${x.gender.value}
 """
                 })
                 .join("");       
@@ -87,24 +85,23 @@ Account:  ${x.id.value}
         </scripting:component>
     </flow>
     
-    <flow name="GetAllAccounts">
-        <description>Retrieves the full list of Accounts</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="getAllAccounts" />
-        <quickbooks:find-objects type="ACCOUNT" />
+    <flow name="GetAllCustomers">
+        <description>Retrieves the full list of customers</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="getAllCustomers" />
+        <quickbooks:find-objects type="CUSTOMER" />
         <scripting:component>
             <scripting:script engine="groovy">
                 <![CDATA[        
                 return payload.collect({ x ->   
 """ 
-Account:  ${x.id.value}
-  Name: ${x.name}
-  Description: ${x.desc}
-  Subtype: ${x.subtype}
-  AcctNum: ${x.acctNum}
-  Opening Balance: ${x.openingBalance}
+Customer:  ${x.id.value}
+  Given Name: ${x.givenName}
+  Middle Name: ${x.middleName}
+  Family Name: ${x.familyName}
+  Gender: ${x.gender.value}
 """
                 })
-                .join("");           
+                .join("");       
                 ]]>
             </scripting:script>
         </scripting:component>

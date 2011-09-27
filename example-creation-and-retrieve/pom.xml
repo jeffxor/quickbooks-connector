@@ -14,7 +14,7 @@
     <junit.version>4.8.2</junit.version>
     <mule.quick-books.version>1.0-SNAPSHOT</mule.quick-books.version>
     <ibeans.version>1.1</ibeans.version>
-    <mule.mongo.version>1.0-SNAPSHOT</mule.mongo.version>
+    <mule.mongo.version>1.3</mule.mongo.version>
   </properties>
 
   <description>Example that shows creating, retrieving and deleting capabilities of QuickBooks</description>
@@ -66,6 +66,10 @@
             <inclusion>
               <groupId>org.mule.modules</groupId>
               <artifactId>mule-module-quick-books</artifactId>
+            </inclusion>
+            <inclusion>
+              <groupId>org.mule.modules</groupId>
+              <artifactId>mule-module-mongo</artifactId>
             </inclusion>
             <inclusion>
               <groupId>org.mule.tools.devkit</groupId>

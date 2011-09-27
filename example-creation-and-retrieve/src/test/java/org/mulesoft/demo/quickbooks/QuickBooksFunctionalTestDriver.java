@@ -29,7 +29,7 @@ user formatting it with a Groovy script.
 
     public void testCreateAccount() throws Exception
     {
-        System.out.println(lookupFlowConstruct("CreateAccounts").process(getTestEvent("")).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("CreateCustomers").process(getTestEvent("")).getMessage().getPayload());
     }
 
     private Flow lookupFlowConstruct(final String name)

@@ -38,7 +38,7 @@ import com.sun.jersey.oauth.signature.OAuthParameters;
 import com.sun.jersey.oauth.signature.OAuthSecrets;
 
 /**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

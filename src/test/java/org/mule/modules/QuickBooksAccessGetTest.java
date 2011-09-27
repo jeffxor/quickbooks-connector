@@ -25,7 +25,7 @@ import org.mule.transport.http.HttpConnector;
 
 
 /**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

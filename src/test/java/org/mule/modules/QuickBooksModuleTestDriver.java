@@ -25,7 +25,6 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.mule.modules.quickbooks.AccountDetail;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.QuickBooksModule;
 import org.mule.modules.quickbooks.api.MapBuilder;
@@ -38,7 +37,7 @@ import ar.com.zauber.commons.mom.MapObjectMapper;
 
 
 /**
- * TODO: Description of the class, Comments in english by default
+ * 
  * 
  * @author Gaston Ponti
  * @since Sep 9, 2011
@@ -67,14 +66,6 @@ public class QuickBooksModuleTestDriver
 
     }
 
-    @Test
-    @Ignore
-    public void createAccountAnswersNonNullAccountWithId() throws Exception
-    {
-        module.createAccount(accessToken, accessTokenSecret, "TestAccount9876", null, AccountDetail.SAVINGS, null, null,
-            null, null);
-    }
-    
     @SuppressWarnings("unchecked")
     @Test
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception

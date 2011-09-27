@@ -16,7 +16,7 @@ import org.mule.modules.quickbooks.schema.IdType;
 
 
 /**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

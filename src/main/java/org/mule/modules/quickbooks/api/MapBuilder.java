@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 /**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

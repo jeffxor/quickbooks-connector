@@ -14,7 +14,7 @@ import org.mule.modules.quickbooks.api.DefaultQuickBooksClient;
 import org.mule.modules.quickbooks.api.QuickBooksClient;
 import org.mule.tck.FunctionalTestCase;
 /**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

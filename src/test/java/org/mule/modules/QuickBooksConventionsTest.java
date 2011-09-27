@@ -23,7 +23,7 @@ import org.mule.modules.quickbooks.api.QuickBooksConventions;
 
 	
 	/**
- * TODO: Description of the class, Comments in english by default  
+ *   
  * 
  * 
  * @author Gaston Ponti

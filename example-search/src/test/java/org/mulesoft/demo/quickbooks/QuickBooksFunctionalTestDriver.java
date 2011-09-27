@@ -28,19 +28,19 @@ public class QuickBooksFunctionalTestDriver extends FunctionalTestCase
 
     public void testSearchCustomerById() throws Exception
     {
-        System.out.println(lookupFlowConstruct("GetAccountById").process(getTestEvent("")).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("GetProfileByUrl").process(getTestEvent("")).getMessage().getPayload());
     }
 
     public void testSearchListOfCustomers() throws Exception
     {
 //      filter-> "CreateTime :BEFORE: 2011-08-07T14:30:00PST"
 //      sort-> "FamilyName AToZ"
-        System.out.println(lookupFlowConstruct("SearchListOfAccounts").process(getTestEvent("")).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("SearchListOfCustomers").process(getTestEvent("")).getMessage().getPayload());
     }
     
     public void testGetAllCustomers() throws Exception
     {
-        System.out.println(lookupFlowConstruct("GetAllAccounts").process(getTestEvent("")).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("GetAllCustomers").process(getTestEvent("")).getMessage().getPayload());
     }
     private Flow lookupFlowConstruct(final String name)
     {
