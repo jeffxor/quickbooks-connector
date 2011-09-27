@@ -13,7 +13,7 @@
 		<mule.devkit.version>3.0-SNAPSHOT</mule.devkit.version>
 		<junit.version>4.8.2</junit.version>
 		<mockito.version>1.8.2</mockito.version>
-		<mom.version>1.1-SNAPSHOT</mom.version>
+		<mom.version>1.1</mom.version>
 	</properties>
 
 	<build>
@@ -234,6 +234,17 @@
             <groupId>com.zaubersoftware</groupId>
             <artifactId>mom</artifactId>
             <version>${mom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mule.dsl</groupId>
+            <artifactId>dsl-api</artifactId>
+            <version>0.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mule</groupId>
+                    <artifactId>core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 	</dependencies>
 

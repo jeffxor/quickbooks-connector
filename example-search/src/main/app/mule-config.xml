@@ -27,26 +27,86 @@
     <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
     
     
-    <quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
+    <!--<quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
         consumerSecret="6I5mTDGjthIeIWJm6iKx7Q4jAihKFd1yvFvkMi3B"
         realmId="212879793">
         
-    </quickbooks:config>
+    </quickbooks:config>-->
+    <quickbooks:config consumerKey="${quickbooksConsumerKey}"
+        consumerSecret="${quickbooksConsumerSecret}"
+        realmId="${quickbooksRealmId}">
         
+    </quickbooks:config>
 
-    <flow name="GetProfileByUrl">
-        <http:inbound-endpoint host="localhost" port="9091" path="getProfileByUrl"/>
-        <quickbooks:get-object type="CUSTOMER">
-            <quickbooks:id ref="#[map-payload:idCustomerValue]"/>
+    <flow name="GetAccountById">
+        <description>Retrieves a single account given its ID</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="getAccountById"/>
+        <quickbooks:get-object type="ACCOUNT">
+            <quickbooks:id ref="#[header:inbound:idAccountValue]"/>
         </quickbooks:get-object>
+        <scripting:component>
+            <scripting:script engine="groovy">
+                <![CDATA[        
+                return    
+""" 
+Account:  ${x.id.value}
+  Name: ${x.name}
+  Description: ${x.desc}
+  Subtype: ${x.subtype}
+  AcctNum: ${x.acctNum}
+  Opening Balance: ${x.openingBalance}
+""".toString();       
+                ]]>
+            </scripting:script>
+        </scripting:component>
     </flow>
     
     <flow name="SearchListOfCustomers">
-        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfCustomers" />
-        <quickbooks:find-objects type="CUSTOMER">
-            <quickbooks:filter ref="#[map-payload:filter]"></quickbooks:filter>
-            <quickbooks:sort ref="#[map-payload:sort]"></quickbooks:sort>
+        <description>Retrieves the list of accounts that pass the filter successfully</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfAccounts" />
+        <quickbooks:find-objects type="ACCOUNT">
+            <quickbooks:filter ref=#[header:inbound:filter]"></quickbooks:filter>
+            <quickbooks:sort ref="#[header:inbound:sort]"></quickbooks:sort>
         </quickbooks:find-objects>
+        <scripting:component>
+            <scripting:script engine="groovy">
+                <![CDATA[        
+                return payload.collect({ x ->   
+""" 
+Account:  ${x.id.value}
+  Name: ${x.name}
+  Description: ${x.desc}
+  Subtype: ${x.subtype}
+  AcctNum: ${x.acctNum}
+  Opening Balance: ${x.openingBalance}
+"""
+                })
+                .join("");       
+                ]]>
+            </scripting:script>
+        </scripting:component>
     </flow>
     
+    <flow name="GetAllAccounts">
+        <description>Retrieves the full list of Accounts</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="getAllAccounts" />
+        <quickbooks:find-objects type="ACCOUNT" />
+        <scripting:component>
+            <scripting:script engine="groovy">
+                <![CDATA[        
+                return payload.collect({ x ->   
+""" 
+Account:  ${x.id.value}
+  Name: ${x.name}
+  Description: ${x.desc}
+  Subtype: ${x.subtype}
+  AcctNum: ${x.acctNum}
+  Opening Balance: ${x.openingBalance}
+"""
+                })
+                .join("");           
+                ]]>
+            </scripting:script>
+        </scripting:component>
+    </flow>
 </mule>

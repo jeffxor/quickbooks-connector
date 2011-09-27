@@ -10,8 +10,6 @@
 
 package org.mulesoft.demo.quickbooks;
 
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleMessage;
 import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
@@ -23,16 +21,15 @@ public class QuickBooksFunctionalTestDriver extends FunctionalTestCase
     {
         return "mule-config.xml";
     }
-    /**Search: this example will show searching capabilities of QuickBooks. Arbitrary queries will be
-passed by the user, evaluated, and text notification will be sent for returned entities that match
-some condition, using Twilio Connector.
+    /**Creation and Retrieve: this sample will be focused on showing basic CRUD features of
+QuickBooks. It will integrate Mongo connector - entities created in QuickBooks will be imported
+from a Mongo Collection, and with Scripting component - retrieved entities will be shown to the
+user formatting it with a Groovy script.
 */
 
     public void testCreateAccount() throws Exception
     {
-        MuleEvent testEvent = getTestEvent("");
-        MuleMessage message = testEvent.getMessage();
-        System.out.println(lookupFlowConstruct("CreateAccount").process(testEvent).getMessage().getPayload());
+        System.out.println(lookupFlowConstruct("CreateAccounts").process(getTestEvent("")).getMessage().getPayload());
     }
 
     private Flow lookupFlowConstruct(final String name)

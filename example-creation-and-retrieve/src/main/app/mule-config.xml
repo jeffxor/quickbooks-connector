@@ -17,42 +17,44 @@
   xmlns:http="http://www.mulesoft.org/schema/mule/http"
   xmlns:quickbooks="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books"
   xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+  xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
   xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
         http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
-        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd">
+        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd
+        http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd">
         
     <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
     
     
-   <quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
+<!--     <quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
         consumerSecret="6I5mTDGjthIeIWJm6iKx7Q4jAihKFd1yvFvkMi3B"
         realmId="212879793">
         
-        </quickbooks:config>
+    </quickbooks:config> -->
+    
+    <quickbooks:config consumerKey="${quickbooksConsumerKey}"
+        consumerSecret="${quickbooksConsumerSecret}"
+        realmId="${quickbooksRealmId}">
+        
+    </quickbooks:config>
         
 
-     <flow name="CreateCustomer">
-        <description>Creates a new Customer and returns it.</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="quickbooks-demo-create-customer"/>
-        <quickbooks:create-customer name="John Doe"
-                                    givenName="John"
-                                    middleName="Bill"
-                                    familyName="Doe"
-                                    suffix="Sr"
-                                    dBAName="Mint"
-                                    showAs="J Doe"
-                                    salesTaxCodeId="5">
-            <quickbooks:web-site>
-                
-            </quickbooks:web-site>
-            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
-            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
-            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
-            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
-        </quickbooks:create-customer>
+    <flow name="CreateAccounts">
+        <description>Create customers from a mongo database.</description>
+        <http:inbound-endpoint host="localhost" port="9091" path="demoCreateAccounts"/>
+        <mongo:find-objects collection="">
+        <collection-splitter/>
+        <quickbooks:create-account accessToken="${quickbooksAccessToken}"
+                                   accessTokenSecret="${quickbooksAccessTokenSecret}"
+                                   name="#[groovy:payload['name']]"
+                                   desc="#[groovy:payload['desc']]"
+                                   subtype="#[groovy:payload['subtype']]"
+                                   acctNum="#[groovy:payload['acctNum']]"
+                                   openingBalance="#[groovy:payload['openingBalance']]"/>
+        
     </flow>
     
 </mule>

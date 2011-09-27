@@ -10,11 +10,6 @@
 
 package org.mulesoft.demo.quickbooks;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleMessage;
 import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
@@ -31,25 +26,22 @@ public class QuickBooksFunctionalTestDriver extends FunctionalTestCase
      *some condition, using Twilio Connector.
      */
 
-    public void testSearchCustomer() throws Exception
+    public void testSearchCustomerById() throws Exception
     {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("idCustomerValue", "1");
-        MuleEvent testEvent = getTestEvent(map);
-        MuleMessage message = testEvent.getMessage();
-        lookupFlowConstruct("GetProfileByUrl").process(testEvent).getMessage().getPayload();
+        System.out.println(lookupFlowConstruct("GetAccountById").process(getTestEvent("")).getMessage().getPayload());
     }
 
     public void testSearchListOfCustomers() throws Exception
     {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("filter", "GivenName :EQUALS: Susana");
-        map.put("sort", "");
-        MuleEvent testEvent = getTestEvent(map);
-        MuleMessage message = testEvent.getMessage();
-        lookupFlowConstruct("SearchListOfCustomers").process(testEvent).getMessage().getPayload();
+//      filter-> "CreateTime :BEFORE: 2011-08-07T14:30:00PST"
+//      sort-> "FamilyName AToZ"
+        System.out.println(lookupFlowConstruct("SearchListOfAccounts").process(getTestEvent("")).getMessage().getPayload());
     }
     
+    public void testGetAllCustomers() throws Exception
+    {
+        System.out.println(lookupFlowConstruct("GetAllAccounts").process(getTestEvent("")).getMessage().getPayload());
+    }
     private Flow lookupFlowConstruct(final String name)
     {
         return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);

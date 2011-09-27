@@ -3,20 +3,21 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mule.demos</groupId>
-  <artifactId>mule-quick-books-demo-search</artifactId>
+  <artifactId>mule-quick-books-demo-creation-and-retrieve</artifactId>
   <packaging>mule</packaging>
   <name>Mule QuickBooks Cloud Search Demo</name>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <mule.version>3.2.0-M1</mule.version>
-    <mule.devkit.version>1.0-SNAPSHOT</mule.devkit.version>
+    <mule.version>3.2.0</mule.version>
+    <mule.devkit.version>3.0-SNAPSHOT</mule.devkit.version>
     <junit.version>4.8.2</junit.version>
     <mule.quick-books.version>1.0-SNAPSHOT</mule.quick-books.version>
     <ibeans.version>1.1</ibeans.version>
+    <mule.mongo.version>1.0-SNAPSHOT</mule.mongo.version>
   </properties>
 
-  <description>Example that shows creating and retrieving capabilities of QuickBooks</description>
+  <description>Example that shows creating, retrieving and deleting capabilities of QuickBooks</description>
 
 
   <build>
@@ -127,6 +128,11 @@
       <groupId>org.mule.modules</groupId>
       <artifactId>mule-module-scripting</artifactId>
       <version>${mule.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.modules</groupId>
+      <artifactId>mule-module-mongo</artifactId>
+      <version>${mule.mongo.version}</version>
     </dependency>
   </dependencies>
   <repositories>
