@@ -19,8 +19,8 @@
   xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
   xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.2/mule-scripting.xsd
         http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
         http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd">
         
@@ -64,7 +64,7 @@ Customer:  ${payload[0].id.value}
         <description>Retrieves the list of customers that pass the filter successfully</description>
         <http:inbound-endpoint host="localhost" port="9091" path="searchListOfCustomers" />
         <quickbooks:find-objects type="CUSTOMER">
-            <quickbooks:filter ref=#[header:inbound:filter]"></quickbooks:filter>
+            <quickbooks:filter ref="#[header:inbound:filter]"></quickbooks:filter>
             <quickbooks:sort ref="#[header:inbound:sort]"></quickbooks:sort>
         </quickbooks:find-objects>
         <scripting:component>
