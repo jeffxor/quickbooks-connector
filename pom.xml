@@ -42,6 +42,7 @@
                 <configuration>
                     <packageName>org.mule.modules.quickbooks.schema</packageName>
                     <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                    <schemaFiles>qbo.xsd,CompanyMetaData.xsd,CustomerCdmTypes.xsd,Finance.xsd,Groups.xsd,IntuitBaseExceptionTypes.xsd,IntuitCustomFieldCdmTypes.xsd,IntuitCdmBaseTypes.xsd,PartyCdmTypes.xsd,qbopayroll.xsd,QboReports.xsd</schemaFiles>
                 </configuration>
             </plugin>
 			<plugin>
