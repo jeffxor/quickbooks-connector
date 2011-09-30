@@ -26,84 +26,82 @@
         
     <http:connector name="connector.http.mule.default" enableCookies="true" keepAlive="true"/>
     
-    
-    <!--<quickbooks:config consumerKey="qyprdjjAVqbMjp3iQHH2SutYSm2min"
-        consumerSecret="6I5mTDGjthIeIWJm6iKx7Q4jAihKFd1yvFvkMi3B"
-        realmId="212879793">
-        
-    </quickbooks:config>-->
-    <quickbooks:config consumerKey="${consumerKey}"
-        consumerSecret="${consumerSecret}"
-        realmId="${realmId}">
-        
-    </quickbooks:config>
+    <quickbooks:config consumerKey="${quickbooksConsumerKey}"
+        consumerSecret="${quickbooksConsumerSecret}"
+        realmId="${quickbooksRealmId}" />
 
     <flow name="GetProfileByUrl">
         <description>Retrieves a single customer given its ID</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="getProfileByUrl"/>
+        <http:inbound-endpoint host="localhost" port="9092" path="getProfileByUrl"/>
         <quickbooks:get-object type="CUSTOMER">
             <quickbooks:id ref="#[header:inbound:idCustomerValue]"/>
         </quickbooks:get-object>
-        <scripting:component>
+        <!-- <scripting:component>
             <scripting:script engine="groovy">
                 <![CDATA[        
-                return    
-""" 
-Customer:  ${payload[0].id.value}
-  Given Name: ${payload[0].givenName}
-  Middle Name: ${payload[0].middleName}
-  Family Name: ${payload[0].familyName}
-  Gender: ${payload[0].gender.value}
-""".toString();       
+                String str = "";
+                str += "Customer: " + payload.getId().getValue() + "\n";
+                str += "   Given Name: " + payload.getGivenName() + "\n";
+                str += "   Middle Name: " + payload.getMiddleName() + "\n";
+                str += "   Family Name: " + payload.getFamilyName() + "\n"
+                str += "   Gender: ";
+                str += aux.getGender() == null ? "N/A": aux.getGender().getValue();
+                str += "\n\n";
+                                
+                return str;      
                 ]]>
             </scripting:script>
-        </scripting:component>
+        </scripting:component> Use this when scripting works with OAuth!-->
     </flow>
     
     <flow name="SearchListOfCustomers">
         <description>Retrieves the list of customers that pass the filter successfully</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="searchListOfCustomers" />
-        <quickbooks:find-objects type="CUSTOMER">
-            <quickbooks:filter ref="#[header:inbound:filter]"></quickbooks:filter>
-            <quickbooks:sort ref="#[header:inbound:sort]"></quickbooks:sort>
+        <http:inbound-endpoint host="localhost" port="9092" path="searchListOfCustomers" />
+        <quickbooks:find-objects type="CUSTOMER" 
+                                 queryFilter="#[header:inbound:filter]"
+                                 querySort="#[header:inbound:sort]">
         </quickbooks:find-objects>
-        <scripting:component>
+        <!-- <scripting:component>
             <scripting:script engine="groovy">
                 <![CDATA[        
-                return payload.collect({ x ->   
-""" 
-Customer:  ${x.id.value}
-  Given Name: ${x.givenName}
-  Middle Name: ${x.middleName}
-  Family Name: ${x.familyName}
-  Gender: ${x.gender.value}
-"""
-                })
-                .join("");       
+                String str = "";
+                for(String aux : payload) {
+                    str += "Customer: " + aux.getId().getValue() + "\n";
+                    str += "   Given Name: " + aux.getGivenName() + "\n";
+                    str += "   Middle Name: " + aux.getMiddleName() + "\n";
+                    str += "   Family Name: " + aux.getFamilyName() + "\n"
+                    str += "   Gender: ";
+                    str += aux.getGender() == null ? "N/A": aux.getGender().getValue();
+                    str += "\n\n";
+                }
+                
+                return str;      
                 ]]>
             </scripting:script>
-        </scripting:component>
+        </scripting:component> Use this when scripting works with OAuth!-->
     </flow>
     
     <flow name="GetAllCustomers">
         <description>Retrieves the full list of customers</description>
-        <http:inbound-endpoint host="localhost" port="9091" path="getAllCustomers" />
+        <http:inbound-endpoint host="localhost" port="9092" path="getAllCustomers" />
         <quickbooks:find-objects type="CUSTOMER" />
-        <scripting:component>
+        <!-- <scripting:component>
             <scripting:script engine="groovy">
                 <![CDATA[        
-                return payload.collect({ x ->   
-""" 
-Customer:  ${x.id.value}
-  Given Name: ${x.givenName}
-  Middle Name: ${x.middleName}
-  Family Name: ${x.familyName}
-  Gender: ${x.gender.value}
-"""
-                })
-                .join("");       
+                String str = "";
+                for(String aux : payload) {
+                    str += "Customer: " + aux.getId().getValue() + "\n";
+                    str += "   Given Name: " + aux.getGivenName() + "\n";
+                    str += "   Middle Name: " + aux.getMiddleName() + "\n";
+                    str += "   Family Name: " + aux.getFamilyName() + "\n"
+                    str += "   Gender: ";
+                    str += aux.getGender() == null ? "N/A": aux.getGender().getValue();
+                    str += "\n\n";
+                }
+                
+                return str;      
                 ]]>
             </scripting:script>
-        </scripting:component>
+        </scripting:component> Use this when scripting works with OAuth!-->
     </flow>
 </mule>
