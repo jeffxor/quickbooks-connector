@@ -317,4 +317,12 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
+        <scm>
+    	        <connection>scm:git:git://github.com:mulesoft/quickbooks-connector.git</connection>
+                <developerConnection>
+                        scm:git:git@github.com:mulesoft/quickbooks-connector.git
+                </developerConnection>
+                <url>http://github.com/mulesoft/quickbooks-connector</url>
+  	</scm>
 </project>
