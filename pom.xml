@@ -43,30 +43,27 @@
                     <schemaDirectory>src/main/resources/schema</schemaDirectory>
                     <schemaFiles>qbo.xsd,CompanyMetaData.xsd,CustomerCdmTypes.xsd,Finance.xsd,Groups.xsd,IntuitBaseExceptionTypes.xsd,IntuitCustomFieldCdmTypes.xsd,IntuitCdmBaseTypes.xsd,PartyCdmTypes.xsd,qbopayroll.xsd,QboReports.xsd</schemaFiles>
                 </configuration>
-            </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<executions>
-					<execution>
-						<id>default-compile</id>
-						<configuration>
-							<compilerArgument>-proc:none</compilerArgument>
-							<source>1.6</source>
-							<target>1.6</target>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<configuration>
-							<compilerArgument>-proc:none</compilerArgument>
-							<source>1.6</source>
-							<target>1.6</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+                </plugin>
+	                <plugin>
+                                <artifactId>maven-compiler-plugin</artifactId> 
+                                <version>2.1</version> 
+                                <inherited>true</inherited> 
+                                <configuration> 
+                                        <compilerId>eclipse</compilerId> 
+                                        <encoding>${project.build.sourceEncoding}</encoding> 
+                                        <source>1.6</source> 
+                                        <target>1.6</target> 
+                                        <showDeprecation>false</showDeprecation> 
+                                        <showWarnings>true</showWarnings> 
+                                </configuration> 
+                                <dependencies> 
+                                        <dependency> 
+                                               <groupId>org.codehaus.plexus</groupId> 
+                                               <artifactId>plexus-compiler-eclipse</artifactId> 
+                                               <version>1.7</version> 
+                                        </dependency>             
+                                </dependencies>
+                        </plugin>
 			<plugin>
 				<groupId>org.mule.tools.devkit</groupId>
 				<artifactId>mule-devkit-maven-plugin</artifactId>
