@@ -1,0 +1,1809 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for QuickBooks Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  org.mule.modules.quickbooks.schema
+
+
+| QuickBooks Cloud Connector
+
+</title>
+<link href="../../../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../assets/");
+</script>
+<script src="../../../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">QuickBooks Cloud Connector</span>
+    
+    <ul id="header-tabs" class="java">
+    	<li id="guide"><a href="../../../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../../../../../../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../../../../../../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links"><nobr>
+                <a href="../../../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../../../java/classes.html" >Class Index</a></nobr>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/package-summary.html">org.mule.modules.quickbooks</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/api/package-summary.html">org.mule.modules.quickbooks.api</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/api/Exception/package-summary.html">org.mule.modules.quickbooks.api.Exception</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/config/package-summary.html">org.mule.modules.quickbooks.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/config/spring/package-summary.html">org.mule.modules.quickbooks.config.spring</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/schema/package-summary.html">org.mule.modules.quickbooks.schema</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/utils/package-summary.html">org.mule.modules.quickbooks.utils</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+              
+    <li><h2>Classes</h2>
+      <ul>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Account.html">Account</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountRef.html">AccountRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Accounts.html">Accounts</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bill.html">Bill</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillHeader.html">BillHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillLine.html">BillLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayment.html">BillPayment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentHeader.html">BillPaymentHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentLine.html">BillPaymentLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayments.html">BillPayments</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bills.html">Bills</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BOMComponent.html">BOMComponent</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomField.html">BooleanTypeCustomField</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomFieldDefinition.html">BooleanTypeCustomFieldDefinition</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPayment.html">CashPayment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchase.html">CashPurchase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseHeader.html">CashPurchaseHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseLine.html">CashPurchaseLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchases.html">CashPurchases</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmBase.html">CdmBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmCollections.html">CdmCollections</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmComplexBase.html">CdmComplexBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charge.html">Charge</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeHeader.html">ChargeHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeLine.html">ChargeLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charges.html">Charges</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Check.html">Check</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckHeader.html">CheckHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckLine.html">CheckLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckPayment.html">CheckPayment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Checks.html">Checks</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Class.html">Class</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Classes.html">Classes</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompaniesMetaData.html">CompaniesMetaData</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyMetaData.html">CompanyMetaData</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyPreferences.html">CompanyPreferences</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharge.html">CreditCardCharge</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeHeader.html">CreditCardChargeHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeLine.html">CreditCardChargeLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharges.html">CreditCardCharges</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredit.html">CreditCardCredit</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditHeader.html">CreditCardCreditHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditLine.html">CreditCardCreditLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredits.html">CreditCardCredits</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardPayment.html">CreditCardPayment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeInfo.html">CreditChargeInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeResponse.html">CreditChargeResponse</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemo.html">CreditMemo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoHeader.html">CreditMemoHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoLine.html">CreditMemoLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemos.html">CreditMemos</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customer.html">Customer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomerRef.html">CustomerRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customers.html">Customers</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinition.html">CustomFieldDefinition</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinitions.html">CustomFieldDefinitions</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomField.html">DateTypeCustomField</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomFieldDefinition.html">DateTypeCustomFieldDefinition</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discount.html">Discount</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discounts.html">Discounts</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employee.html">Employee</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeRef.html">EmployeeRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employees.html">Employees</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimate.html">Estimate</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateHeader.html">EstimateHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateLine.html">EstimateLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimates.html">Estimates</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ExternalKey.html">ExternalKey</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/FaultInfo.html">FaultInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderBase.html">HeaderBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderPurchase.html">HeaderPurchase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderSales.html">HeaderSales</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustment.html">InventoryAdjustment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentHeader.html">InventoryAdjustmentHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentLine.html">InventoryAdjustmentLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustments.html">InventoryAdjustments</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoice.html">Invoice</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceHeader.html">InvoiceHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceLine.html">InvoiceLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoices.html">Invoices</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Item.html">Item</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemGroupComponent.html">ItemGroupComponent</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipt.html">ItemReceipt</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptHeader.html">ItemReceiptHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptLine.html">ItemReceiptLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipts.html">ItemReceipts</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Items.html">Items</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Job.html">Job</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobInfo.html">JobInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Jobs.html">Jobs</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntries.html">JournalEntries</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntry.html">JournalEntry</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryHeader.html">JournalEntryHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryLine.html">JournalEntryLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Label.html">Label</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineBase.html">LineBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LinePurchase.html">LinePurchase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineSales.html">LineSales</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Money.html">Money</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NameValue.html">NameValue</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomField.html">NumberTypeCustomField</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomFieldDefinition.html">NumberTypeCustomFieldDefinition</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ObjectFactory.html">ObjectFactory</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Offering.html">Offering</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organization.html">Organization</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organizations.html">Organizations</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OtherNameRef.html">OtherNameRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Parties.html">Parties</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Party.html">Party</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payment.html">Payment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentDetail.html">PaymentDetail</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentHeader.html">PaymentHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentLine.html">PaymentLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethod.html">PaymentMethod</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethods.html">PaymentMethods</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payments.html">Payments</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollAdjustment.html">PayrollAdjustment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCheck.html">PayrollCheck</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCompany.html">PayrollCompany</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollDateRange.html">PayrollDateRange</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployee.html">PayrollEmployee</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployeeTimeTrackingInfo.html">PayrollEmployeeTimeTrackingInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollRefund.html">PayrollRefund</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTerminationInfo.html">PayrollTerminationInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnBase.html">PayrollTxnBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnHeader.html">PayrollTxnHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnLine.html">PayrollTxnLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Person.html">Person</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Persons.html">Persons</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Preferences.html">Preferences</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrder.html">PurchaseOrder</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderHeader.html">PurchaseOrderHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderLine.html">PurchaseOrderLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrders.html">PurchaseOrders</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnums.html">QboAccountTypeEnums</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountValidationInfo.html">QboAccountValidationInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.html">QboBalanceSheetReportResponse</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.html">QboBalanceSheetReportResponse.Assets</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.CurrentAssets.html">QboBalanceSheetReportResponse.Assets.CurrentAssets</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBulkResult.html">QboBulkResult</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompany.html">QboCompany</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompanyReport.html">QboCompanyReport</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportRequest.html">QboListReportRequest</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.html">QboListReportResponse</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.ReportRow.html">QboListReportResponse.ReportRow</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUser.html">QboUser</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUserCompanyMapping.html">QboUserCompanyMapping</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QtyAdj.html">QtyAdj</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableInfo.html">ReimbursableInfo</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReportAccount.html">ReportAccount</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleBase.html">RoleBase</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrder.html">SalesOrder</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderHeader.html">SalesOrderHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderLine.html">SalesOrderLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrders.html">SalesOrders</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipt.html">SalesReceipt</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptHeader.html">SalesReceiptHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptLine.html">SalesReceiptLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipts.html">SalesReceipts</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRep.html">SalesRep</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReps.html">SalesReps</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTax.html">SalesTax</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCode.html">SalesTaxCode</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCodes.html">SalesTaxCodes</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxes.html">SalesTaxes</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroup.html">SalesTaxGroup</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroups.html">SalesTaxGroups</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheck.html">SalesTaxPaymentCheck</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckHeader.html">SalesTaxPaymentCheckHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckLine.html">SalesTaxPaymentCheckLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentChecks.html">SalesTaxPaymentChecks</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxRef.html">SalesTaxRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerm.html">SalesTerm</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerms.html">SalesTerms</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SearchResults.html">SearchResults</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethod.html">ShipMethod</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethods.html">ShipMethods</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomField.html">StringTypeCustomField</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomFieldDefinition.html">StringTypeCustomFieldDefinition</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxLine.html">TaxLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxPayment.html">TaxPayment</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivities.html">TimeActivities</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivity.html">TimeActivity</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.html">TxnGeneric</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.Header.html">TxnGeneric.Header</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGenerics.html">TxnGenerics</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnRef.html">TxnRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOM.html">UOM</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMConvUnit.html">UOMConvUnit</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMs.html">UOMs</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ValueAdj.html">ValueAdj</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendor.html">Vendor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredit.html">VendorCredit</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditHeader.html">VendorCreditHeader</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditLine.html">VendorCreditLine</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredits.html">VendorCredits</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditsToApply.html">VendorCreditsToApply</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditToApply.html">VendorCreditToApply</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorRef.html">VendorRef</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendors.html">Vendors</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a></li>
+      </ul>
+    </li>
+              
+              
+    <li><h2>Enums</h2>
+      <ul>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountSubtypeEnum.html">AccountSubtypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountTypeEnum.html">AccountTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillableStatusEnum.html">BillableStatusEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CauseEnum.html">CauseEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCSecurityCodeMatchEnum.html">CCSecurityCodeMatchEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnModeEnum.html">CCTxnModeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnTypeEnum.html">CCTxnTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardTypeEnum.html">CreditCardTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CurrencyCode.html">CurrencyCode</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddressLabelType.html">EmailAddressLabelType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeTypeEnum.html">EmployeeTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EntityTypeEnum.html">EntityTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ErrorCodeEnum.html">ErrorCodeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateStatusEnum.html">EstimateStatusEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdDomainEnum.html">IdDomainEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemTypeEnum.html">ItemTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobStatusEnum.html">JobStatusEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OfferingId.html">OfferingId</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethodEnum.html">PaymentMethodEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentStatusEnum.html">PaymentStatusEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollSubscriptionTerminationReasonEnum.html">PayrollSubscriptionTerminationReasonEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaySalesTaxEnum.html">PaySalesTaxEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddressLabelType.html">PhysicalAddressLabelType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PostingTypeEnum.html">PostingTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountDetailTypeEnum.html">QboAccountDetailTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnum.html">QboAccountTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboEstimateStatusEnum.html">QboEstimateStatusEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportsEnum.html">QboListReportsEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableTypeEnum.html">ReimbursableTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleType.html">RoleType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRepTypeEnum.html">SalesRepTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTermTypeEnum.html">SalesTermTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SeatType.html">SeatType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Status.html">Status</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormEnum.html">TaxFormEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormTypeEnum.html">TaxFormTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneDevice.html">TelephoneDevice</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumberLabelType.html">TelephoneNumberLabelType</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivityTypeEnum.html">TimeActivityTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnTypeEnum.html">TxnTypeEnum</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMBaseTypeEnum.html">UOMBaseTypeEnum</a></li>
+      </ul>
+    </li>
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links"><nobr>
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a></nobr>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div>
+
+<div id="jd-header">
+  package
+  <h1>org.mule.modules.quickbooks.schema</h1>
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+
+
+
+
+  
+
+
+  
+    <h2>Classes</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Account.html">Account</a></td>
+              <td class="jd-descrcol" width="100%">Account is a component of a Chart Of Accounts, and is part of a Ledger.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountRef.html">AccountRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for AccountRef complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Accounts.html">Accounts</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Accounts
+ 
+ <p>Java class for Accounts complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bill.html">Bill</a></td>
+              <td class="jd-descrcol" width="100%">Bill is an AP transaction representing a request-for-payment from a third party for goods/services rendered and/or received
+ 
+ <p>Java class for Bill complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillHeader.html">BillHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire Bill.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillLine.html">BillLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service purchased for which payment is being demanded, as part of a Bill
+ 
+ <p>Java class for BillLine complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayment.html">BillPayment</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a Payment by check issued to pay one or more bills received from 3rd party (vendor) for purchased goods or services.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentHeader.html">BillPaymentHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire BillPaymentCheck
+ 
+ <p>Java class for BillPaymentHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentLine.html">BillPaymentLine</a></td>
+              <td class="jd-descrcol" width="100%">Information associating some portion of the BillPayment with a sales transaction that is paid by it.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayments.html">BillPayments</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Bill Payments
+ 
+ <p>Java class for BillPayments complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bills.html">Bills</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Bills
+ 
+ <p>Java class for Bills complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BOMComponent.html">BOMComponent</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for BOMComponent complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomField.html">BooleanTypeCustomField</a></td>
+              <td class="jd-descrcol" width="100%">If BooleanTypeCustomFieldDefinition is defined, the BooleanTypeCustomField specifies the strongly typed field value 
+ 
+ <p>Java class for BooleanTypeCustomField complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomFieldDefinition.html">BooleanTypeCustomFieldDefinition</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the strongly typed BooleanTypeCustomFieldDefinition 
+ 
+ <p>Java class for BooleanTypeCustomFieldDefinition complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPayment.html">CashPayment</a></td>
+              <td class="jd-descrcol" width="100%">Holds information about a payment received in cash
+ 
+ <p>Java class for CashPayment complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchase.html">CashPurchase</a></td>
+              <td class="jd-descrcol" width="100%">QBO only: Financial transaction representing an expenditure via Cash.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseHeader.html">CashPurchaseHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire Cash Purchase transaction.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseLine.html">CashPurchaseLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service for which the cash was paid.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchases.html">CashPurchases</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Cash Purchases
+ 
+ <p>Java class for CashPurchases complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmBase.html">CdmBase</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the CdmBase type which can be used as base type for all Intuit CDM objects that can be identified and modified as a top level CDM, example for top level CDMs are Party, Customer, Vendor in case of CMO these can extend from CdmBase.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmCollections.html">CdmCollections</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CdmCollections complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmComplexBase.html">CdmComplexBase</a></td>
+              <td class="jd-descrcol" width="100%">Defines the abstract base type that is used as a base for collection types, or objects returned by the REST service.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charge.html">Charge</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a request for payment for goods or services that have been sold.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeHeader.html">ChargeHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire Charge
+ 
+ <p>Java class for ChargeHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeLine.html">ChargeLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product sold, along with quantity, price, and other descriptive information
+ 
+ <p>Java class for ChargeLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charges.html">Charges</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Charges
+ 
+ <p>Java class for Charges complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Check.html">Check</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a payment to a payee.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckHeader.html">CheckHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire Check.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckLine.html">CheckLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service for which the check is being issued.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckPayment.html">CheckPayment</a></td>
+              <td class="jd-descrcol" width="100%">Holds information about a payment received by check
+ 
+ <p>Java class for CheckPayment complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Checks.html">Checks</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Checks
+ 
+ <p>Java class for Checks complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Class.html">Class</a></td>
+              <td class="jd-descrcol" width="100%">Classes provide a way to track different segments of the business, and to break down the income and expenses for each segment.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Classes.html">Classes</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Classes
+ 
+ <p>Java class for Classes complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompaniesMetaData.html">CompaniesMetaData</a></td>
+              <td class="jd-descrcol" width="100%">Provides basic meta data information on QB company files and their data sync status
+ 
+ <p>Java class for CompaniesMetaData complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyMetaData.html">CompanyMetaData</a></td>
+              <td class="jd-descrcol" width="100%">company specific collection of attributes
+ 
+ <p>Java class for CompanyMetaData complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyPreferences.html">CompanyPreferences</a></td>
+              <td class="jd-descrcol" width="100%">Defines a wrapper for rest response substitution in Preferences api.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharge.html">CreditCardCharge</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a charge for purchase of goods or services.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeHeader.html">CreditCardChargeHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire CreditCardCharge.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeLine.html">CreditCardChargeLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service for which the CreditCardCharge is being issued.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharges.html">CreditCardCharges</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Credit Card Charges
+ 
+ <p>Java class for CreditCardCharges complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredit.html">CreditCardCredit</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a credit for purchase of goods or services.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditHeader.html">CreditCardCreditHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire CreditCardCredit.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditLine.html">CreditCardCreditLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service for which the CreditCardCredit is being issued.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredits.html">CreditCardCredits</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Credit Card Credits
+ 
+ <p>Java class for CreditCardCredits complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardPayment.html">CreditCardPayment</a></td>
+              <td class="jd-descrcol" width="100%">Holds complete information about a payment received by credit card
+ 
+ <p>Java class for CreditCardPayment complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeInfo.html">CreditChargeInfo</a></td>
+              <td class="jd-descrcol" width="100%">Hold credit-card information to request a credit card payment from a merchant account service, but NOT any response or authorization information from the merchant account service provider -- see CreditChargeResponse
+ 
+ <p>Java class for CreditChargeInfo complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeResponse.html">CreditChargeResponse</a></td>
+              <td class="jd-descrcol" width="100%">Holds credit-card transaction response information from a merchant account service, but not any credit card or payment request information - see CreditChargeInfo
+ 
+ <p>Java class for CreditChargeResponse complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemo.html">CreditMemo</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a refund (or credit) of payment or part of a payment for goods or services that have been sold.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoHeader.html">CreditMemoHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire CreditMemo
+ 
+ <p>Java class for CreditMemoHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoLine.html">CreditMemoLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product sold, along with quantity, price, and other descriptive information
+ 
+ <p>Java class for CreditMemoLine complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemos.html">CreditMemos</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Credit Memos
+ 
+ <p>Java class for CreditMemos complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customer.html">Customer</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a Customer Role view 
+ 
+ <p>Java class for Customer complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomerRef.html">CustomerRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CustomerRef complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customers.html">Customers</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Customers
+ 
+ <p>Java class for Customers complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the custom field type that can be added to an entity, this object is not extended from CdmBase as CustomField can not be manipulated as indepdent object and will always be considered in association with another top level CDM object 
+ 
+ <p>Java class for CustomField complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinition.html">CustomFieldDefinition</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the CustomFieldDefinition that can be defined to a CDM to add additional columns dynamically on a existing CDM entities, this object is not extended from CdmBase as it is considered as definition that can be manipulated by specifying the definition ID 
+ 
+ <p>Java class for CustomFieldDefinition complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinitions.html">CustomFieldDefinitions</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CustomFieldDefinitions complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomField.html">DateTypeCustomField</a></td>
+              <td class="jd-descrcol" width="100%">If StringTypeCustomFieldDefinition is defined, the StringTypeCustomField specifies the strongly typed field value 
+ 
+ <p>Java class for DateTypeCustomField complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomFieldDefinition.html">DateTypeCustomFieldDefinition</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the strongly typed DateTypeCustomFieldDefintion 
+ 
+ <p>Java class for DateTypeCustomFieldDefinition complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discount.html">Discount</a></td>
+              <td class="jd-descrcol" width="100%">Identifies the discount or allowance that the Customer is to receive off of the TotalAmount owed.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discounts.html">Discounts</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Discounts
+ 
+ <p>Java class for Discounts complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a></td>
+              <td class="jd-descrcol" width="100%">EmailAddressType definition, this object is always manipulated in context of another parent object like Person, Organization etc
+ 
+ <p>Java class for EmailAddress complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employee.html">Employee</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a EmployeeWorker Role view 
+ 
+ <p>Java class for Employee complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeRef.html">EmployeeRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for EmployeeRef complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employees.html">Employees</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Employees
+ 
+ <p>Java class for Employees complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimate.html">Estimate</a></td>
+              <td class="jd-descrcol" width="100%">A proposal for a FinancialTransaction from a business to a customer for goods or services proposed to be sold, including proposed pricing.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateHeader.html">EstimateHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire Estimate
+ 
+ <p>Java class for EstimateHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateLine.html">EstimateLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product proposed to be sold along with quantity, price and other descriptive information.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimates.html">Estimates</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Estimates
+ 
+ <p>Java class for Estimates complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ExternalKey.html">ExternalKey</a></td>
+              <td class="jd-descrcol" width="100%">ExternalKey type allows to associate ExternalID like QuickBooks ID to be represented in the cloud
+ 
+ <p>Java class for ExternalKey complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/FaultInfo.html">FaultInfo</a></td>
+              <td class="jd-descrcol" width="100%">FaultInfo represents an exception condition
+ 
+ <p>Java class for FaultInfo complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderBase.html">HeaderBase</a></td>
+              <td class="jd-descrcol" width="100%">Subset of data that is common to all transaction types.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderPurchase.html">HeaderPurchase</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire Bill.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderSales.html">HeaderSales</a></td>
+              <td class="jd-descrcol" width="100%">Superset of data that is associated with the Sale transaction types.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></td>
+              <td class="jd-descrcol" width="100%">Allows for strong-typing of Ids and qualifying the domain origin if the Id.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustment.html">InventoryAdjustment</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing quantity or value adjustments of inventory items
+ 
+ <p>Java class for InventoryAdjustment complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentHeader.html">InventoryAdjustmentHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire InventoryAdjustment
+ 
+ <p>Java class for InventoryAdjustmentHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentLine.html">InventoryAdjustmentLine</a></td>
+              <td class="jd-descrcol" width="100%">Adjusted inventory item, along with adjusted quantity, adjusted value, and other descriptive information
+ 
+ <p>Java class for InventoryAdjustmentLine complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustments.html">InventoryAdjustments</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Inventory Adjustments
+ 
+ <p>Java class for InventoryAdjustments complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoice.html">Invoice</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a request for payment for goods or services that have been sold.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceHeader.html">InvoiceHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire Invoice
+ 
+ <p>Java class for InvoiceHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceLine.html">InvoiceLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product sold, along with quantity, price, and other descriptive information
+ 
+ <p>Java class for InvoiceLine complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoices.html">Invoices</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Invoices
+ 
+ <p>Java class for Invoices complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Item.html">Item</a></td>
+              <td class="jd-descrcol" width="100%">Represents an "item" that can be sold.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemGroupComponent.html">ItemGroupComponent</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ItemGroupComponent complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipt.html">ItemReceipt</a></td>
+              <td class="jd-descrcol" width="100%">ItemReceipt is an AP transaction representing a delivery of goods from 3rd party.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptHeader.html">ItemReceiptHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire ItemReceipt.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptLine.html">ItemReceiptLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service purchased which are shipped to the requestor.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipts.html">ItemReceipts</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of ItemReceipts
+ 
+ <p>Java class for ItemReceipts complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Items.html">Items</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Items
+ 
+ <p>Java class for Items complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Job.html">Job</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Job complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobInfo.html">JobInfo</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for JobInfo complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Jobs.html">Jobs</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Jobs
+ 
+ <p>Java class for Jobs complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntries.html">JournalEntries</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of JournalEntries
+ 
+ <p>Java class for JournalEntries complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntry.html">JournalEntry</a></td>
+              <td class="jd-descrcol" width="100%">Accounting transaction, consists of journal lines, each of which is either a debit or a credit.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryHeader.html">JournalEntryHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire Journal Entry.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryLine.html">JournalEntryLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product sold, along with quantity, price, and other descriptive information
+ 
+ <p>Java class for JournalEntryLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Label.html">Label</a></td>
+              <td class="jd-descrcol" width="100%">Post-it tag like usage on any of the entities, normally LabelType is used with a list 
+ 
+ <p>Java class for Label complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineBase.html">LineBase</a></td>
+              <td class="jd-descrcol" width="100%">Subset of data that is common to all transaction lines.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LinePurchase.html">LinePurchase</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service for which the check is being issued.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineSales.html">LineSales</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for LineSales complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a></td>
+              <td class="jd-descrcol" width="100%">Defines the metadata of the instance of data
+ 
+ <p>Java class for ModificationMetaData complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Money.html">Money</a></td>
+              <td class="jd-descrcol" width="100%">Money type describes the Money value represented in Intuit as Currency Code and decimal value.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NameValue.html">NameValue</a></td>
+              <td class="jd-descrcol" width="100%">Used in elements like AlternateId to allow clients sending data that is meaningful in the source of origin.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a></td>
+              <td class="jd-descrcol" width="100%">Specifies free text information that can be associated with a CDM type 
+ 
+ <p>Java class for Note complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomField.html">NumberTypeCustomField</a></td>
+              <td class="jd-descrcol" width="100%">If NumberTypeCustomFieldDefinition is defined, the NumberTypeCustomField specifies the strongly typed field value 
+ 
+ <p>Java class for NumberTypeCustomField complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomFieldDefinition.html">NumberTypeCustomFieldDefinition</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the strongly typed version of Number type custom field definition 
+ 
+ <p>Java class for NumberTypeCustomFieldDefinition complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ObjectFactory.html">ObjectFactory</a></td>
+              <td class="jd-descrcol" width="100%">This object contains factory methods for each 
+ Java content interface and Java element interface 
+ generated in the org.mule.modules.quickbooks.schema package.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Offering.html">Offering</a></td>
+              <td class="jd-descrcol" width="100%">definition of one or many offerings associated with each company
+ 
+ <p>Java class for Offering complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organization.html">Organization</a></td>
+              <td class="jd-descrcol" width="100%">Shared  type that can be extended by domain specific viewes
+ 
+ <p>Java class for Organization complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organizations.html">Organizations</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Organizations complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OtherNameRef.html">OtherNameRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for OtherNameRef complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Parties.html">Parties</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Parties complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Party.html">Party</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the base Party that describes the party model 
+ 
+ <p>Java class for Party complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payment.html">Payment</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a payment from a customer applied to one or more sales transactions 
+ 
+ <p>Java class for Payment complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentDetail.html">PaymentDetail</a></td>
+              <td class="jd-descrcol" width="100%">Details about a payment received, choosing and detailing a payment method (check,credit card, etc...)
+ 
+ <p>Java class for PaymentDetail complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentHeader.html">PaymentHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire Payment
+ 
+ <p>Java class for PaymentHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentLine.html">PaymentLine</a></td>
+              <td class="jd-descrcol" width="100%">Information associating some portion of the payment with a sales transaction that is paid by it.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethod.html">PaymentMethod</a></td>
+              <td class="jd-descrcol" width="100%">Method of payment for received goods.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethods.html">PaymentMethods</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Payment Methods
+ 
+ <p>Java class for PaymentMethods complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payments.html">Payments</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Payments
+ 
+ <p>Java class for Payments complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollAdjustment.html">PayrollAdjustment</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of Payroll Adjustment transactions specific to Payroll
+ 
+ <p>Java class for PayrollAdjustment complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCheck.html">PayrollCheck</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of Paycheck transactions specific to Payroll
+ 
+ <p>Java class for PayrollCheck complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCompany.html">PayrollCompany</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of company information specific to Payroll
+ 
+ <p>Java class for PayrollCompany complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollDateRange.html">PayrollDateRange</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition to hold all required information needed for a Date Range object
+ 
+ <p>Java class for PayrollDateRange complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployee.html">PayrollEmployee</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of payroll employee information
+ 
+ <p>Java class for PayrollEmployee complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployeeTimeTrackingInfo.html">PayrollEmployeeTimeTrackingInfo</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition to store total hours worked by an employee during a specific Pay Period.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollRefund.html">PayrollRefund</a></td>
+              <td class="jd-descrcol" width="100%">Payroll tax refund transactions
+ 
+ <p>Java class for PayrollRefund complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTerminationInfo.html">PayrollTerminationInfo</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition to hold all required information needed when canceling Payroll.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnBase.html">PayrollTxnBase</a></td>
+              <td class="jd-descrcol" width="100%">Basic Payroll Transaction Structure
+ 
+ <p>Java class for PayrollTxnBase complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnHeader.html">PayrollTxnHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire Payroll transaction.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnLine.html">PayrollTxnLine</a></td>
+              <td class="jd-descrcol" width="100%">Payroll transaction line detail information
+ 
+ <p>Java class for PayrollTxnLine complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Person.html">Person</a></td>
+              <td class="jd-descrcol" width="100%">Shared type that can be extended by domain specific viewes
+ 
+ <p>Java class for Person complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Persons.html">Persons</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Persons complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the Physical address type, this object is always manipulated in context of another parent object like Person, Organization etc
+ 
+ <p>Java class for PhysicalAddress complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Preferences.html">Preferences</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Preferences complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrder.html">PurchaseOrder</a></td>
+              <td class="jd-descrcol" width="100%">PurchaseOrder is a non-posting transaction representing a request to purchase goods or services from a third party.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderHeader.html">PurchaseOrderHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire PurchaseOrder.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderLine.html">PurchaseOrderLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or service purchased for which payment is being demanded, as part of a PurchaseOrder
+ 
+ <p>Java class for PurchaseOrderLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrders.html">PurchaseOrders</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of PurchaseOrders
+ 
+ <p>Java class for PurchaseOrders complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnums.html">QboAccountTypeEnums</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of collection of QboAccountTypeEnum
+ 
+ <p>Java class for QboAccountTypeEnums complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountValidationInfo.html">QboAccountValidationInfo</a></td>
+              <td class="jd-descrcol" width="100%">Hold validation request for an account path name
+ 
+ <p>Java class for QboAccountValidationInfo complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.html">QboBalanceSheetReportResponse</a></td>
+              <td class="jd-descrcol" width="100%">Used to output a balance sheet report.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.html">QboBalanceSheetReportResponse.Assets</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.CurrentAssets.html">QboBalanceSheetReportResponse.Assets.CurrentAssets</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBulkResult.html">QboBulkResult</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition for bulk create entity
+ 
+ <p>Java class for QboBulkResult complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompany.html">QboCompany</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboCompany complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompanyReport.html">QboCompanyReport</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboCompanyReport complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportRequest.html">QboListReportRequest</a></td>
+              <td class="jd-descrcol" width="100%">Used to request a list report (see enum for the types encompassed by that).&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.html">QboListReportResponse</a></td>
+              <td class="jd-descrcol" width="100%">Used to output customer phone/contact, vendor phone/contact, employee phone/contact, account list,
+             recurring template list, item list, payment method list, terms list, compensation list, tax list,
+             other payments and deductions list, pay schedule list.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.ReportRow.html">QboListReportResponse.ReportRow</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUser.html">QboUser</a></td>
+              <td class="jd-descrcol" width="100%">Represents a QboUser
+ 
+ <p>Java class for QboUser complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUserCompanyMapping.html">QboUserCompanyMapping</a></td>
+              <td class="jd-descrcol" width="100%">Construct for user and company mapping
+ 
+ <p>Java class for QboUserCompanyMapping complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QtyAdj.html">QtyAdj</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QtyAdj complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableInfo.html">ReimbursableInfo</a></td>
+              <td class="jd-descrcol" width="100%">Information about the Customer and actual Job or Project the expense must be reimbursed for.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReportAccount.html">ReportAccount</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ReportAccount complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleBase.html">RoleBase</a></td>
+              <td class="jd-descrcol" width="100%">Describes Role of a Party, Generally the role can be Customer, Vendor, EmployeeWorker 
+ 
+ <p>Java class for RoleBase complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrder.html">SalesOrder</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing an order (request to purchase) received (by a business) from a customer requesting products or services.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderHeader.html">SalesOrderHeader</a></td>
+              <td class="jd-descrcol" width="100%">Provides information that pertains to the entire Sales Order
+ 
+ <p>Java class for SalesOrderHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderLine.html">SalesOrderLine</a></td>
+              <td class="jd-descrcol" width="100%">Provides the line level detail of the items ordered by the SalesOrder and the associated detail.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrders.html">SalesOrders</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of SalesOrders
+ 
+ <p>Java class for SalesOrders complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipt.html">SalesReceipt</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing the sale of goods and/or services where payment in full is received in at the time of the sale.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptHeader.html">SalesReceiptHeader</a></td>
+              <td class="jd-descrcol" width="100%">Provides information that pertains to the entire Sales Receipt
+ 
+ <p>Java class for SalesReceiptHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptLine.html">SalesReceiptLine</a></td>
+              <td class="jd-descrcol" width="100%">Provides line level detail of items (goods/services) sold on the SalesReceipt and associated detail
+ 
+ <p>Java class for SalesReceiptLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipts.html">SalesReceipts</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Receipts
+ 
+ <p>Java class for SalesReceipts complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRep.html">SalesRep</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for SalesRep complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReps.html">SalesReps</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of SalesReps
+ 
+ <p>Java class for SalesReps complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTax.html">SalesTax</a></td>
+              <td class="jd-descrcol" width="100%">Sales tax which the business must collect on behalf of a state or other govenment agency when a sales transaction is completed.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCode.html">SalesTaxCode</a></td>
+              <td class="jd-descrcol" width="100%">Sales tax code is used to track the taxable or non-taxable status of both the items for sell (products and services) and customers.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCodes.html">SalesTaxCodes</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Tax Codes
+ 
+ <p>Java class for SalesTaxCodes complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxes.html">SalesTaxes</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Taxes
+ 
+ <p>Java class for SalesTaxes complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroup.html">SalesTaxGroup</a></td>
+              <td class="jd-descrcol" width="100%">Collection of Sales taxes which the business must collect on behalf of one or more state or govenment agencies when a sales transaction is completed.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroups.html">SalesTaxGroups</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Tax Groups
+ 
+ <p>Java class for SalesTaxGroups complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheck.html">SalesTaxPaymentCheck</a></td>
+              <td class="jd-descrcol" width="100%">Financial transaction representing a payment of sales tax by check issued to sales tax agencies (vendors) 
+ 
+ <p>Java class for SalesTaxPaymentCheck complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckHeader.html">SalesTaxPaymentCheckHeader</a></td>
+              <td class="jd-descrcol" width="100%">Information that pertains to the entire SalesTaxPaymentCheck
+ 
+ <p>Java class for SalesTaxPaymentCheckHeader complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckLine.html">SalesTaxPaymentCheckLine</a></td>
+              <td class="jd-descrcol" width="100%">Paid sales tax item, along with amount and other descriptive information
+ 
+ <p>Java class for SalesTaxPaymentCheckLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentChecks.html">SalesTaxPaymentChecks</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Tax Payment Checks
+ 
+ <p>Java class for SalesTaxPaymentChecks complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxRef.html">SalesTaxRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for SalesTaxRef complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerm.html">SalesTerm</a></td>
+              <td class="jd-descrcol" width="100%">Terms under which a sale will be paid, typically expressed in form of days due after goods recieved.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerms.html">SalesTerms</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Sales Terms
+ 
+ <p>Java class for SalesTerms complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SearchResults.html">SearchResults</a></td>
+              <td class="jd-descrcol" width="100%">Wrapper for search results.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethod.html">ShipMethod</a></td>
+              <td class="jd-descrcol" width="100%">Method of shipment of sold or purchased goods.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethods.html">ShipMethods</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Ship Methods
+ 
+ <p>Java class for ShipMethods complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomField.html">StringTypeCustomField</a></td>
+              <td class="jd-descrcol" width="100%">If StringTypeCustomFieldDefinition is defined, the StringTypeCustomField specifies the strongly typed field value 
+ 
+ <p>Java class for StringTypeCustomField complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomFieldDefinition.html">StringTypeCustomFieldDefinition</a></td>
+              <td class="jd-descrcol" width="100%">Specifies the strongly typed version of StringTypeCustomFieldDefinition 
+ 
+ <p>Java class for StringTypeCustomFieldDefinition complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxLine.html">TaxLine</a></td>
+              <td class="jd-descrcol" width="100%">A service or product sold, along with quantity, price, and other descriptive information
+ 
+ <p>Java class for TaxLine complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxPayment.html">TaxPayment</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of Tax Payment transactions specific to Payroll
+ 
+ <p>Java class for TaxPayment complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a></td>
+              <td class="jd-descrcol" width="100%">TelephoneNumberType definition, this object is always manipulated in context of another parent object like Person, Organization etc 
+ 
+ <p>Java class for TelephoneNumber complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivities.html">TimeActivities</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Time Activities
+ 
+ <p>Java class for TimeActivities complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivity.html">TimeActivity</a></td>
+              <td class="jd-descrcol" width="100%">A record of time worked by a vendor or employee.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.html">TxnGeneric</a></td>
+              <td class="jd-descrcol" width="100%">A type of the object return in the response to the Generic Transaction Query.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.Header.html">TxnGeneric.Header</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGenerics.html">TxnGenerics</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of generic transactions (TxnGeneric)
+ 
+ <p>Java class for TxnGenerics complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnRef.html">TxnRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TxnRef complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOM.html">UOM</a></td>
+              <td class="jd-descrcol" width="100%">The UOM type defines the data used to represent a set of equivalent units and the conversion rates to other related units.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMConvUnit.html">UOMConvUnit</a></td>
+              <td class="jd-descrcol" width="100%">Related UOM
+ 
+ <p>Java class for UOMConvUnit complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMs.html">UOMs</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of UOMs
+ 
+ <p>Java class for UOMs complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ValueAdj.html">ValueAdj</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ValueAdj complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendor.html">Vendor</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a Vendor Role view 
+ 
+ <p>Java class for Vendor complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredit.html">VendorCredit</a></td>
+              <td class="jd-descrcol" width="100%">VendorCredit is an AP transaction representing a credit from a third party for returned goods or services not rendered.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditHeader.html">VendorCreditHeader</a></td>
+              <td class="jd-descrcol" width="100%">Financial Transaction information that pertains to the entire VendorCredit.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditLine.html">VendorCreditLine</a></td>
+              <td class="jd-descrcol" width="100%">Information about a specific good or services returned for which credit is received.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredits.html">VendorCredits</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of VendorCredits
+ 
+ <p>Java class for VendorCredits complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditsToApply.html">VendorCreditsToApply</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of VendorCreditsToApply
+ 
+ <p>Java class for VendorCreditsToApply complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditToApply.html">VendorCreditToApply</a></td>
+              <td class="jd-descrcol" width="100%">A type of the object return in the response to the Vendor Credit to Apply Query.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorRef.html">VendorRef</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for VendorRef complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendors.html">Vendors</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition that allows bulk data transfer of Vendors
+ 
+ <p>Java class for Vendors complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a></td>
+              <td class="jd-descrcol" width="100%">Describes the website address, this object is always manipulated in context of another parent object like Person, Organization etc 
+ 
+ <p>Java class for WebSiteAddress complex type.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+    <h2>Enums</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountSubtypeEnum.html">AccountSubtypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for AccountSubtypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountTypeEnum.html">AccountTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for AccountTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillableStatusEnum.html">BillableStatusEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for BillableStatusEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CauseEnum.html">CauseEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CauseEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCSecurityCodeMatchEnum.html">CCSecurityCodeMatchEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CCSecurityCodeMatchEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnModeEnum.html">CCTxnModeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CCTxnModeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnTypeEnum.html">CCTxnTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CCTxnTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardTypeEnum.html">CreditCardTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for CreditCardTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CurrencyCode.html">CurrencyCode</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for currencyCode.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddressLabelType.html">EmailAddressLabelType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for EmailAddressLabelType.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeTypeEnum.html">EmployeeTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for EmployeeTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EntityTypeEnum.html">EntityTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for EntityTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ErrorCodeEnum.html">ErrorCodeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ErrorCodeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateStatusEnum.html">EstimateStatusEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for EstimateStatusEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for gender.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdDomainEnum.html">IdDomainEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for idDomainEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemTypeEnum.html">ItemTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ItemTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobStatusEnum.html">JobStatusEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for JobStatusEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OfferingId.html">OfferingId</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for offeringId.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for partyType.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethodEnum.html">PaymentMethodEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PaymentMethodEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentStatusEnum.html">PaymentStatusEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PaymentStatusEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollSubscriptionTerminationReasonEnum.html">PayrollSubscriptionTerminationReasonEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PayrollSubscriptionTerminationReasonEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaySalesTaxEnum.html">PaySalesTaxEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PaySalesTaxEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddressLabelType.html">PhysicalAddressLabelType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PhysicalAddressLabelType.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PostingTypeEnum.html">PostingTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for PostingTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountDetailTypeEnum.html">QboAccountDetailTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboAccountDetailTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnum.html">QboAccountTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboAccountTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboEstimateStatusEnum.html">QboEstimateStatusEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboEstimateStatusEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportsEnum.html">QboListReportsEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for QboListReportsEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableTypeEnum.html">ReimbursableTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for ReimbursableTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleType.html">RoleType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for roleType.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRepTypeEnum.html">SalesRepTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for SalesRepTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTermTypeEnum.html">SalesTermTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for SalesTermTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SeatType.html">SeatType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for seatType.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Status.html">Status</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Status.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormEnum.html">TaxFormEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TaxFormEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormTypeEnum.html">TaxFormTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TaxFormTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneDevice.html">TelephoneDevice</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TelephoneDevice.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumberLabelType.html">TelephoneNumberLabelType</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TelephoneNumberLabelType.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivityTypeEnum.html">TimeActivityTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TimeActivityTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnTypeEnum.html">TxnTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for TxnTypeEnum.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMBaseTypeEnum.html">UOMBaseTypeEnum</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for UOMBaseTypeEnum.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+
+
+  
+
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div><!-- end jd-content -->
+</div><!-- doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

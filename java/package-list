@@ -1,0 +1,8 @@
+org.mule.modules.quickbooks
+org.mule.modules.quickbooks.api
+org.mule.modules.quickbooks.api.Exception
+org.mule.modules.quickbooks.config
+org.mule.modules.quickbooks.config.spring
+org.mule.modules.quickbooks.schema
+org.mule.modules.quickbooks.utils
+

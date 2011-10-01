@@ -1,0 +1,5311 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for QuickBooks Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  RoleBase
+
+
+| QuickBooks Cloud Connector
+
+</title>
+<link href="../../../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../assets/");
+</script>
+<script src="../../../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">QuickBooks Cloud Connector</span>
+    
+    <ul id="header-tabs" class="">
+    	<li id="guide"><a href="../../../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../../../../../../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../../../../../../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links"><nobr>
+                <a href="../../../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../../../java/classes.html" >Class Index</a></nobr>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/package-summary.html">org.mule.modules.quickbooks</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/api/package-summary.html">org.mule.modules.quickbooks.api</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/api/Exception/package-summary.html">org.mule.modules.quickbooks.api.Exception</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/config/package-summary.html">org.mule.modules.quickbooks.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/config/spring/package-summary.html">org.mule.modules.quickbooks.config.spring</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/schema/package-summary.html">org.mule.modules.quickbooks.schema</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/quickbooks/utils/package-summary.html">org.mule.modules.quickbooks.utils</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+              
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Account.html">Account</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountRef.html">AccountRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Accounts.html">Accounts</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bill.html">Bill</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillHeader.html">BillHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillLine.html">BillLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayment.html">BillPayment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentHeader.html">BillPaymentHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPaymentLine.html">BillPaymentLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillPayments.html">BillPayments</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Bills.html">Bills</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BOMComponent.html">BOMComponent</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomField.html">BooleanTypeCustomField</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BooleanTypeCustomFieldDefinition.html">BooleanTypeCustomFieldDefinition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPayment.html">CashPayment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchase.html">CashPurchase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseHeader.html">CashPurchaseHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchaseLine.html">CashPurchaseLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CashPurchases.html">CashPurchases</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmBase.html">CdmBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmCollections.html">CdmCollections</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmComplexBase.html">CdmComplexBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charge.html">Charge</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeHeader.html">ChargeHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ChargeLine.html">ChargeLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Charges.html">Charges</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Check.html">Check</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckHeader.html">CheckHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckLine.html">CheckLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CheckPayment.html">CheckPayment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Checks.html">Checks</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Class.html">Class</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Classes.html">Classes</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompaniesMetaData.html">CompaniesMetaData</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyMetaData.html">CompanyMetaData</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CompanyPreferences.html">CompanyPreferences</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharge.html">CreditCardCharge</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeHeader.html">CreditCardChargeHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardChargeLine.html">CreditCardChargeLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCharges.html">CreditCardCharges</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredit.html">CreditCardCredit</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditHeader.html">CreditCardCreditHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCreditLine.html">CreditCardCreditLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardCredits.html">CreditCardCredits</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardPayment.html">CreditCardPayment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeInfo.html">CreditChargeInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditChargeResponse.html">CreditChargeResponse</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemo.html">CreditMemo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoHeader.html">CreditMemoHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemoLine.html">CreditMemoLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditMemos.html">CreditMemos</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customer.html">Customer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomerRef.html">CustomerRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customers.html">Customers</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinition.html">CustomFieldDefinition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomFieldDefinitions.html">CustomFieldDefinitions</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomField.html">DateTypeCustomField</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/DateTypeCustomFieldDefinition.html">DateTypeCustomFieldDefinition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discount.html">Discount</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Discounts.html">Discounts</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employee.html">Employee</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeRef.html">EmployeeRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employees.html">Employees</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimate.html">Estimate</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateHeader.html">EstimateHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateLine.html">EstimateLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Estimates.html">Estimates</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ExternalKey.html">ExternalKey</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/FaultInfo.html">FaultInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderBase.html">HeaderBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderPurchase.html">HeaderPurchase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/HeaderSales.html">HeaderSales</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustment.html">InventoryAdjustment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentHeader.html">InventoryAdjustmentHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustmentLine.html">InventoryAdjustmentLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InventoryAdjustments.html">InventoryAdjustments</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoice.html">Invoice</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceHeader.html">InvoiceHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/InvoiceLine.html">InvoiceLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Invoices.html">Invoices</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Item.html">Item</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemGroupComponent.html">ItemGroupComponent</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipt.html">ItemReceipt</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptHeader.html">ItemReceiptHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceiptLine.html">ItemReceiptLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemReceipts.html">ItemReceipts</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Items.html">Items</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Job.html">Job</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobInfo.html">JobInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Jobs.html">Jobs</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntries.html">JournalEntries</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntry.html">JournalEntry</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryHeader.html">JournalEntryHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JournalEntryLine.html">JournalEntryLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Label.html">Label</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineBase.html">LineBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LinePurchase.html">LinePurchase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/LineSales.html">LineSales</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Money.html">Money</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NameValue.html">NameValue</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomField.html">NumberTypeCustomField</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/NumberTypeCustomFieldDefinition.html">NumberTypeCustomFieldDefinition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ObjectFactory.html">ObjectFactory</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Offering.html">Offering</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organization.html">Organization</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Organizations.html">Organizations</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OtherNameRef.html">OtherNameRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Parties.html">Parties</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Party.html">Party</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payment.html">Payment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentDetail.html">PaymentDetail</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentHeader.html">PaymentHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentLine.html">PaymentLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethod.html">PaymentMethod</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethods.html">PaymentMethods</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Payments.html">Payments</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollAdjustment.html">PayrollAdjustment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCheck.html">PayrollCheck</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollCompany.html">PayrollCompany</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollDateRange.html">PayrollDateRange</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployee.html">PayrollEmployee</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployeeTimeTrackingInfo.html">PayrollEmployeeTimeTrackingInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollRefund.html">PayrollRefund</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTerminationInfo.html">PayrollTerminationInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnBase.html">PayrollTxnBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnHeader.html">PayrollTxnHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollTxnLine.html">PayrollTxnLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Person.html">Person</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Persons.html">Persons</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Preferences.html">Preferences</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrder.html">PurchaseOrder</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderHeader.html">PurchaseOrderHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrderLine.html">PurchaseOrderLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PurchaseOrders.html">PurchaseOrders</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnums.html">QboAccountTypeEnums</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountValidationInfo.html">QboAccountValidationInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.html">QboBalanceSheetReportResponse</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.html">QboBalanceSheetReportResponse.Assets</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.Assets.CurrentAssets.html">QboBalanceSheetReportResponse.Assets.CurrentAssets</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities.html">QboBalanceSheetReportResponse.LiabilitiesAndEquity.Liabilities.CurrentLiabilities</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboBulkResult.html">QboBulkResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompany.html">QboCompany</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboCompanyReport.html">QboCompanyReport</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportRequest.html">QboListReportRequest</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.html">QboListReportResponse</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportResponse.ReportRow.html">QboListReportResponse.ReportRow</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUser.html">QboUser</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboUserCompanyMapping.html">QboUserCompanyMapping</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QtyAdj.html">QtyAdj</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableInfo.html">ReimbursableInfo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReportAccount.html">ReportAccount</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleBase.html">RoleBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrder.html">SalesOrder</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderHeader.html">SalesOrderHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrderLine.html">SalesOrderLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesOrders.html">SalesOrders</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipt.html">SalesReceipt</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptHeader.html">SalesReceiptHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceiptLine.html">SalesReceiptLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReceipts.html">SalesReceipts</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRep.html">SalesRep</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesReps.html">SalesReps</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTax.html">SalesTax</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCode.html">SalesTaxCode</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxCodes.html">SalesTaxCodes</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxes.html">SalesTaxes</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroup.html">SalesTaxGroup</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxGroups.html">SalesTaxGroups</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheck.html">SalesTaxPaymentCheck</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckHeader.html">SalesTaxPaymentCheckHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentCheckLine.html">SalesTaxPaymentCheckLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxPaymentChecks.html">SalesTaxPaymentChecks</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTaxRef.html">SalesTaxRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerm.html">SalesTerm</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTerms.html">SalesTerms</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SearchResults.html">SearchResults</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethod.html">ShipMethod</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ShipMethods.html">ShipMethods</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomField.html">StringTypeCustomField</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/StringTypeCustomFieldDefinition.html">StringTypeCustomFieldDefinition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxLine.html">TaxLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxPayment.html">TaxPayment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivities.html">TimeActivities</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivity.html">TimeActivity</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.html">TxnGeneric</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGeneric.Header.html">TxnGeneric.Header</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnGenerics.html">TxnGenerics</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnRef.html">TxnRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOM.html">UOM</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMConvUnit.html">UOMConvUnit</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMs.html">UOMs</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ValueAdj.html">ValueAdj</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendor.html">Vendor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredit.html">VendorCredit</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditHeader.html">VendorCreditHeader</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditLine.html">VendorCreditLine</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCredits.html">VendorCredits</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditsToApply.html">VendorCreditsToApply</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorCreditToApply.html">VendorCreditToApply</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/VendorRef.html">VendorRef</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendors.html">Vendors</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a></li>
+      </ul>
+    </li>
+              
+              
+    <li><h2>Enums</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountSubtypeEnum.html">AccountSubtypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/AccountTypeEnum.html">AccountTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/BillableStatusEnum.html">BillableStatusEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CauseEnum.html">CauseEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCSecurityCodeMatchEnum.html">CCSecurityCodeMatchEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnModeEnum.html">CCTxnModeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CCTxnTypeEnum.html">CCTxnTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CreditCardTypeEnum.html">CreditCardTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CurrencyCode.html">CurrencyCode</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddressLabelType.html">EmailAddressLabelType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmployeeTypeEnum.html">EmployeeTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EntityTypeEnum.html">EntityTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ErrorCodeEnum.html">ErrorCodeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EstimateStatusEnum.html">EstimateStatusEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdDomainEnum.html">IdDomainEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ItemTypeEnum.html">ItemTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/JobStatusEnum.html">JobStatusEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/OfferingId.html">OfferingId</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentMethodEnum.html">PaymentMethodEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaymentStatusEnum.html">PaymentStatusEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollSubscriptionTerminationReasonEnum.html">PayrollSubscriptionTerminationReasonEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PaySalesTaxEnum.html">PaySalesTaxEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddressLabelType.html">PhysicalAddressLabelType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PostingTypeEnum.html">PostingTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountDetailTypeEnum.html">QboAccountDetailTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboAccountTypeEnum.html">QboAccountTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboEstimateStatusEnum.html">QboEstimateStatusEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/QboListReportsEnum.html">QboListReportsEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/ReimbursableTypeEnum.html">ReimbursableTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/RoleType.html">RoleType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesRepTypeEnum.html">SalesRepTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SalesTermTypeEnum.html">SalesTermTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/SeatType.html">SeatType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Status.html">Status</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormEnum.html">TaxFormEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TaxFormTypeEnum.html">TaxFormTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneDevice.html">TelephoneDevice</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumberLabelType.html">TelephoneNumberLabelType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TimeActivityTypeEnum.html">TimeActivityTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TxnTypeEnum.html">TxnTypeEnum</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/UOMBaseTypeEnum.html">UOMBaseTypeEnum</a></li>
+      </ul>
+    </li>
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links"><nobr>
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a></nobr>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+   
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+
+
+  <a href="#lfields">Fields</a>
+  
+
+
+  &#124; <a href="#inhfields">Inherited Fields</a>
+  
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1>RoleBase</h1>
+
+
+
+  
+  
+  
+
+  
+    extends <a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmBase.html">CdmBase</a><br/>
+  
+  
+  
+
+  
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+        
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">java.lang.Object</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CdmBase.html">org.mule.modules.quickbooks.schema.CdmBase</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.modules.quickbooks.schema.RoleBase</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
+          ><img id="subclasses-direct-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
+
+  <div id="subclasses-direct">
+      <div id="subclasses-direct-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customer.html">Customer</a>,
+            
+              <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employee.html">Employee</a>,
+            
+              <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendor.html">Vendor</a>
+            
+          
+      </div>
+      <div id="subclasses-direct-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Customer.html">Customer</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a Customer Role view 
+ 
+ <p>Java class for Customer complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Employee.html">Employee</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a EmployeeWorker Role view 
+ 
+ <p>Java class for Employee complex type.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Vendor.html">Vendor</a></td>
+              <td class="jd-descrcol" width="100%">Describes the Party as a Vendor Role view 
+ 
+ <p>Java class for Vendor complex type.&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
+
+
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-indirect" class="jd-expando-trigger closed"
+          ><img id="subclasses-indirect-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>Known Indirect Subclasses
+
+  <div id="subclasses-indirect">
+      <div id="subclasses-indirect-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Job.html">Job</a>,
+            
+              <a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployee.html">PayrollEmployee</a>
+            
+          
+      </div>
+      <div id="subclasses-indirect-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Job.html">Job</a></td>
+              <td class="jd-descrcol" width="100%"><p>Java class for Job complex type.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PayrollEmployee.html">PayrollEmployee</a></td>
+              <td class="jd-descrcol" width="100%">Provides the definition of payroll employee information
+ 
+ <p>Java class for PayrollEmployee complex type.&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p>Describes Role of a Party, Generally the role can be Customer, Vendor, EmployeeWorker 
+ 
+ <p>Java class for RoleBase complex type.
+ 
+ <p>The following schema fragment specifies the expected content contained within this class.
+ 
+ <pre>
+ &lt;complexType name="RoleBase">
+   &lt;complexContent>
+     &lt;extension base="{http://www.intuit.com/sb/cdm/v2}CdmBase">
+       &lt;sequence>
+         &lt;element name="PartyReferenceId" type="{http://www.intuit.com/sb/cdm/v2}IdType" minOccurs="0"/>
+         &lt;group ref="{http://www.intuit.com/sb/cdm/v2}PartyGroup"/>
+         &lt;group ref="{http://www.intuit.com/sb/cdm/v2}PersonGroup"/>
+         &lt;group ref="{http://www.intuit.com/sb/cdm/v2}OrganizationGroup"/>
+         &lt;element name="TaxIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="Notes" type="{http://www.intuit.com/sb/cdm/v2}Note" maxOccurs="unbounded" minOccurs="0"/>
+         &lt;element name="CustomField" type="{http://www.intuit.com/sb/cdm/v2}CustomField" maxOccurs="unbounded" minOccurs="0"/>
+       &lt;/sequence>
+     &lt;/extension>
+   &lt;/complexContent>
+ &lt;/complexType>
+ </pre>
+ 
+ 
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#address">address</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          XMLGregorianCalendar</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#birthDate">birthDate</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#category">category</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#customField">customField</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#dbaName">dbaName</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#email">email</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#externalId">externalId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#familyName">familyName</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#gender">gender</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#givenName">givenName</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#industry">industry</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#legalName">legalName</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#legalStructure">legalStructure</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#middleName">middleName</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#name">name</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#nonProfit">nonProfit</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#notes">notes</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#orgId">orgId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#partyReferenceId">partyReferenceId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#phone">phone</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#suffix">suffix</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#taxIdentifier">taxIdentifier</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#title">title</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#typeOf">typeOf</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#userId">userId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#webSite">webSite</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
+</table>
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="inhfields" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Fields</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.modules.quickbooks.schema.CdmBase" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.modules.quickbooks.schema.CdmBase-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html">org.mule.modules.quickbooks.schema.CdmBase</a>
+<div id="inherited-fields-org.mule.modules.quickbooks.schema.CdmBase">
+  <div id="inherited-fields-org.mule.modules.quickbooks.schema.CdmBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-org.mule.modules.quickbooks.schema.CdmBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#_synchronized">_synchronized</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/NameValue.html">NameValue</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#alternateId">alternateId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#externalKey">externalKey</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#id">id</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#metaData">metaData</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#syncToken">syncToken</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+</table>
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#RoleBase()">RoleBase</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getAddress()">getAddress</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the address property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            XMLGregorianCalendar</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getBirthDate()">getBirthDate</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the birthDate property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getCategory()">getCategory</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the category property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getCustomField()">getCustomField</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the customField property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getDBAName()">getDBAName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the dbaName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getEmail()">getEmail</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the email property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getExternalId()">getExternalId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the externalId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getFamilyName()">getFamilyName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the familyName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getGender()">getGender</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the gender property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getGivenName()">getGivenName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the givenName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getIndustry()">getIndustry</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the industry property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getLegalName()">getLegalName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the legalName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getLegalStructure()">getLegalStructure</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the legalStructure property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getMiddleName()">getMiddleName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the middleName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getName()">getName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the name property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getNotes()">getNotes</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the notes property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getOrgId()">getOrgId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the orgId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getPartyReferenceId()">getPartyReferenceId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the partyReferenceId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getPhone()">getPhone</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the phone property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getSuffix()">getSuffix</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the suffix property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getTaxIdentifier()">getTaxIdentifier</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the taxIdentifier property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getTitle()">getTitle</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the title property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getTypeOf()">getTypeOf</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the typeOf property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getUserId()">getUserId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the userId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#getWebSite()">getWebSite</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the webSite property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#isNonProfit()">isNonProfit</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the nonProfit property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setBirthDate(javax.xml.datatype.XMLGregorianCalendar)">setBirthDate</a></span>(XMLGregorianCalendar value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the birthDate property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setCategory(java.lang.String)">setCategory</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the category property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setDBAName(java.lang.String)">setDBAName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the dbaName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setExternalId(java.lang.String)">setExternalId</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the externalId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setFamilyName(java.lang.String)">setFamilyName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the familyName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setGender(org.mule.modules.quickbooks.schema.Gender)">setGender</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the gender property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setGivenName(java.lang.String)">setGivenName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the givenName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setIndustry(java.lang.String)">setIndustry</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the industry property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setLegalName(java.lang.String)">setLegalName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the legalName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setLegalStructure(java.lang.String)">setLegalStructure</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the legalStructure property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setMiddleName(java.lang.String)">setMiddleName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the middleName property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setName(java.lang.String)">setName</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the name property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setNonProfit(java.lang.Boolean)">setNonProfit</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the nonProfit property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setOrgId(java.lang.String)">setOrgId</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the orgId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setPartyReferenceId(org.mule.modules.quickbooks.schema.IdType)">setPartyReferenceId</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the partyReferenceId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setSuffix(java.lang.String)">setSuffix</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the suffix property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setTaxIdentifier(java.lang.String)">setTaxIdentifier</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the taxIdentifier property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setTitle(java.lang.String)">setTitle</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the title property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setTypeOf(org.mule.modules.quickbooks.schema.PartyType)">setTypeOf</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the typeOf property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/RoleBase.html#setUserId(java.lang.String)">setUserId</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the userId property.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.modules.quickbooks.schema.CdmBase" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.modules.quickbooks.schema.CdmBase-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html">org.mule.modules.quickbooks.schema.CdmBase</a>
+
+<div id="inherited-methods-org.mule.modules.quickbooks.schema.CdmBase">
+  <div id="inherited-methods-org.mule.modules.quickbooks.schema.CdmBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.modules.quickbooks.schema.CdmBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/NameValue.html">NameValue</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#getAlternateId()">getAlternateId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the alternateId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#getExternalKey()">getExternalKey</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the externalKey property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#getId()">getId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the id property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#getMetaData()">getMetaData</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the metaData property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#getSyncToken()">getSyncToken</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the syncToken property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#isSynchronized()">isSynchronized</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the synchronized property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#setExternalKey(org.mule.modules.quickbooks.schema.IdType)">setExternalKey</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the externalKey property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#setId(org.mule.modules.quickbooks.schema.IdType)">setId</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the id property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#setMetaData(org.mule.modules.quickbooks.schema.ModificationMetaData)">setMetaData</a></span>(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/ModificationMetaData.html">ModificationMetaData</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the metaData property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#setSyncToken(java.lang.String)">setSyncToken</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the syncToken property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/schema/CdmBase.html#setSynchronized(java.lang.Boolean)">setSynchronized</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the synchronized property.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">java.lang.Object</a>
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">Object</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">Object</a> arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Class.html">Class</a>&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="address"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a>&gt;
+      </span>
+        address
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="birthDate"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        XMLGregorianCalendar
+      </span>
+        birthDate
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="category"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        category
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="customField"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a>&gt;
+      </span>
+        customField
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="dbaName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        dbaName
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="email"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a>&gt;
+      </span>
+        email
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="externalId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        externalId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="familyName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        familyName
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="gender"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a>
+      </span>
+        gender
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="givenName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        givenName
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="industry"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        industry
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="legalName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        legalName
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="legalStructure"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        legalStructure
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="middleName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        middleName
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="name"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        name
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="nonProfit"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a>
+      </span>
+        nonProfit
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="notes"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a>&gt;
+      </span>
+        notes
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="orgId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        orgId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="partyReferenceId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a>
+      </span>
+        partyReferenceId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="phone"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a>&gt;
+      </span>
+        phone
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="suffix"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        suffix
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="taxIdentifier"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        taxIdentifier
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="title"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        title
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="typeOf"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a>
+      </span>
+        typeOf
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="userId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+        userId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="webSite"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a>&gt;
+      </span>
+        webSite
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="RoleBase()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">RoleBase</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="getAddress()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a>&gt;
+      </span>
+      <span class="sympad">getAddress</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the address property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the address property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getAddress().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PhysicalAddress.html">PhysicalAddress</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getBirthDate()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        XMLGregorianCalendar
+      </span>
+      <span class="sympad">getBirthDate</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the birthDate property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     XMLGregorianCalendar
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getCategory()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getCategory</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the category property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getCustomField()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a>&gt;
+      </span>
+      <span class="sympad">getCustomField</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the customField property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the customField property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getCustomField().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/CustomField.html">CustomField</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getDBAName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getDBAName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the dbaName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getEmail()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a>&gt;
+      </span>
+      <span class="sympad">getEmail</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the email property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the email property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getEmail().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/EmailAddress.html">EmailAddress</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getExternalId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getExternalId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the externalId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFamilyName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getFamilyName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the familyName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getGender()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a>
+      </span>
+      <span class="sympad">getGender</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the gender property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getGivenName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getGivenName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the givenName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getIndustry()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getIndustry</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the industry property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getLegalName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getLegalName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the legalName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getLegalStructure()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getLegalStructure</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the legalStructure property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getMiddleName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getMiddleName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the middleName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the name property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getNotes()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a>&gt;
+      </span>
+      <span class="sympad">getNotes</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the notes property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the notes property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getNotes().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Note.html">Note</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getOrgId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getOrgId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the orgId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getPartyReferenceId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a>
+      </span>
+      <span class="sympad">getPartyReferenceId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the partyReferenceId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getPhone()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a>&gt;
+      </span>
+      <span class="sympad">getPhone</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the phone property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the phone property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getPhone().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/TelephoneNumber.html">TelephoneNumber</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getSuffix()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getSuffix</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the suffix property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTaxIdentifier()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getTaxIdentifier</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the taxIdentifier property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTitle()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getTitle</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the title property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTypeOf()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a>
+      </span>
+      <span class="sympad">getTypeOf</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the typeOf property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getUserId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">getUserId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the userId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getWebSite()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/List.html">List</a>&lt;<a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a>&gt;
+      </span>
+      <span class="sympad">getWebSite</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the webSite property.
+ 
+ <p>
+ This accessor method returns a reference to the live list,
+ not a snapshot. Therefore any modification you make to the
+ returned list will be present inside the JAXB object.
+ This is why there is not a <CODE>set</CODE> method for the webSite property.
+ 
+ <p>
+ For example, to add a new item, do as follows:
+ <pre>
+    getWebSite().add(newItem);
+ </pre>
+ 
+ 
+ <p>
+ Objects of the following type(s) are allowed in the list
+ <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/WebSiteAddress.html">WebSiteAddress</a></code>
+ 
+ 
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="isNonProfit()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a>
+      </span>
+      <span class="sympad">isNonProfit</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the nonProfit property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setBirthDate(javax.xml.datatype.XMLGregorianCalendar)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setBirthDate</span>
+      <span class="normal">(XMLGregorianCalendar value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the birthDate property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     XMLGregorianCalendar
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setCategory(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setCategory</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the category property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setDBAName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDBAName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the dbaName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setExternalId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setExternalId</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the externalId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setFamilyName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFamilyName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the familyName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setGender(org.mule.modules.quickbooks.schema.Gender)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setGender</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the gender property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/Gender.html">Gender</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setGivenName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setGivenName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the givenName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setIndustry(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setIndustry</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the industry property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setLegalName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setLegalName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the legalName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setLegalStructure(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setLegalStructure</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the legalStructure property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setMiddleName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMiddleName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the middleName property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setName</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the name property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setNonProfit(java.lang.Boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setNonProfit</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the nonProfit property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Boolean.html">Boolean</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setOrgId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setOrgId</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the orgId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setPartyReferenceId(org.mule.modules.quickbooks.schema.IdType)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPartyReferenceId</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the partyReferenceId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/IdType.html">IdType</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setSuffix(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setSuffix</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the suffix property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTaxIdentifier(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTaxIdentifier</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the taxIdentifier property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTitle(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTitle</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the title property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTypeOf(org.mule.modules.quickbooks.schema.PartyType)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTypeOf</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the typeOf property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="../../../../../../java/org/mule/modules/quickbooks/schema/PartyType.html">PartyType</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setUserId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setUserId</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the userId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>allowed object is
+     <code><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></code>
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>
