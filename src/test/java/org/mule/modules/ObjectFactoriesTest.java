@@ -9,12 +9,12 @@
  */
 
 
-	
-	/*
-	 * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
-	 */
-	
-	package org.mule.modules;
+
+/*
+ * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
+ */
+
+package org.mule.modules;
 
 import static org.junit.Assert.*;
 
@@ -36,8 +36,8 @@ import org.mule.modules.quickbooks.utils.ObjectFactories;
 import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
 
-	
-	/**
+
+/**
  *   
  * 
  * 
@@ -103,4 +103,3 @@ public class ObjectFactoriesTest
     }
 }
 
-	

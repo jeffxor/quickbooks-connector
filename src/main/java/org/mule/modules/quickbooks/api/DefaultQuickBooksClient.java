@@ -20,7 +20,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.mule.modules.quickbooks.EntityType;
-import org.mule.modules.quickbooks.api.Exception.QuickBooksException;
+import org.mule.modules.quickbooks.api.Exception.QuickBooksRuntimeException;
 import org.mule.modules.quickbooks.schema.CdmBase;
 import org.mule.modules.quickbooks.schema.FaultInfo;
 import org.mule.modules.quickbooks.schema.IdType;
@@ -70,7 +70,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         this.secrets = new OAuthSecrets().consumerSecret(consumerSecret);
     }
     
-    /** @throws QuickBooksException 
+    /** @throws QuickBooksRuntimeException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
     @Override
     public <T extends CdmBase> T create(final EntityType type, T obj, final String accessKey, final String accessSecret)
@@ -93,12 +93,12 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         catch (final UniformInterfaceException e)
         {
             final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-            throw new QuickBooksException(fault);
+            throw new QuickBooksRuntimeException(fault);
         }
 
     }
 
-    /** @throws QuickBooksException 
+    /** @throws QuickBooksRuntimeException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#getObject() */
     @Override
     public <T extends CdmBase> T getObject(final EntityType type, final IdType id, final String accessKey, final String accessSecret)
@@ -121,11 +121,11 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         catch (final UniformInterfaceException e)
         {
             final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-            throw new QuickBooksException(fault);
+            throw new QuickBooksRuntimeException(fault);
         }
     }
 
-    /** @throws QuickBooksException 
+    /** @throws QuickBooksRuntimeException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#update(java.lang.String) */
     @Override
     public <T extends CdmBase> T update(final EntityType type, T obj, final String accessKey, final String accessSecret)
@@ -152,12 +152,12 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         catch (final UniformInterfaceException e)
         {
             final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-            throw new QuickBooksException(fault);
+            throw new QuickBooksRuntimeException(fault);
         }
 
     }
 
-    /** @throws QuickBooksException 
+    /** @throws QuickBooksRuntimeException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#deleteObject(java.lang.Object) */
     @Override
     public <T extends CdmBase> void deleteObject(final EntityType type, final IdType id, String syncToken,
@@ -181,7 +181,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         
         try
         {
-            T response = getGateWay(accessKey, accessSecret).path(str)
+            getGateWay(accessKey, accessSecret).path(str)
                 .queryParam("methodx", "delete")
                 .type(MediaType.APPLICATION_XML)
                 .post(type.<T>getType(), ObjectFactories.createJaxbElement(obj, objectFactory));
@@ -189,7 +189,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         catch (final UniformInterfaceException e)
         {
             final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-            throw new QuickBooksException(fault);
+            throw new QuickBooksRuntimeException(fault);
         }
 
     }
@@ -274,7 +274,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                     catch (final UniformInterfaceException e)
                     {
                         final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-                        throw new QuickBooksException(fault);
+                        throw new QuickBooksRuntimeException(fault);
                     }
                 }
             };
@@ -297,7 +297,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
-        if(baseUri == null)
+        if (baseUri == null)
         {
             OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
                 params.token(accessKey), secrets.tokenSecret(accessSecret));
@@ -317,7 +317,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             catch (final UniformInterfaceException e)
             {
                 final FaultInfo fault = e.getResponse().getEntity(FaultInfo.class);
-                throw new QuickBooksException(fault);
+                throw new QuickBooksRuntimeException(fault);
             }
         }
 

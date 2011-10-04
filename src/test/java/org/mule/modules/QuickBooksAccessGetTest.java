@@ -9,9 +9,9 @@
  */
 
 
-	/*
-	 * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
-	 */
+/*
+ * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
+ */
 
 package org.mule.modules;
 
@@ -26,8 +26,6 @@ import org.mule.transport.http.HttpConnector;
 
 /**
  *   
- * 
- * 
  * @author Gaston Ponti
  * @since Sep 6, 2011
  */

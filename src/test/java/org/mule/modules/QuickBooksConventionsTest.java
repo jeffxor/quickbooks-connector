@@ -9,12 +9,12 @@
  */
 
 
+
+/*
+ * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
+*/
 	
-	/*
-	 * Copyright (c) 2011 Zauber S.A.  -- All rights reserved
-	 */
-	
-	package org.mule.modules;
+package org.mule.modules;
 
 import static org.junit.Assert.*;
 
@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.mule.modules.quickbooks.api.QuickBooksConventions;
 
 	
-	/**
+/**
  *   
  * 
  * 
@@ -41,4 +41,3 @@ public class QuickBooksConventionsTest
     }
 }
 
-	

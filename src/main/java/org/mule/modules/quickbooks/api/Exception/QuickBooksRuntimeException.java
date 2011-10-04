@@ -15,14 +15,13 @@ import org.mule.modules.quickbooks.schema.FaultInfo;
 
 
 /**
+ *   Quickbook's runtime exception.
  *   
- * 
- * 
  * @author Gaston Ponti
  * @since Aug 30, 2011
  */
 
-public class QuickBooksException extends RuntimeException
+public class QuickBooksRuntimeException extends RuntimeException
 {
     /**
      * Creates the QuickBooksException.
@@ -30,7 +29,7 @@ public class QuickBooksException extends RuntimeException
      * @param fault
      */
     
-    public QuickBooksException(final FaultInfo fault)
+    public QuickBooksRuntimeException(final FaultInfo fault)
     {
         super(ToStringBuilder.reflectionToString(fault));
     }

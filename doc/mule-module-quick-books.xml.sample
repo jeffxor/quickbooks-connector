@@ -1,0 +1,319 @@
+<!-- BEGIN_INCLUDE(quickbooks:create-account) -->
+<quickbooks:create-account name="#[map-payload:name]"
+                           desc="#[map-payload:desc]"
+                           subtype="#[map-payload:subType]"
+                           acctnum="#[map-payload:acctNum]"
+                           openingbalance="#[map-payload:openingBalance]"
+                           openingbalancedate="#[map-payload:openingBalanceDate]">
+    <quickbooks:account-parent-id ref="#[map-payload:parentId]"/>
+            
+</quickbooks:create-account>
+<!-- END_INCLUDE(quickbooks:create-account) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill) -->
+<quickbooks:create-bill >
+    <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
+</quickbooks:create-bill>
+<!-- END_INCLUDE(quickbooks:create-bill) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill-payment) -->
+<quickbooks:create-bill-payment >
+    <quickbooks:header ref="#[variable:headerbillpayment]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesbillpayment]"></quickbooks:line>
+</quickbooks:create-bill-payment>
+<!-- END_INCLUDE(quickbooks:create-bill-payment) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-cash-purchase) -->
+<quickbooks:create-cash-purchase >
+    <quickbooks:header ref="#[variable:headercashpurchase]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescashpurchase]"></quickbooks:line>
+</quickbooks:create-bill-payment>
+<!-- END_INCLUDE(quickbooks:create-cash-purchase) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-check) -->
+<quickbooks:create-check >
+    <quickbooks:header ref="#[variable:headercheck]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescheck]"></quickbooks:line>
+</quickbooks:create-check>
+<!-- END_INCLUDE(quickbooks:create-check) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-credit-card-charge) -->
+<quickbooks:create-credit-card-charge >
+    <quickbooks:header ref="#[variable:headercreditcardcharge]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescreditcardcharge]"></quickbooks:line>
+</quickbooks:create-credit-card-charge>
+<!-- END_INCLUDE(quickbooks:create-credit-card-charge) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-customer) -->
+<quickbooks:create-customer name="john doe"
+                            givenname="john"
+                            middlename="bill"
+                            familyname="doe"
+                            suffix="sr"
+                            dbaname="mint"
+                            showas="j doe"
+                            salestaxcodeid="5">
+    <quickbooks:web-site ref="#[variable:website]"></quickbooks:web-site>
+    <quickbooks:email ref="#[variable:email]"></quickbooks:email>
+    <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
+    <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+    <quickbooks:sales-term-id ref="#[variable:salestermid]"></quickbooks:sales-term-id>
+</quickbooks:create-customer>
+<!-- END_INCLUDE(quickbooks:create-customer) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-estimate) -->
+<quickbooks:create-estimate >
+    <quickbooks:header ref="#[variable:headerestimate]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesestimate]"></quickbooks:line>
+</quickbooks:create-estimate>
+<!-- END_INCLUDE(quickbooks:create-estimate) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-invoice) -->
+<quickbooks:create-invoice >
+    <quickbooks:header ref="#[variable:headerinvoice]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesinvoice]"></quickbooks:line>
+</quickbooks:create-invoice>
+<!-- END_INCLUDE(quickbooks:create-invoice) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-item) -->
+<quickbooks:create-item name="pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        itemparentname="office"
+                        purchasedesc="500 pencils purchased">
+    <quickbooks:item-parent-id ref="#[variable:itemparentid]"></quickbooks:item-parent-id>
+    <quickbooks:unit-price ref="#[variable:unitprice]"></quickbooks:unit-price>
+    <quickbooks:income-account-ref ref="#[variable:incomeaccount]"></quickbooks:income-account-ref>
+    <quickbooks:purchase-cost ref="#[variable:purchasecost]"></quickbooks:purchase-cost>
+    <quickbooks:expense-account-ref ref="#[variable:expenseaccount]"></quickbooks:expense-account-ref>    
+</quickbooks:create-item>
+<!-- END_INCLUDE(quickbooks:create-item) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-payment) -->
+<quickbooks:create-payment >
+    <quickbooks:header ref="#[variable:headerpayment]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linespayment]"></quickbooks:line>
+</quickbooks:create-payment>
+<!-- END_INCLUDE(quickbooks:create-payment) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-payment-method) -->
+<quickbooks:create-payment-method name="wire transfer"
+                                  type="credit_card" >
+</quickbooks:create-payment-method>
+<!-- END_INCLUDE(quickbooks:create-payment-method) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-sales-receipt) -->
+<quickbooks:create-sales-receipt >
+    <quickbooks:header ref="#[variable:headersalesreceipt]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linessalesreceipt]"></quickbooks:line>
+</quickbooks:create-sales-receipt>
+<!-- END_INCLUDE(quickbooks:create-sales-receipt) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-sales-term) -->
+<quickbooks:create-sales-term name="due before receipt"
+                              duedays="1"
+                              discountdays="10"
+                              discountpercent="3.2"
+                              dayofmonthdue="10"
+                              duenextmonthdays="10"
+                              discountdayofmonth="5"
+                              datediscountpercent="2.1"/>
+<!-- END_INCLUDE(quickbooks:create-sales-term) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-vendor) -->
+<quickbooks:create-vendor name="digital"
+                          givenname="john"
+                          middlename="j"
+                          familyname="doe"
+                          dbaname="digital"
+                          showas="j doe"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true">
+    <quickbooks:web-site ref="#[variable:websites]"></quickbooks:web-site>
+    <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
+    <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
+    <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+</quickbooks:create-vendor>
+<!-- END_INCLUDE(quickbooks:create-vendor) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:get-object) -->
+<quickbooks:get-object type="invoice">
+    <quickbooks:id ref="#[variable:id]"></quickbooks:id>
+</quickbooks:get-object>
+<!-- END_INCLUDE(quickbooks:get-object) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-account) -->
+<quickbooks:update-account synctoken="1"
+                           name="loan account"
+                           desc="loan account"
+                           subtype="savings"
+                           acctnum="5001"
+                           openingbalance="10000"
+                           openingbalancedate="2010-09-13t01:18:14-07:00">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:update-parent-id ref="#[variable:accountparentid]"/>
+            
+</quickbooks:update-account>
+<!-- END_INCLUDE(quickbooks:update-account) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-bill) -->
+<quickbooks:update-bill sycntoken="0">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headerbill]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesbill]"></quickbooks:line>
+</quickbooks:update-bill>
+<!-- END_INCLUDE(quickbooks:update-bill) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-bill-payment) -->
+<quickbooks:update-bill-payment synctoken="0">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headerbillpayment]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesbillpayment]"></quickbooks:line>
+</quickbooks:update-bill-payment>
+<!-- END_INCLUDE(quickbooks:update-bill-payment) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-cash-purchase) -->
+<quickbooks:update-cash-purchase synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headercashpurchase]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescashpurchase]"></quickbooks:line>
+</quickbooks:update-cash-purchase>
+<!-- END_INCLUDE(quickbooks:update-cash-purchase) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-check) -->
+<quickbooks:update-check synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+    <quickbooks:header ref="#[variable:headercheck]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescheck]"></quickbooks:line>
+</quickbooks:update-check>
+<!-- END_INCLUDE(quickbooks:update-check) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-credit-card-charge) -->
+<quickbooks:update-credit-card-charge synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headercreditcardcharge]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linescreditcardcharge]"></quickbooks:line>
+</quickbooks:update-credit-card-charge>
+<!-- END_INCLUDE(quickbooks:update-credit-card-charge) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-customer) -->
+<quickbooks:update-customer name="john doe"
+                            givenname="john"
+                            middlename="bill"
+                            familyname="doe"
+                            suffix="sr"
+                            dbaname="mint"
+                            showas="j doe"
+                            salestaxcodeid="5"
+                            synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+    <quickbooks:web-site ref="#[variable:website]"></quickbooks:web-site>
+    <quickbooks:email ref="#[variable:email]"></quickbooks:email>
+    <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
+    <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+    <quickbooks:sales-term-id ref="#[variable:salestermid]"></quickbooks:sales-term-id>
+</quickbooks:update-customer>
+<!-- END_INCLUDE(quickbooks:update-customer) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-estimate) -->
+<quickbooks:update-estimate synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+    <quickbooks:header ref="#[variable:headerestimate]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesestimate]"></quickbooks:line>
+</quickbooks:update-estimate>
+<!-- END_INCLUDE(quickbooks:update-estimate) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-invoice) -->
+<quickbooks:update-invoice synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+    <quickbooks:header ref="#[variable:headerinvoice]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linesinvoice]"></quickbooks:line>
+</quickbooks:update-invoice>
+<!-- END_INCLUDE(quickbooks:update-invoice) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-item) -->
+<quickbooks:update-item name="pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        itemparentname="office"
+                        purchasedesc="500 pencils purchased"
+                        synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+    <quickbooks:item-parent-id ref="#[variable:itemparentid]"></quickbooks:item-parent-id>
+    <quickbooks:unit-price ref="#[variable:unitprice]"></quickbooks:unit-price>
+    <quickbooks:income-account-ref ref="#[variable:incomeaccount]"></quickbooks:income-account-ref>
+    <quickbooks:purchase-cost ref="#[variable:purchasecost]"></quickbooks:purchase-cost>
+    <quickbooks:expense-account-ref ref="#[variable:expenseaccount]"></quickbooks:expense-account-ref>    
+</quickbooks:update-item>
+<!-- END_INCLUDE(quickbooks:update-item) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-payment) -->
+<quickbooks:update-payment synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headerpayment]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linespayment]"></quickbooks:line>
+</quickbooks:update-payment>
+<!-- END_INCLUDE(quickbooks:update-payment) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-payment-method) -->
+<quickbooks:update-payment-method name="wire transfer"
+                                  type="credit_card"
+                                  synctoken="1">
+    <quickbooks:id ref="#[variable:id]">
+</quickbooks:update-payment-method>
+<!-- END_INCLUDE(quickbooks:update-payment-method) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-sales-receipt) -->
+<quickbooks:update-sales-receipt synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:header ref="#[variable:headersalesreceipt]"></quickbooks:header>
+    <quickbooks:line ref="#[variable:linessalesreceipt]"></quickbooks:line>
+</quickbooks:update-sales-receipt>
+<!-- END_INCLUDE(quickbooks:update-sales-receipt) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-sales-term) -->
+<quickbooks:update-sales-term name="due before receipt"
+                              duedays="1"
+                              discountdays="10"
+                              discountpercent="3.2"
+                              dayofmonthdue="10"
+                              duenextmonthdays="10"
+                              discountdayofmonth="5"
+                              datediscountpercent="2.1"
+                              synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+</quickbooks:update-sales-term>
+<!-- END_INCLUDE(quickbooks:update-sales-term) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-vendor) -->
+<quickbooks:update-vendor name="digital"
+                          givenname="john"
+                          middlename="j"
+                          familyname="doe"
+                          dbaname="digital"
+                          showas="j doe"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true"
+                          synctoken="1">
+    <quickbooks:id ref="#[variable:id]"/>
+    <quickbooks:web-site ref="#[variable:websites]"></quickbooks:web-site>
+    <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
+    <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
+    <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+</quickbooks:update-vendor>
+<!-- END_INCLUDE(quickbooks:update-vendor) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:delete-object) -->
+<quickbooks:delete-object type="invoice" synctoken="2">
+    <quickbooks:id ref="#[variable:id]"></quickbooks:id>
+</quickbooks:delete-object>
+<!-- END_INCLUDE(quickbooks:delete-object) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:find-objects) -->
+<quickbooks:find-objects type="account"
+                         queryfilter="#[variable:queryfilterstring]"
+                         querysort="#[variable:querysortstring]"/>
+<!-- END_INCLUDE(quickbooks:find-objects) -->

@@ -40,6 +40,8 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.modules.quickbooks.api.DefaultQuickBooksClient;
 import org.mule.modules.quickbooks.api.MapBuilder;
+import org.mule.modules.quickbooks.api.QuickBooksClient;
+import org.mule.modules.quickbooks.api.Exception.QuickBooksRuntimeException;
 import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Bill;
 import org.mule.modules.quickbooks.schema.BillPayment;
@@ -56,8 +58,6 @@ import org.mule.modules.quickbooks.schema.PaymentMethod;
 import org.mule.modules.quickbooks.schema.SalesReceipt;
 import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.quickbooks.schema.Vendor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
@@ -72,23 +72,42 @@ import ar.com.zauber.commons.mom.MapObjectMapper;
        accessTokenUrl = "https://oauth.intuit.com/oauth/v1/get_access_token",
        authorizationUrl = "https://workplace.intuit.com/Connect/Begin")
 public class QuickBooksModule
-{
-    Logger logger = LoggerFactory.getLogger(QuickBooksModule.class);
-    
+{   
+    /**
+     * The realmID, also known as the Company ID, uniquely identifies the data for a company.
+     * <p>
+     * In QuickBooks Online, the Company ID  appears on the My Account page.
+     * In Data Services for QuickBooks Online, the realmID is required in the URL for most calls.
+     */
     @Configurable
     private String realmId;
     
+    /**
+     * Unique consumer key for the app.  When you create an app on My Developer Center, 
+     * Intuit generates the values for the consumer key and secret, and then displays
+     * the values on the UI of My Developer Center. You manually copy these values from
+     * the UI of My Developer Center and save them in persistent storage.
+     */
     @Configurable
     @OAuthConsumerKey
     private String consumerKey;
     
+    /**
+     * Unique consumer secret for the app.  When you create an app on My Developer Center, 
+     * Intuit generates the values for the consumer key and secret, and then displays
+     * the values on the UI of My Developer Center. You manually copy these values from
+     * the UI of My Developer Center and save them in persistent storage.
+     */
     @Configurable
     @OAuthConsumerSecret
     private String consumerSecret;
     
+    /**
+     * Quick-Books client. By default uses DefaultQuickbooksClient class.
+     */
     @Configurable
     @Optional
-    private DefaultQuickBooksClient client;
+    private QuickBooksClient client;
     
     private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
 
@@ -101,15 +120,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Account">Account Especification</a>
      * 
-     * {@code <quickbooks:create-account name="Loan Account"
-                                   desc="Loan Account"
-                                   subtype="SAVINGS"
-                                   acctNum="5001"
-                                   openingBalance="10000"
-                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
-            <quickbooks:account-parent-id ref="#[variable:parentId]"/>
-            
-        </quickbooks:create-account>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-account}
      * 
      * @param name User-recognizable name for the account. This name must be unique.
      *             When you create a company, you get some default accounts.
@@ -128,6 +139,9 @@ public class QuickBooksModule
      * @param accountParentId Optional. If the account is a subaccount, AccountParentId is used to 
      *                        store the ID of the parent account.
      * @return The created Account.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Account createAccount(@OAuthAccessToken String accessToken,
@@ -164,15 +178,15 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Bill">Bill Especification</a>
      * 
-     * {@code <quickbooks:create-bill >
-            <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
-        </quickbooks:create-bill>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill}
      *
      * @param header Information on the financial transaction of the Bill.
      * @param line Information about a specific good or service purchased for which the payment is demanded
      *             as a part of the bill. A bill can have multiple lines.
      * @return The created Bill.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Bill createBill(@OAuthAccessToken String accessToken,
@@ -199,14 +213,14 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
      * 
-     * {@code <quickbooks:create-bill-payment >
-            <quickbooks:header ref="#[variable:headerBillPayment]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesBillPayment]"></quickbooks:line>
-        </quickbooks:create-bill-payment>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill-payment}
      *
      * @param header Header information about the BillPayment.
      * @param line List of lines. Specifies the line details for the bill payment.
      * @return The created BillPayment.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public BillPayment createBillPayment(@OAuthAccessToken String accessToken,
@@ -231,15 +245,15 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
      * 
-     * {@code <quickbooks:create-cash-purchase >
-            <quickbooks:header ref="#[variable:headerCashPurchase]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCashPurchase]"></quickbooks:line>
-        </quickbooks:create-bill-payment>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-cash-purchase}
      *
      * @param header Information about the financial transaction of the entire CashPurchase.
      * @param line List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the CashPurchase.
      * @return The created CashPurchase.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public CashPurchase createCashPurchase(@OAuthAccessToken String accessToken,
@@ -264,15 +278,15 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Check">Check Especification</a>
      * 
-     * {@code <quickbooks:create-check >
-            <quickbooks:header ref="#[variable:headerCheck]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCheck]"></quickbooks:line>
-        </quickbooks:create-check>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-check}
      *
      * @param header Financial Transaction information that pertains to the entire CheckHeader.
      * @param line List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the check.
      * @return The created Check.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Check createCheck(@OAuthAccessToken String accessToken,
@@ -300,15 +314,15 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
      * 
-     * {@code <quickbooks:create-credit-card-charge >
-            <quickbooks:header ref="#[variable:headerCreditCardCharge]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCreditCardCharge]"></quickbooks:line>
-        </quickbooks:create-credit-card-charge>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-credit-card-charge}
      *
      * @param header Financial Transaction information that pertains to the entire CreditCardChargeHeader.
      * @param line List of lines. Information about a specific good or service purchased for which the 
      *             payment is demanded as a part of the CreditCardCharge purchase.
      * @return The created CreditCardCharge.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public CreditCardCharge createCreditCardCharge(@OAuthAccessToken String accessToken,
@@ -335,20 +349,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Customer">Customer Especification</a>
      * 
-     * {@code <quickbooks:create-customer name="John Doe"
-                                    givenName="John"
-                                    middleName="Bill"
-                                    familyName="Doe"
-                                    suffix="Sr"
-                                    dBAName="Mint"
-                                    showAs="J Doe"
-                                    salesTaxCodeId="5">
-            <quickbooks:web-site ref="#[variable:webSite]"></quickbooks:web-site>
-            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
-            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
-            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
-            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
-        </quickbooks:create-customer>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-customer}
      *
      * @param name Optional. Specifies the full name of the customer. If the Name is specified, then GivenName,
      *             MiddleName, and FamilyName values are ignored.
@@ -370,6 +371,9 @@ public class QuickBooksModule
      *              numbers but only one phone number is permitted for one device type.
      * @param address Optional. Specifies the physical addresses.
      * @return The created Customer.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Customer createCustomer(@OAuthAccessToken String accessToken,
@@ -423,14 +427,14 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
      * 
-     * {@code <quickbooks:create-estimate >
-            <quickbooks:header ref="#[variable:headerEstimate]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesEstimate]"></quickbooks:line>
-        </quickbooks:create-estimate>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-estimate}
      *
      * @param header Financial transaction information that pertains to the entire Estimate.
      * @param line Information about a specific good or service for which the estimate is being issued.
      * @return The created Estimate.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Estimate createEstimate(@OAuthAccessToken String accessToken,
@@ -458,14 +462,14 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
      * 
-     * {@code <quickbooks:create-invoice >
-            <quickbooks:header ref="#[variable:headerInvoice]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesInvoice]"></quickbooks:line>
-        </quickbooks:create-invoice>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-invoice}
      *
      * @param header Provides information that pertains to the entire Invoice.
      * @param line Information about a specific good or service for which the Invoice is being issued.
      * @return The created Invoice.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Invoice createInvoice(@OAuthAccessToken String accessToken,
@@ -492,18 +496,8 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Item">Item Especification</a>
      * 
-     * {@code <quickbooks:create-item name="Pencils"
-                                desc="Pencils HB"
-                                taxable="true"
-                                itemParentName="Office"
-                                purchaseDesc="500 pencils purchased">
-            <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
-            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref="#[variable:incomeAccount]"></quickbooks:income-account-ref>
-            <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref="#[variable:expenseAccount]"></quickbooks:expense-account-ref>    
-        </quickbooks:create-item>}
-     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-item}
+     *
      * @param name Optional. User recognizable name of the Item.
      * @param unitPrice Optional. Monetary values of the service or product
      * @param desc Optional. User entered description for the item to further describe the details 
@@ -517,6 +511,9 @@ public class QuickBooksModule
      * @param purchaseCost Optional. The monetary value of the service or product.
      * @param expenseAccount Optional. Income account reference to be associated with the purchase item.
      * @return The created Item.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Item createItem(@OAuthAccessToken String accessToken,
@@ -565,14 +562,14 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Payment">Payment Especification</a>
      * 
-     * {@code <quickbooks:create-payment >
-            <quickbooks:header ref="#[variable:headerPayment]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesPayment]"></quickbooks:line>
-        </quickbooks:create-payment>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment}
      *
      * @param header Information that pertains to the entire payment.
      * @param line Line details of the receive payment. A receive payment can have multiple lines.
      * @return The created Payment.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Payment createPayment(@OAuthAccessToken String accessToken,
@@ -599,14 +596,15 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
      * 
-     * {@code <quickbooks:create-payment-method name="Wire Transfer"
-                                                type="CREDIT_CARD" >
-        </quickbooks:create-payment-method>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment-method}
      *
      * @param name User recognizable name for the payment method.
      * @param type Optional. Type of payment. Specifies if it is a credit card payment type or a 
      *             non-credit card payment type.
      * @return The created PaymentMethod.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public PaymentMethod createPaymentMethod(@OAuthAccessToken String accessToken,
@@ -633,14 +631,14 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
      * 
-     * {@code <quickbooks:create-sales-receipt >
-            <quickbooks:header ref="#[variable:headerSalesReceipt]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesSalesReceipt]"></quickbooks:line>
-        </quickbooks:create-sales-receipt>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-receipt}
      *
      * @param header Groups the elements that are common to the SalesReceipt transaction.
      * @param line Groups the line items for the sales receipt.
      * @return The created SalesReceipt.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public SalesReceipt createSalesReceipt(@OAuthAccessToken String accessToken,
@@ -669,14 +667,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
      * 
-     * {@code <quickbooks:create-sales-term name="Due before receipt"
-                                      dueDays="1"
-                                      discountDays="10"
-                                      discountPercent="3.2"
-                                      dayOfMonthDue="10"
-                                      dueNextMonthDays="10"
-                                      discountDayOfMonth="5"
-                                      dateDiscountPercent="2.1"/>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-term}
      *
      * @param name Specifies the user recognizable name for the salesterm.
      * @param dueDays Number of days from the delivery of goods or services till the payment is due.
@@ -698,6 +689,9 @@ public class QuickBooksModule
      *                            paid before DiscountDayofMonth. This value is used only when DueDays is 
      *                            not specified.
      * @return The created SalesTerm.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public SalesTerm createSalesTerm(@OAuthAccessToken String accessToken,
@@ -739,20 +733,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
      * 
-     * {@code <quickbooks:create-vendor name="Digital"
-                                  givenName="John"
-                                  middleName="J"
-                                  familyName="Doe"
-                                  dBAName="Digital"
-                                  showAs="J Doe"
-                                  taxIdentifier="12-1234567"
-                                  acctNum="9001"
-                                  vendor1099="true">
-            <quickbooks:web-site ref="#[variable:webSites]"></quickbooks:web-site>
-            <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
-            <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
-            <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
-        </quickbooks:create-vendor>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-vendor}
      *
      * @param name Optional. Specifies the full name of the vendor. If the FullName is specified, 
      *             then GivenName, MiddleName, and FamilyName values are ignored.
@@ -777,6 +758,9 @@ public class QuickBooksModule
      *              5 phone numbers but only one phone number is permitted for one device type.
      * @param address Optional. Specifies the physical addresses.
      * @return The created Vendor.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Vendor createVendor(@OAuthAccessToken String accessToken,
@@ -824,13 +808,14 @@ public class QuickBooksModule
     /**
      * Retrieve objects by ID.
      * 
-     * {@code <quickbooks:get-object type="INVOICE">
-            <quickbooks:id ref="#[variable:id]"></quickbooks:id>
-        </quickbooks:get-object>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:get-object}
      *
      * @param type EntityType of the object.
      * @param id Id which is assigned by Data Services when the object is created.
      * @return The object.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Object getObject(@OAuthAccessToken String accessToken,
@@ -854,18 +839,8 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Account">Account Especification</a>
      * 
-     * {@code <quickbooks:update-account syncToken="1"
-                                   name="Loan Account"
-                                   desc="Loan Account"
-                                   subtype="SAVINGS"
-                                   acctNum="5001"
-                                   openingBalance="10000"
-                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:update-parent-id ref="#[variable:accountParentId]"/>
-            
-        </quickbooks:update-account>}
-     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-account}
+     *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
      *                  Before performing the update, Data Services verifies that the SyncToken in the
@@ -887,6 +862,9 @@ public class QuickBooksModule
      * @param accountParentId Optional. If the account is a subaccount, AccountParentId is used to 
      *                        store the ID of the parent account.
      * @return The updated Account.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Account updateAccount(@OAuthAccessToken String accessToken,
@@ -931,11 +909,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Bill">Bill Especification</a>
      * 
-     * {@code <quickbooks:update-bill sycnToken="0">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
-        </quickbooks:update-bill>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -945,6 +919,9 @@ public class QuickBooksModule
      * @param line Information about a specific good or service purchased for which the payment is demanded
      *             as a part of the bill. A bill can have multiple lines.
      * @return The created Bill.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Bill updateBill(@OAuthAccessToken String accessToken,
@@ -978,12 +955,8 @@ public class QuickBooksModule
      * For details see: 
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
-     *
-     * {@code <quickbooks:update-bill-payment syncToken="0">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerBillPayment]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesBillPayment]"></quickbooks:line>
-        </quickbooks:update-bill-payment>}
+     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill-payment}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -992,6 +965,9 @@ public class QuickBooksModule
      * @param header Header information about the BillPayment.
      * @param line Specifies the line details for the bill payment. A bill payment can have multiple lines.
      * @return The updated BillPayment.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public BillPayment updateBillPayment(@OAuthAccessToken String accessToken,
@@ -1024,11 +1000,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
      * 
-     * {@code <quickbooks:update-cash-purchase syncToken="1">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerCashPurchase]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCashPurchase]"></quickbooks:line>
-        </quickbooks:update-bill-payment>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-cash-purchase}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1038,6 +1010,9 @@ public class QuickBooksModule
      * @param line List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the CashPurchase.
      * @return The updated CashPurchase.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public CashPurchase updateCashPurchase(@OAuthAccessToken String accessToken,
@@ -1070,11 +1045,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Check">Check Especification</a>
      * 
-     * {@code <quickbooks:update-check syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-            <quickbooks:header ref="#[variable:headerCheck]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCheck]"></quickbooks:line>
-        </quickbooks:update-check>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-check}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1084,6 +1055,9 @@ public class QuickBooksModule
      * @param line List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the check.
      * @return The updated Check.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Check updateCheck(@OAuthAccessToken String accessToken,
@@ -1118,11 +1092,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
      * 
-     * {@code <quickbooks:update-credit-card-charge syncToken="1">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerCreditCardCharge]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesCreditCardCharge]"></quickbooks:line>
-        </quickbooks:update-credit-card-charge>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-credit-card-charge}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1132,6 +1102,9 @@ public class QuickBooksModule
      * @param line List of lines. Information about a specific good or service purchased for which the 
      *             payment is demanded as a part of the CreditCardCharge purchase.
      * @return The updated CreditCardCharge.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public CreditCardCharge updateCreditCardCharge(@OAuthAccessToken String accessToken,
@@ -1165,22 +1138,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Customer">Customer Especification</a>
      * 
-     * {@code <quickbooks:create-customer name="John Doe"
-                                    givenName="John"
-                                    middleName="Bill"
-                                    familyName="Doe"
-                                    suffix="Sr"
-                                    dBAName="Mint"
-                                    showAs="J Doe"
-                                    salesTaxCodeId="5"
-                                    syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-            <quickbooks:web-site ref="#[variable:webSite]"></quickbooks:web-site>
-            <quickbooks:email ref="#[variable:email]"></quickbooks:email>
-            <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
-            <quickbooks:address ref="#[variable:address]"></quickbooks:address>
-            <quickbooks:sales-term-id ref="#[variable:salesTermId]"></quickbooks:sales-term-id>
-        </quickbooks:create-customer>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-customer}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1206,6 +1164,9 @@ public class QuickBooksModule
      *              numbers but only one phone number is permitted for one device type.
      * @param address Optional. Specifies the physical addresses.
      * @return The updated Customer.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Customer updateCustomer(@OAuthAccessToken String accessToken,
@@ -1266,11 +1227,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
      * 
-     * {@code <quickbooks:update-estimate syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-            <quickbooks:header ref="#[variable:headerEstimate]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesEstimate]"></quickbooks:line>
-        </quickbooks:update-estimate>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-estimate}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1279,6 +1236,9 @@ public class QuickBooksModule
      * @param header Financial transaction information that pertains to the entire Estimate.
      * @param line Information about a specific good or service for which the estimate is being issued.
      * @return The updated Estimate.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Estimate updateEstimate(@OAuthAccessToken String accessToken,
@@ -1313,11 +1273,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
      * 
-     * {@code <quickbooks:update-invoice syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-            <quickbooks:header ref="#[variable:headerInvoice]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesInvoice]"></quickbooks:line>
-        </quickbooks:update-invoice>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-invoice}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1326,6 +1282,9 @@ public class QuickBooksModule
      * @param header Provides information that pertains to the entire Invoice.
      * @param line Information about a specific good or service for which the Invoice is being issued.
      * @return The updated Invoice.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Invoice updateInvoice(@OAuthAccessToken String accessToken,
@@ -1359,20 +1318,8 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Item">Item Especification</a>
      * 
-     * {@code <quickbooks:update-item name="Pencils"
-                                desc="Pencils HB"
-                                taxable="true"
-                                itemParentName="Office"
-                                purchaseDesc="500 pencils purchased"
-                                syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-            <quickbooks:item-parent-id ref="#[variable:itemParentId]"></quickbooks:item-parent-id>
-            <quickbooks:unit-price ref="#[variable:unitPrice]"></quickbooks:unit-price>
-            <quickbooks:income-account-ref ref="#[variable:incomeAccount]"></quickbooks:income-account-ref>
-            <quickbooks:purchase-cost ref="#[variable:purchaseCost]"></quickbooks:purchase-cost>
-            <quickbooks:expense-account-ref ref="#[variable:expenseAccount]"></quickbooks:expense-account-ref>    
-        </quickbooks:update-item>}
-     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-item}
+     *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
      *                  Before performing the update, Data Services verifies that the SyncToken in the
@@ -1390,6 +1337,9 @@ public class QuickBooksModule
      * @param purchaseCost Optional. The monetary value of the service or product.
      * @param expenseAccount Optional. Income account reference to be associated with the purchase item.
      * @return The updated Item.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Item updateItem(@OAuthAccessToken String accessToken,
@@ -1445,11 +1395,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Payment">Payment Especification</a>
      * 
-     * {@code <quickbooks:update-payment syncToken="1">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerPayment]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesPayment]"></quickbooks:line>
-        </quickbooks:update-payment>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1458,6 +1404,9 @@ public class QuickBooksModule
      * @param header Information that pertains to the entire payment.
      * @param line Line details of the receive payment. A receive payment can have multiple lines.
      * @return The updated Payment.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Payment updatePayment(@OAuthAccessToken String accessToken,
@@ -1491,11 +1440,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
      * 
-     * {@code <quickbooks:update-payment-method name="Wire Transfer"
-                                                type="CREDIT_CARD"
-                                                syncToken="1">
-            <quickbooks:id ref="#[variable:id]">
-        </quickbooks:update-payment-method>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment-method}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1505,6 +1450,9 @@ public class QuickBooksModule
      * @param type Optional. Type of payment. Specifies if it is a credit card payment type or a 
      *             non-credit card payment type.
      * @return The updated PaymentMethod.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public PaymentMethod updatePaymentMethod(@OAuthAccessToken String accessToken,
@@ -1538,11 +1486,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
      * 
-     * {@code <quickbooks:update-sales-receipt syncToken="1">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:header ref="#[variable:headerSalesReceipt]"></quickbooks:header>
-            <quickbooks:line ref="#[variable:linesSalesReceipt]"></quickbooks:line>
-        </quickbooks:update-sales-receipt>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-receipt}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1551,6 +1495,9 @@ public class QuickBooksModule
      * @param header Groups the elements that are common to the SalesReceipt transaction.
      * @param line Groups the line items for the sales receipt.
      * @return The updated SalesReceipt.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public SalesReceipt updateSalesReceipt(@OAuthAccessToken String accessToken, 
@@ -1586,17 +1533,7 @@ public class QuickBooksModule
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
      * 
-     * {@code <quickbooks:update-sales-term name="Due before receipt"
-                                      dueDays="1"
-                                      discountDays="10"
-                                      discountPercent="3.2"
-                                      dayOfMonthDue="10"
-                                      dueNextMonthDays="10"
-                                      discountDayOfMonth="5"
-                                      dateDiscountPercent="2.1"
-                                      syncToken="1">
-              <quickbooks:id ref="#[variable:id]"/>
-        </quickbooks:update-sales-term>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-term}
      *
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
@@ -1622,6 +1559,9 @@ public class QuickBooksModule
      *                            paid before DiscountDayofMonth. This value is used only when DueDays is 
      *                            not specified.
      * @return The updated SalesTerm.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public SalesTerm updateSalesTerm(@OAuthAccessToken String accessToken, 
@@ -1669,23 +1609,9 @@ public class QuickBooksModule
      * For details see: 
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
+     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-vendor}
      *
-     * {@code <quickbooks:update-vendor name="Digital"
-                                  givenName="John"
-                                  middleName="J"
-                                  familyName="Doe"
-                                  dBAName="Digital"
-                                  showAs="J Doe"
-                                  taxIdentifier="12-1234567"
-                                  acctNum="9001"
-                                  vendor1099="true"
-                                  syncToken="1">
-            <quickbooks:id ref="#[variable:id]"/>
-            <quickbooks:web-site ref="#[variable:webSites]"></quickbooks:web-site>
-            <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
-            <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
-            <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
-        </quickbooks:update-vendor>}
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
      *                  Before performing the update, Data Services verifies that the SyncToken in the
@@ -1713,6 +1639,9 @@ public class QuickBooksModule
      *              5 phone numbers but only one phone number is permitted for one device type.
      * @param address Optional. Specifies the physical addresses.
      * @return The updated Vendor.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public Vendor updateVendor(@OAuthAccessToken String accessToken, 
@@ -1764,15 +1693,16 @@ public class QuickBooksModule
     /**
      * Deletes an object.
      * 
-     * {@code <quickbooks:delete-object type="INVOICE" syncToken="2">
-            <quickbooks:id ref="#[variable:id]"></quickbooks:id>
-        </quickbooks:delete-object>}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:delete-object}
      *
      * @param type EntityType of the object.
      * @param id Id which is assigned by Data Services when the object is created.
      * @param syncToken Optional. Integer that indicates how many times the object has been updated.
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @Processor
     public void deleteObject(@OAuthAccessToken String accessToken, 
@@ -1790,14 +1720,16 @@ public class QuickBooksModule
      * For details see: 
      * <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
-     * {@code <quickbooks:find-objects type="ACCOUNT"
-                                 queryFilter="#[variable:queryFilterString]"
-                                 querySort="#[variablequerySortString]"/>}
+     * 
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects}
      *
      * @param type EntityType of the object.
      * @param queryFilter String with a filter format (see details)
      * @param querySort String with a sort format (see details)
      * @return Iterable of the objects.
+     * 
+     * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
+     *         and a message provided by quickbooks about the error.
      */
     @SuppressWarnings("rawtypes")
     @Processor
@@ -1893,6 +1825,7 @@ public class QuickBooksModule
         mom.registerConverter(new Converter()
         {
             
+            @SuppressWarnings("rawtypes")
             @Override
             public Object convert(Class arg0, Object arg1)
             {
@@ -1918,6 +1851,7 @@ public class QuickBooksModule
         return datatypeFactory.newXMLGregorianCalendar(cal);
     }
     
+    @SuppressWarnings("unchecked")
     private <T> List<T> coalesceList(List<T> list )
     {
         return (List<T>) ((list == null) ? Collections.emptyList() : list);

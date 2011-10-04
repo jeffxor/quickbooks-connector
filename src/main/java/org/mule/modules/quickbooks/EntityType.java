@@ -52,6 +52,7 @@ public enum EntityType
         this.type = type;
     }
     
+    @SuppressWarnings("unchecked")
     public <A> A newInstance()
     {
         try

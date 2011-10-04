@@ -66,7 +66,6 @@ public class QuickBooksModuleTestDriver
 
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
