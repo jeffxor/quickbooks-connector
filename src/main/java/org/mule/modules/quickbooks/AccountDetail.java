@@ -19,6 +19,13 @@ package org.mule.modules.quickbooks;
 
 import org.mule.modules.quickbooks.schema.QboAccountDetailTypeEnum;
 
+
+/**
+ * Enumeration that contains the sub-types of accounts.
+ * 
+ * @author Gaston Ponti
+ * @since Oct 5, 2011
+ */
 public enum AccountDetail
 {
 
@@ -897,7 +904,7 @@ public enum AccountDetail
         value = v;
     }
 
-    public QboAccountDetailTypeEnum toWorkdayAccountDetail()
+    public QboAccountDetailTypeEnum toQboAccountDetail()
     {
         return QboAccountDetailTypeEnum.fromValue(value);
     }

@@ -161,7 +161,6 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
-    @Ignore
     public void getCustomerAnswersNonNullCustomerWithId() throws Exception
     {
         Map<String, Object> idType = new HashMap<String, Object>();
@@ -174,7 +173,6 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
-    @Ignore
     public void modifyCustomer()
     {
         Customer c1 = module.createCustomer(accessToken, 
@@ -218,7 +216,6 @@ public class QuickBooksModuleTestDriver
     }
     
     @Test
-    @Ignore
     public void getAllCustomersAnswersNonNullListWithCustomers() throws Exception
     {
         Iterable it = module.findObjects(accessToken, accessTokenSecret, EntityType.CUSTOMER, null, null);
