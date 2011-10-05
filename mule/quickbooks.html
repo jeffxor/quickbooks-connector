@@ -220,6 +220,9 @@ Summary:
 <div class="jd-descr">
 
 
+<h2>Module Overview</h2>
+<p>Cloud Connector Facade for <a href="http://quickbooksonline.intuit.com/">QuickBooks</a> <br/></p>
+
 
 </div><!-- jd-descr -->
 
@@ -429,9 +432,8 @@ Summary:
  For details see: 
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
- <br/>{@code &lt;quickbooks:find-objects type="ACCOUNT"
-                                 queryFilter="#[variable:queryFilterString]"
-                                 querySort="#[variablequerySortString]"/&gt;}</div>
+ 
+ <br/></div>
         
   </td></tr>
 
@@ -652,7 +654,7 @@ specify which configuration to use.</p>
           </nobr></td>
           <td class="jd-linkcol"><nobr>client</nobr></td>
           <td class="jd-descrcol"></td>
-          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Quick-Books client.</td>
       </tr>
       
     
@@ -661,7 +663,7 @@ specify which configuration to use.</p>
           xs:string</nobr></td>
           <td class="jd-linkcol"><nobr>consumerKey</nobr></td>
           <td class="jd-descrcol"></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-descrcol" width="100%">Unique consumer key for the app.</td>
       </tr>
       
     
@@ -670,7 +672,7 @@ specify which configuration to use.</p>
           xs:string</nobr></td>
           <td class="jd-linkcol"><nobr>consumerSecret</nobr></td>
           <td class="jd-descrcol"></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-descrcol" width="100%">Unique consumer secret for the app.</td>
       </tr>
       
     
@@ -679,7 +681,7 @@ specify which configuration to use.</p>
           xs:string</nobr></td>
           <td class="jd-linkcol"><nobr>realmId</nobr></td>
           <td class="jd-descrcol"></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-descrcol" width="100%">The realmID, also known as the Company ID, uniquely identifies the data for a company.</td>
       </tr>
       
     
@@ -719,15 +721,15 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Account">Account Especification</a>
  
- <br/><code>&lt;quickbooks:create-account name="Loan Account"
-                                   desc="Loan Account"
-                                   subtype="SAVINGS"
-                                   acctNum="5001"
-                                   openingBalance="10000"
-                                   openingBalanceDate="2010-09-13T01:18:14-07:00"&gt;
-            &lt;quickbooks:account-parent-id ref="#[variable:parentId]"/&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-account name="#[map-payload:name]"
+                           desc="#[map-payload:desc]"
+                           subtype="#[map-payload:subType]"
+                           acctnum="#[map-payload:acctNum]"
+                           openingbalance="#[map-payload:openingBalance]"
+                           openingbalancedate="#[map-payload:openingBalanceDate]"&gt;
+    &lt;quickbooks:account-parent-id ref="#[map-payload:parentId]"/&gt;
 
-        &lt;/quickbooks:create-account&gt;</code></p></div>
+&lt;/quickbooks:create-account&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -742,7 +744,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -753,7 +755,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -876,8 +878,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Account.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Account.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -903,10 +915,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Bill">Bill Especification</a>
  
- <br/><code>&lt;quickbooks:create-bill &gt;
-            &lt;quickbooks:header ref="#[variable:headerBill]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesBill]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-bill&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill &gt;
+    &lt;quickbooks:header ref="#[variable:headerBill]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesBill]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-bill&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -921,7 +933,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -932,7 +944,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -982,8 +994,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Bill.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Bill.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1011,10 +1033,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
  
- <br/><code>&lt;quickbooks:create-bill-payment &gt;
-            &lt;quickbooks:header ref="#[variable:headerBillPayment]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesBillPayment]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-bill-payment&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill-payment &gt;
+    &lt;quickbooks:header ref="#[variable:headerbillpayment]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-bill-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1029,7 +1051,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1040,7 +1062,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1089,8 +1111,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created BillPayment.
-<br/></li></ul>
+      <ul class="nolist"><li>The created BillPayment.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1116,10 +1148,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
  
- <br/><code>&lt;quickbooks:create-cash-purchase &gt;
-            &lt;quickbooks:header ref="#[variable:headerCashPurchase]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCashPurchase]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-bill-payment&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-cash-purchase &gt;
+    &lt;quickbooks:header ref="#[variable:headercashpurchase]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-bill-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1134,7 +1166,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1145,7 +1177,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1195,8 +1227,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created CashPurchase.
-<br/></li></ul>
+      <ul class="nolist"><li>The created CashPurchase.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1222,10 +1264,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Check">Check Especification</a>
  
- <br/><code>&lt;quickbooks:create-check &gt;
-            &lt;quickbooks:header ref="#[variable:headerCheck]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCheck]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-check&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-check &gt;
+    &lt;quickbooks:header ref="#[variable:headercheck]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescheck]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-check&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1240,7 +1282,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1251,7 +1293,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1301,8 +1343,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Check.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Check.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1331,10 +1383,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
  
- <br/><code>&lt;quickbooks:create-credit-card-charge &gt;
-            &lt;quickbooks:header ref="#[variable:headerCreditCardCharge]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCreditCardCharge]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-credit-card-charge&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-credit-card-charge &gt;
+    &lt;quickbooks:header ref="#[variable:headercreditcardcharge]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-credit-card-charge&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1349,7 +1401,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1360,7 +1412,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1410,8 +1462,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created CreditCardCharge.
-<br/></li></ul>
+      <ul class="nolist"><li>The created CreditCardCharge.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1439,20 +1501,20 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Customer">Customer Especification</a>
  
- <br/><code>&lt;quickbooks:create-customer name="John Doe"
-                                    givenName="John"
-                                    middleName="Bill"
-                                    familyName="Doe"
-                                    suffix="Sr"
-                                    dBAName="Mint"
-                                    showAs="J Doe"
-                                    salesTaxCodeId="5"&gt;
-            &lt;quickbooks:web-site ref="#[variable:webSite]"&gt;&lt;/quickbooks:web-site&gt;
-            &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
-            &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
-            &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
-            &lt;quickbooks:sales-term-id ref="#[variable:salesTermId]"&gt;&lt;/quickbooks:sales-term-id&gt;
-        &lt;/quickbooks:create-customer&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-customer name="john doe"
+                            givenname="john"
+                            middlename="bill"
+                            familyname="doe"
+                            suffix="sr"
+                            dbaname="mint"
+                            showas="j doe"
+                            salestaxcodeid="5"&gt;
+    &lt;quickbooks:web-site ref="#[variable:website]"&gt;&lt;/quickbooks:web-site&gt;
+    &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
+    &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
+    &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
+    &lt;quickbooks:sales-term-id ref="#[variable:salestermid]"&gt;&lt;/quickbooks:sales-term-id&gt;
+&lt;/quickbooks:create-customer&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1467,7 +1529,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1478,7 +1540,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1676,8 +1738,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Customer.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Customer.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1704,10 +1776,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Estimate">Estimate Especification</a>
  
- <br/><code>&lt;quickbooks:create-estimate &gt;
-            &lt;quickbooks:header ref="#[variable:headerEstimate]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesEstimate]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-estimate&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-estimate &gt;
+    &lt;quickbooks:header ref="#[variable:headerestimate]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-estimate&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1722,7 +1794,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1733,7 +1805,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1782,8 +1854,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Estimate.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Estimate.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1812,10 +1894,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Invoice">Invoice Especification</a>
  
- <br/><code>&lt;quickbooks:create-invoice &gt;
-            &lt;quickbooks:header ref="#[variable:headerInvoice]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesInvoice]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-invoice&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-invoice &gt;
+    &lt;quickbooks:header ref="#[variable:headerinvoice]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-invoice&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1830,7 +1912,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1841,7 +1923,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -1890,8 +1972,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Invoice.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Invoice.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1919,17 +2011,17 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Item">Item Especification</a>
  
- <br/><code>&lt;quickbooks:create-item name="Pencils"
-                                desc="Pencils HB"
-                                taxable="true"
-                                itemParentName="Office"
-                                purchaseDesc="500 pencils purchased"&gt;
-            &lt;quickbooks:item-parent-id ref="#[variable:itemParentId]"&gt;&lt;/quickbooks:item-parent-id&gt;
-            &lt;quickbooks:unit-price ref="#[variable:unitPrice]"&gt;&lt;/quickbooks:unit-price&gt;
-            &lt;quickbooks:income-account-ref ref="#[variable:incomeAccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
-            &lt;quickbooks:purchase-cost ref="#[variable:purchaseCost]"&gt;&lt;/quickbooks:purchase-cost&gt;
-            &lt;quickbooks:expense-account-ref ref="#[variable:expenseAccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
-        &lt;/quickbooks:create-item&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-item name="pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        itemparentname="office"
+                        purchasedesc="500 pencils purchased"&gt;
+    &lt;quickbooks:item-parent-id ref="#[variable:itemparentid]"&gt;&lt;/quickbooks:item-parent-id&gt;
+    &lt;quickbooks:unit-price ref="#[variable:unitprice]"&gt;&lt;/quickbooks:unit-price&gt;
+    &lt;quickbooks:income-account-ref ref="#[variable:incomeaccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
+    &lt;quickbooks:purchase-cost ref="#[variable:purchasecost]"&gt;&lt;/quickbooks:purchase-cost&gt;
+    &lt;quickbooks:expense-account-ref ref="#[variable:expenseaccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
+&lt;/quickbooks:create-item&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1944,7 +2036,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -1955,7 +2047,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2110,8 +2202,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Item.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Item.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2139,10 +2241,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Payment">Payment Especification</a>
  
- <br/><code>&lt;quickbooks:create-payment &gt;
-            &lt;quickbooks:header ref="#[variable:headerPayment]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesPayment]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-payment&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment &gt;
+    &lt;quickbooks:header ref="#[variable:headerpayment]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linespayment]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2157,7 +2259,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2168,7 +2270,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2217,8 +2319,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Payment.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Payment.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2246,9 +2358,9 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
  
- <br/><code>&lt;quickbooks:create-payment-method name="Wire Transfer"
-                                                type="CREDIT_CARD" &gt;
-        &lt;/quickbooks:create-payment-method&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment-method name="wire transfer"
+                                  type="credit_card" &gt;
+&lt;/quickbooks:create-payment-method&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2263,7 +2375,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2274,7 +2386,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2324,8 +2436,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created PaymentMethod.
-<br/></li></ul>
+      <ul class="nolist"><li>The created PaymentMethod.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2353,10 +2475,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
  
- <br/><code>&lt;quickbooks:create-sales-receipt &gt;
-            &lt;quickbooks:header ref="#[variable:headerSalesReceipt]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesSalesReceipt]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:create-sales-receipt&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-receipt &gt;
+    &lt;quickbooks:header ref="#[variable:headersalesreceipt]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:create-sales-receipt&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2371,7 +2493,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2382,7 +2504,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2431,8 +2553,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created SalesReceipt.
-<br/></li></ul>
+      <ul class="nolist"><li>The created SalesReceipt.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2462,14 +2594,14 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
  
- <br/><code>&lt;quickbooks:create-sales-term name="Due before receipt"
-                                      dueDays="1"
-                                      discountDays="10"
-                                      discountPercent="3.2"
-                                      dayOfMonthDue="10"
-                                      dueNextMonthDays="10"
-                                      discountDayOfMonth="5"
-                                      dateDiscountPercent="2.1"/&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-term name="due before receipt"
+                              duedays="1"
+                              discountdays="10"
+                              discountpercent="3.2"
+                              dayofmonthdue="10"
+                              duenextmonthdays="10"
+                              discountdayofmonth="5"
+                              datediscountpercent="2.1"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2484,7 +2616,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2495,7 +2627,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2633,8 +2765,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created SalesTerm.
-<br/></li></ul>
+      <ul class="nolist"><li>The created SalesTerm.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2662,20 +2804,20 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
  
- <br/><code>&lt;quickbooks:create-vendor name="Digital"
-                                  givenName="John"
-                                  middleName="J"
-                                  familyName="Doe"
-                                  dBAName="Digital"
-                                  showAs="J Doe"
-                                  taxIdentifier="12-1234567"
-                                  acctNum="9001"
-                                  vendor1099="true"&gt;
-            &lt;quickbooks:web-site ref="#[variable:webSites]"&gt;&lt;/quickbooks:web-site&gt;
-            &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
-            &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
-            &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
-        &lt;/quickbooks:create-vendor&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-vendor name="digital"
+                          givenname="john"
+                          middlename="j"
+                          familyname="doe"
+                          dbaname="digital"
+                          showas="j doe"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true"&gt;
+    &lt;quickbooks:web-site ref="#[variable:websites]"&gt;&lt;/quickbooks:web-site&gt;
+    &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
+    &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
+    &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
+&lt;/quickbooks:create-vendor&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2690,7 +2832,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2701,7 +2843,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2902,8 +3044,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Vendor.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Vendor.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2925,9 +3077,9 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Deletes an object.
  
- <br/><code>&lt;quickbooks:delete-object type="INVOICE" syncToken="2"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
-        &lt;/quickbooks:delete-object&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:delete-object type="invoice" synctoken="2"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
+&lt;/quickbooks:delete-object&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2942,7 +3094,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -2953,7 +3105,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -2988,8 +3140,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Integer that indicates how many times the object has been updated.
                   Before performing the update, Data Services verifies that the SyncToken in the
-                  request has the same value as the SyncToken in the Data Service's repository.
-<br/></td>
+                  request has the same value as the SyncToken in the Data Service's repository.<br/></td>
                 </tr>
                 
                 
@@ -3016,6 +3167,17 @@ specify which configuration to use.</p>
       </table>
   </div>
   
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>
@@ -3039,9 +3201,10 @@ specify which configuration to use.</p>
  For details see: 
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
- <br/><code>&lt;quickbooks:find-objects type="ACCOUNT"
-                                 queryFilter="#[variable:queryFilterString]"
-                                 querySort="#[variablequerySortString]"/&gt;</code></p></div>
+ 
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="account"
+                         queryfilter="#[variable:queryfilterstring]"
+                         querysort="#[variable:querysortstring]"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3056,7 +3219,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3067,7 +3230,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3129,8 +3292,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>Iterable of the objects.
-<br/></li></ul>
+      <ul class="nolist"><li>Iterable of the objects.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3152,9 +3325,9 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Retrieve objects by ID.
  
- <br/><code>&lt;quickbooks:get-object type="INVOICE"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
-        &lt;/quickbooks:get-object&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:get-object type="invoice"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
+&lt;/quickbooks:get-object&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3169,7 +3342,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3180,7 +3353,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3229,8 +3402,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The object.
-<br/></li></ul>
+      <ul class="nolist"><li>The object.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3262,17 +3445,17 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Account">Account Especification</a>
  
- <br/><code>&lt;quickbooks:update-account syncToken="1"
-                                   name="Loan Account"
-                                   desc="Loan Account"
-                                   subtype="SAVINGS"
-                                   acctNum="5001"
-                                   openingBalance="10000"
-                                   openingBalanceDate="2010-09-13T01:18:14-07:00"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:update-parent-id ref="#[variable:accountParentId]"/&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-account synctoken="1"
+                           name="loan account"
+                           desc="loan account"
+                           subtype="savings"
+                           acctnum="5001"
+                           openingbalance="10000"
+                           openingbalancedate="2010-09-13t01:18:14-07:00"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:update-parent-id ref="#[variable:accountparentid]"/&gt;
 
-        &lt;/quickbooks:update-account&gt;</code></p></div>
+&lt;/quickbooks:update-account&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3287,7 +3470,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3298,7 +3481,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3449,8 +3632,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Account.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Account.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3480,11 +3673,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Bill">Bill Especification</a>
  
- <br/><code>&lt;quickbooks:update-bill sycnToken="0"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerBill]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesBill]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-bill&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill sycntoken="0"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headerbill]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesbill]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-bill&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3499,7 +3692,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3510,7 +3703,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3588,8 +3781,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The created Bill.
-<br/></li></ul>
+      <ul class="nolist"><li>The created Bill.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3620,12 +3823,12 @@ specify which configuration to use.</p>
  For details see: 
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
-
- <br/><code>&lt;quickbooks:update-bill-payment syncToken="0"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerBillPayment]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesBillPayment]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-bill-payment&gt;</code></p></div>
+ 
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill-payment synctoken="0"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headerbillpayment]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-bill-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3640,7 +3843,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3651,7 +3854,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3728,8 +3931,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated BillPayment.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated BillPayment.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3759,11 +3972,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
  
- <br/><code>&lt;quickbooks:update-cash-purchase syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerCashPurchase]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCashPurchase]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-bill-payment&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-cash-purchase synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headercashpurchase]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-cash-purchase&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3778,7 +3991,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3789,7 +4002,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -3867,8 +4080,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated CashPurchase.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated CashPurchase.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -3898,11 +4121,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Check">Check Especification</a>
  
- <br/><code>&lt;quickbooks:update-check syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-            &lt;quickbooks:header ref="#[variable:headerCheck]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCheck]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-check&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-check synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+    &lt;quickbooks:header ref="#[variable:headercheck]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescheck]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-check&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3917,7 +4140,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -3928,7 +4151,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4006,8 +4229,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Check.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Check.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -4039,11 +4272,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
  
- <br/><code>&lt;quickbooks:update-credit-card-charge syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerCreditCardCharge]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesCreditCardCharge]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-credit-card-charge&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-credit-card-charge synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headercreditcardcharge]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-credit-card-charge&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -4058,7 +4291,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -4069,7 +4302,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4147,8 +4380,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated CreditCardCharge.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated CreditCardCharge.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -4179,22 +4422,22 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Customer">Customer Especification</a>
  
- <br/><code>&lt;quickbooks:create-customer name="John Doe"
-                                    givenName="John"
-                                    middleName="Bill"
-                                    familyName="Doe"
-                                    suffix="Sr"
-                                    dBAName="Mint"
-                                    showAs="J Doe"
-                                    salesTaxCodeId="5"
-                                    syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-            &lt;quickbooks:web-site ref="#[variable:webSite]"&gt;&lt;/quickbooks:web-site&gt;
-            &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
-            &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
-            &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
-            &lt;quickbooks:sales-term-id ref="#[variable:salesTermId]"&gt;&lt;/quickbooks:sales-term-id&gt;
-        &lt;/quickbooks:create-customer&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-customer name="john doe"
+                            givenname="john"
+                            middlename="bill"
+                            familyname="doe"
+                            suffix="sr"
+                            dbaname="mint"
+                            showas="j doe"
+                            salestaxcodeid="5"
+                            synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+    &lt;quickbooks:web-site ref="#[variable:website]"&gt;&lt;/quickbooks:web-site&gt;
+    &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
+    &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
+    &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
+    &lt;quickbooks:sales-term-id ref="#[variable:salestermid]"&gt;&lt;/quickbooks:sales-term-id&gt;
+&lt;/quickbooks:update-customer&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -4209,7 +4452,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -4220,7 +4463,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4446,8 +4689,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Customer.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Customer.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -4478,11 +4731,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Estimate">Estimate Especification</a>
  
- <br/><code>&lt;quickbooks:update-estimate syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-            &lt;quickbooks:header ref="#[variable:headerEstimate]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesEstimate]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-estimate&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-estimate synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+    &lt;quickbooks:header ref="#[variable:headerestimate]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-estimate&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -4497,7 +4750,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -4508,7 +4761,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4585,8 +4838,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Estimate.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Estimate.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -4618,11 +4881,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Invoice">Invoice Especification</a>
  
- <br/><code>&lt;quickbooks:update-invoice syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-            &lt;quickbooks:header ref="#[variable:headerInvoice]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesInvoice]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-invoice&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-invoice synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+    &lt;quickbooks:header ref="#[variable:headerinvoice]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-invoice&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -4637,7 +4900,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -4648,7 +4911,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4725,8 +4988,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Invoice.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Invoice.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -4757,19 +5030,19 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Item">Item Especification</a>
  
- <br/><code>&lt;quickbooks:update-item name="Pencils"
-                                desc="Pencils HB"
-                                taxable="true"
-                                itemParentName="Office"
-                                purchaseDesc="500 pencils purchased"
-                                syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-            &lt;quickbooks:item-parent-id ref="#[variable:itemParentId]"&gt;&lt;/quickbooks:item-parent-id&gt;
-            &lt;quickbooks:unit-price ref="#[variable:unitPrice]"&gt;&lt;/quickbooks:unit-price&gt;
-            &lt;quickbooks:income-account-ref ref="#[variable:incomeAccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
-            &lt;quickbooks:purchase-cost ref="#[variable:purchaseCost]"&gt;&lt;/quickbooks:purchase-cost&gt;
-            &lt;quickbooks:expense-account-ref ref="#[variable:expenseAccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
-        &lt;/quickbooks:update-item&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-item name="pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        itemparentname="office"
+                        purchasedesc="500 pencils purchased"
+                        synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+    &lt;quickbooks:item-parent-id ref="#[variable:itemparentid]"&gt;&lt;/quickbooks:item-parent-id&gt;
+    &lt;quickbooks:unit-price ref="#[variable:unitprice]"&gt;&lt;/quickbooks:unit-price&gt;
+    &lt;quickbooks:income-account-ref ref="#[variable:incomeaccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
+    &lt;quickbooks:purchase-cost ref="#[variable:purchasecost]"&gt;&lt;/quickbooks:purchase-cost&gt;
+    &lt;quickbooks:expense-account-ref ref="#[variable:expenseaccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
+&lt;/quickbooks:update-item&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -4784,7 +5057,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -4795,7 +5068,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -4978,8 +5251,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Item.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Item.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -5010,11 +5293,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Payment">Payment Especification</a>
  
- <br/><code>&lt;quickbooks:update-payment syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerPayment]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesPayment]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-payment&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headerpayment]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linespayment]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -5029,7 +5312,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -5040,7 +5323,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -5117,8 +5400,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Payment.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Payment.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -5149,11 +5442,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
  
- <br/><code>&lt;quickbooks:update-payment-method name="Wire Transfer"
-                                                type="CREDIT_CARD"
-                                                syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"&gt;
-        &lt;/quickbooks:update-payment-method&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment-method name="wire transfer"
+                                  type="credit_card"
+                                  synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"&gt;
+&lt;/quickbooks:update-payment-method&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -5168,7 +5461,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -5179,7 +5472,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -5257,8 +5550,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated PaymentMethod.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated PaymentMethod.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -5289,11 +5592,11 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
  
- <br/><code>&lt;quickbooks:update-sales-receipt syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:header ref="#[variable:headerSalesReceipt]"&gt;&lt;/quickbooks:header&gt;
-            &lt;quickbooks:line ref="#[variable:linesSalesReceipt]"&gt;&lt;/quickbooks:line&gt;
-        &lt;/quickbooks:update-sales-receipt&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-receipt synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:header ref="#[variable:headersalesreceipt]"&gt;&lt;/quickbooks:header&gt;
+    &lt;quickbooks:line ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:line&gt;
+&lt;/quickbooks:update-sales-receipt&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -5308,7 +5611,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -5319,7 +5622,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -5396,8 +5699,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated SalesReceipt.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated SalesReceipt.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -5430,17 +5743,17 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
  
- <br/><code>&lt;quickbooks:update-sales-term name="Due before receipt"
-                                      dueDays="1"
-                                      discountDays="10"
-                                      discountPercent="3.2"
-                                      dayOfMonthDue="10"
-                                      dueNextMonthDays="10"
-                                      discountDayOfMonth="5"
-                                      dateDiscountPercent="2.1"
-                                      syncToken="1"&gt;
-              &lt;quickbooks:id ref="#[variable:id]"/&gt;
-        &lt;/quickbooks:update-sales-term&gt;</code></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-term name="due before receipt"
+                              duedays="1"
+                              discountdays="10"
+                              discountpercent="3.2"
+                              dayofmonthdue="10"
+                              duenextmonthdays="10"
+                              discountdayofmonth="5"
+                              datediscountpercent="2.1"
+                              synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+&lt;/quickbooks:update-sales-term&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -5455,7 +5768,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -5466,7 +5779,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -5632,8 +5945,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated SalesTerm.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated SalesTerm.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -5663,23 +5986,23 @@ specify which configuration to use.</p>
  For details see: 
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
-
- <br/><code>&lt;quickbooks:update-vendor name="Digital"
-                                  givenName="John"
-                                  middleName="J"
-                                  familyName="Doe"
-                                  dBAName="Digital"
-                                  showAs="J Doe"
-                                  taxIdentifier="12-1234567"
-                                  acctNum="9001"
-                                  vendor1099="true"
-                                  syncToken="1"&gt;
-            &lt;quickbooks:id ref="#[variable:id]"/&gt;
-            &lt;quickbooks:web-site ref="#[variable:webSites]"&gt;&lt;/quickbooks:web-site&gt;
-            &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
-            &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
-            &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
-        &lt;/quickbooks:update-vendor&gt;</code></p></div>
+ 
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-vendor name="digital"
+                          givenname="john"
+                          middlename="j"
+                          familyname="doe"
+                          dbaname="digital"
+                          showas="j doe"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true"
+                          synctoken="1"&gt;
+    &lt;quickbooks:id ref="#[variable:id]"/&gt;
+    &lt;quickbooks:web-site ref="#[variable:websites]"&gt;&lt;/quickbooks:web-site&gt;
+    &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
+    &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
+    &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
+&lt;/quickbooks:update-vendor&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -5694,7 +6017,7 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessToken</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth access token<br/></td>
                 </tr>
                 
                 
@@ -5705,7 +6028,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>accessTokenSecret</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"></td>
+                    <td class="jd-descrcol" width="100%">the oauth secret token<br/></td>
                 </tr>
                 
                 
@@ -5934,8 +6257,18 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>The updated Vendor.
-<br/></li></ul>
+      <ul class="nolist"><li>The updated Vendor.<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th><a href="../java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html">QuickBooksRuntimeException</a></td>
+            <td>when there is a problem with the server. It has a code 
+         and a message provided by quickbooks about the error.
+<br/></td>
+        </tr>
+      </table>
   </div>
 
     </div>

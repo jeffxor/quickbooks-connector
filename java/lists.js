@@ -24,7 +24,7 @@ var DATA = [
       { id:22, label:"org.mule.modules.quickbooks.api", link:"java/org/mule/modules/quickbooks/api/package-summary.html", type:"package" },
       { id:23, label:"org.mule.modules.quickbooks.api.DefaultQuickBooksClient", link:"java/org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html", type:"class" },
       { id:24, label:"org.mule.modules.quickbooks.api.Exception", link:"java/org/mule/modules/quickbooks/api/Exception/package-summary.html", type:"package" },
-      { id:25, label:"org.mule.modules.quickbooks.api.Exception.QuickBooksException", link:"java/org/mule/modules/quickbooks/api/Exception/QuickBooksException.html", type:"class" },
+      { id:25, label:"org.mule.modules.quickbooks.api.Exception.QuickBooksRuntimeException", link:"java/org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html", type:"class" },
       { id:26, label:"org.mule.modules.quickbooks.api.MapBuilder", link:"java/org/mule/modules/quickbooks/api/MapBuilder.html", type:"class" },
       { id:27, label:"org.mule.modules.quickbooks.api.PaginatedIterable", link:"java/org/mule/modules/quickbooks/api/PaginatedIterable.html", type:"class" },
       { id:28, label:"org.mule.modules.quickbooks.api.QuickBooksClient", link:"java/org/mule/modules/quickbooks/api/QuickBooksClient.html", type:"class" },
