@@ -1,5 +1,5 @@
 /**
- * Mule FWS Cloud Connector
+ * Mule QuickBooks Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -68,9 +68,7 @@ import ar.com.zauber.commons.mom.MapObjectMapper;
  * Cloud Connector Facade for <a href="http://quickbooksonline.intuit.com/">QuickBooks</a> 
  * @author gastonponti
  */
-@Module(name = "quickbooks",
-        namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books",
-        schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-quick-books/1.0/mule-quickbooks.xsd")
+@Module(name = "quickbooks")
 @OAuth(requestTokenUrl = "https://oauth.intuit.com/oauth/v1/get_request_token",
        accessTokenUrl = "https://oauth.intuit.com/oauth/v1/get_access_token",
        authorizationUrl = "https://workplace.intuit.com/Connect/Begin")

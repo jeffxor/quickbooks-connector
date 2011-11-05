@@ -1,5 +1,5 @@
 /**
- * Mule FWS Cloud Connector
+ * Mule QuickBooks Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -172,7 +172,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         {
             syncToken = ((CdmBase) getObject(type, id, accessKey, accessSecret)).getSyncToken();
         }
-        T obj = type.newInstance();
+        T obj = (T)type.newInstance();
         obj.setSyncToken(syncToken);
         obj.setId(id);
         

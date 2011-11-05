@@ -1,5 +1,5 @@
 /**
- * Mule FWS Cloud Connector
+ * Mule QuickBooks Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
