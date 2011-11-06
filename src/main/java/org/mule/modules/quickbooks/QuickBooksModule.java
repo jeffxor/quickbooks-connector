@@ -65,8 +65,14 @@ import ar.com.zauber.commons.mom.MapObjectMapper;
 
 
 /**
- * Cloud Connector Facade for <a href="http://quickbooksonline.intuit.com/">QuickBooks</a> 
- * @author gastonponti
+ * QuickBooks software provides an interface that allows you to use forms such as checks, deposit slips and invoices,
+ * making the accounting process more comfortable for the average business owner or manager. By using the built-in
+ * functions that pertain to your business, you are able to perform your company accounting by simply recording your
+ * vendor activities, customer activities, banking transactions, payroll checks and taxes. QuickBooks handles the
+ * accounting portion of each transaction behind the scenes.
+ *
+ * Read more: QuickBooks Accounting Tutorial | eHow.com http://www.ehow.com/way_5462311_quickbooks-accounting-tutorial.html#ixzz1csaydwxl
+ * @author MuleSoft, inc.
  */
 @Module(name = "quickbooks")
 @OAuth(requestTokenUrl = "https://oauth.intuit.com/oauth/v1/get_request_token",
