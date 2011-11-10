@@ -730,11 +730,24 @@ specify which configuration to use.</p>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-account name="#[map-payload:name]"
                            desc="#[map-payload:desc]"
                            subtype="#[map-payload:subType]"
-                           acctnum="#[map-payload:acctNum]"
-                           openingbalance="#[map-payload:openingBalance]"
-                           openingbalancedate="#[map-payload:openingBalanceDate]"&gt;
+                           acctNum="#[map-payload:acctNum]"
+                           openingBalance="#[map-payload:openingBalance]"
+                           openingBalanceDate="#[map-payload:openingBalanceDate]"&gt;
     &lt;quickbooks:account-parent-id ref="#[map-payload:parentId]"/&gt;
 
+&lt;/quickbooks:create-account&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-account name="Loan Account"
+                           desc="Loan Account"
+                           subtype="SAVINGS"
+                           acctNum="5001"
+                           openingBalanceDate="2010-05-14t01:18:14-07:00"&gt;
+&lt;/quickbooks:create-account&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-account name="ACME Account"
+                           desc="ACME inventory Account"
+                           subtype="INVENTORY"
+                           acctNum="7001"
+                           openingBalance="20000.00"
+                           openingBalanceDate="2011-05-14t01:18:14-07:00"&gt;
 &lt;/quickbooks:create-account&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -819,7 +832,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>openingBalanceDate</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Date of the opening balance amount when creating a new balance
+                    <td class="jd-descrcol" width="100%">Optional. Date of the opening balance amount when creating a new balance
                            sheet account.<br/></td>
                 </tr>
                 
@@ -914,7 +927,83 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill &gt;
     &lt;quickbooks:header ref="#[variable:headerBill]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesBill]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesBill]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-bill&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;2004&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-06T21:40:41-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;4 Pens&lt;/msg&gt;
+        &lt;vendorId&gt;#[groovy: [
+            'value': '7' ] ]
+        &lt;/vendorId&gt;
+        &lt;vendorName&gt;Digital&lt;/vendorName&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;salesTermName&gt;Due before receipt&lt;/salesTermName&gt;
+        &lt;dueDate&gt;2010-08-11T15:00:00-07:00&lt;/dueDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens&lt;/desc&gt;
+            &lt;amount&gt;25&lt;/amount&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+            &lt;unitPrice&gt;5&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '2' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-bill&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;2004&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-06T21:40:41-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Inventory&lt;/msg&gt;
+        &lt;vendorId&gt;#[groovy: [
+            'value': '7' ] ]
+        &lt;/vendorId&gt;
+        &lt;vendorName&gt;Digital&lt;/vendorName&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;salesTermName&gt;Due before receipt&lt;/salesTermName&gt;
+        &lt;dueDate&gt;2010-08-11T15:00:00-07:00&lt;/dueDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Screens&lt;/desc&gt;
+            &lt;amount&gt;1000&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;2&lt;/qty&gt;
+            &lt;unitPrice&gt;500&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '98' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Mouses&lt;/desc&gt;
+            &lt;amount&gt;60&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;4&lt;/qty&gt;
+            &lt;unitPrice&gt;15&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '6528' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/desc&gt;
+            &lt;amount&gt;150&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;3&lt;/qty&gt;
+            &lt;unitPrice&gt;50&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '98' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-bill&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -954,7 +1043,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service purchased for which the payment is demanded
              as a part of the bill. A bill can have multiple lines.<br/></td>
@@ -1033,7 +1122,53 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill-payment &gt;
     &lt;quickbooks:header ref="#[variable:headerbillpayment]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-bill-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill-payment &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;15&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-09-08T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;entityId&gt;#[groovy: [
+         'value' : '1' ] ]
+        &lt;/entityId&gt;
+        &lt;apAccountId&gt;#[groovy: [
+            'value' : '31' ] ]
+        &lt;/apAccountId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;5000.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '12' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-bill-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-bill-payment &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;15&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-09-08T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '2475' ] ]
+        &lt;/entityId&gt;
+        &lt;ccAccountId&gt;#[groovy: [
+             'value' : '35473' ] ]
+        &lt;/apAccountId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;200.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '12' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;300.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '19' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-bill-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1073,7 +1208,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Specifies the line details for the bill payment.<br/></td>
                 </tr>
@@ -1149,8 +1284,60 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-cash-purchase &gt;
     &lt;quickbooks:header ref="#[variable:headercashpurchase]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:line&gt;
-&lt;/quickbooks:create-bill-payment&gt;</pre></div></p></div>
+    &lt;quickbooks:lines ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-cash-purchase&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-cash-purchase &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1454&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Pens Purchased&lt;/msg&gt;
+        &lt;cashAccountId&gt;#[groovy: [
+             'value' : '41' ] ]
+        &lt;/cashAccountId&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '1' ] ]
+        &lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Blue Ink Pens&lt;/Desc&gt;
+            &lt;amount&gt;200.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-cach-purchase&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-cash-purchase &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1454&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Inventory Purchased&lt;/msg&gt;
+        &lt;note&gt;Ask for discounts next time&lt;/note&gt;
+        &lt;cashAccountId&gt;#[groovy: [
+            'value' : '41' ] ]
+        &lt;/cashAccountId&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '1' ] ]
+        &lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/Desc&gt;
+            &lt;amount&gt;200.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Mouses&lt;/Desc&gt;
+            &lt;amount&gt;50.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-cach-purchase&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1189,7 +1376,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which 
              the payment is demanded as a part of the CashPurchase.<br/></td>
@@ -1266,7 +1453,30 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-check &gt;
     &lt;quickbooks:header ref="#[variable:headercheck]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescheck]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linescheck]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-check&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-check &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;25&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Hard Disks Purchased&lt;/msg&gt;
+        &lt;bankAccountId&gt;#[groovy: [
+            'value' : '40' ] ]
+        &lt;/bankAccountId&gt;
+        &lt;entityId&gt;1&lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Hard Disks&lt;/desc&gt;
+            &lt;amount&gt;500&lt;/amount&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '2' ] ]
+            &lt;/itemId&gt;
+            &lt;qty&gt;10&lt;/qty&gt;
+            &lt;unitPrice&gt;50&lt;/unitPrice&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-check&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1306,7 +1516,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which 
              the payment is demanded as a part of the check.<br/></td>
@@ -1386,7 +1596,29 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-credit-card-charge &gt;
     &lt;quickbooks:header ref="#[variable:headercreditcardcharge]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-credit-card-charge&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-credit-card-charge &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1200&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Purchased Pen&lt;/msg&gt;
+        &lt;ccAccountId&gt;30&lt;/ccAccountId&gt;
+        &lt;entityId&gt;1&lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens Purchased&lt;/desc&gt;
+            &lt;amount&gt;5&lt;/amount&gt;
+            &lt;reimbursableInfo&gt;#[groovy: [
+                'customerId' : [ 'value' : '5' ] ] ]
+            &lt;/reimbursableInfo&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;itemId&gt;5&lt;/itemId&gt;
+            &lt;unitPrice&gt;1&lt;/unitPrice&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-credit-card-charge&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1426,7 +1658,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which the 
              payment is demanded as a part of the CreditCardCharge purchase.<br/></td>
@@ -1504,18 +1736,55 @@ specify which configuration to use.</p>
  0400_QuickBooks_Online/Customer">Customer Especification</a>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-customer name="john doe"
-                            givenname="john"
-                            middlename="bill"
-                            familyname="doe"
+                            givenName="john"
+                            middleName="bill"
+                            familyName="doe"
                             suffix="sr"
-                            dbaname="mint"
-                            showas="j doe"
-                            salestaxcodeid="5"&gt;
-    &lt;quickbooks:web-site ref="#[variable:website]"&gt;&lt;/quickbooks:web-site&gt;
-    &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
-    &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
-    &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
+                            dBAName="mint"
+                            showAs="j doe"
+                            salesTaxCodeId="5"&gt;
+    &lt;quickbooks:web-sites ref="#[variable:website]"&gt;&lt;/quickbooks:web-sites&gt;
     &lt;quickbooks:sales-term-id ref="#[variable:salestermid]"&gt;&lt;/quickbooks:sales-term-id&gt;
+    &lt;quickbooks:emails ref="#[variable:email]"&gt;&lt;/quickbooks:emails&gt;
+    &lt;quickbooks:phones ref="#[variable:phone]"&gt;&lt;/quickbooks:phones&gt;
+    &lt;quickbooks:addresses ref="#[variable:address]"&gt;&lt;/quickbooks:addresses&gt;
+&lt;/quickbooks:create-customer&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-customer name="John Doe"
+                            givenName="John"
+                            middleName="J"
+                            familyName="Doe"
+                            dBAName="Mint"&gt;
+    &lt;quickbooks:addresses&gt;
+        &lt;quickbooks:address&gt;
+            &lt;line1&gt;Park Avenue&lt;/line1&gt;
+            &lt;city&gt;Woodland Hills&lt;/city&gt;
+            &lt;countrySubDivisionCode&gt;CA&lt;/countrySubDivisionCode&gt;
+            &lt;postalCode&gt;91367&lt;/postalCode&gt;
+        &lt;/quickbooks:address&gt;
+    &lt;/quickbooks:addresses&gt;
+    &lt;quickbooks:phones&gt;
+        &lt;quickbooks:phone&gt;
+            &lt;deviceType&gt;Mobile&lt;/deviceType&gt;
+            &lt;freeFormNumber&gt;(770) 349-1200&lt;/freeFormNumber&gt;
+        &lt;/quickbooks:phone&gt;
+        &lt;quickbooks:phone&gt;
+            &lt;deviceType&gt;Fax&lt;/deviceType&gt;
+            &lt;freeFormNumber&gt;(770) 349-1300&lt;/freeFormNumber&gt;
+        &lt;/quickbooks:phone&gt;
+    &lt;/quickbooks:phones&gt;
+    &lt;quickbooks:web-sites&gt;
+        &lt;quickbooks:web-site&gt;
+            &lt;uri&gt;http://www.digitalinsight.mint.com/&lt;/uri&gt;
+        &lt;quickbooks:web-site&gt;
+    &lt;/quickbooks:web-sites&gt;
+    &lt;quickbooks:emails&gt;
+        &lt;quickbooks:email&gt;
+            &lt;address&gt;john_doe@digitalinsight.mint.com&lt;/address&gt;
+        &lt;/quickbooks:email&gt;
+    &lt;/quickbooks:emails&gt;
+    &lt;quickbooks:sales-term-id&gt;
+        &lt;value&gt;5&lt;/value&gt;
+    &lt;/quickbooks:sales-term-id&gt;
 &lt;/quickbooks:create-customer&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1612,7 +1881,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>webSite</nobr></td>
+                    <td class="jd-linkcol"><nobr>webSites</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Valid URI strings. Specifies the customers's Web sites.<br/></td>
                 </tr>
@@ -1641,7 +1910,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>email</nobr></td>
+                    <td class="jd-linkcol"><nobr>emails</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid email strings. Specifies the customers's email addresses.<br/></td>
                 </tr>
@@ -1650,7 +1919,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>phone</nobr></td>
+                    <td class="jd-linkcol"><nobr>phones</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
               numbers but only one phone number is permitted for one device type.<br/></td>
@@ -1660,7 +1929,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>address</nobr></td>
+                    <td class="jd-linkcol"><nobr>addresses</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the physical addresses.<br/></td>
                 </tr>
@@ -1759,7 +2028,37 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-estimate &gt;
     &lt;quickbooks:header ref="#[variable:headerestimate]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-estimate&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-estimate &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1002&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-07T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Please consider discount&lt;/msg&gt;
+        &lt;note&gt;Estimate for Eraser purchase&lt;/note&gt;
+        &lt;status&gt;Pending&lt;/status&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ] 
+        &lt;/customerId&gt;
+        &lt;taxRate&gt;0.5&lt;/taxRate&gt;
+        &lt;billEmail&gt;john_doe@digitalinsight.com&lt;/billEmail&gt;
+        &lt;discountAmt&gt;-1.25&lt;/discountAmt&gt;
+        &lt;expirationDate&gt;2010-08-16T15:00:00-07:00&lt;/expirationDate&gt;
+        &lt;acceptedBy&gt;Purchase manager&lt;/acceptedBy&gt;
+        &lt;acceptedDate&gt;2010-04-08T15:00:00-07:00&lt;/acceptedDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Erasers&lt;/desc&gt;
+            &lt;amount&gt;5&lt;/amount&gt;
+            &lt;taxable&gt;true&lt;/taxable&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '5' ] ] 
+            &lt;/itemId&gt;
+            &lt;unitPrice&gt;1&lt;/unitPrice&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-estimate&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1799,7 +2098,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service for which the estimate is being issued.<br/></td>
                 </tr>
@@ -1878,7 +2177,39 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-invoice &gt;
     &lt;quickbooks:header ref="#[variable:headerinvoice]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-invoice&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-invoice &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;00010&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-07T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;No Black Ink Pens&lt;/msg&gt;
+        &lt;note&gt;Blue Ink pens only&lt;/note&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/customerId&gt;
+        &lt;subTotalAmt&gt;10&lt;/subTotalAmt&gt;
+        &lt;taxRate&gt;0.5&lt;/taxRate&gt;
+        &lt;totalAmt&gt;11&lt;/totalAmt&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;dueDate&gt;2010-08-16T15:00:00-07:00&lt;/dueDate&gt;
+        &lt;billEmail&gt;john_doe@digitalinsight.com&lt;/billEmail&gt;
+        &lt;discountAmt&gt;-1.25&lt;/discountAmt&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens&lt;/desc&gt;
+            &lt;amount&gt;200&lt;/amount&gt;
+            &lt;taxable&gt;true&lt;/taxable&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '4' ] ]
+            &lt;/itemId&gt;
+            &lt;unitPrice&gt;100&lt;/unitPrice&gt;
+            &lt;qty&gt;4&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-invoice&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -1918,7 +2249,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service for which the Invoice is being issued.<br/></td>
                 </tr>
@@ -1997,13 +2328,35 @@ specify which configuration to use.</p>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-item name="pencils"
                         desc="pencils hb"
                         taxable="true"
-                        itemparentname="office"
+                        itemParentName="office"
                         purchasedesc="500 pencils purchased"&gt;
+
     &lt;quickbooks:item-parent-id ref="#[variable:itemparentid]"&gt;&lt;/quickbooks:item-parent-id&gt;
     &lt;quickbooks:unit-price ref="#[variable:unitprice]"&gt;&lt;/quickbooks:unit-price&gt;
     &lt;quickbooks:income-account-ref ref="#[variable:incomeaccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
     &lt;quickbooks:purchase-cost ref="#[variable:purchasecost]"&gt;&lt;/quickbooks:purchase-cost&gt;
     &lt;quickbooks:expense-account-ref ref="#[variable:expenseaccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
+&lt;/quickbooks:create-item&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-item name="Pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        purchaseDesc="500 pencils purchased"&gt;
+    &lt;quickbooks:unit-price&gt;
+        &lt;amount&gt;2&lt;/amount&gt;
+    &lt;/quickbooks:unit-price&gt;
+    &lt;quickbooks:income-account-ref&gt;
+        &lt;accountId&gt;#[groovy: [
+            'value' : '30' ] ]
+        &lt;/accountId&gt;
+    &lt;/quickbooks:income-account-ref&gt;
+    &lt;quickbooks:purchase-cost&gt;
+        &lt;amount&gt;1&lt;/amount&gt;
+    &lt;/quickbooks:purchase-cost&gt;
+    &lt;quickbooks:expense-account-ref&gt;
+        &lt;accountId&gt;#[groovy: [
+            'value' : '30' ] ]
+        &lt;/accountId&gt;
+    &lt;/quickbooks:expense-account-ref&gt;  
 &lt;/quickbooks:create-item&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -2211,7 +2564,31 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment &gt;
     &lt;quickbooks:header ref="#[variable:headerpayment]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linespayment]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linespayment]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;54&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;note&gt;Payment against Invoice&lt;/note&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/customerId&gt;
+        &lt;depositToAccountId&gt;41&lt;/depositToAccountId&gt;
+        &lt;paymentMethodId&gt;#[groovy: [
+            'value' : '1' ] ]
+        &lt;/paymentMethodId&gt;
+        &lt;totalAmt&gt;20.00&lt;/totalAmt&gt;
+        &lt;processPayment&gt;false&lt;/processPayment&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;20.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '8' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -2251,7 +2628,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Line details of the receive payment. A receive payment can have multiple lines.<br/></td>
                 </tr>
@@ -2327,9 +2704,8 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment-method name="wire transfer"
-                                  type="credit_card" &gt;
-&lt;/quickbooks:create-payment-method&gt;</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2370,8 +2746,10 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>type</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Type of payment. Specifies if it is a credit card payment type or a 
-             non-credit card payment type.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Type of payment. Specifies if it is a credit card payment type or a 
+             non-credit card payment type. It must specify either of the following:<br/>
+             * CREDIT_CARD<br/>
+             * NON_CREDIT_CARD<br/></td>
                 </tr>
                 
                 
@@ -2447,7 +2825,30 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-receipt &gt;
     &lt;quickbooks:header ref="#[variable:headersalesreceipt]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:create-sales-receipt&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-receipt &gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;99009926&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-10-22T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;currency&gt;USD&lt;/currency&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '1' ,
+            'idDomain: 'QBO' ] ]
+        &lt;/customerId&gt;
+        &lt;shipDate&gt;2011-04-22T15:00:00-07:00&lt;/shipDate&gt;
+        &lt;totalAmt&gt;2500&lt;/totalAmt&gt;
+        &lt;discountAmt&gt;0&lt;/discountAmt&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/desc&gt;
+            &lt;amount&gt;2500&lt;/amount&gt;
+            &lt;itemName&gt;Pen&lt;/itemName&gt;
+            &lt;unitPrice&gt;10&lt;/unitPrice&gt;
+            &lt;qty&gt;2&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:create-sales-receipt&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -2487,7 +2888,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Groups the line items for the sales receipt.<br/></td>
                 </tr>
@@ -2565,14 +2966,22 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-term name="due before receipt"
-                              duedays="1"
-                              discountdays="10"
-                              discountpercent="3.2"
-                              dayofmonthdue="10"
-                              duenextmonthdays="10"
-                              discountdayofmonth="5"
-                              datediscountpercent="2.1"/&gt;</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-term name="#[variable:name]"
+                              dueDays="#[variable:dueDays]"
+                              discountDays="#[variable:discountDays]"
+                              discountPercent="#[variable:discountDays]"
+                              dayOfMonthDue="#[variable:dayOfMonthDue]"
+                              dueNextMonthDays="#[variable:DueNextMonthDays]"
+                              discountDayOfMonth="#[variable:discountDayOfMonth]"
+                              dateDiscountPercent="#[variable:dateDiscountPercent]"/&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-sales-term name="Due before receipt"
+                              dueDays="1"
+                              discountDays="10"
+                              discountPercent="3.2"
+                              dayOfMonthDue="10"
+                              dueNextMonthDays="10"
+                              discountDayOfMonth="5"
+                              dateDiscountPercent="2.1"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2773,10 +3182,34 @@ specify which configuration to use.</p>
                           taxidentifier="12-1234567"
                           acctnum="9001"
                           vendor1099="true"&gt;
-    &lt;quickbooks:web-site ref="#[variable:websites]"&gt;&lt;/quickbooks:web-site&gt;
-    &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
-    &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
-    &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
+    &lt;quickbooks:web-sites ref="#[variable:websites]"&gt;&lt;/quickbooks:web-sites&gt;
+    &lt;quickbooks:emails ref="#[variable:emails]"&gt;&lt;/quickbooks:emails&gt;
+    &lt;quickbooks:phones ref="#[variable:phones]"&gt;&lt;/quickbooks:phones&gt;
+    &lt;quickbooks:addresses ref="#[variable:addresses]"&gt;&lt;/quickbooks:addresses&gt;
+&lt;/quickbooks:create-vendor&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-vendor name="Digital"
+                          givenname="John"
+                          middlename="j"
+                          familyname="Doe"
+                          dbaname="Digital"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true"&gt;
+    &lt;quickbooks:address&gt;
+        &lt;line1&gt;Park Avenue&lt;/line1&gt;
+        &lt;city&gt;Woodland Hills&lt;/city&gt;
+        &lt;countrySubDivisionCode&gt;CA&lt;/countrySubDivisionCode&gt;
+        &lt;postalCode&gt;91367&lt;/postalCode&gt;
+    &lt;/quickbooks:address&gt;
+    &lt;quickbooks:phone&gt;
+        &lt;freeFormNumber&gt;(818) 436-8225&lt;/freeFormNumber&gt;
+    &lt;/quickbooks:phone&gt;
+    &lt;quickbooks:webSite&gt;
+        &lt;uri&gt;http://www.digitalinsight.mint.com/&lt;/uri&gt;
+    &lt;/quickbooks:webSite&gt;
+    &lt;quickbooks:email&gt;
+        &lt;address&gt;john_doe@digitalinsight.mint.com&lt;/address&gt;
+    &lt;/quickbooks:email&gt;
 &lt;/quickbooks:create-vendor&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -2865,7 +3298,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>webSite</nobr></td>
+                    <td class="jd-linkcol"><nobr>webSites</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid URI strings. Specifies the vendor's Web site.<br/></td>
                 </tr>
@@ -2905,7 +3338,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>email</nobr></td>
+                    <td class="jd-linkcol"><nobr>emails</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid email strings. Specifies the vendors's email addresses.<br/></td>
                 </tr>
@@ -2914,7 +3347,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>phone</nobr></td>
+                    <td class="jd-linkcol"><nobr>phones</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
               5 phone numbers but only one phone number is permitted for one device type.<br/></td>
@@ -2924,7 +3357,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>address</nobr></td>
+                    <td class="jd-linkcol"><nobr>addresses</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the physical addresses.<br/></td>
                 </tr>
@@ -3016,8 +3449,15 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Deletes an object.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:delete-object type="invoice" synctoken="2"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:delete-object type="INVOICE"
+                          syncToken="2"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
+&lt;/quickbooks:delete-object&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:delete-object type="CUSTOMER"
+                          syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;20&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
 &lt;/quickbooks:delete-object&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -3262,9 +3702,10 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Retrieve objects by ID.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:get-object type="invoice"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:get-object type="INVOICE"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;&lt;/quickbooks:id&gt;
-&lt;/quickbooks:get-object&gt;</pre></div></p></div>
+&lt;/quickbooks:get-object&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3383,16 +3824,36 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Account">Account Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-account synctoken="1"
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-account syncToken="1"
                            name="loan account"
                            desc="loan account"
                            subtype="savings"
-                           acctnum="5001"
-                           openingbalance="10000"
-                           openingbalancedate="2010-09-13t01:18:14-07:00"&gt;
+                           acctNum="5001"
+                           openingBalance="10000"
+                           openingBalanceDate="2010-09-13t01:18:14-07:00"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
-    &lt;quickbooks:update-parent-id ref="#[variable:accountparentid]"/&gt;
+    &lt;quickbooks:parent-id ref="#[variable:accountparentid]"/&gt;
 
+&lt;/quickbooks:update-account&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-account syncToken="1"
+                           name="Loan Account"
+                           desc="Loan Account"
+                           subtype="SAVINGS"
+                           acctNum="5001"
+                           openingBalanceDate="2010-05-14t01:18:14-07:00"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;12&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+&lt;/quickbooks:update-account&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-account name="ACME Account"
+                           desc="ACME inventory Account"
+                           subtype="INVENTORY"
+                           acctNum="7001"
+                           openingBalance="20000.00"
+                           openingBalanceDate="2011-05-14t01:18:14-07:00"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;65&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
 &lt;/quickbooks:update-account&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -3598,10 +4059,92 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Bill">Bill Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill sycntoken="0"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill sycnToken="0"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headerbill]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesbill]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesbill]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-bill&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill sycnToken="0"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;15&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;2004&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-06T21:40:41-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;4 Pens&lt;/msg&gt;
+        &lt;vendorId&gt;#[groovy: [
+            'value': '7' ] ]
+        &lt;/vendorId&gt;
+        &lt;vendorName&gt;Digital&lt;/vendorName&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;salesTermName&gt;Due before receipt&lt;/salesTermName&gt;
+        &lt;dueDate&gt;2010-08-11T15:00:00-07:00&lt;/dueDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens&lt;/desc&gt;
+            &lt;amount&gt;25&lt;/amount&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+            &lt;unitPrice&gt;5&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '2' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-bill&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill sycnToken="0"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;34&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;2004&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-06T21:40:41-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Inventory&lt;/msg&gt;
+        &lt;vendorId&gt;#[groovy: [
+            'value': '7' ] ]
+        &lt;/vendorId&gt;
+        &lt;vendorName&gt;Digital&lt;/vendorName&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;salesTermName&gt;Due before receipt&lt;/salesTermName&gt;
+        &lt;dueDate&gt;2010-08-11T15:00:00-07:00&lt;/dueDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Screens&lt;/desc&gt;
+            &lt;amount&gt;1000&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;2&lt;/qty&gt;
+            &lt;unitPrice&gt;500&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '98' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Mouses&lt;/desc&gt;
+            &lt;amount&gt;60&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;4&lt;/qty&gt;
+            &lt;unitPrice&gt;15&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '6528' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/desc&gt;
+            &lt;amount&gt;150&lt;/amount&gt;
+            &lt;billableStatus&gt;Billable&lt;/billableStatus&gt;
+            &lt;qty&gt;3&lt;/qty&gt;
+            &lt;unitPrice&gt;50&lt;/unitPrice&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '98' ] ]
+            &lt;/itemId&gt;
+        &lt;quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-bill&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -3661,7 +4204,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service purchased for which the payment is demanded
              as a part of the bill. A bill can have multiple lines.<br/></td>
@@ -3746,10 +4289,62 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill-payment synctoken="0"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill-payment syncToken="0"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headerbillpayment]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesbillpayment]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-bill-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill-payment syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;75&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;15&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-09-08T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;entityId&gt;#[groovy: [
+         'value' : '1' ] ]
+        &lt;/entityId&gt;
+        &lt;apAccountId&gt;#[groovy: [
+            'value' : '31' ] ]
+        &lt;/apAccountId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;5000.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '12' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-bill-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-bill-payment syncToken="0"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;16&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;15&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-09-08T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '2475' ] ]
+        &lt;/entityId&gt;
+        &lt;ccAccountId&gt;#[groovy: [
+             'value' : '35473' ] ]
+        &lt;/apAccountId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;200.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '12' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;300.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '19' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-bill-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -3809,7 +4404,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Specifies the line details for the bill payment. A bill payment can have multiple lines.<br/></td>
                 </tr>
@@ -3891,11 +4486,69 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-cash-purchase synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-cash-purchase synctToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headercashpurchase]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:line&gt;
-&lt;/quickbooks:update-cash-purchase&gt;</pre></div></p></div>
+    &lt;quickbooks:lines ref="#[variable:linescashpurchase]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-cash-purchase&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-cash-purchase synctToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;26&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1454&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Pens Purchased&lt;/msg&gt;
+        &lt;cashAccountId&gt;#[groovy: [
+             'value' : '41' ] ]
+        &lt;/cashAccountId&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '1' ] ]
+        &lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Blue Ink Pens&lt;/Desc&gt;
+            &lt;amount&gt;200.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-cach-purchase&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-cash-purchase synctToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;36&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1454&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Inventory Purchased&lt;/msg&gt;
+        &lt;note&gt;Ask for discounts next time&lt;/note&gt;
+        &lt;cashAccountId&gt;#[groovy: [
+            'value' : '41' ] ]
+        &lt;/cashAccountId&gt;
+        &lt;entityId&gt;#[groovy: [
+             'value' : '1' ] ]
+        &lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/Desc&gt;
+            &lt;amount&gt;200.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Mouses&lt;/Desc&gt;
+            &lt;amount&gt;50.00&lt;/Amount&gt;
+            &lt;accountId&gt;#[groovy: [
+                'value' : '30' ] ]
+            &lt;/accountId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-cach-purchase&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3954,7 +4607,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which 
              the payment is demanded as a part of the CashPurchase.<br/></td>
@@ -4037,10 +4690,36 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Check">Check Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-check synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-check syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
     &lt;quickbooks:header ref="#[variable:headercheck]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescheck]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linescheck]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-check&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-check syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;19&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;25&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Hard Disks Purchased&lt;/msg&gt;
+        &lt;bankAccountId&gt;#[groovy: [
+            'value' : '40' ] ]
+        &lt;/bankAccountId&gt;
+        &lt;entityId&gt;1&lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Hard Disks&lt;/desc&gt;
+            &lt;amount&gt;500&lt;/amount&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '2' ] ]
+            &lt;/itemId&gt;
+            &lt;qty&gt;10&lt;/qty&gt;
+            &lt;unitPrice&gt;50&lt;/unitPrice&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-check&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -4100,7 +4779,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which 
              the payment is demanded as a part of the check.<br/></td>
@@ -4185,10 +4864,35 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-credit-card-charge synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-credit-card-charge syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headercreditcardcharge]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linescreditcardcharge]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-credit-card-charge&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-credit-card-charge syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;19&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1200&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Purchased Pen&lt;/msg&gt;
+        &lt;ccAccountId&gt;30&lt;/ccAccountId&gt;
+        &lt;entityId&gt;1&lt;/entityId&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens Purchased&lt;/desc&gt;
+            &lt;amount&gt;5&lt;/amount&gt;
+            &lt;reimbursableInfo&gt;#[groovy: [
+                'customerId' : [ 'value' : '5' ] ] ]
+            &lt;/reimbursableInfo&gt;
+            &lt;billableStatus&gt;NotBillable&lt;/billableStatus&gt;
+            &lt;itemId&gt;5&lt;/itemId&gt;
+            &lt;unitPrice&gt;1&lt;/unitPrice&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-credit-card-charge&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -4248,7 +4952,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">List of lines. Information about a specific good or service purchased for which the 
              payment is demanded as a part of the CreditCardCharge purchase.<br/></td>
@@ -4332,21 +5036,62 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Customer">Customer Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-customer name="john doe"
-                            givenname="john"
-                            middlename="bill"
-                            familyname="doe"
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-customer syncToken="1"
+                            name="john doe"
+                            givenName="john"
+                            middleName="bill"
+                            familyName="doe"
                             suffix="sr"
-                            dbaname="mint"
-                            showas="j doe"
-                            salestaxcodeid="5"
-                            synctoken="1"&gt;
+                            dBAName="mint"
+                            showAs="j doe"
+                            salesTaxCodeId="5"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
-    &lt;quickbooks:web-site ref="#[variable:website]"&gt;&lt;/quickbooks:web-site&gt;
-    &lt;quickbooks:email ref="#[variable:email]"&gt;&lt;/quickbooks:email&gt;
-    &lt;quickbooks:phone ref="#[variable:phone]"&gt;&lt;/quickbooks:phone&gt;
-    &lt;quickbooks:address ref="#[variable:address]"&gt;&lt;/quickbooks:address&gt;
+    &lt;quickbooks:web-sites ref="#[variable:website]"&gt;&lt;/quickbooks:web-sites&gt;
     &lt;quickbooks:sales-term-id ref="#[variable:salestermid]"&gt;&lt;/quickbooks:sales-term-id&gt;
+    &lt;quickbooks:emails ref="#[variable:email]"&gt;&lt;/quickbooks:emails&gt;
+    &lt;quickbooks:phones ref="#[variable:phone]"&gt;&lt;/quickbooks:phones&gt;
+    &lt;quickbooks:addresses ref="#[variable:address]"&gt;&lt;/quickbooks:addresses&gt;
+&lt;/quickbooks:update-customer&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-customer syncToken="1"
+                            name="John Doe"
+                            givenName="John"
+                            middleName="J"
+                            familyName="Doe"
+                            dBAName="Mint"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;39&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:addresses&gt;
+        &lt;quickbooks:address&gt;
+            &lt;line1&gt;Park Avenue&lt;/line1&gt;
+            &lt;city&gt;Woodland Hills&lt;/city&gt;
+            &lt;countrySubDivisionCode&gt;CA&lt;/countrySubDivisionCode&gt;
+            &lt;postalCode&gt;91367&lt;/postalCode&gt;
+        &lt;/quickbooks:address&gt;
+    &lt;/quickbooks:addresses&gt;
+    &lt;quickbooks:phones&gt;
+        &lt;quickbooks:phone&gt;
+            &lt;deviceType&gt;Mobile&lt;/deviceType&gt;
+            &lt;freeFormNumber&gt;(770) 349-1200&lt;/freeFormNumber&gt;
+        &lt;/quickbooks:phone&gt;
+        &lt;quickbooks:phone&gt;
+            &lt;deviceType&gt;Fax&lt;/deviceType&gt;
+            &lt;freeFormNumber&gt;(770) 349-1300&lt;/freeFormNumber&gt;
+        &lt;/quickbooks:phone&gt;
+    &lt;/quickbooks:phones&gt;
+    &lt;quickbooks:web-sites&gt;
+        &lt;quickbooks:web-site&gt;
+            &lt;uri&gt;http://www.digitalinsight.mint.com/&lt;/uri&gt;
+        &lt;quickbooks:web-site&gt;
+    &lt;/quickbooks:web-sites&gt;
+    &lt;quickbooks:emails&gt;
+        &lt;quickbooks:email&gt;
+            &lt;address&gt;john_doe@digitalinsight.mint.com&lt;/address&gt;
+        &lt;/quickbooks:email&gt;
+    &lt;/quickbooks:emails&gt;
+    &lt;quickbooks:sales-term-id&gt;
+        &lt;value&gt;5&lt;/value&gt;
+    &lt;/quickbooks:sales-term-id&gt;
 &lt;/quickbooks:update-customer&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -4463,7 +5208,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>webSite</nobr></td>
+                    <td class="jd-linkcol"><nobr>webSites</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Valid URI strings. Specifies the customers's Web sites.<br/></td>
                 </tr>
@@ -4492,7 +5237,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>email</nobr></td>
+                    <td class="jd-linkcol"><nobr>emails</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid email strings. Specifies the customers's email addresses.<br/></td>
                 </tr>
@@ -4501,9 +5246,9 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>phone</nobr></td>
+                    <td class="jd-linkcol"><nobr>phones</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
               numbers but only one phone number is permitted for one device type.<br/></td>
                 </tr>
                 
@@ -4511,7 +5256,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>address</nobr></td>
+                    <td class="jd-linkcol"><nobr>addresses</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the physical addresses.<br/></td>
                 </tr>
@@ -4616,10 +5361,43 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Estimate">Estimate Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-estimate synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-estimate syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
     &lt;quickbooks:header ref="#[variable:headerestimate]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesestimate]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-estimate&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-estimate syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;29&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;1002&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-07T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;Please consider discount&lt;/msg&gt;
+        &lt;note&gt;Estimate for Eraser purchase&lt;/note&gt;
+        &lt;status&gt;Pending&lt;/status&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ] 
+        &lt;/customerId&gt;
+        &lt;taxRate&gt;0.5&lt;/taxRate&gt;
+        &lt;billEmail&gt;john_doe@digitalinsight.com&lt;/billEmail&gt;
+        &lt;discountAmt&gt;-1.25&lt;/discountAmt&gt;
+        &lt;expirationDate&gt;2010-08-16T15:00:00-07:00&lt;/expirationDate&gt;
+        &lt;acceptedBy&gt;Purchase manager&lt;/acceptedBy&gt;
+        &lt;acceptedDate&gt;2010-04-08T15:00:00-07:00&lt;/acceptedDate&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Erasers&lt;/desc&gt;
+            &lt;amount&gt;5&lt;/amount&gt;
+            &lt;taxable&gt;true&lt;/taxable&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '5' ] ] 
+            &lt;/itemId&gt;
+            &lt;unitPrice&gt;1&lt;/unitPrice&gt;
+            &lt;qty&gt;5&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-estimate&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -4679,7 +5457,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service for which the estimate is being issued.<br/></td>
                 </tr>
@@ -4763,10 +5541,45 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Invoice">Invoice Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-invoice synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-invoice syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
     &lt;quickbooks:header ref="#[variable:headerinvoice]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linesinvoice]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-invoice&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-invoice syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;22&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;00010&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-07T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;msg&gt;No Black Ink Pens&lt;/msg&gt;
+        &lt;note&gt;Blue Ink pens only&lt;/note&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/customerId&gt;
+        &lt;subTotalAmt&gt;10&lt;/subTotalAmt&gt;
+        &lt;taxRate&gt;0.5&lt;/taxRate&gt;
+        &lt;totalAmt&gt;11&lt;/totalAmt&gt;
+        &lt;salesTermId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/salesTermId&gt;
+        &lt;dueDate&gt;2010-08-16T15:00:00-07:00&lt;/dueDate&gt;
+        &lt;billEmail&gt;john_doe@digitalinsight.com&lt;/billEmail&gt;
+        &lt;discountAmt&gt;-1.25&lt;/discountAmt&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Pens&lt;/desc&gt;
+            &lt;amount&gt;200&lt;/amount&gt;
+            &lt;taxable&gt;true&lt;/taxable&gt;
+            &lt;itemId&gt;#[groovy: [
+                'value' : '4' ] ]
+            &lt;/itemId&gt;
+            &lt;unitPrice&gt;100&lt;/unitPrice&gt;
+            &lt;qty&gt;4&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-invoice&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -4826,7 +5639,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Information about a specific good or service for which the Invoice is being issued.<br/></td>
                 </tr>
@@ -4909,18 +5722,43 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Item">Item Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-item name="pencils"
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-item syncToken="1"
+                        name="pencils"
                         desc="pencils hb"
                         taxable="true"
                         itemparentname="office"
-                        purchasedesc="500 pencils purchased"
-                        synctoken="1"&gt;
+                        purchasedesc="500 pencils purchased"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
     &lt;quickbooks:item-parent-id ref="#[variable:itemparentid]"&gt;&lt;/quickbooks:item-parent-id&gt;
     &lt;quickbooks:unit-price ref="#[variable:unitprice]"&gt;&lt;/quickbooks:unit-price&gt;
     &lt;quickbooks:income-account-ref ref="#[variable:incomeaccount]"&gt;&lt;/quickbooks:income-account-ref&gt;
     &lt;quickbooks:purchase-cost ref="#[variable:purchasecost]"&gt;&lt;/quickbooks:purchase-cost&gt;
     &lt;quickbooks:expense-account-ref ref="#[variable:expenseaccount]"&gt;&lt;/quickbooks:expense-account-ref&gt;    
+&lt;/quickbooks:update-item&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-item syncToken="1"
+                        name="Pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        purchaseDesc="500 pencils purchased"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;21&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:unit-price&gt;
+        &lt;amount&gt;2&lt;/amount&gt;
+    &lt;/quickbooks:unit-price&gt;
+    &lt;quickbooks:income-account-ref&gt;
+        &lt;accountId&gt;#[groovy: [
+            'value' : '30' ] ]
+        &lt;/accountId&gt;
+    &lt;/quickbooks:income-account-ref&gt;
+    &lt;quickbooks:purchase-cost&gt;
+        &lt;amount&gt;1&lt;/amount&gt;
+    &lt;/quickbooks:purchase-cost&gt;
+    &lt;quickbooks:expense-account-ref&gt;
+        &lt;accountId&gt;#[groovy: [
+            'value' : '30' ] ]
+        &lt;/accountId&gt;
+    &lt;/quickbooks:expense-account-ref&gt;  
 &lt;/quickbooks:update-item&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -5153,10 +5991,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Payment">Payment Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headerpayment]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linespayment]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linespayment]"&gt;&lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -5216,7 +6054,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Line details of the receive payment. A receive payment can have multiple lines.<br/></td>
                 </tr>
@@ -5299,9 +6137,9 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment-method name="wire transfer"
-                                  type="credit_card"
-                                  synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment-method syncToken="1"
+                                  name="wire transfer"
+                                  type="credit_card"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
 &lt;/quickbooks:update-payment-method&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -5446,10 +6284,10 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-receipt synctoken="1"&gt;
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-receipt syncToken="1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headersalesreceipt]"&gt;&lt;/quickbooks:header&gt;
-    &lt;quickbooks:line ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:line&gt;
+    &lt;quickbooks:lines ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-sales-receipt&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -5509,7 +6347,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>line</nobr></td>
+                    <td class="jd-linkcol"><nobr>lines</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Groups the line items for the sales receipt.<br/></td>
                 </tr>
@@ -5594,15 +6432,15 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-term name="due before receipt"
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-term syncToken="1"
+                              name="due before receipt"
                               duedays="1"
                               discountdays="10"
                               discountpercent="3.2"
                               dayofmonthdue="10"
                               duenextmonthdays="10"
                               discountdayofmonth="5"
-                              datediscountpercent="2.1"
-                              synctoken="1"&gt;
+                              datediscountpercent="2.1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
 &lt;/quickbooks:update-sales-term&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -5823,7 +6661,8 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-vendor name="digital"
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-vendor syncToken="1"
+                          name="digital"
                           givenname="john"
                           middlename="j"
                           familyname="doe"
@@ -5831,13 +6670,12 @@ specify which configuration to use.</p>
                           showas="j doe"
                           taxidentifier="12-1234567"
                           acctnum="9001"
-                          vendor1099="true"
-                          synctoken="1"&gt;
+                          vendor1099="true"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
-    &lt;quickbooks:web-site ref="#[variable:websites]"&gt;&lt;/quickbooks:web-site&gt;
-    &lt;quickbooks:email ref="#[variable:emails]"&gt;&lt;/quickbooks:email&gt;
-    &lt;quickbooks:phone ref="#[variable:phones]"&gt;&lt;/quickbooks:phone&gt;
-    &lt;quickbooks:address ref="#[variable:addresses]"&gt;&lt;/quickbooks:address&gt;
+    &lt;quickbooks:web-sites ref="#[variable:websites]"&gt;&lt;/quickbooks:web-sites&gt;
+    &lt;quickbooks:emails ref="#[variable:emails]"&gt;&lt;/quickbooks:emails&gt;
+    &lt;quickbooks:phones ref="#[variable:phones]"&gt;&lt;/quickbooks:phones&gt;
+    &lt;quickbooks:addresses ref="#[variable:addresses]"&gt;&lt;/quickbooks:addresses&gt;
 &lt;/quickbooks:update-vendor&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -5946,7 +6784,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>webSite</nobr></td>
+                    <td class="jd-linkcol"><nobr>webSites</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid URI strings. Specifies the vendor's Web site.<br/></td>
                 </tr>
@@ -5986,7 +6824,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>email</nobr></td>
+                    <td class="jd-linkcol"><nobr>emails</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Valid email strings. Specifies the vendors's email addresses.<br/></td>
                 </tr>
@@ -5995,7 +6833,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>phone</nobr></td>
+                    <td class="jd-linkcol"><nobr>phones</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
               5 phone numbers but only one phone number is permitted for one device type.<br/></td>
@@ -6005,7 +6843,7 @@ specify which configuration to use.</p>
           
                 
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>address</nobr></td>
+                    <td class="jd-linkcol"><nobr>addresses</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Specifies the physical addresses.<br/></td>
                 </tr>
