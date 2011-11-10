@@ -2,86 +2,457 @@
 <quickbooks:create-account name="#[map-payload:name]"
                            desc="#[map-payload:desc]"
                            subtype="#[map-payload:subType]"
-                           acctnum="#[map-payload:acctNum]"
-                           openingbalance="#[map-payload:openingBalance]"
-                           openingbalancedate="#[map-payload:openingBalanceDate]">
+                           acctNum="#[map-payload:acctNum]"
+                           openingBalance="#[map-payload:openingBalance]"
+                           openingBalanceDate="#[map-payload:openingBalanceDate]">
     <quickbooks:account-parent-id ref="#[map-payload:parentId]"/>
             
 </quickbooks:create-account>
 <!-- END_INCLUDE(quickbooks:create-account) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-account2) -->
+<quickbooks:create-account name="Loan Account"
+                           desc="Loan Account"
+                           subtype="SAVINGS"
+                           acctNum="5001"
+                           openingBalanceDate="2010-05-14t01:18:14-07:00">
+</quickbooks:create-account>
+<!-- END_INCLUDE(quickbooks:create-account2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-account3) -->
+<quickbooks:create-account name="ACME Account"
+                           desc="ACME inventory Account"
+                           subtype="INVENTORY"
+                           acctNum="7001"
+                           openingBalance="20000.00"
+                           openingBalanceDate="2011-05-14t01:18:14-07:00">
+</quickbooks:create-account>
+<!-- END_INCLUDE(quickbooks:create-account3) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:create-bill) -->
 <quickbooks:create-bill >
     <quickbooks:header ref="#[variable:headerBill]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesBill]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesBill]"></quickbooks:lines>
 </quickbooks:create-bill>
 <!-- END_INCLUDE(quickbooks:create-bill) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill2) -->
+<quickbooks:create-bill>
+    <quickbooks:header>
+        <docNumber>2004</docNumber>
+        <txnDate>2010-08-06T21:40:41-07:00</txnDate>
+        <msg>4 Pens</msg>
+        <vendorId>#[groovy: [
+            'value': '7' ] ]
+        </vendorId>
+        <vendorName>Digital</vendorName>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <salesTermName>Due before receipt</salesTermName>
+        <dueDate>2010-08-11T15:00:00-07:00</dueDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens</desc>
+            <amount>25</amount>
+            <billableStatus>NotBillable</billableStatus>
+            <qty>5</qty>
+            <unitPrice>5</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '2' ] ]
+            </itemId>
+        <quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-bill>
+<!-- END_INCLUDE(quickbooks:create-bill2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill3) -->
+<quickbooks:create-bill>
+    <quickbooks:header>
+        <docNumber>2004</docNumber>
+        <txnDate>2010-08-06T21:40:41-07:00</txnDate>
+        <msg>Inventory</msg>
+        <vendorId>#[groovy: [
+            'value': '7' ] ]
+        </vendorId>
+        <vendorName>Digital</vendorName>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <salesTermName>Due before receipt</salesTermName>
+        <dueDate>2010-08-11T15:00:00-07:00</dueDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Screens</desc>
+            <amount>1000</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>2</qty>
+            <unitPrice>500</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '98' ] ]
+            </itemId>
+        <quickbooks:line>
+        <quickbooks:line>
+            <desc>Mouses</desc>
+            <amount>60</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>4</qty>
+            <unitPrice>15</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '6528' ] ]
+            </itemId>
+        <quickbooks:line>
+        <quickbooks:line>
+            <desc>Keyboards</desc>
+            <amount>150</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>3</qty>
+            <unitPrice>50</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '98' ] ]
+            </itemId>
+        <quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-bill>
+<!-- END_INCLUDE(quickbooks:create-bill3) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-bill-payment) -->
 <quickbooks:create-bill-payment >
     <quickbooks:header ref="#[variable:headerbillpayment]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesbillpayment]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesbillpayment]"></quickbooks:lines>
 </quickbooks:create-bill-payment>
 <!-- END_INCLUDE(quickbooks:create-bill-payment) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill-payment2) -->
+<quickbooks:create-bill-payment >
+    <quickbooks:header>
+        <docNumber>15</docNumber>
+        <txnDate>2010-09-08T15:00:00-07:00</txnDate>
+        <entityId>#[groovy: [
+         'value' : '1' ] ]
+        </entityId>
+        <apAccountId>#[groovy: [
+            'value' : '31' ] ]
+        </apAccountId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <amount>5000.00</amount>
+            <txnId>#[groovy: [
+                'value' : '12' ] ]
+            </txnId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-bill-payment>
+<!-- END_INCLUDE(quickbooks:create-bill-payment2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-bill-payment3) -->
+<quickbooks:create-bill-payment >
+    <quickbooks:header>
+        <docNumber>15</docNumber>
+        <txnDate>2010-09-08T15:00:00-07:00</txnDate>
+        <entityId>#[groovy: [
+             'value' : '2475' ] ]
+        </entityId>
+        <ccAccountId>#[groovy: [
+             'value' : '35473' ] ]
+        </apAccountId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <amount>200.00</amount>
+            <txnId>#[groovy: [
+                'value' : '12' ] ]
+            </txnId>
+        </quickbooks:line>
+        <quickbooks:line>
+            <amount>300.00</amount>
+            <txnId>#[groovy: [
+                'value' : '19' ] ]
+            </txnId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-bill-payment>
+<!-- END_INCLUDE(quickbooks:create-bill-payment3) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-cash-purchase) -->
 <quickbooks:create-cash-purchase >
     <quickbooks:header ref="#[variable:headercashpurchase]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescashpurchase]"></quickbooks:line>
-</quickbooks:create-bill-payment>
+    <quickbooks:lines ref="#[variable:linescashpurchase]"></quickbooks:lines>
+</quickbooks:create-cash-purchase>
 <!-- END_INCLUDE(quickbooks:create-cash-purchase) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-cash-purchase2) -->
+<quickbooks:create-cash-purchase >
+    <quickbooks:header>
+        <docNumber>1454</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Pens Purchased</msg>
+        <cashAccountId>#[groovy: [
+             'value' : '41' ] ]
+        </cashAccountId>
+        <entityId>#[groovy: [
+             'value' : '1' ] ]
+        </entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Blue Ink Pens</Desc>
+            <amount>200.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-cach-purchase>
+<!-- END_INCLUDE(quickbooks:create-cash-purchase2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-cash-purchase3) -->
+<quickbooks:create-cash-purchase >
+    <quickbooks:header>
+        <docNumber>1454</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Inventory Purchased</msg>
+        <note>Ask for discounts next time</note>
+        <cashAccountId>#[groovy: [
+            'value' : '41' ] ]
+        </cashAccountId>
+        <entityId>#[groovy: [
+             'value' : '1' ] ]
+        </entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Keyboards</Desc>
+            <amount>200.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+        <quickbooks:line>
+            <desc>Mouses</Desc>
+            <amount>50.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-cach-purchase>
+<!-- END_INCLUDE(quickbooks:create-cash-purchase3) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-check) -->
 <quickbooks:create-check >
     <quickbooks:header ref="#[variable:headercheck]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescheck]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linescheck]"></quickbooks:lines>
 </quickbooks:create-check>
 <!-- END_INCLUDE(quickbooks:create-check) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-check2) -->
+<quickbooks:create-check >
+    <quickbooks:header>
+        <docNumber>25</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Hard Disks Purchased</msg>
+        <bankAccountId>#[groovy: [
+            'value' : '40' ] ]
+        </bankAccountId>
+        <entityId>1</entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Hard Disks</desc>
+            <amount>500</amount>
+            <billableStatus>NotBillable</billableStatus>
+            <itemId>#[groovy: [
+                'value' : '2' ] ]
+            </itemId>
+            <qty>10</qty>
+            <unitPrice>50</unitPrice>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-check>
+<!-- END_INCLUDE(quickbooks:create-check2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-credit-card-charge) -->
 <quickbooks:create-credit-card-charge >
     <quickbooks:header ref="#[variable:headercreditcardcharge]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescreditcardcharge]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linescreditcardcharge]"></quickbooks:lines>
 </quickbooks:create-credit-card-charge>
 <!-- END_INCLUDE(quickbooks:create-credit-card-charge) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-credit-card-charge2) -->
+<quickbooks:create-credit-card-charge >
+    <quickbooks:header>
+        <docNumber>1200</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Purchased Pen</msg>
+        <ccAccountId>30</ccAccountId>
+        <entityId>1</entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens Purchased</desc>
+            <amount>5</amount>
+            <reimbursableInfo>#[groovy: [
+                'customerId' : [ 'value' : '5' ] ] ]
+            </reimbursableInfo>
+            <billableStatus>NotBillable</billableStatus>
+            <itemId>5</itemId>
+            <unitPrice>1</unitPrice>
+            <qty>5</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-credit-card-charge>
+<!-- END_INCLUDE(quickbooks:create-credit-card-charge2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:create-customer) -->
 <quickbooks:create-customer name="john doe"
-                            givenname="john"
-                            middlename="bill"
-                            familyname="doe"
+                            givenName="john"
+                            middleName="bill"
+                            familyName="doe"
                             suffix="sr"
-                            dbaname="mint"
-                            showas="j doe"
-                            salestaxcodeid="5">
-    <quickbooks:web-site ref="#[variable:website]"></quickbooks:web-site>
-    <quickbooks:email ref="#[variable:email]"></quickbooks:email>
-    <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
-    <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+                            dBAName="mint"
+                            showAs="j doe"
+                            salesTaxCodeId="5">
+    <quickbooks:web-sites ref="#[variable:website]"></quickbooks:web-sites>
     <quickbooks:sales-term-id ref="#[variable:salestermid]"></quickbooks:sales-term-id>
+    <quickbooks:emails ref="#[variable:email]"></quickbooks:emails>
+    <quickbooks:phones ref="#[variable:phone]"></quickbooks:phones>
+    <quickbooks:addresses ref="#[variable:address]"></quickbooks:addresses>
 </quickbooks:create-customer>
 <!-- END_INCLUDE(quickbooks:create-customer) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-customer2) -->
+<quickbooks:create-customer name="John Doe"
+                            givenName="John"
+                            middleName="J"
+                            familyName="Doe"
+                            dBAName="Mint">
+    <quickbooks:addresses>
+        <quickbooks:address>
+            <line1>Park Avenue</line1>
+            <city>Woodland Hills</city>
+            <countrySubDivisionCode>CA</countrySubDivisionCode>
+            <postalCode>91367</postalCode>
+        </quickbooks:address>
+    </quickbooks:addresses>
+    <quickbooks:phones>
+        <quickbooks:phone>
+            <deviceType>Mobile</deviceType>
+            <freeFormNumber>(770) 349-1200</freeFormNumber>
+        </quickbooks:phone>
+        <quickbooks:phone>
+            <deviceType>Fax</deviceType>
+            <freeFormNumber>(770) 349-1300</freeFormNumber>
+        </quickbooks:phone>
+    </quickbooks:phones>
+    <quickbooks:web-sites>
+        <quickbooks:web-site>
+            <uri>http://www.digitalinsight.mint.com/</uri>
+        <quickbooks:web-site>
+    </quickbooks:web-sites>
+    <quickbooks:emails>
+        <quickbooks:email>
+            <address>john_doe@digitalinsight.mint.com</address>
+        </quickbooks:email>
+    </quickbooks:emails>
+    <quickbooks:sales-term-id>
+        <value>5</value>
+    </quickbooks:sales-term-id>
+</quickbooks:create-customer>
+<!-- END_INCLUDE(quickbooks:create-customer2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-estimate) -->
 <quickbooks:create-estimate >
     <quickbooks:header ref="#[variable:headerestimate]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesestimate]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesestimate]"></quickbooks:lines>
 </quickbooks:create-estimate>
 <!-- END_INCLUDE(quickbooks:create-estimate) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-estimate2) -->
+<quickbooks:create-estimate >
+    <quickbooks:header>
+        <docNumber>1002</docNumber>
+        <txnDate>2010-08-07T15:00:00-07:00</txnDate>
+        <msg>Please consider discount</msg>
+        <note>Estimate for Eraser purchase</note>
+        <status>Pending</status>
+        <customerId>#[groovy: [
+            'value' : '5' ] ] 
+        </customerId>
+        <taxRate>0.5</taxRate>
+        <billEmail>john_doe@digitalinsight.com</billEmail>
+        <discountAmt>-1.25</discountAmt>
+        <expirationDate>2010-08-16T15:00:00-07:00</expirationDate>
+        <acceptedBy>Purchase manager</acceptedBy>
+        <acceptedDate>2010-04-08T15:00:00-07:00</acceptedDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Erasers</desc>
+            <amount>5</amount>
+            <taxable>true</taxable>
+            <itemId>#[groovy: [
+                'value' : '5' ] ] 
+            </itemId>
+            <unitPrice>1</unitPrice>
+            <qty>5</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-estimate>
+<!-- END_INCLUDE(quickbooks:create-estimate2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-invoice) -->
 <quickbooks:create-invoice >
     <quickbooks:header ref="#[variable:headerinvoice]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesinvoice]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesinvoice]"></quickbooks:lines>
 </quickbooks:create-invoice>
 <!-- END_INCLUDE(quickbooks:create-invoice) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-invoice2) -->
+<quickbooks:create-invoice >
+    <quickbooks:header>
+        <docNumber>00010</docNumber>
+        <txnDate>2010-08-07T15:00:00-07:00</txnDate>
+        <msg>No Black Ink Pens</msg>
+        <note>Blue Ink pens only</note>
+        <customerId>#[groovy: [
+            'value' : '5' ] ]
+        </customerId>
+        <subTotalAmt>10</subTotalAmt>
+        <taxRate>0.5</taxRate>
+        <totalAmt>11</totalAmt>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <dueDate>2010-08-16T15:00:00-07:00</dueDate>
+        <billEmail>john_doe@digitalinsight.com</billEmail>
+        <discountAmt>-1.25</discountAmt>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens</desc>
+            <amount>200</amount>
+            <taxable>true</taxable>
+            <itemId>#[groovy: [
+                'value' : '4' ] ]
+            </itemId>
+            <unitPrice>100</unitPrice>
+            <qty>4</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-invoice>
+<!-- END_INCLUDE(quickbooks:create-invoice2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-item) -->
 <quickbooks:create-item name="pencils"
                         desc="pencils hb"
                         taxable="true"
-                        itemparentname="office"
+                        itemParentName="office"
                         purchasedesc="500 pencils purchased">
+
     <quickbooks:item-parent-id ref="#[variable:itemparentid]"></quickbooks:item-parent-id>
     <quickbooks:unit-price ref="#[variable:unitprice]"></quickbooks:unit-price>
     <quickbooks:income-account-ref ref="#[variable:incomeaccount]"></quickbooks:income-account-ref>
@@ -90,36 +461,128 @@
 </quickbooks:create-item>
 <!-- END_INCLUDE(quickbooks:create-item) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-item2) -->
+<quickbooks:create-item name="Pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        purchaseDesc="500 pencils purchased">
+    <quickbooks:unit-price>
+        <amount>2</amount>
+    </quickbooks:unit-price>
+    <quickbooks:income-account-ref>
+        <accountId>#[groovy: [
+            'value' : '30' ] ]
+        </accountId>
+    </quickbooks:income-account-ref>
+    <quickbooks:purchase-cost>
+        <amount>1</amount>
+    </quickbooks:purchase-cost>
+    <quickbooks:expense-account-ref>
+        <accountId>#[groovy: [
+            'value' : '30' ] ]
+        </accountId>
+    </quickbooks:expense-account-ref>  
+</quickbooks:create-item>
+<!-- END_INCLUDE(quickbooks:create-item2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:create-payment) -->
 <quickbooks:create-payment >
     <quickbooks:header ref="#[variable:headerpayment]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linespayment]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linespayment]"></quickbooks:lines>
 </quickbooks:create-payment>
 <!-- END_INCLUDE(quickbooks:create-payment) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-payment2) -->
+<quickbooks:create-payment >
+    <quickbooks:header>
+        <docNumber>54</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <note>Payment against Invoice</note>
+        <customerId>#[groovy: [
+            'value' : '5' ] ]
+        </customerId>
+        <depositToAccountId>41</depositToAccountId>
+        <paymentMethodId>#[groovy: [
+            'value' : '1' ] ]
+        </paymentMethodId>
+        <totalAmt>20.00</totalAmt>
+        <processPayment>false</processPayment>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <amount>20.00</amount>
+            <txnId>#[groovy: [
+                'value' : '8' ] ]
+            </txnId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-payment>
+<!-- END_INCLUDE(quickbooks:create-payment2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:create-payment-method) -->
 <quickbooks:create-payment-method name="wire transfer"
-                                  type="credit_card" >
+                                  type="CREDIT_CARD" >
 </quickbooks:create-payment-method>
-<!-- END_INCLUDE(quickbooks:create-payment-method) -->
+<!-- END_INCLUDE(quickbooks:create-payment-method2) -->
+<quickbooks:create-payment-method name="Pencil SA"
+                                  type="NON_CREDIT_CARD" >
+</quickbooks:create-payment-method>
+<!-- END_INCLUDE(quickbooks:create-payment-method2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-sales-receipt) -->
 <quickbooks:create-sales-receipt >
     <quickbooks:header ref="#[variable:headersalesreceipt]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linessalesreceipt]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linessalesreceipt]"></quickbooks:lines>
 </quickbooks:create-sales-receipt>
 <!-- END_INCLUDE(quickbooks:create-sales-receipt) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-sales-receipt2) -->
+<quickbooks:create-sales-receipt >
+    <quickbooks:header>
+        <docNumber>99009926</docNumber>
+        <txnDate>2010-10-22T15:00:00-07:00</txnDate>
+        <currency>USD</currency>
+        <customerId>#[groovy: [
+            'value' : '1' ,
+            'idDomain: 'QBO' ] ]
+        </customerId>
+        <shipDate>2011-04-22T15:00:00-07:00</shipDate>
+        <totalAmt>2500</totalAmt>
+        <discountAmt>0</discountAmt>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Keyboards</desc>
+            <amount>2500</amount>
+            <itemName>Pen</itemName>
+            <unitPrice>10</unitPrice>
+            <qty>2</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:create-sales-receipt>
+<!-- END_INCLUDE(quickbooks:create-sales-receipt2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:create-sales-term) -->
-<quickbooks:create-sales-term name="due before receipt"
-                              duedays="1"
-                              discountdays="10"
-                              discountpercent="3.2"
-                              dayofmonthdue="10"
-                              duenextmonthdays="10"
-                              discountdayofmonth="5"
-                              datediscountpercent="2.1"/>
+<quickbooks:create-sales-term name="#[variable:name]"
+                              dueDays="#[variable:dueDays]"
+                              discountDays="#[variable:discountDays]"
+                              discountPercent="#[variable:discountDays]"
+                              dayOfMonthDue="#[variable:dayOfMonthDue]"
+                              dueNextMonthDays="#[variable:DueNextMonthDays]"
+                              discountDayOfMonth="#[variable:discountDayOfMonth]"
+                              dateDiscountPercent="#[variable:dateDiscountPercent]"/>
 <!-- END_INCLUDE(quickbooks:create-sales-term) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:create-sales-term2) -->
+<quickbooks:create-sales-term name="Due before receipt"
+                              dueDays="1"
+                              discountDays="10"
+                              discountPercent="3.2"
+                              dayOfMonthDue="10"
+                              dueNextMonthDays="10"
+                              discountDayOfMonth="5"
+                              dateDiscountPercent="2.1"/>
+<!-- END_INCLUDE(quickbooks:create-sales-term2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:create-vendor) -->
 <quickbooks:create-vendor name="digital"
@@ -131,115 +594,561 @@
                           taxidentifier="12-1234567"
                           acctnum="9001"
                           vendor1099="true">
-    <quickbooks:web-site ref="#[variable:websites]"></quickbooks:web-site>
-    <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
-    <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
-    <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+    <quickbooks:web-sites ref="#[variable:websites]"></quickbooks:web-sites>
+    <quickbooks:emails ref="#[variable:emails]"></quickbooks:emails>
+    <quickbooks:phones ref="#[variable:phones]"></quickbooks:phones>
+    <quickbooks:addresses ref="#[variable:addresses]"></quickbooks:addresses>
 </quickbooks:create-vendor>
 <!-- END_INCLUDE(quickbooks:create-vendor) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:create-vendor2) -->
+<quickbooks:create-vendor name="Digital"
+                          givenname="John"
+                          middlename="j"
+                          familyname="Doe"
+                          dbaname="Digital"
+                          taxidentifier="12-1234567"
+                          acctnum="9001"
+                          vendor1099="true">
+    <quickbooks:address>
+        <line1>Park Avenue</line1>
+        <city>Woodland Hills</city>
+        <countrySubDivisionCode>CA</countrySubDivisionCode>
+        <postalCode>91367</postalCode>
+    </quickbooks:address>
+    <quickbooks:phone>
+        <freeFormNumber>(818) 436-8225</freeFormNumber>
+    </quickbooks:phone>
+    <quickbooks:webSite>
+        <uri>http://www.digitalinsight.mint.com/</uri>
+    </quickbooks:webSite>
+    <quickbooks:email>
+        <address>john_doe@digitalinsight.mint.com</address>
+    </quickbooks:email>
+</quickbooks:create-vendor>
+<!-- END_INCLUDE(quickbooks:create-vendor2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:get-object) -->
-<quickbooks:get-object type="invoice">
+<quickbooks:get-object type="INVOICE">
     <quickbooks:id ref="#[variable:id]"></quickbooks:id>
 </quickbooks:get-object>
 <!-- END_INCLUDE(quickbooks:get-object) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:get-object) -->
+<quickbooks:get-object type="CUSTOMER">
+    <quickbooks:id>
+        <value>45</value>
+    </quickbooks:id>
+</quickbooks:get-object>
+<!-- END_INCLUDE(quickbooks:get-object) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-account) -->
-<quickbooks:update-account synctoken="1"
+<quickbooks:update-account syncToken="1"
                            name="loan account"
                            desc="loan account"
                            subtype="savings"
-                           acctnum="5001"
-                           openingbalance="10000"
-                           openingbalancedate="2010-09-13t01:18:14-07:00">
+                           acctNum="5001"
+                           openingBalance="10000"
+                           openingBalanceDate="2010-09-13t01:18:14-07:00">
     <quickbooks:id ref="#[variable:id]"/>
-    <quickbooks:update-parent-id ref="#[variable:accountparentid]"/>
+    <quickbooks:parent-id ref="#[variable:accountparentid]"/>
             
 </quickbooks:update-account>
 <!-- END_INCLUDE(quickbooks:update-account) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-account2) -->
+<quickbooks:update-account syncToken="1"
+                           name="Loan Account"
+                           desc="Loan Account"
+                           subtype="SAVINGS"
+                           acctNum="5001"
+                           openingBalanceDate="2010-05-14t01:18:14-07:00">
+    <quickbooks:id>
+        <value>12</value>
+    </quickbooks:id>
+</quickbooks:update-account>
+<!-- END_INCLUDE(quickbooks:update-account2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-account3) -->
+<quickbooks:update-account name="ACME Account"
+                           desc="ACME inventory Account"
+                           subtype="INVENTORY"
+                           acctNum="7001"
+                           openingBalance="20000.00"
+                           openingBalanceDate="2011-05-14t01:18:14-07:00">
+    <quickbooks:id>
+        <value>65</value>
+    </quickbooks:id>
+</quickbooks:update-account>
+<!-- END_INCLUDE(quickbooks:update-account3) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-bill) -->
-<quickbooks:update-bill sycntoken="0">
+<quickbooks:update-bill sycnToken="0">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headerbill]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesbill]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesbill]"></quickbooks:lines>
 </quickbooks:update-bill>
 <!-- END_INCLUDE(quickbooks:update-bill) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-bill2) -->
+<quickbooks:update-bill sycnToken="0">
+    <quickbooks:id>
+        <value>15</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>2004</docNumber>
+        <txnDate>2010-08-06T21:40:41-07:00</txnDate>
+        <msg>4 Pens</msg>
+        <vendorId>#[groovy: [
+            'value': '7' ] ]
+        </vendorId>
+        <vendorName>Digital</vendorName>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <salesTermName>Due before receipt</salesTermName>
+        <dueDate>2010-08-11T15:00:00-07:00</dueDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens</desc>
+            <amount>25</amount>
+            <billableStatus>NotBillable</billableStatus>
+            <qty>5</qty>
+            <unitPrice>5</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '2' ] ]
+            </itemId>
+        <quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-bill>
+<!-- END_INCLUDE(quickbooks:update-bill2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-bill3) -->
+<quickbooks:update-bill sycnToken="0">
+    <quickbooks:id>
+        <value>34</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>2004</docNumber>
+        <txnDate>2010-08-06T21:40:41-07:00</txnDate>
+        <msg>Inventory</msg>
+        <vendorId>#[groovy: [
+            'value': '7' ] ]
+        </vendorId>
+        <vendorName>Digital</vendorName>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <salesTermName>Due before receipt</salesTermName>
+        <dueDate>2010-08-11T15:00:00-07:00</dueDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Screens</desc>
+            <amount>1000</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>2</qty>
+            <unitPrice>500</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '98' ] ]
+            </itemId>
+        <quickbooks:line>
+        <quickbooks:line>
+            <desc>Mouses</desc>
+            <amount>60</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>4</qty>
+            <unitPrice>15</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '6528' ] ]
+            </itemId>
+        <quickbooks:line>
+        <quickbooks:line>
+            <desc>Keyboards</desc>
+            <amount>150</amount>
+            <billableStatus>Billable</billableStatus>
+            <qty>3</qty>
+            <unitPrice>50</unitPrice>
+            <itemId>#[groovy: [
+                'value' : '98' ] ]
+            </itemId>
+        <quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-bill>
+<!-- END_INCLUDE(quickbooks:update-bill3) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-bill-payment) -->
-<quickbooks:update-bill-payment synctoken="0">
+<quickbooks:update-bill-payment syncToken="0">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headerbillpayment]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesbillpayment]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesbillpayment]"></quickbooks:lines>
 </quickbooks:update-bill-payment>
 <!-- END_INCLUDE(quickbooks:update-bill-payment) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-bill-payment2) -->
+<quickbooks:update-bill-payment syncToken="1">
+    <quickbooks:id>
+        <value>75</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>15</docNumber>
+        <txnDate>2010-09-08T15:00:00-07:00</txnDate>
+        <entityId>#[groovy: [
+         'value' : '1' ] ]
+        </entityId>
+        <apAccountId>#[groovy: [
+            'value' : '31' ] ]
+        </apAccountId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <amount>5000.00</amount>
+            <txnId>#[groovy: [
+                'value' : '12' ] ]
+            </txnId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-bill-payment>
+<!-- END_INCLUDE(quickbooks:update-bill-payment2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-bill-payment3) -->
+<quickbooks:update-bill-payment syncToken="0">
+    <quickbooks:id>
+        <value>16</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>15</docNumber>
+        <txnDate>2010-09-08T15:00:00-07:00</txnDate>
+        <entityId>#[groovy: [
+             'value' : '2475' ] ]
+        </entityId>
+        <ccAccountId>#[groovy: [
+             'value' : '35473' ] ]
+        </apAccountId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <amount>200.00</amount>
+            <txnId>#[groovy: [
+                'value' : '12' ] ]
+            </txnId>
+        </quickbooks:line>
+        <quickbooks:line>
+            <amount>300.00</amount>
+            <txnId>#[groovy: [
+                'value' : '19' ] ]
+            </txnId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-bill-payment>
+<!-- END_INCLUDE(quickbooks:update-bill-payment3) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-cash-purchase) -->
-<quickbooks:update-cash-purchase synctoken="1">
+<quickbooks:update-cash-purchase synctToken="1">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headercashpurchase]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescashpurchase]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linescashpurchase]"></quickbooks:lines>
 </quickbooks:update-cash-purchase>
 <!-- END_INCLUDE(quickbooks:update-cash-purchase) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-cash-purchase2) -->
+<quickbooks:update-cash-purchase synctToken="1">
+    <quickbooks:id>
+        <value>26</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>1454</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Pens Purchased</msg>
+        <cashAccountId>#[groovy: [
+             'value' : '41' ] ]
+        </cashAccountId>
+        <entityId>#[groovy: [
+             'value' : '1' ] ]
+        </entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Blue Ink Pens</Desc>
+            <amount>200.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-cach-purchase>
+<!-- END_INCLUDE(quickbooks:update-cash-purchase2) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:update-cash-purchase3) -->
+<quickbooks:update-cash-purchase synctToken="1">
+    <quickbooks:id>
+        <value>36</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>1454</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Inventory Purchased</msg>
+        <note>Ask for discounts next time</note>
+        <cashAccountId>#[groovy: [
+            'value' : '41' ] ]
+        </cashAccountId>
+        <entityId>#[groovy: [
+             'value' : '1' ] ]
+        </entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Keyboards</Desc>
+            <amount>200.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+        <quickbooks:line>
+            <desc>Mouses</Desc>
+            <amount>50.00</Amount>
+            <accountId>#[groovy: [
+                'value' : '30' ] ]
+            </accountId>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-cach-purchase>
+<!-- END_INCLUDE(quickbooks:update-cash-purchase3) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-check) -->
-<quickbooks:update-check synctoken="1">
+<quickbooks:update-check syncToken="1">
     <quickbooks:id ref="#[variable:id]">
     <quickbooks:header ref="#[variable:headercheck]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescheck]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linescheck]"></quickbooks:lines>
 </quickbooks:update-check>
 <!-- END_INCLUDE(quickbooks:update-check) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-check2) -->
+<quickbooks:update-check syncToken="1">
+    <quickbooks:id>
+        <value>19</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>25</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Hard Disks Purchased</msg>
+        <bankAccountId>#[groovy: [
+            'value' : '40' ] ]
+        </bankAccountId>
+        <entityId>1</entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Hard Disks</desc>
+            <amount>500</amount>
+            <billableStatus>NotBillable</billableStatus>
+            <itemId>#[groovy: [
+                'value' : '2' ] ]
+            </itemId>
+            <qty>10</qty>
+            <unitPrice>50</unitPrice>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-check>
+<!-- END_INCLUDE(quickbooks:update-check2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-credit-card-charge) -->
-<quickbooks:update-credit-card-charge synctoken="1">
+<quickbooks:update-credit-card-charge syncToken="1">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headercreditcardcharge]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linescreditcardcharge]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linescreditcardcharge]"></quickbooks:lines>
 </quickbooks:update-credit-card-charge>
 <!-- END_INCLUDE(quickbooks:update-credit-card-charge) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-credit-card-charge2) -->
+<quickbooks:update-credit-card-charge syncToken="1">
+    <quickbooks:id>
+        <value>19</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>1200</docNumber>
+        <txnDate>2010-08-09T15:00:00-07:00</txnDate>
+        <msg>Purchased Pen</msg>
+        <ccAccountId>30</ccAccountId>
+        <entityId>1</entityId>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens Purchased</desc>
+            <amount>5</amount>
+            <reimbursableInfo>#[groovy: [
+                'customerId' : [ 'value' : '5' ] ] ]
+            </reimbursableInfo>
+            <billableStatus>NotBillable</billableStatus>
+            <itemId>5</itemId>
+            <unitPrice>1</unitPrice>
+            <qty>5</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-credit-card-charge>
+<!-- END_INCLUDE(quickbooks:update-credit-card-charge2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-customer) -->
-<quickbooks:update-customer name="john doe"
-                            givenname="john"
-                            middlename="bill"
-                            familyname="doe"
+<quickbooks:update-customer syncToken="1"
+                            name="john doe"
+                            givenName="john"
+                            middleName="bill"
+                            familyName="doe"
                             suffix="sr"
-                            dbaname="mint"
-                            showas="j doe"
-                            salestaxcodeid="5"
-                            synctoken="1">
+                            dBAName="mint"
+                            showAs="j doe"
+                            salesTaxCodeId="5">
     <quickbooks:id ref="#[variable:id]">
-    <quickbooks:web-site ref="#[variable:website]"></quickbooks:web-site>
-    <quickbooks:email ref="#[variable:email]"></quickbooks:email>
-    <quickbooks:phone ref="#[variable:phone]"></quickbooks:phone>
-    <quickbooks:address ref="#[variable:address]"></quickbooks:address>
+    <quickbooks:web-sites ref="#[variable:website]"></quickbooks:web-sites>
     <quickbooks:sales-term-id ref="#[variable:salestermid]"></quickbooks:sales-term-id>
+    <quickbooks:emails ref="#[variable:email]"></quickbooks:emails>
+    <quickbooks:phones ref="#[variable:phone]"></quickbooks:phones>
+    <quickbooks:addresses ref="#[variable:address]"></quickbooks:addresses>
 </quickbooks:update-customer>
 <!-- END_INCLUDE(quickbooks:update-customer) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-customer2) -->
+<quickbooks:update-customer syncToken="1"
+                            name="John Doe"
+                            givenName="John"
+                            middleName="J"
+                            familyName="Doe"
+                            dBAName="Mint">
+    <quickbooks:id>
+        <value>39</value>
+    </quickbooks:id>
+    <quickbooks:addresses>
+        <quickbooks:address>
+            <line1>Park Avenue</line1>
+            <city>Woodland Hills</city>
+            <countrySubDivisionCode>CA</countrySubDivisionCode>
+            <postalCode>91367</postalCode>
+        </quickbooks:address>
+    </quickbooks:addresses>
+    <quickbooks:phones>
+        <quickbooks:phone>
+            <deviceType>Mobile</deviceType>
+            <freeFormNumber>(770) 349-1200</freeFormNumber>
+        </quickbooks:phone>
+        <quickbooks:phone>
+            <deviceType>Fax</deviceType>
+            <freeFormNumber>(770) 349-1300</freeFormNumber>
+        </quickbooks:phone>
+    </quickbooks:phones>
+    <quickbooks:web-sites>
+        <quickbooks:web-site>
+            <uri>http://www.digitalinsight.mint.com/</uri>
+        <quickbooks:web-site>
+    </quickbooks:web-sites>
+    <quickbooks:emails>
+        <quickbooks:email>
+            <address>john_doe@digitalinsight.mint.com</address>
+        </quickbooks:email>
+    </quickbooks:emails>
+    <quickbooks:sales-term-id>
+        <value>5</value>
+    </quickbooks:sales-term-id>
+</quickbooks:update-customer>
+<!-- END_INCLUDE(quickbooks:update-customer2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-estimate) -->
-<quickbooks:update-estimate synctoken="1">
+<quickbooks:update-estimate syncToken="1">
     <quickbooks:id ref="#[variable:id]">
     <quickbooks:header ref="#[variable:headerestimate]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesestimate]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesestimate]"></quickbooks:lines>
 </quickbooks:update-estimate>
 <!-- END_INCLUDE(quickbooks:update-estimate) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-estimate2) -->
+<quickbooks:update-estimate syncToken="1">
+    <quickbooks:id>
+        <value>29</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>1002</docNumber>
+        <txnDate>2010-08-07T15:00:00-07:00</txnDate>
+        <msg>Please consider discount</msg>
+        <note>Estimate for Eraser purchase</note>
+        <status>Pending</status>
+        <customerId>#[groovy: [
+            'value' : '5' ] ] 
+        </customerId>
+        <taxRate>0.5</taxRate>
+        <billEmail>john_doe@digitalinsight.com</billEmail>
+        <discountAmt>-1.25</discountAmt>
+        <expirationDate>2010-08-16T15:00:00-07:00</expirationDate>
+        <acceptedBy>Purchase manager</acceptedBy>
+        <acceptedDate>2010-04-08T15:00:00-07:00</acceptedDate>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Erasers</desc>
+            <amount>5</amount>
+            <taxable>true</taxable>
+            <itemId>#[groovy: [
+                'value' : '5' ] ] 
+            </itemId>
+            <unitPrice>1</unitPrice>
+            <qty>5</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-estimate>
+<!-- END_INCLUDE(quickbooks:update-estimate2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-invoice) -->
-<quickbooks:update-invoice synctoken="1">
+<quickbooks:update-invoice syncToken="1">
     <quickbooks:id ref="#[variable:id]">
     <quickbooks:header ref="#[variable:headerinvoice]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linesinvoice]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linesinvoice]"></quickbooks:lines>
 </quickbooks:update-invoice>
 <!-- END_INCLUDE(quickbooks:update-invoice) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-invoice2) -->
+<quickbooks:update-invoice syncToken="1">
+    <quickbooks:id>
+        <value>22</value>
+    </quickbooks:id>
+    <quickbooks:header>
+        <docNumber>00010</docNumber>
+        <txnDate>2010-08-07T15:00:00-07:00</txnDate>
+        <msg>No Black Ink Pens</msg>
+        <note>Blue Ink pens only</note>
+        <customerId>#[groovy: [
+            'value' : '5' ] ]
+        </customerId>
+        <subTotalAmt>10</subTotalAmt>
+        <taxRate>0.5</taxRate>
+        <totalAmt>11</totalAmt>
+        <salesTermId>#[groovy: [
+            'value' : '5' ] ]
+        </salesTermId>
+        <dueDate>2010-08-16T15:00:00-07:00</dueDate>
+        <billEmail>john_doe@digitalinsight.com</billEmail>
+        <discountAmt>-1.25</discountAmt>
+    </quickbooks:header>
+    <quickbooks:lines>
+        <quickbooks:line>
+            <desc>Pens</desc>
+            <amount>200</amount>
+            <taxable>true</taxable>
+            <itemId>#[groovy: [
+                'value' : '4' ] ]
+            </itemId>
+            <unitPrice>100</unitPrice>
+            <qty>4</qty>
+        </quickbooks:line>
+    </quickbooks:lines>
+</quickbooks:update-invoice>
+<!-- END_INCLUDE(quickbooks:update-invoice2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-item) -->
-<quickbooks:update-item name="pencils"
+<quickbooks:update-item syncToken="1"
+                        name="pencils"
                         desc="pencils hb"
                         taxable="true"
                         itemparentname="office"
-                        purchasedesc="500 pencils purchased"
-                        synctoken="1">
+                        purchasedesc="500 pencils purchased">
     <quickbooks:id ref="#[variable:id]">
     <quickbooks:item-parent-id ref="#[variable:itemparentid]"></quickbooks:item-parent-id>
     <quickbooks:unit-price ref="#[variable:unitprice]"></quickbooks:unit-price>
@@ -249,46 +1158,75 @@
 </quickbooks:update-item>
 <!-- END_INCLUDE(quickbooks:update-item) -->
 
+<!-- BEGIN_INCLUDE(quickbooks:update-item2) -->
+<quickbooks:create-item syncToken="1"
+                        name="Pencils"
+                        desc="pencils hb"
+                        taxable="true"
+                        purchaseDesc="500 pencils purchased">
+    <quickbooks:id>
+        <value>21</value>
+    </quickbooks:id>
+    <quickbooks:unit-price>
+        <amount>2</amount>
+    </quickbooks:unit-price>
+    <quickbooks:income-account-ref>
+        <accountId>#[groovy: [
+            'value' : '30' ] ]
+        </accountId>
+    </quickbooks:income-account-ref>
+    <quickbooks:purchase-cost>
+        <amount>1</amount>
+    </quickbooks:purchase-cost>
+    <quickbooks:expense-account-ref>
+        <accountId>#[groovy: [
+            'value' : '30' ] ]
+        </accountId>
+    </quickbooks:expense-account-ref>  
+</quickbooks:update-item>
+<!-- END_INCLUDE(quickbooks:update-item2) -->
+
 <!-- BEGIN_INCLUDE(quickbooks:update-payment) -->
-<quickbooks:update-payment synctoken="1">
+<quickbooks:update-payment syncToken="1">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headerpayment]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linespayment]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linespayment]"></quickbooks:lines>
 </quickbooks:update-payment>
 <!-- END_INCLUDE(quickbooks:update-payment) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:update-payment-method) -->
-<quickbooks:update-payment-method name="wire transfer"
-                                  type="credit_card"
-                                  synctoken="1">
+<quickbooks:update-payment-method syncToken="1"
+                                  name="wire transfer"
+                                  type="credit_card">
     <quickbooks:id ref="#[variable:id]">
 </quickbooks:update-payment-method>
 <!-- END_INCLUDE(quickbooks:update-payment-method) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:update-sales-receipt) -->
-<quickbooks:update-sales-receipt synctoken="1">
+<quickbooks:update-sales-receipt syncToken="1">
     <quickbooks:id ref="#[variable:id]"/>
     <quickbooks:header ref="#[variable:headersalesreceipt]"></quickbooks:header>
-    <quickbooks:line ref="#[variable:linessalesreceipt]"></quickbooks:line>
+    <quickbooks:lines ref="#[variable:linessalesreceipt]"></quickbooks:lines>
 </quickbooks:update-sales-receipt>
 <!-- END_INCLUDE(quickbooks:update-sales-receipt) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:update-sales-term) -->
-<quickbooks:update-sales-term name="due before receipt"
+<quickbooks:update-sales-term syncToken="1"
+                              name="due before receipt"
                               duedays="1"
                               discountdays="10"
                               discountpercent="3.2"
                               dayofmonthdue="10"
                               duenextmonthdays="10"
                               discountdayofmonth="5"
-                              datediscountpercent="2.1"
-                              synctoken="1">
+                              datediscountpercent="2.1">
     <quickbooks:id ref="#[variable:id]"/>
 </quickbooks:update-sales-term>
 <!-- END_INCLUDE(quickbooks:update-sales-term) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:update-vendor) -->
-<quickbooks:update-vendor name="digital"
+<quickbooks:update-vendor syncToken="1"
+                          name="digital"
                           givenname="john"
                           middlename="j"
                           familyname="doe"
@@ -296,21 +1234,30 @@
                           showas="j doe"
                           taxidentifier="12-1234567"
                           acctnum="9001"
-                          vendor1099="true"
-                          synctoken="1">
+                          vendor1099="true">
     <quickbooks:id ref="#[variable:id]"/>
-    <quickbooks:web-site ref="#[variable:websites]"></quickbooks:web-site>
-    <quickbooks:email ref="#[variable:emails]"></quickbooks:email>
-    <quickbooks:phone ref="#[variable:phones]"></quickbooks:phone>
-    <quickbooks:address ref="#[variable:addresses]"></quickbooks:address>
+    <quickbooks:web-sites ref="#[variable:websites]"></quickbooks:web-sites>
+    <quickbooks:emails ref="#[variable:emails]"></quickbooks:emails>
+    <quickbooks:phones ref="#[variable:phones]"></quickbooks:phones>
+    <quickbooks:addresses ref="#[variable:addresses]"></quickbooks:addresses>
 </quickbooks:update-vendor>
 <!-- END_INCLUDE(quickbooks:update-vendor) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:delete-object) -->
-<quickbooks:delete-object type="invoice" synctoken="2">
+<quickbooks:delete-object type="INVOICE"
+                          syncToken="2">
     <quickbooks:id ref="#[variable:id]"></quickbooks:id>
 </quickbooks:delete-object>
 <!-- END_INCLUDE(quickbooks:delete-object) -->
+
+<!-- BEGIN_INCLUDE(quickbooks:delete-object2) -->
+<quickbooks:delete-object type="CUSTOMER"
+                          syncToken="1">
+    <quickbooks:id>
+        <value>20</value>
+    </quickbooks:id>
+</quickbooks:delete-object>
+<!-- END_INCLUDE(quickbooks:delete-object2) -->
 
 <!-- BEGIN_INCLUDE(quickbooks:find-objects) -->
 <quickbooks:find-objects type="account"

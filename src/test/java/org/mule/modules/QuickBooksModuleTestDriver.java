@@ -18,6 +18,7 @@ package org.mule.modules;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,11 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mule.modules.quickbooks.AccountDetail;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.QuickBooksModule;
 import org.mule.modules.quickbooks.api.MapBuilder;
+import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.PhysicalAddress;
 import org.mule.modules.quickbooks.schema.SalesTerm;
@@ -66,6 +69,17 @@ public class QuickBooksModuleTestDriver
 
     }
 
+    @Test
+    public void createAccount()
+    {
+        Account acc = module.createAccount(accessToken, accessTokenSecret,
+            "Test Account", null, AccountDetail.SAVINGS, "3654", "0", new Date(), null);
+                
+        Map<String, Object> idType = new HashMap<String, Object>();
+        idType.put("value", acc.getId().getValue());
+        
+        module.deleteObject(accessToken, accessTokenSecret, EntityType.ACCOUNT, idType, acc.getSyncToken());
+    }
     @Test
     public void createCustomerAnswersNonNullCustomerWithId() throws Exception
     {
@@ -177,9 +191,9 @@ public class QuickBooksModuleTestDriver
     {
         Customer c1 = module.createCustomer(accessToken, 
             accessTokenSecret,
+            "Paul M. Jonhson", 
             "Paul", 
-            "Paul", 
-            null, 
+            "Mark", 
             "Jhonson",
             null, null, null, 
             new ArrayList<Map<String, Object>>(), 

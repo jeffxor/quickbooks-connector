@@ -67,27 +67,27 @@
                 <quickbooks:total-amt>aasd</quickbooks:total-amt>   
                 <quickbooks:vendor-id>ddasd</quickbooks:vendor-id>
             </quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-bill>
                                 
         <quickbooks:create-bill-payment>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-bill-payment>
                                         
         <quickbooks:create-cash-purchase>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-cash-purchase>
                                          
         <quickbooks:create-check>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-check>                     
         
         <quickbooks:create-credit-card-charge>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-credit-card-charge>
                                               
         <quickbooks:create-customer name="String Optional"
@@ -98,11 +98,11 @@
 						            dBAName="String Optional"
 						            showAs="String Optional"
 						            salesTaxCodeId="String Optional">
-            <quickbooks:web-site ref=" "></quickbooks:web-site>
+            <quickbooks:web-sites ref=" "></quickbooks:web-sites>
             <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
-            <quickbooks:email ref=" "></quickbooks:email>
-            <quickbooks:phone ref=" "></quickbooks:phone>
-            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:emails ref=" "></quickbooks:emails>
+            <quickbooks:phones ref=" "></quickbooks:phones>
+            <quickbooks:addresses ref=" "></quickbooks:addresses>
             <!--webSite="List<Uri>"
             email="List<String>"
             phone="{List, Map}"
@@ -112,12 +112,12 @@
         
         <quickbooks:create-estimate>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-estimate>
                                     
         <quickbooks:create-invoice>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-invoice>
                                    
         <quickbooks:create-item name="String EmptyDefault"
@@ -140,7 +140,7 @@
                         
         <quickbooks:create-payment>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-payment>
                                    
         <quickbooks:create-payment-method name="String"
@@ -148,7 +148,7 @@
                                           
         <quickbooks:create-sales-receipt>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:create-sales-receipt>
                                          
         <quickbooks:create-sales-term name="String"
@@ -178,10 +178,10 @@
                                   vendor1099="true">
                                   <!--taxIdentifier Integer Positive Optional
                                   vendor1099 Boolean Optional  -->
-            <quickbooks:web-site ref=" "></quickbooks:web-site>
-            <quickbooks:email ref=" "></quickbooks:email>
-            <quickbooks:phone ref=" "></quickbooks:phone>
-            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:web-sites ref=" "></quickbooks:web-sites>
+            <quickbooks:emails ref=" "></quickbooks:emails>
+            <quickbooks:phones ref=" "></quickbooks:phones>
+            <quickbooks:addresses ref=" "></quickbooks:addresses>
             <!--webSite="List<Uri>"
             email="List<String>"
             phone="{List, Map}"
@@ -221,31 +221,31 @@
                 <quickbooks:total-amt>aasd</quickbooks:total-amt>   
                 <quickbooks:vendor-id>ddasd</quickbooks:vendor-id>
             </quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-bill>
                                 
         <quickbooks:update-bill-payment syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-bill-payment>
                                         
         <quickbooks:update-cash-purchase syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-cash-purchase>
                                          
         <quickbooks:update-check syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-check>                     
         
         <quickbooks:update-credit-card-charge syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-credit-card-charge>
                                               
         <quickbooks:update-customer name="String Optional"
@@ -258,23 +258,23 @@
                                     salesTaxCodeId="String Optional"
                                     syncToken="1">
             <quickbooks:id ref=" "/>
-            <quickbooks:web-site ref=" "></quickbooks:web-site>
+            <quickbooks:web-sites ref=" "></quickbooks:web-sites>
             <quickbooks:sales-term-id ref=" "></quickbooks:sales-term-id>
-            <quickbooks:email ref=" "></quickbooks:email>
-            <quickbooks:phone ref=" "></quickbooks:phone>
-            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:emails ref=" "></quickbooks:emails>
+            <quickbooks:phones ref=" "></quickbooks:phones>
+            <quickbooks:addresses ref=" "></quickbooks:addresses>
             </quickbooks:update-customer>
         
         <quickbooks:update-estimate syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-estimate>
                                     
         <quickbooks:update-invoice syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-invoice>
                                    
         <quickbooks:update-item name="String EmptyDefault"
@@ -294,7 +294,7 @@
         <quickbooks:update-payment syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-payment>
                                    
         <quickbooks:update-payment-method name="String"
@@ -306,7 +306,7 @@
         <quickbooks:update-sales-receipt syncToken="1">
             <quickbooks:id ref=" "/>
             <quickbooks:header ref=" "></quickbooks:header>
-            <quickbooks:line ref=" "></quickbooks:line>
+            <quickbooks:lines ref=" "></quickbooks:lines>
         </quickbooks:update-sales-receipt>
                                          
         <quickbooks:update-sales-term name="String"
@@ -331,10 +331,10 @@
                                   acctNum="String Optional"
                                   vendor1099="true">
             <quickbooks:id ref=" "/>
-            <quickbooks:web-site ref=" "></quickbooks:web-site>
-            <quickbooks:email ref=" "></quickbooks:email>
-            <quickbooks:phone ref=" "></quickbooks:phone>
-            <quickbooks:address ref=" "></quickbooks:address>
+            <quickbooks:web-sites ref=" "></quickbooks:web-sites>
+            <quickbooks:emails ref=" "></quickbooks:emails>
+            <quickbooks:phones ref=" "></quickbooks:phones>
+            <quickbooks:addresses ref=" "></quickbooks:addresses>
         </quickbooks:update-vendor>
     </flow>
 

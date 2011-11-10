@@ -128,6 +128,9 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Account">Account Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-account}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-account2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-account3}
+     *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param name User-recognizable name for the account. This name must be unique.
@@ -159,10 +162,9 @@ public class QuickBooksModule
                                 AccountDetail subtype,
                                 @Optional String acctNum,
                                 @Optional String openingBalance,
-                                @Optional Date openingBalanceDate,
+                                Date openingBalanceDate,
                                 @Optional Map<String, Object> accountParentId)
     {
-        BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
         return (Account) client.create(EntityType.ACCOUNT,
             mom.toObject(Account.class,            
@@ -170,9 +172,9 @@ public class QuickBooksModule
                 .with("name", name)
                 .with("accountParentId", accountParentId)
                 .with("desc", desc)
-                .with("subtype", subtype.toQboAccountDetail())
+                .with("subtype", subtype.toQboAccountDetail().value())
                 .with("acctNum", acctNum)
-                .with("openingBalance", bigD)
+                .with("openingBalance", openingBalance)
                 .with("openingBalanceDate", openingBalanceDate)
                 .build()
             )
@@ -187,11 +189,13 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Bill">Bill Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill}
-     *
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill3}
+     * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Information on the financial transaction of the Bill.
-     * @param line Information about a specific good or service purchased for which the payment is demanded
+     * @param lines Information about a specific good or service purchased for which the payment is demanded
      *             as a part of the bill. A bill can have multiple lines.
      * @return The created Bill.
      * 
@@ -202,13 +206,13 @@ public class QuickBooksModule
     public Bill createBill(@OAuthAccessToken String accessToken,
                            @OAuthAccessTokenSecret String accessTokenSecret,
                            Map<String, Object> header,
-                           List<Map<String, Object>> line)
+                           List<Map<String, Object>> lines)
     {
         return (Bill) client.create(EntityType.BILL,
             mom.toObject(Bill.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -224,11 +228,13 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill-payment}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill-payment2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-bill-payment3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Header information about the BillPayment.
-     * @param line List of lines. Specifies the line details for the bill payment.
+     * @param lines List of lines. Specifies the line details for the bill payment.
      * @return The created BillPayment.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -238,13 +244,13 @@ public class QuickBooksModule
     public BillPayment createBillPayment(@OAuthAccessToken String accessToken,
                                          @OAuthAccessTokenSecret String accessTokenSecret,
                                          Map<String, Object> header,
-                                         List<Map<String, Object>> line)
+                                         List<Map<String, Object>> lines)
     {    
         return (BillPayment) client.create(EntityType.BILLPAYMENT,
             mom.toObject(BillPayment.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -258,11 +264,13 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-cash-purchase}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-cash-purchase2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-cash-purchase3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Information about the financial transaction of the entire CashPurchase.
-     * @param line List of lines. Information about a specific good or service purchased for which 
+     * @param lines List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the CashPurchase.
      * @return The created CashPurchase.
      * 
@@ -273,13 +281,13 @@ public class QuickBooksModule
     public CashPurchase createCashPurchase(@OAuthAccessToken String accessToken,
                                            @OAuthAccessTokenSecret String accessTokenSecret,
                                            Map<String, Object> header,
-                                           List<Map<String, Object>> line)
+                                           List<Map<String, Object>> lines)
     {
         return (CashPurchase) client.create(EntityType.CASHPURCHASE,
             mom.toObject(CashPurchase.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -293,11 +301,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Check">Check Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-check}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-check2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Financial Transaction information that pertains to the entire CheckHeader.
-     * @param line List of lines. Information about a specific good or service purchased for which 
+     * @param lines List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the check.
      * @return The created Check.
      * 
@@ -308,13 +317,13 @@ public class QuickBooksModule
     public Check createCheck(@OAuthAccessToken String accessToken,
                              @OAuthAccessTokenSecret String accessTokenSecret,
                              Map<String, Object> header,
-                             List<Map<String, Object>> line)
+                             List<Map<String, Object>> lines)
     {
         return (Check) client.create(EntityType.CHECK,
             mom.toObject(Check.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -331,11 +340,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-credit-card-charge}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-credit-card-charge2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Financial Transaction information that pertains to the entire CreditCardChargeHeader.
-     * @param line List of lines. Information about a specific good or service purchased for which the 
+     * @param lines List of lines. Information about a specific good or service purchased for which the 
      *             payment is demanded as a part of the CreditCardCharge purchase.
      * @return The created CreditCardCharge.
      * 
@@ -346,13 +356,13 @@ public class QuickBooksModule
     public CreditCardCharge createCreditCardCharge(@OAuthAccessToken String accessToken,
                                                    @OAuthAccessTokenSecret String accessTokenSecret,
                                                    Map<String, Object> header,
-                                                   List<Map<String, Object>> line)
+                                                   List<Map<String, Object>> lines)
     {
         return (CreditCardCharge) client.create(EntityType.CREDITCARDCHARGE,
             mom.toObject(CreditCardCharge.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -368,6 +378,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Customer">Customer Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-customer}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-customer2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -381,15 +392,15 @@ public class QuickBooksModule
      * @param suffix Optional. Suffix appended to the name, Jr., Sr., etc.
      * @param dBAName Optional. Specifies the "Doing Business As" name of the customer.
      * @param showAs Optional. Specifies the name of the vendor to be displayed.
-     * @param webSite Valid URI strings. Specifies the customers's Web sites.
+     * @param webSites Valid URI strings. Specifies the customers's Web sites.
      * @param salesTermId Optional. Specifies the default sales term ID that is to be associated with the customer.
      * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
      *                       is taxable. If the field value is null, the job is not taxable. All other values are 
      *                       invalid.
-     * @param email Optional. Valid email strings. Specifies the customers's email addresses.
-     * @param phone Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
+     * @param emails Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param phones Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
      *              numbers but only one phone number is permitted for one device type.
-     * @param address Optional. Specifies the physical addresses.
+     * @param addresses Optional. Specifies the physical addresses.
      * @return The created Customer.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -405,18 +416,18 @@ public class QuickBooksModule
                                    @Optional String suffix,
                                    @Optional String dBAName,
                                    @Optional String showAs,
-                                   @Optional List<Map<String, Object>> webSite,
+                                   @Optional List<Map<String, Object>> webSites,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   @Optional List<String> email,
-                                   @Optional List<Map<String, Object>> phone,
-                                   @Optional List<Map<String, Object>> address)
+                                   @Optional List<String> emails,
+                                   @Optional List<Map<String, Object>> phones,
+                                   @Optional List<Map<String, Object>> addresses)
     {
         salesTermId = coalesceMap(salesTermId);
-        webSite = coalesceList(webSite);
-        email = coalesceList(email);
-        phone = coalesceList(phone);
-        address = coalesceList(address);
+        webSites = coalesceList(webSites);
+        emails = coalesceList(emails);
+        phones = coalesceList(phones);
+        addresses = coalesceList(addresses);
 
         return (Customer) client.create(EntityType.CUSTOMER,
             mom.toObject(Customer.class,
@@ -428,12 +439,12 @@ public class QuickBooksModule
                 .with("suffix", suffix)
                 .with("DBAName", dBAName)
                 .with("showAs", showAs)
-                .with("webSite", webSite)
+                .with("webSite", webSites)
                 .with("salesTermId", salesTermId)
                 .with("salesTaxCodeId", salesTaxCodeId)
-                .with("email", email)
-                .with("phone", phone)
-                .with("address", address)
+                .with("email", emails)
+                .with("phone", phones)
+                .with("address", addresses)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -448,11 +459,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-estimate}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-estimate2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Financial transaction information that pertains to the entire Estimate.
-     * @param line Information about a specific good or service for which the estimate is being issued.
+     * @param lines Information about a specific good or service for which the estimate is being issued.
      * @return The created Estimate.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -462,13 +474,13 @@ public class QuickBooksModule
     public Estimate createEstimate(@OAuthAccessToken String accessToken,
                                    @OAuthAccessTokenSecret String accessTokenSecret,
                                    Map<String, Object> header,
-                                   List<Map<String, Object>> line)
+                                   List<Map<String, Object>> lines)
     {
         return (Estimate) client.create(EntityType.ESTIMATE,
             mom.toObject(Estimate.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -485,11 +497,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-invoice}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-invoice2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Provides information that pertains to the entire Invoice.
-     * @param line Information about a specific good or service for which the Invoice is being issued.
+     * @param lines Information about a specific good or service for which the Invoice is being issued.
      * @return The created Invoice.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -499,13 +512,13 @@ public class QuickBooksModule
     public Invoice createInvoice(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret,
                                  Map<String, Object> header,
-                                 List<Map<String, Object>> line)
+                                 List<Map<String, Object>> lines)
     {
         return (Invoice) client.create(EntityType.INVOICE,
             mom.toObject(Invoice.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -521,6 +534,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Item">Item Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-item}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-item2}
      * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -589,11 +603,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Payment">Payment Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment2}
      * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Information that pertains to the entire payment.
-     * @param line Line details of the receive payment. A receive payment can have multiple lines.
+     * @param lines Line details of the receive payment. A receive payment can have multiple lines.
      * @return The created Payment.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -603,13 +618,13 @@ public class QuickBooksModule
     public Payment createPayment(@OAuthAccessToken String accessToken,
                                  @OAuthAccessTokenSecret String accessTokenSecret,
                                  Map<String, Object> header,
-                                 List<Map<String, Object>> line)
+                                 List<Map<String, Object>> lines)
     {
         return (Payment) client.create(EntityType.PAYMENT,
             mom.toObject(Payment.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -625,12 +640,15 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment-method}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-payment-method2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param name User recognizable name for the payment method.
-     * @param type Optional. Type of payment. Specifies if it is a credit card payment type or a 
-     *             non-credit card payment type.
+     * @param type Type of payment. Specifies if it is a credit card payment type or a 
+     *             non-credit card payment type. It must specify either of the following:<br/>
+     *             * CREDIT_CARD<br/>
+     *             * NON_CREDIT_CARD
      * @return The created PaymentMethod.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -662,11 +680,12 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-receipt}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-receipt2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param header Groups the elements that are common to the SalesReceipt transaction.
-     * @param line Groups the line items for the sales receipt.
+     * @param lines Groups the line items for the sales receipt.
      * @return The created SalesReceipt.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -676,13 +695,13 @@ public class QuickBooksModule
     public SalesReceipt createSalesReceipt(@OAuthAccessToken String accessToken,
                                            @OAuthAccessTokenSecret String accessTokenSecret,
                                            Map<String, Object> header,
-                                           List<Map<String, Object>> line)
+                                           List<Map<String, Object>> lines)
     {
         return (SalesReceipt) client.create(EntityType.SALESRECEIPT,
             mom.toObject(SalesReceipt.class,
                 new MapBuilder()
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -700,6 +719,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-term}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-sales-term2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -739,8 +759,6 @@ public class QuickBooksModule
                                      @Optional Integer discountDayOfMonth,
                                      @Optional String dateDiscountPercent)
     {
-        BigDecimal bigD1 = discountPercent == null ? null :  new BigDecimal(discountPercent);
-        BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
         return (SalesTerm) client.create(EntityType.SALESTERM,
             mom.toObject(SalesTerm.class,
@@ -748,11 +766,11 @@ public class QuickBooksModule
                 .with("name", name)
                 .with("dueDays", dueDays)
                 .with("discountDays", discountDays)
-                .with("discountPercent", bigD1)
+                .with("discountPercent", discountPercent)
                 .with("dayOfMonthDue", dayOfMonthDue)
                 .with("dueNextMonthDays", dueNextMonthDays)
                 .with("discountDayOfMonth", discountDayOfMonth)
-                .with("dateDiscountPercent", bigD2)
+                .with("dateDiscountPercent", dateDiscountPercent)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -768,6 +786,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-vendor}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:create-vendor2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -781,7 +800,7 @@ public class QuickBooksModule
      * @param familyName Optional. Specifies the family name or the last name of the vendor.
      * @param dBAName Optional. Specifies the "Doing Business As" name of the vendor.
      * @param showAs Optional. Specifies the name of the vendor to be displayed.
-     * @param webSite Optional. Valid URI strings. Specifies the vendor's Web site.
+     * @param webSites Optional. Valid URI strings. Specifies the vendor's Web site.
      * @param taxIdentifier Optional. Specifies the Tax ID of the person or the organization. This 
      *                      is a Personally Identifiable Information (PII) attribute.
      * @param acctNum Optional. Specifies the account name or the account number that is associated 
@@ -789,10 +808,10 @@ public class QuickBooksModule
      * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
      *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
      *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
-     * @param email Optional. Valid email strings. Specifies the vendors's email addresses.
-     * @param phone Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
+     * @param emails Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param phones Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
      *              5 phone numbers but only one phone number is permitted for one device type.
-     * @param address Optional. Specifies the physical addresses.
+     * @param addresses Optional. Specifies the physical addresses.
      * @return The created Vendor.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -807,18 +826,18 @@ public class QuickBooksModule
                                @Optional String familyName,
                                @Optional String dBAName,
                                @Optional String showAs,
-                               @Optional List<Map<String, Object>> webSite,
+                               @Optional List<Map<String, Object>> webSites,
                                @Optional Integer taxIdentifier,
                                @Optional String acctNum,
                                @Optional Boolean vendor1099,
-                               @Optional List<String> email,
-                               @Optional List<Map<String, Object>> phone,
-                               @Optional List<Map<String, Object>> address)
+                               @Optional List<String> emails,
+                               @Optional List<Map<String, Object>> phones,
+                               @Optional List<Map<String, Object>> addresses)
     {
-        webSite = coalesceList(webSite);
-        email = coalesceList(email);
-        phone = coalesceList(phone);
-        address = coalesceList(address);
+        webSites = coalesceList(webSites);
+        emails = coalesceList(emails);
+        phones = coalesceList(phones);
+        addresses = coalesceList(addresses);
         
         return (Vendor) client.create(EntityType.VENDOR,
             mom.toObject(Vendor.class,
@@ -829,13 +848,13 @@ public class QuickBooksModule
                 .with("familyName", familyName)
                 .with("DBAName", dBAName)
                 .with("showAs", showAs)
-                .with("webSite", webSite)
+                .with("webSite", webSites)
                 .with("taxIdentifier", taxIdentifier)
                 .with("acctNum", acctNum)
                 .with("vendor1099", vendor1099)
-                .with("email", email)
-                .with("phone", phone)
-                .with("address", address)
+                .with("email", emails)
+                .with("phone", phones)
+                .with("address", addresses)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -845,6 +864,7 @@ public class QuickBooksModule
      * Retrieve objects by ID.
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:get-object}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:get-object2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -878,6 +898,8 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Account">Account Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-account}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-account2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-account3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -919,7 +941,6 @@ public class QuickBooksModule
                                  @Optional Date openingBalanceDate,
                                  @Optional Map<String, Object> accountParentId)
     {   
-        BigDecimal bigD = openingBalance == null ? null :  new BigDecimal(openingBalance);
         
         return (Account) client.update(EntityType.ACCOUNT,
             mom.toObject(Account.class,
@@ -929,9 +950,9 @@ public class QuickBooksModule
                 .with("name", name)
                 .with("accountParentId", accountParentId)
                 .with("desc", desc)
-                .with("subtype", subtype.toQboAccountDetail())
+                .with("subtype", subtype.toQboAccountDetail().value())
                 .with("acctNum", acctNum)
-                .with("openingBalance", bigD)
+                .with("openingBalance", openingBalance)
                 .with("openingBalanceDate", openingBalanceDate)
                 .build()
             )
@@ -950,6 +971,8 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Bill">Bill Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -958,7 +981,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Information on the financial transaction of the Bill.
-     * @param line Information about a specific good or service purchased for which the payment is demanded
+     * @param lines Information about a specific good or service purchased for which the payment is demanded
      *             as a part of the bill. A bill can have multiple lines.
      * @return The created Bill.
      * 
@@ -971,7 +994,7 @@ public class QuickBooksModule
                            Map<String, Object> id, 
                            @Optional String syncToken,
                            Map<String, Object> header,
-                           List<Map<String, Object>> line)
+                           List<Map<String, Object>> lines)
     {
         return (Bill) client.update(EntityType.BILL,
             mom.toObject(Bill.class,
@@ -979,7 +1002,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -999,6 +1022,8 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/BillPayment">BillPayment Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill-payment}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill-payment2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-bill-payment3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1007,7 +1032,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Header information about the BillPayment.
-     * @param line Specifies the line details for the bill payment. A bill payment can have multiple lines.
+     * @param lines Specifies the line details for the bill payment. A bill payment can have multiple lines.
      * @return The updated BillPayment.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1019,7 +1044,7 @@ public class QuickBooksModule
                                          Map<String, Object> id, 
                                          @Optional String syncToken,
                                          Map<String, Object> header,
-                                         List<Map<String, Object>> line)
+                                         List<Map<String, Object>> lines)
     {    
         return (BillPayment) client.update(EntityType.BILLPAYMENT,
             mom.toObject(BillPayment.class,
@@ -1027,7 +1052,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1045,6 +1070,8 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/CashPurchase">CashPurchase Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-cash-purchase}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-cash-purchase2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-cash-purchase3}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1053,7 +1080,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Information about the financial transaction of the entire CashPurchase.
-     * @param line List of lines. Information about a specific good or service purchased for which 
+     * @param lines List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the CashPurchase.
      * @return The updated CashPurchase.
      * 
@@ -1066,7 +1093,7 @@ public class QuickBooksModule
                                            Map<String, Object> id, 
                                            @Optional String syncToken,
                                            Map<String, Object> header,
-                                           List<Map<String, Object>> line)
+                                           List<Map<String, Object>> lines)
     {
         return (CashPurchase) client.update(EntityType.CASHPURCHASE,
             mom.toObject(CashPurchase.class,
@@ -1074,7 +1101,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1092,6 +1119,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Check">Check Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-check}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-check2}
      * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1100,7 +1128,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Financial Transaction information that pertains to the entire CheckHeader.
-     * @param line List of lines. Information about a specific good or service purchased for which 
+     * @param lines List of lines. Information about a specific good or service purchased for which 
      *             the payment is demanded as a part of the check.
      * @return The updated Check.
      * 
@@ -1113,7 +1141,7 @@ public class QuickBooksModule
                              Map<String, Object> id, 
                              @Optional String syncToken,
                              Map<String, Object> header,
-                             List<Map<String, Object>> line)
+                             List<Map<String, Object>> lines)
     {
         return (Check) client.update(EntityType.CHECK,
             mom.toObject(Check.class,
@@ -1121,7 +1149,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1141,6 +1169,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/CreditCardCharge">CreditCardCharge Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-credit-card-charge}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-credit-card-charge2}
      * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1149,7 +1178,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Financial Transaction information that pertains to the entire CreditCardChargeHeader.
-     * @param line List of lines. Information about a specific good or service purchased for which the 
+     * @param lines List of lines. Information about a specific good or service purchased for which the 
      *             payment is demanded as a part of the CreditCardCharge purchase.
      * @return The updated CreditCardCharge.
      * 
@@ -1162,7 +1191,7 @@ public class QuickBooksModule
                                                    Map<String, Object> id, 
                                                    @Optional String syncToken,
                                                    Map<String, Object> header,
-                                                   List<Map<String, Object>> line)
+                                                   List<Map<String, Object>> lines)
     {
         return (CreditCardCharge) client.update(EntityType.CREDITCARDCHARGE,
             mom.toObject(CreditCardCharge.class,
@@ -1170,7 +1199,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1189,6 +1218,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Customer">Customer Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-customer}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-customer2}
      * 
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1206,15 +1236,15 @@ public class QuickBooksModule
      * @param suffix Optional. Suffix appended to the name, Jr., Sr., etc.
      * @param dBAName Optional. Specifies the "Doing Business As" name of the customer.
      * @param showAs Optional. Specifies the name of the vendor to be displayed.
-     * @param webSite Valid URI strings. Specifies the customers's Web sites.
+     * @param webSites Valid URI strings. Specifies the customers's Web sites.
      * @param salesTermId Optional. Specifies the default sales term ID that is to be associated with the customer.
      * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
      *                       is taxable. If the field value is null, the job is not taxable. All other values are 
      *                       invalid.
-     * @param email Optional. Valid email strings. Specifies the customers's email addresses.
-     * @param phone Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
+     * @param emails Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param phones Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
      *              numbers but only one phone number is permitted for one device type.
-     * @param address Optional. Specifies the physical addresses.
+     * @param addresses Optional. Specifies the physical addresses.
      * @return The updated Customer.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1232,17 +1262,18 @@ public class QuickBooksModule
                                    @Optional String suffix,
                                    @Optional String dBAName,
                                    @Optional String showAs,
-                                   @Optional List<Map<String, Object>> webSite,
+                                   @Optional List<Map<String, Object>> webSites,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   @Optional List<String> email, List<Map<String, Object>> phone,
-                                   @Optional List<Map<String, Object>> address)
+                                   @Optional List<String> emails, 
+                                   @Optional List<Map<String, Object>> phones,
+                                   @Optional List<Map<String, Object>> addresses)
     {
         salesTermId = coalesceMap(salesTermId);
-        webSite = coalesceList(webSite);
-        email = coalesceList(email);
-        phone = coalesceList(phone);
-        address = coalesceList(address);
+        webSites = coalesceList(webSites);
+        emails = coalesceList(emails);
+        phones = coalesceList(phones);
+        addresses = coalesceList(addresses);
         
         return (Customer) client.update(EntityType.CUSTOMER,
             mom.toObject(Customer.class,
@@ -1256,12 +1287,12 @@ public class QuickBooksModule
                 .with("suffix", suffix)
                 .with("DBAName", dBAName)
                 .with("showAs", showAs)
-                .with("webSite", webSite)
+                .with("webSite", webSites)
                 .with("salesTermId", salesTermId)
                 .with("salesTaxCodeId", salesTaxCodeId)
-                .with("email", email)
-                .with("phone", phone)
-                .with("address", address)
+                .with("email", emails)
+                .with("phone", phones)
+                .with("address", addresses)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1280,6 +1311,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Estimate">Estimate Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-estimate}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-estimate2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1288,7 +1320,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Financial transaction information that pertains to the entire Estimate.
-     * @param line Information about a specific good or service for which the estimate is being issued.
+     * @param lines Information about a specific good or service for which the estimate is being issued.
      * @return The updated Estimate.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1300,7 +1332,7 @@ public class QuickBooksModule
                                    Map<String, Object> id, 
                                    @Optional String syncToken,
                                    Map<String, Object> header,
-                                   List<Map<String, Object>> line)
+                                   List<Map<String, Object>> lines)
     {
         return (Estimate) client.update(EntityType.ESTIMATE,
             mom.toObject(Estimate.class,
@@ -1308,7 +1340,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1328,6 +1360,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Invoice">Invoice Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-invoice}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-invoice2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1336,7 +1369,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Provides information that pertains to the entire Invoice.
-     * @param line Information about a specific good or service for which the Invoice is being issued.
+     * @param lines Information about a specific good or service for which the Invoice is being issued.
      * @return The updated Invoice.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1348,7 +1381,7 @@ public class QuickBooksModule
                                  Map<String, Object> id, 
                                  @Optional String syncToken,
                                  Map<String, Object> header,
-                                 List<Map<String, Object>> line)
+                                 List<Map<String, Object>> lines)
     {
         return (Invoice) client.update(EntityType.INVOICE,
             mom.toObject(Invoice.class,
@@ -1356,7 +1389,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1375,6 +1408,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Item">Item Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-item}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-item2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1462,7 +1496,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Information that pertains to the entire payment.
-     * @param line Line details of the receive payment. A receive payment can have multiple lines.
+     * @param lines Line details of the receive payment. A receive payment can have multiple lines.
      * @return The updated Payment.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1474,7 +1508,7 @@ public class QuickBooksModule
                                  Map<String, Object> id, 
                                  @Optional String syncToken,
                                  Map<String, Object> header,
-                                 List<Map<String, Object>> line)
+                                 List<Map<String, Object>> lines)
     {
         return (Payment) client.update(EntityType.PAYMENT,
             mom.toObject(Payment.class,
@@ -1482,7 +1516,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1557,7 +1591,7 @@ public class QuickBooksModule
      *                  Before performing the update, Data Services verifies that the SyncToken in the
      *                  request has the same value as the SyncToken in the Data Service's repository.
      * @param header Groups the elements that are common to the SalesReceipt transaction.
-     * @param line Groups the line items for the sales receipt.
+     * @param lines Groups the line items for the sales receipt.
      * @return The updated SalesReceipt.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1569,7 +1603,7 @@ public class QuickBooksModule
                                            Map<String, Object> id, 
                                            @Optional String syncToken,
                                            Map<String, Object> header, 
-                                           List<Map<String, Object>> line)
+                                           List<Map<String, Object>> lines)
     {
         return (SalesReceipt) client.update(EntityType.SALESRECEIPT,
             mom.toObject(SalesReceipt.class,
@@ -1577,7 +1611,7 @@ public class QuickBooksModule
                 .with("id", id)
                 .with("syncToken", syncToken)
                 .with("header", header)
-                .with("line", line)
+                .with("line", lines)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1643,8 +1677,6 @@ public class QuickBooksModule
                                      @Optional Integer discountDayOfMonth,
                                      @Optional String dateDiscountPercent)
     {
-        BigDecimal bigD1 = discountPercent == null ? null :  new BigDecimal(discountPercent);
-        BigDecimal bigD2 = dateDiscountPercent == null ? null :  new BigDecimal(dateDiscountPercent);
         
         return (SalesTerm) client.update(EntityType.SALESTERM,
             mom.toObject(SalesTerm.class,
@@ -1654,11 +1686,11 @@ public class QuickBooksModule
                 .with("name", name)
                 .with("dueDays", dueDays)
                 .with("discountDays", discountDays)
-                .with("discountPercent", bigD1)
+                .with("discountPercent", discountPercent)
                 .with("dayOfMonthDue", dayOfMonthDue)
                 .with("dueNextMonthDays", dueNextMonthDays)
                 .with("discountDayOfMonth", discountDayOfMonth)
-                .with("discountPercent", bigD2)
+                .with("dateDiscountPercent", dateDiscountPercent)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1694,7 +1726,7 @@ public class QuickBooksModule
      * @param familyName Optional. Specifies the family name or the last name of the vendor.
      * @param dBAName Optional. Specifies the "Doing Business As" name of the vendor.
      * @param showAs Optional. Specifies the name of the vendor to be displayed.
-     * @param webSite Optional. Valid URI strings. Specifies the vendor's Web site.
+     * @param webSites Optional. Valid URI strings. Specifies the vendor's Web site.
      * @param taxIdentifier Optional. Specifies the Tax ID of the person or the organization. This 
      *                      is a Personally Identifiable Information (PII) attribute.
      * @param acctNum Optional. Specifies the account name or the account number that is associated 
@@ -1702,10 +1734,10 @@ public class QuickBooksModule
      * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
      *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
      *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
-     * @param email Optional. Valid email strings. Specifies the vendors's email addresses.
-     * @param phone Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
+     * @param emails Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param phones Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
      *              5 phone numbers but only one phone number is permitted for one device type.
-     * @param address Optional. Specifies the physical addresses.
+     * @param addresses Optional. Specifies the physical addresses.
      * @return The updated Vendor.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
@@ -1722,18 +1754,18 @@ public class QuickBooksModule
                                @Optional String familyName,
                                @Optional String dBAName, 
                                @Optional String showAs, 
-                               @Optional List<Map<String, Object>> webSite,
+                               @Optional List<Map<String, Object>> webSites,
                                @Optional Integer taxIdentifier, 
                                @Optional String acctNum, 
                                @Optional Boolean vendor1099,
-                               @Optional List<String> email, 
-                               @Optional List<Map<String, Object>> phone, 
-                               @Optional List<Map<String, Object>> address)
+                               @Optional List<String> emails, 
+                               @Optional List<Map<String, Object>> phones, 
+                               @Optional List<Map<String, Object>> addresses)
     {
-        webSite = coalesceList(webSite);
-        email = coalesceList(email);
-        phone = coalesceList(phone);
-        address = coalesceList(address);
+        webSites = coalesceList(webSites);
+        emails = coalesceList(emails);
+        phones = coalesceList(phones);
+        addresses = coalesceList(addresses);
         
         return (Vendor) client.update(EntityType.VENDOR,
             mom.toObject(Vendor.class,
@@ -1746,13 +1778,13 @@ public class QuickBooksModule
                 .with("familyName", familyName)
                 .with("DBAName", dBAName)
                 .with("showAs", showAs)
-                .with("webSite", webSite)
+                .with("webSite", webSites)
                 .with("taxIdentifier", taxIdentifier)
                 .with("acctNum", acctNum)
                 .with("vendor1099", vendor1099)
-                .with("email", email)
-                .with("phone", phone)
-                .with("address", address)
+                .with("email", emails)
+                .with("phone", phones)
+                .with("address", addresses)
                 .build()
             )
         , accessToken, accessTokenSecret);
@@ -1762,6 +1794,7 @@ public class QuickBooksModule
      * Deletes an object.
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:delete-object}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:delete-object2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1903,9 +1936,37 @@ public class QuickBooksModule
             {
                 Validate.isTrue(arg0 == XMLGregorianCalendar.class);
                 
+                if (arg1 instanceof XMLGregorianCalendar)
+                {
+                    return arg1;
+                }
                 return toGregorianCalendar((Date) arg1);
             }
-        }, Date.class);
+        }, XMLGregorianCalendar.class);
+        mom.registerConverter(new Converter()
+        {
+            @SuppressWarnings("rawtypes")
+            @Override
+            public Object convert(Class type, Object value)
+            {
+                Validate.isTrue(type == BigDecimal.class);
+                
+                if (value instanceof BigDecimal)
+                {
+                    return value;
+                } 
+                else if (value instanceof Double) 
+                {
+                    return new BigDecimal((Double) value);
+                }
+                else if (value instanceof Integer) 
+                {
+                    return new BigDecimal((Integer) value);
+                }
+                return new BigDecimal((String) value);
+            }
+            
+        }, BigDecimal.class);
         try
         {
             datatypeFactory = DatatypeFactory.newInstance();
