@@ -1488,6 +1488,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Payment">Payment Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1535,6 +1536,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment-method}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-payment-method2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1583,6 +1585,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/SalesReceipt">SalesReceipt Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-receipt}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-receipt2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1632,6 +1635,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/SalesTerm">SalesTerm Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-term}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-sales-term2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1709,6 +1713,7 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-vendor}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:update-vendor2}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
@@ -1825,13 +1830,23 @@ public class QuickBooksModule
      * 0400_QuickBooks_Online/Vendor">Vendor Especification</a>
      * 
      * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects2}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects3}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects4}
+     * {@sample.xml ../../../doc/mule-module-quick-books.xml.sample quickbooks:find-objects5}
      *
      * @param accessToken the oauth access token
      * @param accessTokenSecret the oauth secret token
      * @param type EntityType of the object.
-     * @param queryFilter String with a filter format (see details)
-     * @param querySort String with a sort format (see details)
-     * @return Iterable of the objects.
+     * @param queryFilter String with a filter format (see details). Each type of object to be 
+     *                    retrieved, has a list of attributes for which it can be filtered (See this 
+     *                    list following the link in the details of the documentation of the create
+     *                    or update method of that object).
+     * @param querySort String with a sort format (see details). Each type of object to be 
+     *                    retrieved, has a list of attributes for which it can be sorted (See this 
+     *                    list following the link in the details of the documentation of the create
+     *                    or update method of that object).
+     * @return Iterable of the objects to be retrieved.
      * 
      * @throws QuickBooksRuntimeException when there is a problem with the server. It has a code 
      *         and a message provided by quickbooks about the error.
