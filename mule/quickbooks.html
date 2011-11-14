@@ -439,6 +439,10 @@ Summary:
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
  
+ <br/>
+ <br/>
+ <br/>
+ <br/>
  <br/></div>
         
   </td></tr>
@@ -2705,7 +2709,9 @@ specify which configuration to use.</p>
  0400_QuickBooks_Online/PaymentMethod">PaymentMethod Especification</a>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:create-payment-method name="Pencil SA"
+                                  type="NON_CREDIT_CARD" &gt;
+&lt;/quickbooks:create-payment-method&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3580,9 +3586,18 @@ specify which configuration to use.</p>
  <a href="http://qbsdk.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/
  0400_QuickBooks_Online/Vendor">Vendor Especification</a>
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="account"
-                         queryfilter="#[variable:queryfilterstring]"
-                         querysort="#[variable:querysortstring]"/&gt;</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="ACCOUNT"
+                         queryFilter="#[variable:queryfilterstring]"
+                         querySort="#[variable:querysortstring]"/&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="ACCOUNT"
+                         queryFilter="Name :EQUALS: Loan Account"
+                         querySort="Name AToZ"/&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="CUSTOMER"
+                         queryFilter="FamilyName :EQUALS: Doe" /&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="INVOICE"
+                         queryFilter="DBAName :EQUALS: Smith Bakery :AND: FamilyName :EQUALS: Smith" /&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:find-objects type="INVOICE"
+                         queryFilter="LastUpdatedTime :AFTER: 2010-08-10T14:30:00-0700 :AND: LastUpdatedTime :BEFORE: 2010-08-10T15:30:00-0700" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3623,7 +3638,10 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryFilter</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>String with a filter format (see details)<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>String with a filter format (see details). Each type of object to be 
+                    retrieved, has a list of attributes for which it can be filtered (See this 
+                    list following the link in the details of the documentation of the create
+                    or update method of that object).<br/></td>
                 </tr>
                 
                 
@@ -3632,7 +3650,10 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>querySort</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>String with a sort format (see details)<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>String with a sort format (see details). Each type of object to be 
+                    retrieved, has a list of attributes for which it can be sorted (See this 
+                    list following the link in the details of the documentation of the create
+                    or update method of that object).<br/></td>
                 </tr>
                 
                 
@@ -3669,7 +3690,7 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>Iterable of the objects.<br/></li></ul>
+      <ul class="nolist"><li>Iterable of the objects to be retrieved.<br/></li></ul>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Exception Payload</h5>
@@ -5995,6 +6016,33 @@ specify which configuration to use.</p>
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headerpayment]"&gt;&lt;/quickbooks:header&gt;
     &lt;quickbooks:lines ref="#[variable:linespayment]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-payment&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment syncToken="1" &gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;27&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;54&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-08-09T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;note&gt;Payment against Invoice&lt;/note&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '5' ] ]
+        &lt;/customerId&gt;
+        &lt;depositToAccountId&gt;41&lt;/depositToAccountId&gt;
+        &lt;paymentMethodId&gt;#[groovy: [
+            'value' : '1' ] ]
+        &lt;/paymentMethodId&gt;
+        &lt;totalAmt&gt;20.00&lt;/totalAmt&gt;
+        &lt;processPayment&gt;false&lt;/processPayment&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;amount&gt;20.00&lt;/amount&gt;
+            &lt;txnId&gt;#[groovy: [
+                'value' : '8' ] ]
+            &lt;/txnId&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-payment&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -6139,8 +6187,15 @@ specify which configuration to use.</p>
  
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment-method syncToken="1"
                                   name="wire transfer"
-                                  type="credit_card"&gt;
+                                  type="CREDIT_CARD"&gt;
     &lt;quickbooks:id ref="#[variable:id]"&gt;
+&lt;/quickbooks:update-payment-method&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-payment-method syncToken="2"
+                                  name="Pencil SA"
+                                  type="NON_CREDIT_CARD" &gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;29&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
 &lt;/quickbooks:update-payment-method&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -6288,6 +6343,32 @@ specify which configuration to use.</p>
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
     &lt;quickbooks:header ref="#[variable:headersalesreceipt]"&gt;&lt;/quickbooks:header&gt;
     &lt;quickbooks:lines ref="#[variable:linessalesreceipt]"&gt;&lt;/quickbooks:lines&gt;
+&lt;/quickbooks:update-sales-receipt&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-receipt syncToken="1"&gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;39&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
+    &lt;quickbooks:header&gt;
+        &lt;docNumber&gt;99009926&lt;/docNumber&gt;
+        &lt;txnDate&gt;2010-10-22T15:00:00-07:00&lt;/txnDate&gt;
+        &lt;currency&gt;USD&lt;/currency&gt;
+        &lt;customerId&gt;#[groovy: [
+            'value' : '1' ,
+            'idDomain: 'QBO' ] ]
+        &lt;/customerId&gt;
+        &lt;shipDate&gt;2011-04-22T15:00:00-07:00&lt;/shipDate&gt;
+        &lt;totalAmt&gt;2500&lt;/totalAmt&gt;
+        &lt;discountAmt&gt;0&lt;/discountAmt&gt;
+    &lt;/quickbooks:header&gt;
+    &lt;quickbooks:lines&gt;
+        &lt;quickbooks:line&gt;
+            &lt;desc&gt;Keyboards&lt;/desc&gt;
+            &lt;amount&gt;2500&lt;/amount&gt;
+            &lt;itemName&gt;Pen&lt;/itemName&gt;
+            &lt;unitPrice&gt;10&lt;/unitPrice&gt;
+            &lt;qty&gt;2&lt;/qty&gt;
+        &lt;/quickbooks:line&gt;
+    &lt;/quickbooks:lines&gt;
 &lt;/quickbooks:update-sales-receipt&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -6442,6 +6523,19 @@ specify which configuration to use.</p>
                               discountdayofmonth="5"
                               datediscountpercent="2.1"&gt;
     &lt;quickbooks:id ref="#[variable:id]"/&gt;
+&lt;/quickbooks:update-sales-term&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;quickbooks:update-sales-term syncToken="2"
+                              name="Due before receipt"
+                              dueDays="1"
+                              discountDays="10"
+                              discountPercent="3.2"
+                              dayOfMonthDue="10"
+                              dueNextMonthDays="10"
+                              discountDayOfMonth="5"
+                              dateDiscountPercent="2.1" &gt;
+    &lt;quickbooks:id&gt;
+        &lt;value&gt;31&lt;/value&gt;
+    &lt;/quickbooks:id&gt;
 &lt;/quickbooks:update-sales-term&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -6676,7 +6770,8 @@ specify which configuration to use.</p>
     &lt;quickbooks:emails ref="#[variable:emails]"&gt;&lt;/quickbooks:emails&gt;
     &lt;quickbooks:phones ref="#[variable:phones]"&gt;&lt;/quickbooks:phones&gt;
     &lt;quickbooks:addresses ref="#[variable:addresses]"&gt;&lt;/quickbooks:addresses&gt;
-&lt;/quickbooks:update-vendor&gt;</pre></div></p></div>
+&lt;/quickbooks:update-vendor&gt;</pre></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
