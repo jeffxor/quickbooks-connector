@@ -40,7 +40,8 @@
     
     <flow name="TestForTheAccessPower">
         <quickbooks:create-account name="String Unique"
-                                   subtype="VEHICLES">
+                                   subtype="VEHICLES"
+                                   openingBalanceDate="2010-09-13T01:18:14-07:00">
         </quickbooks:create-account>
     </flow>
 
