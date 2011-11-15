@@ -104,7 +104,7 @@ public class QuickBooksModuleTestDriver
             "Perez",
             null, null, null, 
             new ArrayList<Map<String, Object>>(), 
-            null, null, new ArrayList<String>(),
+            null, null, new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>()
 //            auxList
@@ -197,7 +197,7 @@ public class QuickBooksModuleTestDriver
             "Jhonson",
             null, null, null, 
             new ArrayList<Map<String, Object>>(), 
-            null, null, new ArrayList<String>(),
+            null, null, new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>()
         );
@@ -217,7 +217,7 @@ public class QuickBooksModuleTestDriver
             "Smith", 
             null, null, null, 
             new ArrayList<Map<String, Object>>(), 
-            null, null, new ArrayList<String>(),
+            null, null, new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>(),
             new ArrayList<Map<String, Object>>()
         );

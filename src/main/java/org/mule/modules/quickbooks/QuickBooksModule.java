@@ -397,7 +397,7 @@ public class QuickBooksModule
      * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
      *                       is taxable. If the field value is null, the job is not taxable. All other values are 
      *                       invalid.
-     * @param emails Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param emails Optional. Valid email. Specifies the customers's email addresses.
      * @param phones Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
      *              numbers but only one phone number is permitted for one device type.
      * @param addresses Optional. Specifies the physical addresses.
@@ -419,7 +419,7 @@ public class QuickBooksModule
                                    @Optional List<Map<String, Object>> webSites,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   @Optional List<String> emails,
+                                   @Optional List<Map<String, Object>> emails,
                                    @Optional List<Map<String, Object>> phones,
                                    @Optional List<Map<String, Object>> addresses)
     {
@@ -808,7 +808,7 @@ public class QuickBooksModule
      * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
      *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
      *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
-     * @param emails Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param emails Optional. Valid email. Specifies the vendors's email addresses.
      * @param phones Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
      *              5 phone numbers but only one phone number is permitted for one device type.
      * @param addresses Optional. Specifies the physical addresses.
@@ -827,10 +827,10 @@ public class QuickBooksModule
                                @Optional String dBAName,
                                @Optional String showAs,
                                @Optional List<Map<String, Object>> webSites,
-                               @Optional Integer taxIdentifier,
+                               @Optional String taxIdentifier,
                                @Optional String acctNum,
                                @Optional Boolean vendor1099,
-                               @Optional List<String> emails,
+                               @Optional List<Map<String, Object>> emails,
                                @Optional List<Map<String, Object>> phones,
                                @Optional List<Map<String, Object>> addresses)
     {
@@ -1241,7 +1241,7 @@ public class QuickBooksModule
      * @param salesTaxCodeId QBO only supports the customers being taxable or not, so if this field is "1", the job 
      *                       is taxable. If the field value is null, the job is not taxable. All other values are 
      *                       invalid.
-     * @param emails Optional. Valid email strings. Specifies the customers's email addresses.
+     * @param emails Optional. Valid email. Specifies the customers's email addresses.
      * @param phones Optional. Specifies the phone numbers of the customer. QBO allows mapping of up to 5 phone 
      *              numbers but only one phone number is permitted for one device type.
      * @param addresses Optional. Specifies the physical addresses.
@@ -1265,7 +1265,7 @@ public class QuickBooksModule
                                    @Optional List<Map<String, Object>> webSites,
                                    @Optional Map<String, Object> salesTermId,
                                    @Optional String salesTaxCodeId,
-                                   @Optional List<String> emails, 
+                                   @Optional List<Map<String, Object>> emails, 
                                    @Optional List<Map<String, Object>> phones,
                                    @Optional List<Map<String, Object>> addresses)
     {
@@ -1739,7 +1739,7 @@ public class QuickBooksModule
      * @param vendor1099 Optional. Specifies that the Vendor is an independent contractor, someone 
      *                   who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is 
      *                   paid with regular checks, and taxes are not withheld on the vendor's behalf.
-     * @param emails Optional. Valid email strings. Specifies the vendors's email addresses.
+     * @param emails Optional. Valid email. Specifies the vendors's email addresses.
      * @param phones Optional. Specifies the phone numbers of the vendor. QBO allows mapping of up to 
      *              5 phone numbers but only one phone number is permitted for one device type.
      * @param addresses Optional. Specifies the physical addresses.
@@ -1760,10 +1760,10 @@ public class QuickBooksModule
                                @Optional String dBAName, 
                                @Optional String showAs, 
                                @Optional List<Map<String, Object>> webSites,
-                               @Optional Integer taxIdentifier, 
+                               @Optional String taxIdentifier, 
                                @Optional String acctNum, 
                                @Optional Boolean vendor1099,
-                               @Optional List<String> emails, 
+                               @Optional List<Map<String, Object>> emails, 
                                @Optional List<Map<String, Object>> phones, 
                                @Optional List<Map<String, Object>> addresses)
     {
@@ -1965,20 +1965,7 @@ public class QuickBooksModule
             public Object convert(Class type, Object value)
             {
                 Validate.isTrue(type == BigDecimal.class);
-                
-                if (value instanceof BigDecimal)
-                {
-                    return value;
-                } 
-                else if (value instanceof Double) 
-                {
-                    return new BigDecimal((Double) value);
-                }
-                else if (value instanceof Integer) 
-                {
-                    return new BigDecimal((Integer) value);
-                }
-                return new BigDecimal((String) value);
+                return new BigDecimal(value.toString());
             }
             
         }, BigDecimal.class);
