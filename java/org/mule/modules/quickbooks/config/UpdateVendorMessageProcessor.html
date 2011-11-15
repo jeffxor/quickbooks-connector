@@ -464,7 +464,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>UpdateVendorMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateVendor(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.lang.Integer, java.lang.String, java.lang.Boolean, java.util.List<java.lang.String>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateVendor(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.lang.Integer, java.lang.String, java.lang.Boolean, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>UpdateVendorMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateVendor(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateVendor(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -716,7 +716,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          List&lt;String&gt;</nobr></td>
+          List&lt;Map&lt;String,&nbsp;Object&gt;&gt;</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/config/UpdateVendorMessageProcessor.html#_emailsType">_emailsType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -815,7 +815,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          Integer</nobr></td>
+          String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/config/UpdateVendorMessageProcessor.html#_taxIdentifierType">_taxIdentifierType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -2335,7 +2335,7 @@ From interface
         private 
          
          
-        List&lt;String&gt;
+        List&lt;Map&lt;String,&nbsp;Object&gt;&gt;
       </span>
         _emailsType
     </h4>
@@ -2605,7 +2605,7 @@ From interface
         private 
          
          
-        Integer
+        String
       </span>
         _taxIdentifierType
     </h4>
