@@ -19,6 +19,7 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
+import org.jaxen.function.ConcatFunction;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.api.Exception.QuickBooksRuntimeException;
 import org.mule.modules.quickbooks.schema.CdmBase;
@@ -47,20 +48,22 @@ import com.sun.jersey.oauth.signature.OAuthSecrets;
 
 public class DefaultQuickBooksClient implements QuickBooksClient
 {
-    private final String realmId;
+    private final String baseUri;
+	private final String realmId;
     private final Client client;
     private final OAuthParameters params;
     private final OAuthSecrets secrets;
     private final ObjectFactory objectFactory;
-    private String baseUri = null;
+    private String companyBaseUri = null;
     private Integer resultsPerPage = 100;
     
     public DefaultQuickBooksClient(final String realmId, final String consumerKey,
-                                   final String consumerSecret)
+                                   final String consumerSecret, final String baseUri)
     {
         Validate.notNull(realmId);
         Validate.notNull(consumerKey);
         Validate.notNull(consumerSecret);
+        Validate.notEmpty(baseUri);
         
         this.objectFactory = new ObjectFactory();
         this.realmId = realmId;
@@ -68,8 +71,11 @@ public class DefaultQuickBooksClient implements QuickBooksClient
         
         this.params = new OAuthParameters().signatureMethod("HMAC-SHA1").consumerKey(consumerKey);
         this.secrets = new OAuthSecrets().consumerSecret(consumerSecret);
+        
+        this.baseUri= baseUri;
     }
     
+	
     /** @throws QuickBooksRuntimeException 
      * @see org.mule.modules.quickbooks.api.QuickBooksClient#create(java.lang.Object) */
     @Override
@@ -282,7 +288,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
     
     private WebResource getGateWay(String accessKey, String accessSecret)
     {
-            String str = getBaseURI(accessKey, accessSecret);
+            String str = getCompanyBaseURI(accessKey, accessSecret);
             OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
                 params.token(accessKey), secrets.tokenSecret(accessSecret));
             
@@ -292,17 +298,17 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             return webResource;
     }
 
-    private String getBaseURI(String accessKey, String accessSecret)
+    private String getCompanyBaseURI(String accessKey, String accessSecret)
     {
         Validate.notNull(accessKey);
         Validate.notNull(accessSecret);
         
-        if (baseUri == null)
+        if (companyBaseUri == null)
         {
             OAuthClientFilter oauthFilter = new OAuthClientFilter(client.getProviders(),
                 params.token(accessKey), secrets.tokenSecret(accessSecret));
             
-            String str = String.format("https://qbo.intuit.com/qbo30/rest/user/v2/%s", realmId);
+            String str = String.format("%s/%s", baseUri, realmId);
             WebResource webResource = this.client.resource(str);
             webResource.addFilter(oauthFilter);
             
@@ -312,7 +318,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
                     .type(MediaType.APPLICATION_XML)
                     .get(QboUser.class);
                 
-                baseUri = response.getCurrentCompany().getBaseURI();
+                companyBaseUri = response.getCurrentCompany().getBaseURI();
             }
             catch (final UniformInterfaceException e)
             {
@@ -321,7 +327,7 @@ public class DefaultQuickBooksClient implements QuickBooksClient
             }
         }
 
-        return baseUri;
+        return companyBaseUri;
     }
     
     public void setResultsPerPage(Integer resultsPerPage)

@@ -62,6 +62,7 @@ public class QuickBooksModuleTestDriver
         module.setConsumerKey("qyprdjjAVqbMjp3iQHH2SutYSm2min");
         module.setConsumerSecret("6I5mTDGjthIeIWJm6iKx7Q4jAihKFd1yvFvkMi3B");
         module.setRealmId("212879793");
+        module.setBaseUri("https://qbo.intuit.com/qbo1/rest/user/v2");
         module.init();
         
         accessToken = "lvprdUOzPD8jlLdCSgKGYubbNAwFh03PUHM34gWvXPYoPdgJ";

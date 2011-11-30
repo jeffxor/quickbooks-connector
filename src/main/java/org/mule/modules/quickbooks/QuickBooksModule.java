@@ -119,6 +119,20 @@ public class QuickBooksModule
     private MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
 
     /**
+     * The base uri of the quickbooks endpoint,
+     * used to fetch the company uri. 
+     * 
+     * Quickbooks connector will first use this uri and the realmId to
+     * get a second uri, called company uri, 
+     * which is the actual quickbooks endpoint for the connector 
+     *  
+     */
+    @Optional
+    @Default("https://qbo.intuit.com/qbo1/rest/user/v2")
+    @Configurable
+	private String baseUri;
+
+    /**
      * Creates an Account.
      * The Account object represents the accounts that you keep to track your business.
      * Account is a component of a chart of accounts, and is part of a ledger.
@@ -1870,7 +1884,7 @@ public class QuickBooksModule
     {
         if (client == null )
         {
-            client = new DefaultQuickBooksClient(realmId, consumerKey, consumerSecret);
+            client = new DefaultQuickBooksClient(realmId, consumerKey, consumerSecret, baseUri);
         }
         mom.setPropertyStyle(CXFStyle.STYLE);
     }
@@ -1996,4 +2010,12 @@ public class QuickBooksModule
     {
         return ((map == null) ? new HashMap<String, Object>() : map);
     }
+    
+    public void setBaseUri(String baseUri) {
+		this.baseUri = baseUri;
+	}
+    
+    public String getBaseUri() {
+		return baseUri;
+	}
 }
