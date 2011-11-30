@@ -419,7 +419,7 @@ Summary:
           <td class="jd-typecol"><nobr>
           private
           
-          
+          final
           String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html#baseUri">baseUri</a></td>
           <td class="jd-descrcol" width="100%"></td>
@@ -441,6 +441,17 @@ Summary:
           <td class="jd-typecol"><nobr>
           private
           
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html#companyBaseUri">companyBaseUri</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
           final
           <a href="../../../../../../java/org/mule/modules/quickbooks/schema/ObjectFactory.html">ObjectFactory</a></nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html#objectFactory">objectFactory</a></td>
@@ -448,7 +459,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -459,7 +470,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -470,7 +481,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -481,7 +492,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -517,7 +528,7 @@ Summary:
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html#DefaultQuickBooksClient(java.lang.String, java.lang.String, java.lang.String)">DefaultQuickBooksClient</a></span>(String realmId, String consumerKey, String consumerSecret)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html#DefaultQuickBooksClient(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">DefaultQuickBooksClient</a></span>(String realmId, String consumerKey, String consumerSecret, String baseUri)</nobr>
         
   </td></tr>
 
@@ -992,7 +1003,7 @@ From interface
       <span class="normal">
         private 
          
-         
+        final 
         String
       </span>
         baseUri
@@ -1026,6 +1037,36 @@ From interface
         Client
       </span>
         client
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="companyBaseUri"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        companyBaseUri
     </h4>
       <div class="api-level">
         
@@ -1204,7 +1245,7 @@ From interface
 
 
 
-<A NAME="DefaultQuickBooksClient(java.lang.String, java.lang.String, java.lang.String)"></A>
+<A NAME="DefaultQuickBooksClient(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1217,7 +1258,7 @@ From interface
         
       </span>
       <span class="sympad">DefaultQuickBooksClient</span>
-      <span class="normal">(String realmId, String consumerKey, String consumerSecret)</span>
+      <span class="normal">(String realmId, String consumerKey, String consumerSecret, String baseUri)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1243,6 +1284,10 @@ From interface
         </tr>
         <tr>
           <th>consumerSecret</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>baseUri</td>
           <td></td>
         </tr>
       </table>
