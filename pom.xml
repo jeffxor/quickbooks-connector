@@ -14,7 +14,8 @@
     </parent>
 
     <properties>
-        <mom.version>1.1</mom.version>
+        <mom.version>1.2.2</mom.version>
+        <mule.module.utils.version>1.0-SNAPSHOT</mule.module.utils.version>
     </properties>
 
     <build>
@@ -76,6 +77,11 @@
             <groupId>com.zaubersoftware</groupId>
             <artifactId>mom</artifactId>
             <version>${mom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-modules-utils</artifactId>
+            <version>${mule.module.utils.version}</version>
         </dependency>
     </dependencies>
 

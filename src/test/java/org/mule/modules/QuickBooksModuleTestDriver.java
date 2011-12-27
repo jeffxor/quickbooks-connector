@@ -34,8 +34,8 @@ import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.PhysicalAddress;
 import org.mule.modules.quickbooks.schema.SalesTerm;
+import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
 
 
@@ -150,9 +150,8 @@ public class QuickBooksModuleTestDriver
         
         auxList.add(auxMap);
 
-        MapObjectMapper mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
-        mom.setPropertyStyle(CXFStyle.STYLE);
-        Customer c = mom.toObject(Customer.class,
+        MapObjectMapper mom = CxfMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
+        Customer c = (Customer) mom.unmap(
                 new MapBuilder()
                 .with("name", "Susana")
                 .with("givenName", "Susana")
@@ -167,7 +166,7 @@ public class QuickBooksModuleTestDriver
                 .with("email", new ArrayList<String>())
                 .with("phone", new ArrayList<Map<String, Object>>())
                 .with("address", auxList)
-                .build()
+                .build(), Customer.class
                 );
         
         PhysicalAddress ph = c.getAddress().get(0);
@@ -183,7 +182,7 @@ public class QuickBooksModuleTestDriver
         //idType.put("idDomain", c.getId().getIdDomain());
         Customer c = (Customer) module.getObject(accessToken, accessTokenSecret, EntityType.CUSTOMER, idType);
         
-        assertEquals("Ricardo", c.getName());
+        assertEquals("Ricardo (deleted)", c.getName());
         assertNotNull(c.getId());
     }
     

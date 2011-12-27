@@ -32,8 +32,8 @@ import org.mule.modules.quickbooks.api.MapBuilder;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.ObjectFactory;
 import org.mule.modules.quickbooks.utils.ObjectFactories;
+import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
 
 
@@ -56,8 +56,7 @@ public class ObjectFactoriesTest
     public void setup()
     {
         objectFactory = new ObjectFactory();
-        mom = new MapObjectMapper("org.mule.modules.quickbooks.schema");
-        mom.setPropertyStyle(CXFStyle.STYLE);
+        mom = CxfMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
     }
 
     @Test
@@ -79,7 +78,7 @@ public class ObjectFactoriesTest
                }
             );
         
-        Customer customer = mom.toObject(Customer.class,
+        Customer customer = (Customer) mom.unmap(
             new MapBuilder()
             .with("name", "Ricardo")
             .with("givenName", "Enrique")
@@ -94,7 +93,7 @@ public class ObjectFactoriesTest
             .with("email", email)
             .with("phone", phone)
             .with("address", address)
-            .build()
+            .build(), Customer.class
         );
         
         JAXBElement<Customer> jaxbCustomer = ObjectFactories.createJaxbElement(customer, objectFactory);
