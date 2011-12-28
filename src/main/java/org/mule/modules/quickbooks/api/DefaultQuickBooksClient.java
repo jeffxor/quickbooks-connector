@@ -19,7 +19,6 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
-import org.jaxen.function.ConcatFunction;
 import org.mule.modules.quickbooks.EntityType;
 import org.mule.modules.quickbooks.api.Exception.QuickBooksRuntimeException;
 import org.mule.modules.quickbooks.schema.CdmBase;
@@ -29,6 +28,7 @@ import org.mule.modules.quickbooks.schema.ObjectFactory;
 import org.mule.modules.quickbooks.schema.QboUser;
 import org.mule.modules.quickbooks.schema.SearchResults;
 import org.mule.modules.quickbooks.utils.ObjectFactories;
+import org.mule.modules.utils.pagination.PaginatedIterable;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.UniformInterfaceException;
@@ -39,13 +39,10 @@ import com.sun.jersey.oauth.signature.OAuthParameters;
 import com.sun.jersey.oauth.signature.OAuthSecrets;
 
 /**
- *   
- * 
  * 
  * @author Gaston Ponti
  * @since Aug 19, 2011
  */
-
 public class DefaultQuickBooksClient implements QuickBooksClient
 {
     private final String baseUri;
