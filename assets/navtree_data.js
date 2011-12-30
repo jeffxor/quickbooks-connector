@@ -3,7 +3,7 @@ var NAVTREE_DATA =
 , "" ], [ "Enums", null, [ [ "AccountDetail", "org/mule/modules/quickbooks/AccountDetail.html", null, "" ], [ "EntityType", "org/mule/modules/quickbooks/EntityType.html", null, "" ] ]
 , "" ] ]
 , "" ], [ "org.mule.modules.quickbooks.api", "org/mule/modules/quickbooks/api/package-summary.html", [ [ "Interfaces", null, [ [ "QuickBooksClient", "org/mule/modules/quickbooks/api/QuickBooksClient.html", null, "" ] ]
-, "" ], [ "Classes", null, [ [ "DefaultQuickBooksClient", "org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html", null, "" ], [ "MapBuilder", "org/mule/modules/quickbooks/api/MapBuilder.html", null, "" ], [ "PaginatedIterable", "org/mule/modules/quickbooks/api/PaginatedIterable.html", null, "" ], [ "QuickBooksConventions", "org/mule/modules/quickbooks/api/QuickBooksConventions.html", null, "" ] ]
+, "" ], [ "Classes", null, [ [ "DefaultQuickBooksClient", "org/mule/modules/quickbooks/api/DefaultQuickBooksClient.html", null, "" ], [ "MapBuilder", "org/mule/modules/quickbooks/api/MapBuilder.html", null, "" ], [ "QuickBooksConventions", "org/mule/modules/quickbooks/api/QuickBooksConventions.html", null, "" ] ]
 , "" ] ]
 , "" ], [ "org.mule.modules.quickbooks.api.Exception", "org/mule/modules/quickbooks/api/Exception/package-summary.html", [ [ "Exceptions", null, [ [ "QuickBooksRuntimeException", "org/mule/modules/quickbooks/api/Exception/QuickBooksRuntimeException.html", null, "" ] ]
 , "" ] ]
