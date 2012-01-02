@@ -112,15 +112,19 @@
       <span id="masthead-title">QuickBooks Cloud Connector</span>
     
     <ul id="header-tabs" class="">
+    
     	<li id="guide"><a href="../../../../../../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
+    
     	<li id="java"><a href="../../../../../../java/packages.html">
-	    	<span class="en">Java API</span>
+	    	<span class="en">Java API Reference</span>
     	</a></li>
+    
     	<li id="mule"><a href="../../../../../../mule/modules.html">
-	    	<span class="en">Mule API</span>
+	    	<span class="en">Mule API Reference</span>
     	</a></li>
+    
     </ul>
     </div>
     <div id="headerRight">
@@ -198,6 +202,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/AccountDetailEnumTransformer.html">AccountDetailEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateAccountMessageProcessor.html">CreateAccountMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillMessageProcessor.html">CreateBillMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillPaymentMessageProcessor.html">CreateBillPaymentMessageProcessor</a></li>
@@ -213,6 +218,8 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesReceiptMessageProcessor.html">CreateSalesReceiptMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesTermMessageProcessor.html">CreateSalesTermMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateVendorMessageProcessor.html">CreateVendorMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultRestoreAccessTokenCallback.html">DefaultRestoreAccessTokenCallback</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultSaveAccessTokenCallback.html">DefaultSaveAccessTokenCallback</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DeleteObjectMessageProcessor.html">DeleteObjectMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/EntityTypeEnumTransformer.html">EntityTypeEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/FindObjectsMessageProcessor.html">FindObjectsMessageProcessor</a></li>
@@ -221,6 +228,8 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleHttpCallbackAdapter.html">QuickBooksModuleHttpCallbackAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleLifecycleAdapter.html">QuickBooksModuleLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleOAuth1Adapter.html">QuickBooksModuleOAuth1Adapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/RestoreAccessTokenCallbackFactoryBean.html">RestoreAccessTokenCallbackFactoryBean</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/SaveAccessTokenCallbackFactoryBean.html">SaveAccessTokenCallbackFactoryBean</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/StringToDateTransformer.html">StringToDateTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateAccountMessageProcessor.html">UpdateAccountMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateBillMessageProcessor.html">UpdateBillMessageProcessor</a></li>
@@ -314,18 +323,6 @@
 
   
    
-  
-  
-  
-  
-
-  
-   
-  
-  
-  
-  
-
   
   
   
@@ -594,10 +591,6 @@ org.mule.api.AnnotatedObject
   </div>
 </div>
 </td></tr>
-
-
-
-
 
 
 
@@ -919,10 +912,6 @@ org.mule.transformer.AbstractTransformer
   </div>
 </div>
 </td></tr>
-
-
-
-
 
 
 
@@ -1475,38 +1464,6 @@ From class
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">isSourceTypeSupported</span>(Class&lt;MuleMessage&gt; arg0, boolean arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(ServerNotification arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(MuleContextNotification arg0)</nobr>
         
   </td></tr>
 
@@ -2197,50 +2154,6 @@ From interface
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.context.notification.ServerNotificationListener
-
-<div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener">
-  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(T arg0)</nobr>
         
   </td></tr>
 

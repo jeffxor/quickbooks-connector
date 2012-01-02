@@ -113,15 +113,19 @@
       <span id="masthead-title">QuickBooks Cloud Connector</span>
     
     <ul id="header-tabs" class="java">
+    
     	<li id="guide"><a href="../../../../../../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
+    
     	<li id="java"><a href="../../../../../../java/packages.html">
-	    	<span class="en">Java API</span>
+	    	<span class="en">Java API Reference</span>
     	</a></li>
+    
     	<li id="mule"><a href="../../../../../../mule/modules.html">
-	    	<span class="en">Mule API</span>
+	    	<span class="en">Mule API Reference</span>
     	</a></li>
+    
     </ul>
     </div>
     <div id="headerRight">
@@ -199,6 +203,7 @@
     <li><h2>Classes</h2>
       <ul>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/AccountDetailEnumTransformer.html">AccountDetailEnumTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateAccountMessageProcessor.html">CreateAccountMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillMessageProcessor.html">CreateBillMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillPaymentMessageProcessor.html">CreateBillPaymentMessageProcessor</a></li>
@@ -214,6 +219,8 @@
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesReceiptMessageProcessor.html">CreateSalesReceiptMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesTermMessageProcessor.html">CreateSalesTermMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateVendorMessageProcessor.html">CreateVendorMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultRestoreAccessTokenCallback.html">DefaultRestoreAccessTokenCallback</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultSaveAccessTokenCallback.html">DefaultSaveAccessTokenCallback</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DeleteObjectMessageProcessor.html">DeleteObjectMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/EntityTypeEnumTransformer.html">EntityTypeEnumTransformer</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/FindObjectsMessageProcessor.html">FindObjectsMessageProcessor</a></li>
@@ -222,6 +229,8 @@
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleHttpCallbackAdapter.html">QuickBooksModuleHttpCallbackAdapter</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleLifecycleAdapter.html">QuickBooksModuleLifecycleAdapter</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleOAuth1Adapter.html">QuickBooksModuleOAuth1Adapter</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/RestoreAccessTokenCallbackFactoryBean.html">RestoreAccessTokenCallbackFactoryBean</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/SaveAccessTokenCallbackFactoryBean.html">SaveAccessTokenCallbackFactoryBean</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/StringToDateTransformer.html">StringToDateTransformer</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateAccountMessageProcessor.html">UpdateAccountMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateBillMessageProcessor.html">UpdateBillMessageProcessor</a></li>
@@ -315,158 +324,178 @@
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateAccountMessageProcessor.html">CreateAccountMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateAccountMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.modules.quickbooks.AccountDetail, java.lang.String, java.lang.String, java.util.Date, java.util.Map<java.lang.String, java.lang.Object>)">createAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.modules.quickbooks.AccountDetail, java.lang.String, java.lang.String, java.util.Date, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillMessageProcessor.html">CreateBillMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateBillMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createBill(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createBill(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateBillPaymentMessageProcessor.html">CreateBillPaymentMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateBillPaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createBillPayment(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createBillPayment(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateCashPurchaseMessageProcessor.html">CreateCashPurchaseMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateCashPurchaseMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createCashPurchase(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createCashPurchase(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateCheckMessageProcessor.html">CreateCheckMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateCheckMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createCheck(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createCheck(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateCreditCardChargeMessageProcessor.html">CreateCreditCardChargeMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateCreditCardChargeMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createCreditCardCharge(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createCreditCardCharge(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateCustomerMessageProcessor.html">CreateCustomerMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateCustomerMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createCustomer(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createCustomer(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.util.Map, java.lang.String, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateEstimateMessageProcessor.html">CreateEstimateMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateEstimateMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createEstimate(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createEstimate(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateInvoiceMessageProcessor.html">CreateInvoiceMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateInvoiceMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createInvoice(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createInvoice(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateItemMessageProcessor.html">CreateItemMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateItemMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createItem(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.Boolean, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>)">createItem(java.lang.String, java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.Boolean, java.util.Map, java.util.Map, java.lang.String, java.lang.String, java.util.Map, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreatePaymentMessageProcessor.html">CreatePaymentMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreatePaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createPayment(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createPayment(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreatePaymentMethodMessageProcessor.html">CreatePaymentMethodMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreatePaymentMethodMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createPaymentMethod(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">createPaymentMethod(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesReceiptMessageProcessor.html">CreateSalesReceiptMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateSalesReceiptMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createSalesReceipt(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createSalesReceipt(java.lang.String, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateSalesTermMessageProcessor.html">CreateSalesTermMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateSalesTermMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createSalesTerm(java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String)">createSalesTerm(java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/CreateVendorMessageProcessor.html">CreateVendorMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">CreateVendorMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#createVendor(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">createVendor(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultRestoreAccessTokenCallback.html">DefaultRestoreAccessTokenCallback</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
         <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DefaultSaveAccessTokenCallback.html">DefaultSaveAccessTokenCallback</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/DeleteObjectMessageProcessor.html">DeleteObjectMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">DeleteObjectMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#deleteObject(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String)">deleteObject(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.util.Map, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/EntityTypeEnumTransformer.html">EntityTypeEnumTransformer</a></td>
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/FindObjectsMessageProcessor.html">FindObjectsMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">FindObjectsMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#findObjects(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.lang.String, java.lang.String)">findObjects(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/GetObjectMessageProcessor.html">GetObjectMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">GetObjectMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#getObject(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.util.Map<java.lang.String, java.lang.Object>)">getObject(java.lang.String, java.lang.String, org.mule.modules.quickbooks.EntityType, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleCapabilitiesAdapter.html">QuickBooksModuleCapabilitiesAdapter</a></td>
               <td class="jd-descrcol" width="100%">A <code>QuickBooksModuleCapabilitiesAdapter</code> is a wrapper around <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code> that implements org.mule.api.Capabilities interface.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleHttpCallbackAdapter.html">QuickBooksModuleHttpCallbackAdapter</a></td>
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleLifecycleAdapter.html">QuickBooksModuleLifecycleAdapter</a></td>
               <td class="jd-descrcol" width="100%">A <code>QuickBooksModuleLifecycleAdapter</code> is a wrapper around <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/QuickBooksModuleOAuth1Adapter.html">QuickBooksModuleOAuth1Adapter</a></td>
               <td class="jd-descrcol" width="100%">A <code>QuickBooksModuleOAuth1Adapter</code> is a wrapper around <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code> that adds OAuth capabilites to the pojo.&nbsp;</td>
           </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/RestoreAccessTokenCallbackFactoryBean.html">RestoreAccessTokenCallbackFactoryBean</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
         <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/StringToDateTransformer.html">StringToDateTransformer</a></td>
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/SaveAccessTokenCallbackFactoryBean.html">SaveAccessTokenCallbackFactoryBean</a></td>
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/StringToDateTransformer.html">StringToDateTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateAccountMessageProcessor.html">UpdateAccountMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateAccountMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateAccount(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, org.mule.modules.quickbooks.AccountDetail, java.lang.String, java.lang.String, java.util.Date, java.util.Map<java.lang.String, java.lang.Object>)">updateAccount(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String, org.mule.modules.quickbooks.AccountDetail, java.lang.String, java.lang.String, java.util.Date, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateBillMessageProcessor.html">UpdateBillMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateBillMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateBill(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateBill(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateBillPaymentMessageProcessor.html">UpdateBillPaymentMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateBillPaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateBillPayment(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateBillPayment(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateCashPurchaseMessageProcessor.html">UpdateCashPurchaseMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateCashPurchaseMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateCashPurchase(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateCashPurchase(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateCheckMessageProcessor.html">UpdateCheckMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateCheckMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateCheck(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateCheck(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateCreditCardChargeMessageProcessor.html">UpdateCreditCardChargeMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateCreditCardChargeMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateCreditCardCharge(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateCreditCardCharge(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateCustomerMessageProcessor.html">UpdateCustomerMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateCustomerMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateCustomer(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateCustomer(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.util.Map, java.lang.String, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateEstimateMessageProcessor.html">UpdateEstimateMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateEstimateMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateEstimate(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateEstimate(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateInvoiceMessageProcessor.html">UpdateInvoiceMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateInvoiceMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateInvoice(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateInvoice(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateItemMessageProcessor.html">UpdateItemMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateItemMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateItem(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.Boolean, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>)">updateItem(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.Boolean, java.util.Map, java.util.Map, java.lang.String, java.lang.String, java.util.Map, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdatePaymentMessageProcessor.html">UpdatePaymentMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdatePaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updatePayment(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updatePayment(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdatePaymentMethodMessageProcessor.html">UpdatePaymentMethodMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdatePaymentMethodMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updatePaymentMethod(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String)">updatePaymentMethod(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateSalesReceiptMessageProcessor.html">UpdateSalesReceiptMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateSalesReceiptMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateSalesReceipt(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateSalesReceipt(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.util.Map, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateSalesTermMessageProcessor.html">UpdateSalesTermMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateSalesTermMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateSalesTerm(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String)">updateSalesTerm(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/quickbooks/config/UpdateVendorMessageProcessor.html">UpdateVendorMessageProcessor</a></td>
               <td class="jd-descrcol" width="100%">UpdateVendorMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html#updateVendor(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">updateVendor(java.lang.String, java.lang.String, java.util.Map, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.List, java.lang.String, java.lang.String, java.lang.Boolean, java.util.List, java.util.List, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/quickbooks/QuickBooksModule.html">QuickBooksModule</a></code>.&nbsp;</td>
           </tr>
