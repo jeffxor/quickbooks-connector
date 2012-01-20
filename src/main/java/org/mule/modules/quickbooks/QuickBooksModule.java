@@ -53,7 +53,7 @@ import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.quickbooks.schema.Vendor;
 import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import com.zauberlabs.commons.mom.MapObjectMapper;
 
 
 
@@ -1949,12 +1949,12 @@ public class QuickBooksModule
     @SuppressWarnings("unchecked")
     private <T> List<T> coalesceList(List<T> list )
     {
-        return (List<T>) ((list == null) ? Collections.emptyList() : list);
+        return (List<T>) (list == null ? Collections.emptyList() : list);
     }
     
     private Map<String, Object> coalesceMap(Map<String, Object> map )
     {
-        return ((map == null) ? new HashMap<String, Object>() : map);
+        return map == null ? new HashMap<String, Object>() : map;
     }
     
     public void setBaseUri(String baseUri)

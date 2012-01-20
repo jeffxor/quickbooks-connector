@@ -34,7 +34,7 @@ import org.mule.modules.quickbooks.schema.ObjectFactory;
 import org.mule.modules.quickbooks.utils.ObjectFactories;
 import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import com.zauberlabs.commons.mom.MapObjectMapper;
 
 
 /**

@@ -36,7 +36,7 @@ import org.mule.modules.quickbooks.schema.PhysicalAddress;
 import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import com.zauberlabs.commons.mom.MapObjectMapper;
 
 
 /**
