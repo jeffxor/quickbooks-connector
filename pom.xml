@@ -14,7 +14,6 @@
     </parent>
 
     <properties>
-        <mom.version>1.4-SNAPSHOT</mom.version>
         <mule.module.utils.version>1.0-SNAPSHOT</mule.module.utils.version>
     </properties>
 
@@ -72,11 +71,6 @@
             <artifactId>mule-transport-http</artifactId>
             <version>${mule.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.zaubersoftware</groupId>
-            <artifactId>mom</artifactId>
-            <version>${mom.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>

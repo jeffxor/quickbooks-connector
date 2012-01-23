@@ -51,7 +51,7 @@ import org.mule.modules.quickbooks.schema.PaymentMethod;
 import org.mule.modules.quickbooks.schema.SalesReceipt;
 import org.mule.modules.quickbooks.schema.SalesTerm;
 import org.mule.modules.quickbooks.schema.Vendor;
-import org.mule.modules.utils.mom.CxfMapObjectMappers;
+import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
 import com.zauberlabs.commons.mom.MapObjectMapper;
 
@@ -109,7 +109,7 @@ public class QuickBooksModule
     @Optional
     private QuickBooksClient client;
     
-    private MapObjectMapper mom = CxfMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
+    private final MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
 
     /**
      * The base uri of the quickbooks endpoint,
@@ -173,7 +173,7 @@ public class QuickBooksModule
                                 @Optional Map<String, Object> accountParentId)
     {
         
-        return (Account) client.create(EntityType.ACCOUNT,
+        return client.create(EntityType.ACCOUNT,
             unmap(Account.class,            
                 new MapBuilder()
                 .with("name", name)
@@ -215,7 +215,7 @@ public class QuickBooksModule
                            Map<String, Object> header,
                            List<Map<String, Object>> lines)
     {
-        return (Bill) client.create(EntityType.BILL,
+        return client.create(EntityType.BILL,
             unmap(Bill.class,
                 new MapBuilder()
                 .with("header", header)
@@ -253,7 +253,7 @@ public class QuickBooksModule
                                          Map<String, Object> header,
                                          List<Map<String, Object>> lines)
     {    
-        return (BillPayment) client.create(EntityType.BILLPAYMENT,
+        return client.create(EntityType.BILLPAYMENT,
             unmap(BillPayment.class,
                 new MapBuilder()
                 .with("header", header)
@@ -290,7 +290,7 @@ public class QuickBooksModule
                                            Map<String, Object> header,
                                            List<Map<String, Object>> lines)
     {
-        return (CashPurchase) client.create(EntityType.CASHPURCHASE,
+        return client.create(EntityType.CASHPURCHASE,
             unmap(CashPurchase.class,
                 new MapBuilder()
                 .with("header", header)
@@ -326,7 +326,7 @@ public class QuickBooksModule
                              Map<String, Object> header,
                              List<Map<String, Object>> lines)
     {
-        return (Check) client.create(EntityType.CHECK,
+        return client.create(EntityType.CHECK,
             unmap(Check.class,
                 new MapBuilder()
                 .with("header", header)
@@ -365,7 +365,7 @@ public class QuickBooksModule
                                                    Map<String, Object> header,
                                                    List<Map<String, Object>> lines)
     {
-        return (CreditCardCharge) client.create(EntityType.CREDITCARDCHARGE,
+        return client.create(EntityType.CREDITCARDCHARGE,
             unmap(CreditCardCharge.class,
                 new MapBuilder()
                 .with("header", header)
@@ -436,7 +436,7 @@ public class QuickBooksModule
         phones = coalesceList(phones);
         addresses = coalesceList(addresses);
 
-        return (Customer) client.create(EntityType.CUSTOMER,
+        return client.create(EntityType.CUSTOMER,
             unmap(Customer.class,
                 new MapBuilder()
                 .with("name", name)
@@ -483,7 +483,7 @@ public class QuickBooksModule
                                    Map<String, Object> header,
                                    List<Map<String, Object>> lines)
     {
-        return (Estimate) client.create(EntityType.ESTIMATE,
+        return client.create(EntityType.ESTIMATE,
             unmap(Estimate.class,
                 new MapBuilder()
                 .with("header", header)
@@ -521,7 +521,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> lines)
     {
-        return (Invoice) client.create(EntityType.INVOICE,
+        return client.create(EntityType.INVOICE,
             unmap(Invoice.class,
                 new MapBuilder()
                 .with("header", header)
@@ -582,7 +582,7 @@ public class QuickBooksModule
         purchaseCost = coalesceMap(purchaseCost);
         expenseAccount = coalesceMap(expenseAccount);
 
-        return (Item) client.create(EntityType.ITEM,
+        return client.create(EntityType.ITEM,
             unmap(Item.class,
                 new MapBuilder()
                 .with("name", name)
@@ -627,7 +627,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> lines)
     {
-        return (Payment) client.create(EntityType.PAYMENT,
+        return client.create(EntityType.PAYMENT,
             unmap(Payment.class,
                 new MapBuilder()
                 .with("header", header)
@@ -667,7 +667,7 @@ public class QuickBooksModule
                                              String name,
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
-        return (PaymentMethod) client.create(EntityType.PAYMENTMETHOD,
+        return client.create(EntityType.PAYMENTMETHOD,
             unmap(PaymentMethod.class,
                 new MapBuilder()
                 .with("name", name)
@@ -704,7 +704,7 @@ public class QuickBooksModule
                                            Map<String, Object> header,
                                            List<Map<String, Object>> lines)
     {
-        return (SalesReceipt) client.create(EntityType.SALESRECEIPT,
+        return client.create(EntityType.SALESRECEIPT,
             unmap(SalesReceipt.class,
                 new MapBuilder()
                 .with("header", header)
@@ -767,7 +767,7 @@ public class QuickBooksModule
                                      @Optional String dateDiscountPercent)
     {
         
-        return (SalesTerm) client.create(EntityType.SALESTERM,
+        return client.create(EntityType.SALESTERM,
             unmap(SalesTerm.class,
                 new MapBuilder()
                 .with("name", name)
@@ -846,7 +846,7 @@ public class QuickBooksModule
         phones = coalesceList(phones);
         addresses = coalesceList(addresses);
         
-        return (Vendor) client.create(EntityType.VENDOR,
+        return client.create(EntityType.VENDOR,
             unmap(Vendor.class,
                 new MapBuilder()
                 .with("name", name)
@@ -949,7 +949,7 @@ public class QuickBooksModule
                                  @Optional Map<String, Object> accountParentId)
     {   
         
-        return (Account) client.update(EntityType.ACCOUNT,
+        return client.update(EntityType.ACCOUNT,
             unmap(Account.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1003,7 +1003,7 @@ public class QuickBooksModule
                            Map<String, Object> header,
                            List<Map<String, Object>> lines)
     {
-        return (Bill) client.update(EntityType.BILL,
+        return client.update(EntityType.BILL,
             unmap(Bill.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1053,7 +1053,7 @@ public class QuickBooksModule
                                          Map<String, Object> header,
                                          List<Map<String, Object>> lines)
     {    
-        return (BillPayment) client.update(EntityType.BILLPAYMENT,
+        return client.update(EntityType.BILLPAYMENT,
             unmap(BillPayment.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1102,7 +1102,7 @@ public class QuickBooksModule
                                            Map<String, Object> header,
                                            List<Map<String, Object>> lines)
     {
-        return (CashPurchase) client.update(EntityType.CASHPURCHASE,
+        return client.update(EntityType.CASHPURCHASE,
             unmap(CashPurchase.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1150,7 +1150,7 @@ public class QuickBooksModule
                              Map<String, Object> header,
                              List<Map<String, Object>> lines)
     {
-        return (Check) client.update(EntityType.CHECK,
+        return client.update(EntityType.CHECK,
             unmap(Check.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1200,7 +1200,7 @@ public class QuickBooksModule
                                                    Map<String, Object> header,
                                                    List<Map<String, Object>> lines)
     {
-        return (CreditCardCharge) client.update(EntityType.CREDITCARDCHARGE,
+        return client.update(EntityType.CREDITCARDCHARGE,
             unmap(CreditCardCharge.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1282,7 +1282,7 @@ public class QuickBooksModule
         phones = coalesceList(phones);
         addresses = coalesceList(addresses);
         
-        return (Customer) client.update(EntityType.CUSTOMER,
+        return client.update(EntityType.CUSTOMER,
             unmap(Customer.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1341,7 +1341,7 @@ public class QuickBooksModule
                                    Map<String, Object> header,
                                    List<Map<String, Object>> lines)
     {
-        return (Estimate) client.update(EntityType.ESTIMATE,
+        return client.update(EntityType.ESTIMATE,
             unmap(Estimate.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1390,7 +1390,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> lines)
     {
-        return (Invoice) client.update(EntityType.INVOICE,
+        return client.update(EntityType.INVOICE,
             unmap(Invoice.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1462,7 +1462,7 @@ public class QuickBooksModule
         purchaseCost = coalesceMap(purchaseCost);
         expenseAccount = coalesceMap(expenseAccount);
         
-        return (Item) client.update(EntityType.ITEM,
+        return client.update(EntityType.ITEM,
             unmap(Item.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1518,7 +1518,7 @@ public class QuickBooksModule
                                  Map<String, Object> header,
                                  List<Map<String, Object>> lines)
     {
-        return (Payment) client.update(EntityType.PAYMENT,
+        return client.update(EntityType.PAYMENT,
             unmap(Payment.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1567,7 +1567,7 @@ public class QuickBooksModule
                                              String name, 
                                              @Optional @Default("NON_CREDIT_CARD") String type)
     {
-        return (PaymentMethod) client.update(EntityType.PAYMENTMETHOD,
+        return client.update(EntityType.PAYMENTMETHOD,
             unmap(PaymentMethod.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1615,7 +1615,7 @@ public class QuickBooksModule
                                            Map<String, Object> header, 
                                            List<Map<String, Object>> lines)
     {
-        return (SalesReceipt) client.update(EntityType.SALESRECEIPT,
+        return client.update(EntityType.SALESRECEIPT,
             unmap(SalesReceipt.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1689,7 +1689,7 @@ public class QuickBooksModule
                                      @Optional String dateDiscountPercent)
     {
         
-        return (SalesTerm) client.update(EntityType.SALESTERM,
+        return client.update(EntityType.SALESTERM,
             unmap(SalesTerm.class,
                 new MapBuilder()
                 .with("id", id)
@@ -1779,7 +1779,7 @@ public class QuickBooksModule
         phones = coalesceList(phones);
         addresses = coalesceList(addresses);
         
-        return (Vendor) client.update(EntityType.VENDOR,
+        return client.update(EntityType.VENDOR,
             unmap(Vendor.class,
                 new MapBuilder()
                 .with("id", id)
