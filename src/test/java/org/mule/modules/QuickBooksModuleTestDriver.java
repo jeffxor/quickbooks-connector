@@ -34,9 +34,9 @@ import org.mule.modules.quickbooks.schema.Account;
 import org.mule.modules.quickbooks.schema.Customer;
 import org.mule.modules.quickbooks.schema.PhysicalAddress;
 import org.mule.modules.quickbooks.schema.SalesTerm;
-import org.mule.modules.utils.mom.CxfMapObjectMappers;
+import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import com.zauberlabs.commons.mom.MapObjectMapper;
 
 
 /**
@@ -150,7 +150,7 @@ public class QuickBooksModuleTestDriver
         
         auxList.add(auxMap);
 
-        MapObjectMapper mom = CxfMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
+        MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("org.mule.modules.quickbooks.schema").build();
         Customer c = (Customer) mom.unmap(
                 new MapBuilder()
                 .with("name", "Susana")
